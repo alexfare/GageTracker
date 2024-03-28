@@ -1,0 +1,14 @@
+C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\bin\Debug\GageCalibrationTracker.exe.config
+C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\bin\Debug\GageCalibrationTracker.exe
+C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\bin\Debug\GageCalibrationTracker.pdb
+C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\bin\Debug\GageCalibrationTracker.xml
+C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\obj\Debug\GageCalibrationTracker.vbproj.AssemblyReference.cache
+C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\obj\Debug\GageCalibrationTracker.Resources.resources
+C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\obj\Debug\GageCalibrationTracker.vbproj.GenerateResource.cache
+C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\obj\Debug\GageCalibrationTracker.vbproj.CoreCompileInputs.cache
+C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\obj\Debug\GageCalibrationTracker.exe
+C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\obj\Debug\GageCalibrationTracker.xml
+C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\obj\Debug\GageCalibrationTracker.pdb
+C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\obj\Debug\GageCalibrationTracker.AdminMenu.resources
+C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\obj\Debug\GageCalibrationTracker.Menu.resources
+C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\obj\Debug\GageCalibrationTracker.LoginForm1.resources

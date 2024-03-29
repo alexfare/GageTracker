@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class Menu
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class Menu
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.BtnSearch = New System.Windows.Forms.Button()
         Me.BtnAdd = New System.Windows.Forms.Button()
@@ -57,7 +57,6 @@ Partial Class Menu
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.BtnAdmin = New System.Windows.Forms.Button()
-        Me.lstGageIDs = New System.Windows.Forms.ListBox()
         Me.GroupBox1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -388,20 +387,11 @@ Partial Class Menu
         Me.BtnAdmin.Text = "Admin"
         Me.BtnAdmin.UseVisualStyleBackColor = True
         '
-        'lstGageIDs
-        '
-        Me.lstGageIDs.FormattingEnabled = True
-        Me.lstGageIDs.Location = New System.Drawing.Point(501, 12)
-        Me.lstGageIDs.Name = "lstGageIDs"
-        Me.lstGageIDs.Size = New System.Drawing.Size(235, 394)
-        Me.lstGageIDs.TabIndex = 34
-        '
         'Menu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(750, 447)
-        Me.Controls.Add(Me.lstGageIDs)
         Me.Controls.Add(Me.BtnAdmin)
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.GroupBox1)
@@ -453,5 +443,4 @@ Partial Class Menu
     Friend WithEvents TabPage4 As TabPage
     Friend WithEvents cmbStatus As ComboBox
     Friend WithEvents BtnAdmin As Button
-    Friend WithEvents lstGageIDs As ListBox
 End Class

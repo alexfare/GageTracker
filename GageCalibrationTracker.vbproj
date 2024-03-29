@@ -73,6 +73,19 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminMenu.Designer.vb">
+      <DependentUpon>AdminMenu.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AdminMenu.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GlobalVars.vb" />
+    <Compile Include="LoginForm.Designer.vb">
+      <DependentUpon>LoginForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LoginForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Menu.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -97,6 +110,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.vb</DependentUpon>
     </EmbeddedResource>

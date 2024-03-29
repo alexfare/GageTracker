@@ -17,9 +17,9 @@ Partial Class LoginForm1
     Friend WithEvents LogoPictureBox As System.Windows.Forms.PictureBox
     Friend WithEvents UsernameLabel As System.Windows.Forms.Label
     Friend WithEvents PasswordLabel As System.Windows.Forms.Label
-    Friend WithEvents UsernameTextBox As System.Windows.Forms.TextBox
-    Friend WithEvents PasswordTextBox As System.Windows.Forms.TextBox
-    Friend WithEvents OK As System.Windows.Forms.Button
+    Friend WithEvents txtUsername As System.Windows.Forms.TextBox
+    Friend WithEvents txtPassword As System.Windows.Forms.TextBox
+    Friend WithEvents btnLogin As System.Windows.Forms.Button
     Friend WithEvents Cancel As System.Windows.Forms.Button
 
     'Required by the Windows Form Designer
@@ -31,13 +31,13 @@ Partial Class LoginForm1
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(LoginForm1))
-        Me.LogoPictureBox = New System.Windows.Forms.PictureBox
-        Me.UsernameLabel = New System.Windows.Forms.Label
-        Me.PasswordLabel = New System.Windows.Forms.Label
-        Me.UsernameTextBox = New System.Windows.Forms.TextBox
-        Me.PasswordTextBox = New System.Windows.Forms.TextBox
-        Me.OK = New System.Windows.Forms.Button
-        Me.Cancel = New System.Windows.Forms.Button
+        Me.LogoPictureBox = New System.Windows.Forms.PictureBox()
+        Me.UsernameLabel = New System.Windows.Forms.Label()
+        Me.PasswordLabel = New System.Windows.Forms.Label()
+        Me.txtUsername = New System.Windows.Forms.TextBox()
+        Me.txtPassword = New System.Windows.Forms.TextBox()
+        Me.btnLogin = New System.Windows.Forms.Button()
+        Me.Cancel = New System.Windows.Forms.Button()
         CType(Me.LogoPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -68,28 +68,28 @@ Partial Class LoginForm1
         Me.PasswordLabel.Text = "&Password"
         Me.PasswordLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'UsernameTextBox
+        'txtUsername
         '
-        Me.UsernameTextBox.Location = New System.Drawing.Point(174, 44)
-        Me.UsernameTextBox.Name = "UsernameTextBox"
-        Me.UsernameTextBox.Size = New System.Drawing.Size(220, 20)
-        Me.UsernameTextBox.TabIndex = 1
+        Me.txtUsername.Location = New System.Drawing.Point(174, 44)
+        Me.txtUsername.Name = "txtUsername"
+        Me.txtUsername.Size = New System.Drawing.Size(220, 20)
+        Me.txtUsername.TabIndex = 1
         '
-        'PasswordTextBox
+        'txtPassword
         '
-        Me.PasswordTextBox.Location = New System.Drawing.Point(174, 101)
-        Me.PasswordTextBox.Name = "PasswordTextBox"
-        Me.PasswordTextBox.PasswordChar = Microsoft.VisualBasic.ChrW(42)
-        Me.PasswordTextBox.Size = New System.Drawing.Size(220, 20)
-        Me.PasswordTextBox.TabIndex = 3
+        Me.txtPassword.Location = New System.Drawing.Point(174, 101)
+        Me.txtPassword.Name = "txtPassword"
+        Me.txtPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
+        Me.txtPassword.Size = New System.Drawing.Size(220, 20)
+        Me.txtPassword.TabIndex = 3
         '
-        'OK
+        'btnLogin
         '
-        Me.OK.Location = New System.Drawing.Point(197, 161)
-        Me.OK.Name = "OK"
-        Me.OK.Size = New System.Drawing.Size(94, 23)
-        Me.OK.TabIndex = 4
-        Me.OK.Text = "&OK"
+        Me.btnLogin.Location = New System.Drawing.Point(197, 161)
+        Me.btnLogin.Name = "btnLogin"
+        Me.btnLogin.Size = New System.Drawing.Size(94, 23)
+        Me.btnLogin.TabIndex = 4
+        Me.btnLogin.Text = "&OK"
         '
         'Cancel
         '
@@ -102,14 +102,15 @@ Partial Class LoginForm1
         '
         'LoginForm1
         '
-        Me.AcceptButton = Me.OK
+        Me.AcceptButton = Me.btnLogin
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.Cancel
         Me.ClientSize = New System.Drawing.Size(401, 192)
         Me.Controls.Add(Me.Cancel)
-        Me.Controls.Add(Me.OK)
-        Me.Controls.Add(Me.PasswordTextBox)
-        Me.Controls.Add(Me.UsernameTextBox)
+        Me.Controls.Add(Me.btnLogin)
+        Me.Controls.Add(Me.txtPassword)
+        Me.Controls.Add(Me.txtUsername)
         Me.Controls.Add(Me.PasswordLabel)
         Me.Controls.Add(Me.UsernameLabel)
         Me.Controls.Add(Me.LogoPictureBox)
@@ -119,7 +120,7 @@ Partial Class LoginForm1
         Me.Name = "LoginForm1"
         Me.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "LoginForm1"
+        Me.Text = "Login - GageTracker"
         CType(Me.LogoPictureBox, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()

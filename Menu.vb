@@ -2,11 +2,23 @@
 
 Public Class Menu
     Dim ConnectionString As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=R:\Quality\GageCalibration\GTDatabase.accdb;"
+    Dim SearchCheck As Boolean
 
     Private Sub Menu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LoadStatusOptions()
+        txtGageID.Focus()
+        SearchCheck = False
+        GlobalVars.UserActive = False
     End Sub
+    Private Sub txtGageID_KeyDown(sender As Object, e As KeyEventArgs) Handles txtGageID.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            ' Prevent the ding sound on pressing Enter
+            e.SuppressKeyPress = True
 
+            ' Call the BtnSearch click event handler
+            BtnSearch_Click(Me, EventArgs.Empty)
+        End If
+    End Sub
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
         Try
             Using conn As New OleDbConnection(ConnectionString)
@@ -24,10 +36,11 @@ Public Class Menu
                     Dim inspectedDate As DateTime = dtInspectedDate.Value
                     Dim dueDate As DateTime = inspectedDate.AddMonths(intervalMonths)
 
-                    Dim addCmd As New OleDbCommand("INSERT INTO [CalibrationTracker] (GageID, PartNumber, Status, Description, Department, [Gage Type], Customer, [Calibrated By], [Interval (Months)], [Inspected Date], [Due Date], Comments) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", conn)
+                    Dim addCmd As New OleDbCommand("INSERT INTO [CalibrationTracker] (GageID, PartNumber, PartRev, Status, Description, Department, [Gage Type], Customer, [Calibrated By], [Interval (Months)], [Inspected Date], [Due Date], Comments) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", conn)
                     ' Prepare and add parameters
                     addCmd.Parameters.AddWithValue("@GageID", txtGageID.Text)
                     addCmd.Parameters.AddWithValue("@PartNumber", txtPartNumber.Text)
+                    addCmd.Parameters.AddWithValue("@PartRev", txtPartRev.Text)
                     addCmd.Parameters.AddWithValue("@Status", cmbStatus.Text)
                     addCmd.Parameters.AddWithValue("@Description", txtDescription.Text)
                     addCmd.Parameters.AddWithValue("@Department", txtDepartment.Text)
@@ -86,6 +99,7 @@ Public Class Menu
                         End If
 
                         txtComments.Text = reader.Item("Comments").ToString()
+                        SearchCheck = True
                     Else
                         MessageBox.Show("GageID does not exist")
                     End If
@@ -98,8 +112,14 @@ Public Class Menu
         End Using
     End Sub
 
-
-    Private Sub BtnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
+    Private Sub BtnUpdate_Click(sender As Object, e As EventArgs) Handles BtnUpdate.Click
+        If SearchCheck = True Then
+            BtnUpdateConfirmed()
+        Else
+            MessageBox.Show("Please search for Gage record.")
+        End If
+    End Sub
+    Private Sub BtnUpdateConfirmed() 'Handles BtnUpdate.Click
         Using conn As New OleDbConnection(ConnectionString)
             conn.Open()
             ' Prepare your UPDATE SQL command with parameters to prevent SQL injection
@@ -123,6 +143,7 @@ Public Class Menu
             Dim rowsAffected As Integer = updateCmd.ExecuteNonQuery()
             If rowsAffected > 0 Then
                 MessageBox.Show("Record updated successfully")
+                SearchCheck = False
             Else
                 MessageBox.Show("No record updated. Please check the GageID.")
             End If
@@ -143,6 +164,8 @@ Public Class Menu
         txtComments.Clear()
         dtInspectedDate.Value = DateTime.Now ' Reset to current date or some default
         dtDueDate.Value = DateTime.Now ' Reset to current date or some default
+
+        SearchCheck = False
     End Sub
 
     Private Sub txtInterval_TextChanged(sender As Object, e As EventArgs) Handles txtInterval.TextChanged
@@ -181,5 +204,17 @@ Public Class Menu
                 MessageBox.Show("An error occurred while loading status options: " & ex.Message)
             End Try
         End Using
+    End Sub
+    Private Sub BtnAdmin_Click(sender As Object, e As EventArgs) Handles BtnAdmin.Click
+        If GlobalVars.UserActive = True Then
+            Dim adminMenu As New AdminMenu()
+            adminMenu.Show()
+            Me.Hide()
+
+        Else
+            Dim loginForm As New LoginForm1()
+            loginForm.Show()
+            Me.Hide()
+        End If
     End Sub
 End Class

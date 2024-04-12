@@ -22,9 +22,41 @@ Partial Class AdminMenu
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        components = New System.ComponentModel.Container
+        Me.BtnBack = New System.Windows.Forms.Button()
+        Me.BtnLogout = New System.Windows.Forms.Button()
+        Me.SuspendLayout()
+        '
+        'BtnBack
+        '
+        Me.BtnBack.Location = New System.Drawing.Point(12, 415)
+        Me.BtnBack.Name = "BtnBack"
+        Me.BtnBack.Size = New System.Drawing.Size(75, 23)
+        Me.BtnBack.TabIndex = 0
+        Me.BtnBack.Text = "Back"
+        Me.BtnBack.UseVisualStyleBackColor = True
+        '
+        'BtnLogout
+        '
+        Me.BtnLogout.Location = New System.Drawing.Point(713, 415)
+        Me.BtnLogout.Name = "BtnLogout"
+        Me.BtnLogout.Size = New System.Drawing.Size(75, 23)
+        Me.BtnLogout.TabIndex = 1
+        Me.BtnLogout.Text = "Logout"
+        Me.BtnLogout.UseVisualStyleBackColor = True
+        '
+        'AdminMenu
+        '
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.BtnLogout)
+        Me.Controls.Add(Me.BtnBack)
+        Me.Name = "AdminMenu"
         Me.Text = "AdminMenu"
+        Me.ResumeLayout(False)
+
     End Sub
+
+    Friend WithEvents BtnBack As Button
+    Friend WithEvents BtnLogout As Button
 End Class

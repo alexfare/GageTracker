@@ -25,7 +25,8 @@ Public Class LoginForm1
                         ' Passwords match
                         Dim adminMenu As New AdminMenu()
                         adminMenu.Show()
-                        Me.Hide()  ' Optionally hide or close the LoginForm
+                        Me.Close()  ' Optionally hide or close the LoginForm
+                        GlobalVars.UserActive = True
                     Else
                         MessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     End If

@@ -42,7 +42,7 @@ Public Class LoginForm1
     End Sub
 
     Private Sub Cancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Cancel.Click
-        Dim menu As New Menu()
+        Dim menu As New GTMenu()
         menu.Show()
         Me.Close()
     End Sub

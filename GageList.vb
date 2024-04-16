@@ -34,7 +34,6 @@ Public Class GageList
     End Sub
 
     Private Sub BtnMenu_Click(sender As Object, e As EventArgs) Handles BtnMenu.Click
-        Menu.Show()
-        Me.Hide()
+        GTMenu.Show()
     End Sub
 End Class

@@ -51,7 +51,7 @@ Partial Class GageList
         Me.DataGridView1.DataSource = Me.CalibrationTrackerBindingSource
         Me.DataGridView1.Location = New System.Drawing.Point(12, 12)
         Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.Size = New System.Drawing.Size(846, 397)
+        Me.DataGridView1.Size = New System.Drawing.Size(850, 508)
         Me.DataGridView1.TabIndex = 0
         '
         'GageIDDataGridViewTextBoxColumn
@@ -118,14 +118,14 @@ Partial Class GageList
         '
         'VScrollBar1
         '
-        Me.VScrollBar1.Location = New System.Drawing.Point(861, 12)
+        Me.VScrollBar1.Location = New System.Drawing.Point(865, 12)
         Me.VScrollBar1.Name = "VScrollBar1"
-        Me.VScrollBar1.Size = New System.Drawing.Size(17, 397)
+        Me.VScrollBar1.Size = New System.Drawing.Size(18, 511)
         Me.VScrollBar1.TabIndex = 1
         '
         'BtnMenu
         '
-        Me.BtnMenu.Location = New System.Drawing.Point(12, 415)
+        Me.BtnMenu.Location = New System.Drawing.Point(12, 526)
         Me.BtnMenu.Name = "BtnMenu"
         Me.BtnMenu.Size = New System.Drawing.Size(75, 23)
         Me.BtnMenu.TabIndex = 2
@@ -136,7 +136,7 @@ Partial Class GageList
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(887, 450)
+        Me.ClientSize = New System.Drawing.Size(892, 561)
         Me.Controls.Add(Me.BtnMenu)
         Me.Controls.Add(Me.VScrollBar1)
         Me.Controls.Add(Me.DataGridView1)

@@ -52,6 +52,9 @@ Partial Class GTMenu
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.txtPartRev = New System.Windows.Forms.TextBox()
+        Me.Label26 = New System.Windows.Forms.Label()
+        Me.txtComments = New System.Windows.Forms.RichTextBox()
         Me.cmbStatus = New System.Windows.Forms.ComboBox()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.Label13 = New System.Windows.Forms.Label()
@@ -84,9 +87,6 @@ Partial Class GTMenu
         Me.Label21 = New System.Windows.Forms.Label()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.BtnAdmin = New System.Windows.Forms.Button()
-        Me.txtComments = New System.Windows.Forms.RichTextBox()
-        Me.Label26 = New System.Windows.Forms.Label()
-        Me.txtPartRev = New System.Windows.Forms.TextBox()
         Me.GroupBox1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -368,6 +368,30 @@ Partial Class GTMenu
         Me.TabPage1.Text = "Gage Information"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
+        'txtPartRev
+        '
+        Me.txtPartRev.Location = New System.Drawing.Point(160, 19)
+        Me.txtPartRev.Name = "txtPartRev"
+        Me.txtPartRev.Size = New System.Drawing.Size(46, 20)
+        Me.txtPartRev.TabIndex = 36
+        '
+        'Label26
+        '
+        Me.Label26.AutoSize = True
+        Me.Label26.Location = New System.Drawing.Point(157, 3)
+        Me.Label26.Name = "Label26"
+        Me.Label26.Size = New System.Drawing.Size(52, 13)
+        Me.Label26.TabIndex = 35
+        Me.Label26.Text = "Part Rev:"
+        '
+        'txtComments
+        '
+        Me.txtComments.Location = New System.Drawing.Point(6, 216)
+        Me.txtComments.Name = "txtComments"
+        Me.txtComments.Size = New System.Drawing.Size(466, 96)
+        Me.txtComments.TabIndex = 34
+        Me.txtComments.Text = ""
+        '
         'cmbStatus
         '
         Me.cmbStatus.FormattingEnabled = True
@@ -385,7 +409,7 @@ Partial Class GTMenu
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(563, 320)
+        Me.TabPage2.Size = New System.Drawing.Size(484, 320)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Serial Information"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -428,7 +452,7 @@ Partial Class GTMenu
         Me.TabPage3.Location = New System.Drawing.Point(4, 22)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(563, 320)
+        Me.TabPage3.Size = New System.Drawing.Size(484, 320)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "Measurements"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -646,7 +670,7 @@ Partial Class GTMenu
         Me.TabPage4.Location = New System.Drawing.Point(4, 22)
         Me.TabPage4.Name = "TabPage4"
         Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage4.Size = New System.Drawing.Size(563, 320)
+        Me.TabPage4.Size = New System.Drawing.Size(484, 320)
         Me.TabPage4.TabIndex = 3
         Me.TabPage4.Text = "Audit Log"
         Me.TabPage4.UseVisualStyleBackColor = True
@@ -660,31 +684,7 @@ Partial Class GTMenu
         Me.BtnAdmin.Text = "Admin"
         Me.BtnAdmin.UseVisualStyleBackColor = True
         '
-        'txtComments
-        '
-        Me.txtComments.Location = New System.Drawing.Point(6, 216)
-        Me.txtComments.Name = "txtComments"
-        Me.txtComments.Size = New System.Drawing.Size(466, 96)
-        Me.txtComments.TabIndex = 34
-        Me.txtComments.Text = ""
-        '
-        'Label26
-        '
-        Me.Label26.AutoSize = True
-        Me.Label26.Location = New System.Drawing.Point(157, 3)
-        Me.Label26.Name = "Label26"
-        Me.Label26.Size = New System.Drawing.Size(52, 13)
-        Me.Label26.TabIndex = 35
-        Me.Label26.Text = "Part Rev:"
-        '
-        'txtPartRev
-        '
-        Me.txtPartRev.Location = New System.Drawing.Point(160, 19)
-        Me.txtPartRev.Name = "txtPartRev"
-        Me.txtPartRev.Size = New System.Drawing.Size(46, 20)
-        Me.txtPartRev.TabIndex = 36
-        '
-        'Menu
+        'GTMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -695,7 +695,7 @@ Partial Class GTMenu
         Me.Controls.Add(Me.BtnUpdate)
         Me.Controls.Add(Me.BtnAdd)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Name = "Menu"
+        Me.Name = "GTMenu"
         Me.Text = "Menu"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()

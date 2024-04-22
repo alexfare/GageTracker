@@ -36,7 +36,6 @@ Partial Class GageList
         Me.CalibrationTrackerBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.GTDatabaseDataSet = New GageCalibrationTracker.GTDatabaseDataSet()
         Me.CalibrationTrackerTableAdapter = New GageCalibrationTracker.GTDatabaseDataSetTableAdapters.CalibrationTrackerTableAdapter()
-        Me.VScrollBar1 = New System.Windows.Forms.VScrollBar()
         Me.BtnMenu = New System.Windows.Forms.Button()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CalibrationTrackerBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -51,7 +50,7 @@ Partial Class GageList
         Me.DataGridView1.DataSource = Me.CalibrationTrackerBindingSource
         Me.DataGridView1.Location = New System.Drawing.Point(12, 12)
         Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.Size = New System.Drawing.Size(850, 508)
+        Me.DataGridView1.Size = New System.Drawing.Size(851, 508)
         Me.DataGridView1.TabIndex = 0
         '
         'GageIDDataGridViewTextBoxColumn
@@ -116,13 +115,6 @@ Partial Class GageList
         '
         Me.CalibrationTrackerTableAdapter.ClearBeforeFill = True
         '
-        'VScrollBar1
-        '
-        Me.VScrollBar1.Location = New System.Drawing.Point(865, 12)
-        Me.VScrollBar1.Name = "VScrollBar1"
-        Me.VScrollBar1.Size = New System.Drawing.Size(18, 511)
-        Me.VScrollBar1.TabIndex = 1
-        '
         'BtnMenu
         '
         Me.BtnMenu.Location = New System.Drawing.Point(12, 526)
@@ -136,9 +128,8 @@ Partial Class GageList
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(892, 561)
+        Me.ClientSize = New System.Drawing.Size(875, 561)
         Me.Controls.Add(Me.BtnMenu)
-        Me.Controls.Add(Me.VScrollBar1)
         Me.Controls.Add(Me.DataGridView1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "GageList"
@@ -162,6 +153,5 @@ Partial Class GageList
     Friend WithEvents GageTypeDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents InspectedDateDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents DueDateDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents VScrollBar1 As VScrollBar
     Friend WithEvents BtnMenu As Button
 End Class

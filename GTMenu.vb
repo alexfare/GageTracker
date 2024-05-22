@@ -20,6 +20,12 @@ Public Class GTMenu
         End If
     End Sub
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
+        ' Check if the GageID text box is empty
+        If String.IsNullOrWhiteSpace(txtGageID.Text) Then
+            MessageBox.Show("GageID cannot be blank. Please enter a valid GageID.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return
+        End If
+
         Try
             Using conn As New OleDbConnection(ConnectionString)
                 conn.Open()
@@ -54,7 +60,7 @@ Public Class GTMenu
                     addCmd.ExecuteNonQuery()
                     MessageBox.Show("Record added successfully")
                 Else
-                    MessageBox.Show("This GageID already exists")
+                    MessageBox.Show("This GageID already exists", "Duplicate Entry", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 End If
             End Using
         Catch ex As OleDbException
@@ -63,10 +69,13 @@ Public Class GTMenu
             MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
-
-
-
     Private Sub BtnSearch_Click(sender As Object, e As EventArgs) Handles BtnSearch.Click
+        ' Check if the GageID text box is empty
+        If String.IsNullOrWhiteSpace(txtGageID.Text) Then
+            MessageBox.Show("GageID cannot be blank. Please enter a valid GageID.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return
+        End If
+
         Using conn As New OleDbConnection(ConnectionString)
             Try
                 conn.Open()
@@ -99,9 +108,8 @@ Public Class GTMenu
                         End If
 
                         txtComments.Text = reader.Item("Comments").ToString()
-                        SearchCheck = True
                     Else
-                        MessageBox.Show("GageID does not exist")
+                        MessageBox.Show("GageID does not exist", "Search Result", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     End If
                 End Using
             Catch ex As OleDbException
@@ -217,4 +225,30 @@ Public Class GTMenu
             Me.Hide()
         End If
     End Sub
+    Private Sub BtnGageList_Click(sender As Object, e As EventArgs) Handles BtnGageList.Click
+        ' Check if GageList is already open
+        Dim isOpen As Boolean = False
+        Dim openForm As Form = Nothing ' To hold the already open GageList form
+        For Each frm As Form In Application.OpenForms
+            If TypeOf frm Is GageList Then
+                isOpen = True
+                openForm = frm ' Store the reference to the open GageList form
+                Exit For
+            End If
+        Next
+
+        If isOpen AndAlso openForm IsNot Nothing Then
+            ' Bring the already open GageList form to the front
+            openForm.Activate()
+        Else
+            ' Only open a new instance if it is not already open
+            Dim gagelist As New GageList()
+            gagelist.Show()
+        End If
+
+        ' Hide the current GTMenu form in both cases
+        Me.Hide()
+    End Sub
+
+
 End Class

@@ -87,6 +87,7 @@ Partial Class GTMenu
         Me.Label21 = New System.Windows.Forms.Label()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.BtnAdmin = New System.Windows.Forms.Button()
+        Me.BtnGageList = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -684,11 +685,21 @@ Partial Class GTMenu
         Me.BtnAdmin.Text = "Admin"
         Me.BtnAdmin.UseVisualStyleBackColor = True
         '
+        'BtnGageList
+        '
+        Me.BtnGageList.Location = New System.Drawing.Point(429, 413)
+        Me.BtnGageList.Name = "BtnGageList"
+        Me.BtnGageList.Size = New System.Drawing.Size(75, 23)
+        Me.BtnGageList.TabIndex = 34
+        Me.BtnGageList.Text = "Gage List"
+        Me.BtnGageList.UseVisualStyleBackColor = True
+        '
         'GTMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(520, 447)
+        Me.Controls.Add(Me.BtnGageList)
         Me.Controls.Add(Me.BtnAdmin)
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.GroupBox1)
@@ -775,4 +786,5 @@ Partial Class GTMenu
     Friend WithEvents txtComments As RichTextBox
     Friend WithEvents txtPartRev As TextBox
     Friend WithEvents Label26 As Label
+    Friend WithEvents BtnGageList As Button
 End Class

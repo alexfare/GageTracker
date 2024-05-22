@@ -51,7 +51,7 @@ Public Class GageList
                 MessageBox.Show("No row selected. Proceeding without GageID.")
             End If
         Else
-            MessageBox.Show("The column 'GageID' does not exist.")
+            'MessageBox.Show("The column 'GageID' does not exist.")
         End If
         ' Show the GTMenu form regardless of whether GageID was set
         GTMenu.Show()

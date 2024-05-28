@@ -25,7 +25,6 @@ Partial Class GTMenu
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(GTMenu))
         Me.BtnSearch = New System.Windows.Forms.Button()
         Me.BtnAdd = New System.Windows.Forms.Button()
-        Me.txtGageID = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -33,8 +32,6 @@ Partial Class GTMenu
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.txtDescription = New System.Windows.Forms.TextBox()
-        Me.txtDepartment = New System.Windows.Forms.TextBox()
-        Me.txtGageType = New System.Windows.Forms.TextBox()
         Me.txtPartNumber = New System.Windows.Forms.TextBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
@@ -50,8 +47,10 @@ Partial Class GTMenu
         Me.BtnUpdate = New System.Windows.Forms.Button()
         Me.BtnClear = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.txtGageID = New System.Windows.Forms.ComboBox()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.txtDepartment = New System.Windows.Forms.ComboBox()
         Me.txtPartRev = New System.Windows.Forms.TextBox()
         Me.Label26 = New System.Windows.Forms.Label()
         Me.txtComments = New System.Windows.Forms.RichTextBox()
@@ -88,6 +87,7 @@ Partial Class GTMenu
         Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.BtnAdmin = New System.Windows.Forms.Button()
         Me.BtnGageList = New System.Windows.Forms.Button()
+        Me.txtGageType = New System.Windows.Forms.ComboBox()
         Me.GroupBox1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -114,13 +114,6 @@ Partial Class GTMenu
         Me.BtnAdd.TabIndex = 11
         Me.BtnAdd.Text = "Add"
         Me.BtnAdd.UseVisualStyleBackColor = True
-        '
-        'txtGageID
-        '
-        Me.txtGageID.Location = New System.Drawing.Point(59, 13)
-        Me.txtGageID.Name = "txtGageID"
-        Me.txtGageID.Size = New System.Drawing.Size(248, 20)
-        Me.txtGageID.TabIndex = 0
         '
         'Label1
         '
@@ -182,20 +175,6 @@ Partial Class GTMenu
         Me.txtDescription.Name = "txtDescription"
         Me.txtDescription.Size = New System.Drawing.Size(200, 20)
         Me.txtDescription.TabIndex = 3
-        '
-        'txtDepartment
-        '
-        Me.txtDepartment.Location = New System.Drawing.Point(5, 137)
-        Me.txtDepartment.Name = "txtDepartment"
-        Me.txtDepartment.Size = New System.Drawing.Size(201, 20)
-        Me.txtDepartment.TabIndex = 4
-        '
-        'txtGageType
-        '
-        Me.txtGageType.Location = New System.Drawing.Point(6, 177)
-        Me.txtGageType.Name = "txtGageType"
-        Me.txtGageType.Size = New System.Drawing.Size(200, 20)
-        Me.txtGageType.TabIndex = 5
         '
         'txtPartNumber
         '
@@ -313,8 +292,8 @@ Partial Class GTMenu
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.BtnSearch)
         Me.GroupBox1.Controls.Add(Me.txtGageID)
+        Me.GroupBox1.Controls.Add(Me.BtnSearch)
         Me.GroupBox1.Controls.Add(Me.BtnClear)
         Me.GroupBox1.Controls.Add(Me.Label1)
         Me.GroupBox1.Location = New System.Drawing.Point(12, 12)
@@ -322,6 +301,14 @@ Partial Class GTMenu
         Me.GroupBox1.Size = New System.Drawing.Size(488, 43)
         Me.GroupBox1.TabIndex = 31
         Me.GroupBox1.TabStop = False
+        '
+        'txtGageID
+        '
+        Me.txtGageID.FormattingEnabled = True
+        Me.txtGageID.Location = New System.Drawing.Point(59, 13)
+        Me.txtGageID.Name = "txtGageID"
+        Me.txtGageID.Size = New System.Drawing.Size(255, 21)
+        Me.txtGageID.TabIndex = 34
         '
         'TabControl1
         '
@@ -337,6 +324,8 @@ Partial Class GTMenu
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.txtGageType)
+        Me.TabPage1.Controls.Add(Me.txtDepartment)
         Me.TabPage1.Controls.Add(Me.txtPartRev)
         Me.TabPage1.Controls.Add(Me.Label26)
         Me.TabPage1.Controls.Add(Me.txtComments)
@@ -351,8 +340,6 @@ Partial Class GTMenu
         Me.TabPage1.Controls.Add(Me.Label12)
         Me.TabPage1.Controls.Add(Me.txtDescription)
         Me.TabPage1.Controls.Add(Me.txtInterval)
-        Me.TabPage1.Controls.Add(Me.txtDepartment)
-        Me.TabPage1.Controls.Add(Me.txtGageType)
         Me.TabPage1.Controls.Add(Me.Label11)
         Me.TabPage1.Controls.Add(Me.txtPartNumber)
         Me.TabPage1.Controls.Add(Me.Label10)
@@ -368,6 +355,14 @@ Partial Class GTMenu
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Gage Information"
         Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'txtDepartment
+        '
+        Me.txtDepartment.FormattingEnabled = True
+        Me.txtDepartment.Location = New System.Drawing.Point(6, 136)
+        Me.txtDepartment.Name = "txtDepartment"
+        Me.txtDepartment.Size = New System.Drawing.Size(200, 21)
+        Me.txtDepartment.TabIndex = 37
         '
         'txtPartRev
         '
@@ -694,6 +689,14 @@ Partial Class GTMenu
         Me.BtnGageList.Text = "Gage List"
         Me.BtnGageList.UseVisualStyleBackColor = True
         '
+        'txtGageType
+        '
+        Me.txtGageType.FormattingEnabled = True
+        Me.txtGageType.Location = New System.Drawing.Point(6, 177)
+        Me.txtGageType.Name = "txtGageType"
+        Me.txtGageType.Size = New System.Drawing.Size(200, 21)
+        Me.txtGageType.TabIndex = 38
+        '
         'GTMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -724,7 +727,6 @@ Partial Class GTMenu
 
     Friend WithEvents BtnSearch As Button
     Friend WithEvents BtnAdd As Button
-    Friend WithEvents txtGageID As TextBox
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents Label3 As Label
@@ -732,8 +734,6 @@ Partial Class GTMenu
     Friend WithEvents Label5 As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents txtDescription As TextBox
-    Friend WithEvents txtDepartment As TextBox
-    Friend WithEvents txtGageType As TextBox
     Friend WithEvents txtPartNumber As TextBox
     Friend WithEvents Label7 As Label
     Friend WithEvents Label8 As Label
@@ -787,4 +787,7 @@ Partial Class GTMenu
     Friend WithEvents txtPartRev As TextBox
     Friend WithEvents Label26 As Label
     Friend WithEvents BtnGageList As Button
+    Friend WithEvents txtDepartment As ComboBox
+    Friend WithEvents txtGageID As ComboBox
+    Friend WithEvents txtGageType As ComboBox
 End Class

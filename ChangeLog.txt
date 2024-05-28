@@ -1,0 +1,32 @@
+v5.0.0.8
+GageList now resizes with application.
+GageList & Menu (Temp Close).
+Updated Database, (Added Gage Type, Customers, Departments).
+Updated Inputs on Menu to dropdown. (Gage ID, Department, GageType).
+Fixed Search Error.
+
+v5.0.0.7
+Fixed menu allowing you to add a blank GageID.
+Fixed menu allowing you to search a blank GageID.
+Added GageList button on GTMenu.
+
+v5.0.0.6
+Renamed Menu to GTMenu
+Deleted and cleaned Github.
+
+v5.0.0.5
+Working on selecting gages from the list.
+
+v5.0.0.4
+Updates to gagelist menu & Main Menu renamed to GTMenu
+
+v5.0.0.3
+Added GageList
+Connected Database
+
+v5.0.0.2
+Added Login
+Added Admin Menu
+
+v5.0.0.1
+Fixing add issues and database version issues.

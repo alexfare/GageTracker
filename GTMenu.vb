@@ -5,12 +5,15 @@ Public Class GTMenu
     Dim SearchCheck As Boolean
 
     Private Sub Menu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        LoadGageIDOptions()
         LoadStatusOptions()
+        LoadDepartmentOptions()
+        LoadGageTypeOptions()
         txtGageID.Focus()
         SearchCheck = False
         GlobalVars.UserActive = False
     End Sub
-    Private Sub txtGageID_KeyDown(sender As Object, e As KeyEventArgs) Handles txtGageID.KeyDown
+    Private Sub txtGageID_KeyDown(sender As Object, e As KeyEventArgs) 
         If e.KeyCode = Keys.Enter Then
             ' Prevent the ding sound on pressing Enter
             e.SuppressKeyPress = True
@@ -108,6 +111,8 @@ Public Class GTMenu
                         End If
 
                         txtComments.Text = reader.Item("Comments").ToString()
+
+                        SearchCheck = True
                     Else
                         MessageBox.Show("GageID does not exist", "Search Result", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     End If
@@ -160,12 +165,12 @@ Public Class GTMenu
 
     Private Sub BtnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
         ' Clear all input fields
-        txtGageID.Clear()
+        txtGageID.SelectedIndex = -1 ' Reset the ComboBox selection
         txtPartNumber.Clear()
         cmbStatus.SelectedIndex = -1 ' Reset the ComboBox selection
         txtDescription.Clear()
-        txtDepartment.Clear()
-        txtGageType.Clear()
+        txtDepartment.SelectedIndex = -1 ' Reset the ComboBox selection
+        txtGageType.SelectedIndex = -1 ' Reset the ComboBox selection
         txtCustomer.Clear()
         txtCalibratedBy.Clear()
         txtInterval.Clear()
@@ -197,7 +202,21 @@ Public Class GTMenu
             ' dtDueDate.Value = inspectedDate
         End If
     End Sub
-
+    Private Sub LoadGageIDOptions()
+        Using conn As New OleDbConnection(ConnectionString)
+            Try
+                conn.Open()
+                Dim cmd As New OleDbCommand("SELECT GageID FROM [CalibrationTracker]", conn) ' Adjust table and column names as necessary
+                Dim reader As OleDbDataReader = cmd.ExecuteReader()
+                txtGageID.Items.Clear()
+                While reader.Read()
+                    txtGageID.Items.Add(reader("GageID").ToString())
+                End While
+            Catch ex As Exception
+                MessageBox.Show("An error occurred while loading GageID options: " & ex.Message)
+            End Try
+        End Using
+    End Sub
     Private Sub LoadStatusOptions()
         Using conn As New OleDbConnection(ConnectionString)
             Try
@@ -210,6 +229,36 @@ Public Class GTMenu
                 End While
             Catch ex As Exception
                 MessageBox.Show("An error occurred while loading status options: " & ex.Message)
+            End Try
+        End Using
+    End Sub
+    Private Sub LoadDepartmentOptions()
+        Using conn As New OleDbConnection(ConnectionString)
+            Try
+                conn.Open()
+                Dim cmd As New OleDbCommand("SELECT Departments FROM [Departments]", conn) ' Adjust table and column names as necessary
+                Dim reader As OleDbDataReader = cmd.ExecuteReader()
+                txtDepartment.Items.Clear()
+                While reader.Read()
+                    txtDepartment.Items.Add(reader("Departments").ToString())
+                End While
+            Catch ex As Exception
+                MessageBox.Show("An error occurred while loading Departments options: " & ex.Message)
+            End Try
+        End Using
+    End Sub
+    Private Sub LoadGageTypeOptions()
+        Using conn As New OleDbConnection(ConnectionString)
+            Try
+                conn.Open()
+                Dim cmd As New OleDbCommand("SELECT GageType FROM [GageType]", conn) ' Adjust table and column names as necessary
+                Dim reader As OleDbDataReader = cmd.ExecuteReader()
+                txtGageType.Items.Clear()
+                While reader.Read()
+                    txtGageType.Items.Add(reader("GageType").ToString())
+                End While
+            Catch ex As Exception
+                MessageBox.Show("An error occurred while loading GageType options: " & ex.Message)
             End Try
         End Using
     End Sub
@@ -249,6 +298,4 @@ Public Class GTMenu
         ' Hide the current GTMenu form in both cases
         Me.Hide()
     End Sub
-
-
 End Class

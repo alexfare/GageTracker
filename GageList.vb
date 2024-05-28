@@ -55,5 +55,6 @@ Public Class GageList
         End If
         ' Show the GTMenu form regardless of whether GageID was set
         GTMenu.Show()
+        Me.Close() 'Temp until I work out the refreshing
     End Sub
 End Class

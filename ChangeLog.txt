@@ -1,3 +1,7 @@
+v5.0.0.9
+Updated tab order on menu.
+Fixed Menu Close (Temp).
+
 v5.0.0.8
 GageList now resizes with application.
 GageList & Menu (Temp Close).

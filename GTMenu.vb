@@ -296,6 +296,7 @@ Public Class GTMenu
         End If
 
         ' Hide the current GTMenu form in both cases
-        Me.Hide()
+        'Me.Hide()
+        Me.Close() 'Until I add refresh
     End Sub
 End Class

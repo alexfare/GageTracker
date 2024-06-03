@@ -9,6 +9,7 @@ Public Class GTMenu
         LoadStatusOptions()
         LoadDepartmentOptions()
         LoadGageTypeOptions()
+        LoadCustomerOptions()
         txtGageID.Focus()
         SearchCheck = False
         GlobalVars.UserActive = False
@@ -171,7 +172,7 @@ Public Class GTMenu
         txtDescription.Clear()
         txtDepartment.SelectedIndex = -1 ' Reset the ComboBox selection
         txtGageType.SelectedIndex = -1 ' Reset the ComboBox selection
-        txtCustomer.Clear()
+        txtCustomer.SelectedIndex = -1 ' Reset the ComboBox selection
         txtCalibratedBy.Clear()
         txtInterval.Clear()
         txtComments.Clear()
@@ -259,6 +260,22 @@ Public Class GTMenu
                 End While
             Catch ex As Exception
                 MessageBox.Show("An error occurred while loading GageType options: " & ex.Message)
+            End Try
+        End Using
+    End Sub
+
+    Private Sub LoadCustomerOptions()
+        Using conn As New OleDbConnection(ConnectionString)
+            Try
+                conn.Open()
+                Dim cmd As New OleDbCommand("SELECT CustomerName FROM Customers", conn)
+                Dim reader As OleDbDataReader = cmd.ExecuteReader()
+                txtCustomer.Items.Clear()
+                While reader.Read()
+                    txtCustomer.Items.Add(reader("CustomerName").ToString())
+                End While
+            Catch ex As Exception
+                MessageBox.Show("An error occurred while loading Customers: " & ex.Message)
             End Try
         End Using
     End Sub

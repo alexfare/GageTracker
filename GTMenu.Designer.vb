@@ -35,7 +35,6 @@ Partial Class GTMenu
         Me.txtPartNumber = New System.Windows.Forms.TextBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
-        Me.txtCustomer = New System.Windows.Forms.TextBox()
         Me.txtCalibratedBy = New System.Windows.Forms.TextBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
@@ -50,6 +49,7 @@ Partial Class GTMenu
         Me.txtGageID = New System.Windows.Forms.ComboBox()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.txtCustomer = New System.Windows.Forms.ComboBox()
         Me.txtGageType = New System.Windows.Forms.ComboBox()
         Me.txtDepartment = New System.Windows.Forms.ComboBox()
         Me.txtPartRev = New System.Windows.Forms.TextBox()
@@ -154,7 +154,7 @@ Partial Class GTMenu
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(272, 3)
+        Me.Label5.Location = New System.Drawing.Point(269, 3)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(54, 13)
         Me.Label5.TabIndex = 7
@@ -200,13 +200,6 @@ Partial Class GTMenu
         Me.Label8.Size = New System.Drawing.Size(65, 13)
         Me.Label8.TabIndex = 15
         Me.Label8.Text = "Department:"
-        '
-        'txtCustomer
-        '
-        Me.txtCustomer.Location = New System.Drawing.Point(272, 19)
-        Me.txtCustomer.Name = "txtCustomer"
-        Me.txtCustomer.Size = New System.Drawing.Size(200, 20)
-        Me.txtCustomer.TabIndex = 9
         '
         'txtCalibratedBy
         '
@@ -304,6 +297,7 @@ Partial Class GTMenu
         '
         'txtGageID
         '
+        Me.txtGageID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
         Me.txtGageID.FormattingEnabled = True
         Me.txtGageID.Location = New System.Drawing.Point(59, 13)
         Me.txtGageID.Name = "txtGageID"
@@ -324,6 +318,7 @@ Partial Class GTMenu
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.txtCustomer)
         Me.TabPage1.Controls.Add(Me.txtGageType)
         Me.TabPage1.Controls.Add(Me.txtDepartment)
         Me.TabPage1.Controls.Add(Me.txtPartRev)
@@ -347,7 +342,6 @@ Partial Class GTMenu
         Me.TabPage1.Controls.Add(Me.Label9)
         Me.TabPage1.Controls.Add(Me.Label8)
         Me.TabPage1.Controls.Add(Me.txtCalibratedBy)
-        Me.TabPage1.Controls.Add(Me.txtCustomer)
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
@@ -355,6 +349,14 @@ Partial Class GTMenu
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Gage Information"
         Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'txtCustomer
+        '
+        Me.txtCustomer.FormattingEnabled = True
+        Me.txtCustomer.Location = New System.Drawing.Point(272, 19)
+        Me.txtCustomer.Name = "txtCustomer"
+        Me.txtCustomer.Size = New System.Drawing.Size(200, 21)
+        Me.txtCustomer.TabIndex = 36
         '
         'txtGageType
         '
@@ -690,6 +692,7 @@ Partial Class GTMenu
         '
         'BtnGageList
         '
+        Me.BtnGageList.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.BtnGageList.Location = New System.Drawing.Point(429, 413)
         Me.BtnGageList.Name = "BtnGageList"
         Me.BtnGageList.Size = New System.Drawing.Size(75, 23)
@@ -699,8 +702,10 @@ Partial Class GTMenu
         '
         'GTMenu
         '
+        Me.AcceptButton = Me.BtnSearch
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.CancelButton = Me.BtnGageList
         Me.ClientSize = New System.Drawing.Size(520, 447)
         Me.Controls.Add(Me.BtnGageList)
         Me.Controls.Add(Me.BtnAdmin)
@@ -737,7 +742,6 @@ Partial Class GTMenu
     Friend WithEvents txtPartNumber As TextBox
     Friend WithEvents Label7 As Label
     Friend WithEvents Label8 As Label
-    Friend WithEvents txtCustomer As TextBox
     Friend WithEvents txtCalibratedBy As TextBox
     Friend WithEvents Label9 As Label
     Friend WithEvents Label10 As Label
@@ -790,4 +794,5 @@ Partial Class GTMenu
     Friend WithEvents txtDepartment As ComboBox
     Friend WithEvents txtGageID As ComboBox
     Friend WithEvents txtGageType As ComboBox
+    Friend WithEvents txtCustomer As ComboBox
 End Class

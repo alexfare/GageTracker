@@ -9,10 +9,13 @@ Public Class GageList
         Catch ex As Exception
             MessageBox.Show("General error: " & ex.Message)
         End Try
+
+        txtVersion.Text = GlobalVars.VersionString
     End Sub
 
     Private Sub LoadData()
-        Dim connectionString As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=R:\Quality\GageCalibration\GTDatabase.accdb;"
+        Dim connectionString As String
+        connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
         Dim query As String = "SELECT GageID, [Status], [PartNumber], [Description], Department, [Gage Type], [Inspected Date], [Due Date] FROM CalibrationTracker"
 
         Using connection As New OleDbConnection(connectionString)

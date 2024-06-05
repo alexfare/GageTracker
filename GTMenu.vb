@@ -1,10 +1,11 @@
 ﻿Imports System.Data.OleDb
 
 Public Class GTMenu
-    Dim ConnectionString As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=R:\Quality\GageCalibration\GTDatabase.accdb;"
+    Dim connectionString As String
     Dim SearchCheck As Boolean
 
     Private Sub Menu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
         LoadGageIDOptions()
         LoadStatusOptions()
         LoadDepartmentOptions()
@@ -315,5 +316,10 @@ Public Class GTMenu
         ' Hide the current GTMenu form in both cases
         'Me.Hide()
         Me.Close() 'Until I add refresh
+    End Sub
+
+    Private Sub btnReportIssue_Click(sender As Object, e As EventArgs) Handles btnReportIssue.Click
+        ReportIssue.Show()
+        Me.Hide()
     End Sub
 End Class

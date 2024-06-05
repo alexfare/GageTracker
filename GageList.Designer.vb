@@ -38,6 +38,8 @@ Partial Class GageList
         Me.CalibrationTrackerTableAdapter = New GageCalibrationTracker.GTDatabaseDataSetTableAdapters.CalibrationTrackerTableAdapter()
         Me.BtnMenu = New System.Windows.Forms.Button()
         Me.ColorDialog1 = New System.Windows.Forms.ColorDialog()
+        Me.txtVersion = New System.Windows.Forms.Label()
+        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CalibrationTrackerBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GTDatabaseDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -131,21 +133,42 @@ Partial Class GageList
         Me.BtnMenu.Text = "Menu"
         Me.BtnMenu.UseVisualStyleBackColor = True
         '
+        'txtVersion
+        '
+        Me.txtVersion.AutoSize = True
+        Me.txtVersion.Location = New System.Drawing.Point(1036, 531)
+        Me.txtVersion.Name = "txtVersion"
+        Me.txtVersion.Size = New System.Drawing.Size(35, 13)
+        Me.txtVersion.TabIndex = 4
+        Me.txtVersion.Text = "NULL"
+        '
+        'MenuStrip1
+        '
+        Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
+        Me.MenuStrip1.Name = "MenuStrip1"
+        Me.MenuStrip1.Size = New System.Drawing.Size(1083, 24)
+        Me.MenuStrip1.TabIndex = 5
+        Me.MenuStrip1.Text = "MenuStrip1"
+        '
         'GageList
         '
         Me.AcceptButton = Me.BtnMenu
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1083, 561)
+        Me.Controls.Add(Me.txtVersion)
         Me.Controls.Add(Me.BtnMenu)
         Me.Controls.Add(Me.DataGridView1)
+        Me.Controls.Add(Me.MenuStrip1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "GageList"
         Me.Text = "GageList"
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CalibrationTrackerBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GTDatabaseDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -163,4 +186,6 @@ Partial Class GageList
     Friend WithEvents DueDateDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents BtnMenu As Button
     Friend WithEvents ColorDialog1 As ColorDialog
+    Friend WithEvents txtVersion As Label
+    Friend WithEvents MenuStrip1 As MenuStrip
 End Class

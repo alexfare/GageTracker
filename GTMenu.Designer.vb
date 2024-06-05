@@ -88,6 +88,7 @@ Partial Class GTMenu
         Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.BtnAdmin = New System.Windows.Forms.Button()
         Me.BtnGageList = New System.Windows.Forms.Button()
+        Me.btnReportIssue = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -108,7 +109,7 @@ Partial Class GTMenu
         '
         'BtnAdd
         '
-        Me.BtnAdd.Location = New System.Drawing.Point(38, 413)
+        Me.BtnAdd.Location = New System.Drawing.Point(12, 413)
         Me.BtnAdd.Name = "BtnAdd"
         Me.BtnAdd.Size = New System.Drawing.Size(75, 23)
         Me.BtnAdd.TabIndex = 15
@@ -267,7 +268,7 @@ Partial Class GTMenu
         '
         'BtnUpdate
         '
-        Me.BtnUpdate.Location = New System.Drawing.Point(119, 413)
+        Me.BtnUpdate.Location = New System.Drawing.Point(93, 413)
         Me.BtnUpdate.Name = "BtnUpdate"
         Me.BtnUpdate.Size = New System.Drawing.Size(75, 23)
         Me.BtnUpdate.TabIndex = 16
@@ -683,7 +684,7 @@ Partial Class GTMenu
         '
         'BtnAdmin
         '
-        Me.BtnAdmin.Location = New System.Drawing.Point(200, 413)
+        Me.BtnAdmin.Location = New System.Drawing.Point(174, 413)
         Me.BtnAdmin.Name = "BtnAdmin"
         Me.BtnAdmin.Size = New System.Drawing.Size(75, 23)
         Me.BtnAdmin.TabIndex = 17
@@ -693,12 +694,21 @@ Partial Class GTMenu
         'BtnGageList
         '
         Me.BtnGageList.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.BtnGageList.Location = New System.Drawing.Point(429, 413)
+        Me.BtnGageList.Location = New System.Drawing.Point(425, 413)
         Me.BtnGageList.Name = "BtnGageList"
         Me.BtnGageList.Size = New System.Drawing.Size(75, 23)
-        Me.BtnGageList.TabIndex = 18
+        Me.BtnGageList.TabIndex = 19
         Me.BtnGageList.Text = "Gage List"
         Me.BtnGageList.UseVisualStyleBackColor = True
+        '
+        'btnReportIssue
+        '
+        Me.btnReportIssue.Location = New System.Drawing.Point(255, 413)
+        Me.btnReportIssue.Name = "btnReportIssue"
+        Me.btnReportIssue.Size = New System.Drawing.Size(75, 23)
+        Me.btnReportIssue.TabIndex = 18
+        Me.btnReportIssue.Text = "Report Issue"
+        Me.btnReportIssue.UseVisualStyleBackColor = True
         '
         'GTMenu
         '
@@ -707,6 +717,7 @@ Partial Class GTMenu
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.BtnGageList
         Me.ClientSize = New System.Drawing.Size(520, 447)
+        Me.Controls.Add(Me.btnReportIssue)
         Me.Controls.Add(Me.BtnGageList)
         Me.Controls.Add(Me.BtnAdmin)
         Me.Controls.Add(Me.TabControl1)
@@ -795,4 +806,5 @@ Partial Class GTMenu
     Friend WithEvents txtGageID As ComboBox
     Friend WithEvents txtGageType As ComboBox
     Friend WithEvents txtCustomer As ComboBox
+    Friend WithEvents btnReportIssue As Button
 End Class

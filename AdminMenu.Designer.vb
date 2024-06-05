@@ -26,6 +26,9 @@ Partial Class AdminMenu
         Me.BtnBack = New System.Windows.Forms.Button()
         Me.BtnLogout = New System.Windows.Forms.Button()
         Me.btnCustomer = New System.Windows.Forms.Button()
+        Me.btnRemoveGage = New System.Windows.Forms.Button()
+        Me.btnStatus = New System.Windows.Forms.Button()
+        Me.btnAccount = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'BtnBack
@@ -33,7 +36,7 @@ Partial Class AdminMenu
         Me.BtnBack.Location = New System.Drawing.Point(12, 182)
         Me.BtnBack.Name = "BtnBack"
         Me.BtnBack.Size = New System.Drawing.Size(75, 23)
-        Me.BtnBack.TabIndex = 0
+        Me.BtnBack.TabIndex = 2
         Me.BtnBack.Text = "Back"
         Me.BtnBack.UseVisualStyleBackColor = True
         '
@@ -42,7 +45,7 @@ Partial Class AdminMenu
         Me.BtnLogout.Location = New System.Drawing.Point(243, 182)
         Me.BtnLogout.Name = "BtnLogout"
         Me.BtnLogout.Size = New System.Drawing.Size(75, 23)
-        Me.BtnLogout.TabIndex = 1
+        Me.BtnLogout.TabIndex = 3
         Me.BtnLogout.Text = "Logout"
         Me.BtnLogout.UseVisualStyleBackColor = True
         '
@@ -50,16 +53,46 @@ Partial Class AdminMenu
         '
         Me.btnCustomer.Location = New System.Drawing.Point(12, 12)
         Me.btnCustomer.Name = "btnCustomer"
-        Me.btnCustomer.Size = New System.Drawing.Size(75, 23)
-        Me.btnCustomer.TabIndex = 2
+        Me.btnCustomer.Size = New System.Drawing.Size(82, 46)
+        Me.btnCustomer.TabIndex = 0
         Me.btnCustomer.Text = "Customer Menu"
         Me.btnCustomer.UseVisualStyleBackColor = True
+        '
+        'btnRemoveGage
+        '
+        Me.btnRemoveGage.Location = New System.Drawing.Point(100, 12)
+        Me.btnRemoveGage.Name = "btnRemoveGage"
+        Me.btnRemoveGage.Size = New System.Drawing.Size(82, 46)
+        Me.btnRemoveGage.TabIndex = 1
+        Me.btnRemoveGage.Text = "Remove Gage"
+        Me.btnRemoveGage.UseVisualStyleBackColor = True
+        '
+        'btnStatus
+        '
+        Me.btnStatus.Location = New System.Drawing.Point(12, 64)
+        Me.btnStatus.Name = "btnStatus"
+        Me.btnStatus.Size = New System.Drawing.Size(82, 46)
+        Me.btnStatus.TabIndex = 4
+        Me.btnStatus.Text = "Status Menu"
+        Me.btnStatus.UseVisualStyleBackColor = True
+        '
+        'btnAccount
+        '
+        Me.btnAccount.Location = New System.Drawing.Point(12, 116)
+        Me.btnAccount.Name = "btnAccount"
+        Me.btnAccount.Size = New System.Drawing.Size(82, 46)
+        Me.btnAccount.TabIndex = 5
+        Me.btnAccount.Text = "Account Management"
+        Me.btnAccount.UseVisualStyleBackColor = True
         '
         'AdminMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(328, 214)
+        Me.Controls.Add(Me.btnAccount)
+        Me.Controls.Add(Me.btnStatus)
+        Me.Controls.Add(Me.btnRemoveGage)
         Me.Controls.Add(Me.btnCustomer)
         Me.Controls.Add(Me.BtnLogout)
         Me.Controls.Add(Me.BtnBack)
@@ -73,4 +106,7 @@ Partial Class AdminMenu
     Friend WithEvents BtnBack As Button
     Friend WithEvents BtnLogout As Button
     Friend WithEvents btnCustomer As Button
+    Friend WithEvents btnRemoveGage As Button
+    Friend WithEvents btnStatus As Button
+    Friend WithEvents btnAccount As Button
 End Class

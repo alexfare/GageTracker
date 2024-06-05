@@ -1,10 +1,11 @@
 ﻿Imports System.Data.OleDb
 
 Public Class CustomerEntry
-    Dim connectionString As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=R:\Quality\GageCalibration\GTDatabase.accdb;"
+    Dim connectionString As String
     Dim insertQuery As String = "INSERT INTO Customers (CustomerName, CustomerAddress, CustomerPhone, CustomerWebsite) VALUES (@Name, @Address, @Phone, @Website)"
 
     Private Sub Menu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
         LoadCustomers()
     End Sub
 

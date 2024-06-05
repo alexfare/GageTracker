@@ -1,5 +1,3 @@
 Admin Menu:
-Gage Removal
 Account Management Add/Delete/Edit
-Add/Delete Status
 Format Database

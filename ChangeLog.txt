@@ -1,3 +1,9 @@
+v5.0.0.12
+Changed CreateAccount to AccountManagement.
+Added ability to change users passwords and delete users.
+Updated GTMenu Nominal / Actual recordings.
+Added Loading Screen.
+
 v5.0.0.11
 Added current verison to List Menu.
 Added ReportIssue form. (WIP).

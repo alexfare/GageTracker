@@ -65,25 +65,25 @@ Partial Class GTMenu
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.Label24 = New System.Windows.Forms.Label()
         Me.Label16 = New System.Windows.Forms.Label()
-        Me.TextBox9 = New System.Windows.Forms.TextBox()
+        Me.txtaA5 = New System.Windows.Forms.TextBox()
         Me.Label14 = New System.Windows.Forms.Label()
-        Me.TextBox10 = New System.Windows.Forms.TextBox()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.txtaN5 = New System.Windows.Forms.TextBox()
+        Me.txtaN1 = New System.Windows.Forms.TextBox()
         Me.Label25 = New System.Windows.Forms.Label()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.txtaA1 = New System.Windows.Forms.TextBox()
         Me.Label22 = New System.Windows.Forms.Label()
         Me.Label17 = New System.Windows.Forms.Label()
-        Me.TextBox7 = New System.Windows.Forms.TextBox()
+        Me.txtaA4 = New System.Windows.Forms.TextBox()
         Me.Label18 = New System.Windows.Forms.Label()
-        Me.TextBox8 = New System.Windows.Forms.TextBox()
+        Me.txtaN4 = New System.Windows.Forms.TextBox()
         Me.Label19 = New System.Windows.Forms.Label()
         Me.Label23 = New System.Windows.Forms.Label()
-        Me.TextBox4 = New System.Windows.Forms.TextBox()
+        Me.txtaN2 = New System.Windows.Forms.TextBox()
         Me.Label20 = New System.Windows.Forms.Label()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
-        Me.TextBox5 = New System.Windows.Forms.TextBox()
+        Me.txtaA2 = New System.Windows.Forms.TextBox()
+        Me.txtaA3 = New System.Windows.Forms.TextBox()
         Me.Label15 = New System.Windows.Forms.Label()
-        Me.TextBox6 = New System.Windows.Forms.TextBox()
+        Me.txtaN3 = New System.Windows.Forms.TextBox()
         Me.Label21 = New System.Windows.Forms.Label()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.BtnAdmin = New System.Windows.Forms.Button()
@@ -468,36 +468,36 @@ Partial Class GTMenu
         '
         Me.GroupBox2.Controls.Add(Me.Label24)
         Me.GroupBox2.Controls.Add(Me.Label16)
-        Me.GroupBox2.Controls.Add(Me.TextBox9)
+        Me.GroupBox2.Controls.Add(Me.txtaA5)
         Me.GroupBox2.Controls.Add(Me.Label14)
-        Me.GroupBox2.Controls.Add(Me.TextBox10)
-        Me.GroupBox2.Controls.Add(Me.TextBox1)
+        Me.GroupBox2.Controls.Add(Me.txtaN5)
+        Me.GroupBox2.Controls.Add(Me.txtaN1)
         Me.GroupBox2.Controls.Add(Me.Label25)
-        Me.GroupBox2.Controls.Add(Me.TextBox2)
+        Me.GroupBox2.Controls.Add(Me.txtaA1)
         Me.GroupBox2.Controls.Add(Me.Label22)
         Me.GroupBox2.Controls.Add(Me.Label17)
-        Me.GroupBox2.Controls.Add(Me.TextBox7)
+        Me.GroupBox2.Controls.Add(Me.txtaA4)
         Me.GroupBox2.Controls.Add(Me.Label18)
-        Me.GroupBox2.Controls.Add(Me.TextBox8)
+        Me.GroupBox2.Controls.Add(Me.txtaN4)
         Me.GroupBox2.Controls.Add(Me.Label19)
         Me.GroupBox2.Controls.Add(Me.Label23)
-        Me.GroupBox2.Controls.Add(Me.TextBox4)
+        Me.GroupBox2.Controls.Add(Me.txtaN2)
         Me.GroupBox2.Controls.Add(Me.Label20)
-        Me.GroupBox2.Controls.Add(Me.TextBox3)
-        Me.GroupBox2.Controls.Add(Me.TextBox5)
+        Me.GroupBox2.Controls.Add(Me.txtaA2)
+        Me.GroupBox2.Controls.Add(Me.txtaA3)
         Me.GroupBox2.Controls.Add(Me.Label15)
-        Me.GroupBox2.Controls.Add(Me.TextBox6)
+        Me.GroupBox2.Controls.Add(Me.txtaN3)
         Me.GroupBox2.Controls.Add(Me.Label21)
-        Me.GroupBox2.Location = New System.Drawing.Point(6, 6)
+        Me.GroupBox2.Location = New System.Drawing.Point(55, 6)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(253, 188)
+        Me.GroupBox2.Size = New System.Drawing.Size(308, 185)
         Me.GroupBox2.TabIndex = 34
         Me.GroupBox2.TabStop = False
         '
         'Label24
         '
         Me.Label24.AutoSize = True
-        Me.Label24.Location = New System.Drawing.Point(150, 139)
+        Me.Label24.Location = New System.Drawing.Point(179, 139)
         Me.Label24.Name = "Label24"
         Me.Label24.Size = New System.Drawing.Size(9, 13)
         Me.Label24.TabIndex = 22
@@ -512,12 +512,12 @@ Partial Class GTMenu
         Me.Label16.TabIndex = 3
         Me.Label16.Text = "Nominal:"
         '
-        'TextBox9
+        'txtaA5
         '
-        Me.TextBox9.Location = New System.Drawing.Point(165, 136)
-        Me.TextBox9.Name = "TextBox9"
-        Me.TextBox9.Size = New System.Drawing.Size(64, 20)
-        Me.TextBox9.TabIndex = 9
+        Me.txtaA5.Location = New System.Drawing.Point(194, 136)
+        Me.txtaA5.Name = "txtaA5"
+        Me.txtaA5.Size = New System.Drawing.Size(91, 20)
+        Me.txtaA5.TabIndex = 9
         '
         'Label14
         '
@@ -528,19 +528,19 @@ Partial Class GTMenu
         Me.Label14.TabIndex = 0
         Me.Label14.Text = "Attribute #1:"
         '
-        'TextBox10
+        'txtaN5
         '
-        Me.TextBox10.Location = New System.Drawing.Point(80, 136)
-        Me.TextBox10.Name = "TextBox10"
-        Me.TextBox10.Size = New System.Drawing.Size(64, 20)
-        Me.TextBox10.TabIndex = 8
+        Me.txtaN5.Location = New System.Drawing.Point(80, 136)
+        Me.txtaN5.Name = "txtaN5"
+        Me.txtaN5.Size = New System.Drawing.Size(93, 20)
+        Me.txtaN5.TabIndex = 8
         '
-        'TextBox1
+        'txtaN1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(80, 32)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(64, 20)
-        Me.TextBox1.TabIndex = 0
+        Me.txtaN1.Location = New System.Drawing.Point(80, 32)
+        Me.txtaN1.Name = "txtaN1"
+        Me.txtaN1.Size = New System.Drawing.Size(93, 20)
+        Me.txtaN1.TabIndex = 0
         '
         'Label25
         '
@@ -549,19 +549,19 @@ Partial Class GTMenu
         Me.Label25.Name = "Label25"
         Me.Label25.Size = New System.Drawing.Size(65, 13)
         Me.Label25.TabIndex = 19
-        Me.Label25.Text = "Attribute #1:"
+        Me.Label25.Text = "Attribute #5:"
         '
-        'TextBox2
+        'txtaA1
         '
-        Me.TextBox2.Location = New System.Drawing.Point(165, 32)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(64, 20)
-        Me.TextBox2.TabIndex = 1
+        Me.txtaA1.Location = New System.Drawing.Point(194, 32)
+        Me.txtaA1.Name = "txtaA1"
+        Me.txtaA1.Size = New System.Drawing.Size(91, 20)
+        Me.txtaA1.TabIndex = 1
         '
         'Label22
         '
         Me.Label22.AutoSize = True
-        Me.Label22.Location = New System.Drawing.Point(150, 113)
+        Me.Label22.Location = New System.Drawing.Point(179, 113)
         Me.Label22.Name = "Label22"
         Me.Label22.Size = New System.Drawing.Size(9, 13)
         Me.Label22.TabIndex = 18
@@ -570,34 +570,34 @@ Partial Class GTMenu
         'Label17
         '
         Me.Label17.AutoSize = True
-        Me.Label17.Location = New System.Drawing.Point(150, 35)
+        Me.Label17.Location = New System.Drawing.Point(179, 35)
         Me.Label17.Name = "Label17"
         Me.Label17.Size = New System.Drawing.Size(9, 13)
         Me.Label17.TabIndex = 5
         Me.Label17.Text = "|"
         '
-        'TextBox7
+        'txtaA4
         '
-        Me.TextBox7.Location = New System.Drawing.Point(165, 110)
-        Me.TextBox7.Name = "TextBox7"
-        Me.TextBox7.Size = New System.Drawing.Size(64, 20)
-        Me.TextBox7.TabIndex = 7
+        Me.txtaA4.Location = New System.Drawing.Point(194, 110)
+        Me.txtaA4.Name = "txtaA4"
+        Me.txtaA4.Size = New System.Drawing.Size(91, 20)
+        Me.txtaA4.TabIndex = 7
         '
         'Label18
         '
         Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(166, 16)
+        Me.Label18.Location = New System.Drawing.Point(195, 16)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(40, 13)
         Me.Label18.TabIndex = 6
         Me.Label18.Text = "Actual:"
         '
-        'TextBox8
+        'txtaN4
         '
-        Me.TextBox8.Location = New System.Drawing.Point(80, 110)
-        Me.TextBox8.Name = "TextBox8"
-        Me.TextBox8.Size = New System.Drawing.Size(64, 20)
-        Me.TextBox8.TabIndex = 6
+        Me.txtaN4.Location = New System.Drawing.Point(80, 110)
+        Me.txtaN4.Name = "txtaN4"
+        Me.txtaN4.Size = New System.Drawing.Size(93, 20)
+        Me.txtaN4.TabIndex = 6
         '
         'Label19
         '
@@ -606,7 +606,7 @@ Partial Class GTMenu
         Me.Label19.Name = "Label19"
         Me.Label19.Size = New System.Drawing.Size(65, 13)
         Me.Label19.TabIndex = 7
-        Me.Label19.Text = "Attribute #1:"
+        Me.Label19.Text = "Attribute #2:"
         '
         'Label23
         '
@@ -615,53 +615,53 @@ Partial Class GTMenu
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(65, 13)
         Me.Label23.TabIndex = 15
-        Me.Label23.Text = "Attribute #1:"
+        Me.Label23.Text = "Attribute #4:"
         '
-        'TextBox4
+        'txtaN2
         '
-        Me.TextBox4.Location = New System.Drawing.Point(80, 58)
-        Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(64, 20)
-        Me.TextBox4.TabIndex = 2
+        Me.txtaN2.Location = New System.Drawing.Point(80, 58)
+        Me.txtaN2.Name = "txtaN2"
+        Me.txtaN2.Size = New System.Drawing.Size(93, 20)
+        Me.txtaN2.TabIndex = 2
         '
         'Label20
         '
         Me.Label20.AutoSize = True
-        Me.Label20.Location = New System.Drawing.Point(150, 87)
+        Me.Label20.Location = New System.Drawing.Point(179, 87)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(9, 13)
         Me.Label20.TabIndex = 14
         Me.Label20.Text = "|"
         '
-        'TextBox3
+        'txtaA2
         '
-        Me.TextBox3.Location = New System.Drawing.Point(165, 58)
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(64, 20)
-        Me.TextBox3.TabIndex = 3
+        Me.txtaA2.Location = New System.Drawing.Point(194, 58)
+        Me.txtaA2.Name = "txtaA2"
+        Me.txtaA2.Size = New System.Drawing.Size(91, 20)
+        Me.txtaA2.TabIndex = 3
         '
-        'TextBox5
+        'txtaA3
         '
-        Me.TextBox5.Location = New System.Drawing.Point(165, 84)
-        Me.TextBox5.Name = "TextBox5"
-        Me.TextBox5.Size = New System.Drawing.Size(64, 20)
-        Me.TextBox5.TabIndex = 5
+        Me.txtaA3.Location = New System.Drawing.Point(194, 84)
+        Me.txtaA3.Name = "txtaA3"
+        Me.txtaA3.Size = New System.Drawing.Size(91, 20)
+        Me.txtaA3.TabIndex = 5
         '
         'Label15
         '
         Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(150, 61)
+        Me.Label15.Location = New System.Drawing.Point(179, 61)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(9, 13)
         Me.Label15.TabIndex = 10
         Me.Label15.Text = "|"
         '
-        'TextBox6
+        'txtaN3
         '
-        Me.TextBox6.Location = New System.Drawing.Point(80, 84)
-        Me.TextBox6.Name = "TextBox6"
-        Me.TextBox6.Size = New System.Drawing.Size(64, 20)
-        Me.TextBox6.TabIndex = 4
+        Me.txtaN3.Location = New System.Drawing.Point(80, 84)
+        Me.txtaN3.Name = "txtaN3"
+        Me.txtaN3.Size = New System.Drawing.Size(93, 20)
+        Me.txtaN3.TabIndex = 4
         '
         'Label21
         '
@@ -670,7 +670,7 @@ Partial Class GTMenu
         Me.Label21.Name = "Label21"
         Me.Label21.Size = New System.Drawing.Size(65, 13)
         Me.Label21.TabIndex = 11
-        Me.Label21.Text = "Attribute #1:"
+        Me.Label21.Text = "Attribute #3:"
         '
         'TabPage4
         '
@@ -778,25 +778,25 @@ Partial Class GTMenu
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents Label24 As Label
     Friend WithEvents Label16 As Label
-    Friend WithEvents TextBox9 As TextBox
+    Friend WithEvents txtaA5 As TextBox
     Friend WithEvents Label14 As Label
-    Friend WithEvents TextBox10 As TextBox
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents txtaN5 As TextBox
+    Friend WithEvents txtaN1 As TextBox
     Friend WithEvents Label25 As Label
-    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents txtaA1 As TextBox
     Friend WithEvents Label22 As Label
     Friend WithEvents Label17 As Label
-    Friend WithEvents TextBox7 As TextBox
+    Friend WithEvents txtaA4 As TextBox
     Friend WithEvents Label18 As Label
-    Friend WithEvents TextBox8 As TextBox
+    Friend WithEvents txtaN4 As TextBox
     Friend WithEvents Label19 As Label
     Friend WithEvents Label23 As Label
-    Friend WithEvents TextBox4 As TextBox
+    Friend WithEvents txtaN2 As TextBox
     Friend WithEvents Label20 As Label
-    Friend WithEvents TextBox3 As TextBox
-    Friend WithEvents TextBox5 As TextBox
+    Friend WithEvents txtaA2 As TextBox
+    Friend WithEvents txtaA3 As TextBox
     Friend WithEvents Label15 As Label
-    Friend WithEvents TextBox6 As TextBox
+    Friend WithEvents txtaN3 As TextBox
     Friend WithEvents Label21 As Label
     Friend WithEvents txtComments As RichTextBox
     Friend WithEvents txtPartRev As TextBox

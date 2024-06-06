@@ -31,7 +31,7 @@
     End Sub
 
     Private Sub btnAccount_Click(sender As Object, e As EventArgs) Handles btnAccount.Click
-        CreateAccount.Show()
+        AccountManagement.Show()
         Me.Hide()
     End Sub
 End Class

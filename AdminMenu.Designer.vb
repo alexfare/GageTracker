@@ -42,7 +42,7 @@ Partial Class AdminMenu
         '
         'BtnLogout
         '
-        Me.BtnLogout.Location = New System.Drawing.Point(243, 182)
+        Me.BtnLogout.Location = New System.Drawing.Point(283, 182)
         Me.BtnLogout.Name = "BtnLogout"
         Me.BtnLogout.Size = New System.Drawing.Size(75, 23)
         Me.BtnLogout.TabIndex = 3
@@ -69,7 +69,7 @@ Partial Class AdminMenu
         '
         'btnStatus
         '
-        Me.btnStatus.Location = New System.Drawing.Point(12, 64)
+        Me.btnStatus.Location = New System.Drawing.Point(188, 12)
         Me.btnStatus.Name = "btnStatus"
         Me.btnStatus.Size = New System.Drawing.Size(82, 46)
         Me.btnStatus.TabIndex = 4
@@ -78,7 +78,7 @@ Partial Class AdminMenu
         '
         'btnAccount
         '
-        Me.btnAccount.Location = New System.Drawing.Point(12, 116)
+        Me.btnAccount.Location = New System.Drawing.Point(276, 12)
         Me.btnAccount.Name = "btnAccount"
         Me.btnAccount.Size = New System.Drawing.Size(82, 46)
         Me.btnAccount.TabIndex = 5
@@ -89,7 +89,7 @@ Partial Class AdminMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(328, 214)
+        Me.ClientSize = New System.Drawing.Size(374, 214)
         Me.Controls.Add(Me.btnAccount)
         Me.Controls.Add(Me.btnStatus)
         Me.Controls.Add(Me.btnRemoveGage)

@@ -6,7 +6,7 @@ Public Class GTMenu
 
     Private Sub Menu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
-        LoadGageIDOptions()
+        LoadGageID()
         LoadStatusOptions()
         LoadDepartmentOptions()
         LoadGageTypeOptions()
@@ -64,6 +64,7 @@ Public Class GTMenu
                     addCmd.Parameters.AddWithValue("@Comments", txtComments.Text)
                     addCmd.ExecuteNonQuery()
                     MessageBox.Show("Record added successfully")
+                    LoadGageID()
                 Else
                     MessageBox.Show("This GageID already exists", "Duplicate Entry", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 End If
@@ -204,8 +205,8 @@ Public Class GTMenu
             ' dtDueDate.Value = inspectedDate
         End If
     End Sub
-    Private Sub LoadGageIDOptions()
-        Using conn As New OleDbConnection(ConnectionString)
+    Private Sub LoadGageID()
+        Using conn As New OleDbConnection(connectionString)
             Try
                 conn.Open()
                 Dim cmd As New OleDbCommand("SELECT GageID FROM [CalibrationTracker]", conn) ' Adjust table and column names as necessary

@@ -8,10 +8,10 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("GageCalibrationTracker")>
-<Assembly: AssemblyDescription("")>
-<Assembly: AssemblyCompany("")>
-<Assembly: AssemblyProduct("GageCalibrationTracker")>
+<Assembly: AssemblyTitle("GageCal-Tracker")>
+<Assembly: AssemblyDescription("Gage Calibration Tracker")>
+<Assembly: AssemblyCompany("Fare")>
+<Assembly: AssemblyProduct("GageCal-Tracker")>
 <Assembly: AssemblyCopyright("Copyright ©  2024")>
 <Assembly: AssemblyTrademark("")>
 
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")>
 
-<Assembly: AssemblyVersion("1.0.0.0")>
-<Assembly: AssemblyFileVersion("5.0.0.11")>
+<Assembly: AssemblyVersion("5.0.0.12")>
+<Assembly: AssemblyFileVersion("5.0.0.12")>

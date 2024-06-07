@@ -18,24 +18,27 @@ Public Class ReportIssue
         Dim mail As New MailMessage()
         mail.From = New MailAddress("ninsosoft@gmail.com")
         mail.To.Add("alexfare94@gmail.com")
-        mail.Subject = "User Feedback"
+        mail.Subject = "GageCal-Tracker User Feedback"
         mail.Body = $"Name: {txtName.Text}" + Environment.NewLine +
-                $"Email: {If(String.IsNullOrWhiteSpace(txtEmail.Text), "Not provided", txtEmail.Text)}" + Environment.NewLine +
-                $"Comment: {txtComment.Text}"
+            $"Email: {If(String.IsNullOrWhiteSpace(txtEmail.Text), "Not provided", txtEmail.Text)}" + Environment.NewLine +
+            $"Comment: {txtComment.Text}" + Environment.NewLine +
+            $"Version: {GlobalVars.VersionString}"
 
-        ' Configure the SMTP client
+        Dim ZGVjcnlwdGVkUGFzc3dvcmQ = CredentialsManager.R2V0RGVjcnlwdGVkUGFzc3dvcmQ
         Dim smtp As New SmtpClient("smtp.gmail.com")
         smtp.Port = 587
         smtp.EnableSsl = True
-        smtp.Credentials = New System.Net.NetworkCredential("ninsosoft@gmail.com", "ygtvawlzlgmvydru")  ' App password
         smtp.UseDefaultCredentials = False
+        smtp.Credentials = New System.Net.NetworkCredential("ninsosoft@gmail.com", ZGVjcnlwdGVkUGFzc3dvcmQ)
+
 
         ' Send the email
         Try
             smtp.Send(mail)
-            MessageBox.Show("Email sent successfully.")
+            MessageBox.Show("Report sent successfully.")
+            Me.Close()
         Catch ex As Exception
-            MessageBox.Show("Failed to send email. Error: " + ex.Message)
+            MessageBox.Show("Failed to send report. Error: " + ex.Message)
         End Try
     End Sub
 

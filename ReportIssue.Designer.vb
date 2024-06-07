@@ -54,9 +54,9 @@ Partial Class ReportIssue
         Me.Label1.AutoSize = True
         Me.Label1.Location = New System.Drawing.Point(12, 61)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(35, 13)
+        Me.Label1.Size = New System.Drawing.Size(83, 13)
         Me.Label1.TabIndex = 8
-        Me.Label1.Text = "Email:"
+        Me.Label1.Text = "Email (Optional):"
         '
         'txtEmail
         '
@@ -93,6 +93,7 @@ Partial Class ReportIssue
         '
         'btnBack
         '
+        Me.btnBack.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.btnBack.Location = New System.Drawing.Point(15, 249)
         Me.btnBack.Name = "btnBack"
         Me.btnBack.Size = New System.Drawing.Size(75, 23)
@@ -102,8 +103,10 @@ Partial Class ReportIssue
         '
         'ReportIssue
         '
+        Me.AcceptButton = Me.btnSend
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.CancelButton = Me.btnBack
         Me.ClientSize = New System.Drawing.Size(249, 281)
         Me.Controls.Add(Me.btnBack)
         Me.Controls.Add(Me.btnSend)
@@ -114,6 +117,7 @@ Partial Class ReportIssue
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.txtName)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.MaximizeBox = False
         Me.Name = "ReportIssue"
         Me.Text = "ReportIssue"
         Me.ResumeLayout(False)

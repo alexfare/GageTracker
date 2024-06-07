@@ -86,6 +86,7 @@ Partial Class StatusMenu
         Me.Controls.Add(Me.BtnAdd)
         Me.Controls.Add(Me.Label2)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.MaximizeBox = False
         Me.Name = "StatusMenu"
         Me.Text = "StatusMenu"
         Me.ResumeLayout(False)

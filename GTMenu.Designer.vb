@@ -57,6 +57,8 @@ Partial Class GTMenu
         Me.txtComments = New System.Windows.Forms.RichTextBox()
         Me.cmbStatus = New System.Windows.Forms.ComboBox()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.Label27 = New System.Windows.Forms.Label()
+        Me.txtOwner = New System.Windows.Forms.TextBox()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.TxtNistNumber = New System.Windows.Forms.TextBox()
         Me.LblSerial = New System.Windows.Forms.Label()
@@ -89,6 +91,7 @@ Partial Class GTMenu
         Me.BtnAdmin = New System.Windows.Forms.Button()
         Me.BtnGageList = New System.Windows.Forms.Button()
         Me.btnReportIssue = New System.Windows.Forms.Button()
+        Me.BtnDelete = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -111,9 +114,9 @@ Partial Class GTMenu
         '
         Me.BtnAdd.Location = New System.Drawing.Point(12, 413)
         Me.BtnAdd.Name = "BtnAdd"
-        Me.BtnAdd.Size = New System.Drawing.Size(75, 23)
+        Me.BtnAdd.Size = New System.Drawing.Size(75, 38)
         Me.BtnAdd.TabIndex = 15
-        Me.BtnAdd.Text = "Add"
+        Me.BtnAdd.Text = "Add Gage"
         Me.BtnAdd.UseVisualStyleBackColor = True
         '
         'Label1
@@ -270,9 +273,9 @@ Partial Class GTMenu
         '
         Me.BtnUpdate.Location = New System.Drawing.Point(93, 413)
         Me.BtnUpdate.Name = "BtnUpdate"
-        Me.BtnUpdate.Size = New System.Drawing.Size(75, 23)
+        Me.BtnUpdate.Size = New System.Drawing.Size(75, 38)
         Me.BtnUpdate.TabIndex = 16
-        Me.BtnUpdate.Text = "Update"
+        Me.BtnUpdate.Text = "Update Gage"
         Me.BtnUpdate.UseVisualStyleBackColor = True
         '
         'BtnClear
@@ -409,6 +412,8 @@ Partial Class GTMenu
         '
         'TabPage2
         '
+        Me.TabPage2.Controls.Add(Me.Label27)
+        Me.TabPage2.Controls.Add(Me.txtOwner)
         Me.TabPage2.Controls.Add(Me.Label13)
         Me.TabPage2.Controls.Add(Me.TxtNistNumber)
         Me.TabPage2.Controls.Add(Me.LblSerial)
@@ -420,6 +425,22 @@ Partial Class GTMenu
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Serial Information"
         Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'Label27
+        '
+        Me.Label27.AutoSize = True
+        Me.Label27.Location = New System.Drawing.Point(6, 67)
+        Me.Label27.Name = "Label27"
+        Me.Label27.Size = New System.Drawing.Size(41, 13)
+        Me.Label27.TabIndex = 10
+        Me.Label27.Text = "Owner:"
+        '
+        'txtOwner
+        '
+        Me.txtOwner.Location = New System.Drawing.Point(81, 64)
+        Me.txtOwner.Name = "txtOwner"
+        Me.txtOwner.Size = New System.Drawing.Size(200, 20)
+        Me.txtOwner.TabIndex = 9
         '
         'Label13
         '
@@ -684,31 +705,40 @@ Partial Class GTMenu
         '
         'BtnAdmin
         '
-        Me.BtnAdmin.Location = New System.Drawing.Point(174, 413)
+        Me.BtnAdmin.Location = New System.Drawing.Point(255, 413)
         Me.BtnAdmin.Name = "BtnAdmin"
-        Me.BtnAdmin.Size = New System.Drawing.Size(75, 23)
+        Me.BtnAdmin.Size = New System.Drawing.Size(75, 38)
         Me.BtnAdmin.TabIndex = 17
-        Me.BtnAdmin.Text = "Admin"
+        Me.BtnAdmin.Text = "Admin Menu"
         Me.BtnAdmin.UseVisualStyleBackColor = True
         '
         'BtnGageList
         '
         Me.BtnGageList.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.BtnGageList.Location = New System.Drawing.Point(425, 413)
+        Me.BtnGageList.Location = New System.Drawing.Point(417, 413)
         Me.BtnGageList.Name = "BtnGageList"
-        Me.BtnGageList.Size = New System.Drawing.Size(75, 23)
+        Me.BtnGageList.Size = New System.Drawing.Size(75, 38)
         Me.BtnGageList.TabIndex = 19
         Me.BtnGageList.Text = "Gage List"
         Me.BtnGageList.UseVisualStyleBackColor = True
         '
         'btnReportIssue
         '
-        Me.btnReportIssue.Location = New System.Drawing.Point(255, 413)
+        Me.btnReportIssue.Location = New System.Drawing.Point(336, 413)
         Me.btnReportIssue.Name = "btnReportIssue"
-        Me.btnReportIssue.Size = New System.Drawing.Size(75, 23)
+        Me.btnReportIssue.Size = New System.Drawing.Size(75, 38)
         Me.btnReportIssue.TabIndex = 18
         Me.btnReportIssue.Text = "Report Issue"
         Me.btnReportIssue.UseVisualStyleBackColor = True
+        '
+        'BtnDelete
+        '
+        Me.BtnDelete.Location = New System.Drawing.Point(174, 413)
+        Me.BtnDelete.Name = "BtnDelete"
+        Me.BtnDelete.Size = New System.Drawing.Size(75, 38)
+        Me.BtnDelete.TabIndex = 33
+        Me.BtnDelete.Text = "Delete Gage"
+        Me.BtnDelete.UseVisualStyleBackColor = True
         '
         'GTMenu
         '
@@ -716,7 +746,8 @@ Partial Class GTMenu
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.BtnGageList
-        Me.ClientSize = New System.Drawing.Size(520, 447)
+        Me.ClientSize = New System.Drawing.Size(520, 479)
+        Me.Controls.Add(Me.BtnDelete)
         Me.Controls.Add(Me.btnReportIssue)
         Me.Controls.Add(Me.BtnGageList)
         Me.Controls.Add(Me.BtnAdmin)
@@ -725,8 +756,10 @@ Partial Class GTMenu
         Me.Controls.Add(Me.BtnUpdate)
         Me.Controls.Add(Me.BtnAdd)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.MaximizeBox = False
         Me.Name = "GTMenu"
         Me.Text = "Menu"
+        Me.TopMost = True
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.TabControl1.ResumeLayout(False)
@@ -807,4 +840,7 @@ Partial Class GTMenu
     Friend WithEvents txtGageType As ComboBox
     Friend WithEvents txtCustomer As ComboBox
     Friend WithEvents btnReportIssue As Button
+    Friend WithEvents Label27 As Label
+    Friend WithEvents txtOwner As TextBox
+    Friend WithEvents BtnDelete As Button
 End Class

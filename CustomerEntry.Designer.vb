@@ -169,6 +169,7 @@ Partial Class CustomerEntry
         Me.Controls.Add(Me.txtCustomerAddress)
         Me.Controls.Add(Me.Label2)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.MaximizeBox = False
         Me.Name = "CustomerEntry"
         Me.Text = "CustomerEntry"
         Me.ResumeLayout(False)

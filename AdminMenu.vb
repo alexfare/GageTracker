@@ -1,4 +1,7 @@
-﻿Public Class AdminMenu
+﻿Imports System.Text
+Imports System.Windows.Forms ' Make sure this import is present for clipboard access
+
+Public Class AdminMenu
     Dim connectionString As String
 
     Private Sub AdminMenu_Load(sender As Object, e As EventArgs) Handles MyBase.Load

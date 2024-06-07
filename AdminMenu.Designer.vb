@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class AdminMenu
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class AdminMenu
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(AdminMenu))
         Me.BtnBack = New System.Windows.Forms.Button()
@@ -36,7 +36,7 @@ Partial Class AdminMenu
         Me.BtnBack.Location = New System.Drawing.Point(12, 182)
         Me.BtnBack.Name = "BtnBack"
         Me.BtnBack.Size = New System.Drawing.Size(75, 23)
-        Me.BtnBack.TabIndex = 2
+        Me.BtnBack.TabIndex = 4
         Me.BtnBack.Text = "Back"
         Me.BtnBack.UseVisualStyleBackColor = True
         '
@@ -45,7 +45,7 @@ Partial Class AdminMenu
         Me.BtnLogout.Location = New System.Drawing.Point(283, 182)
         Me.BtnLogout.Name = "BtnLogout"
         Me.BtnLogout.Size = New System.Drawing.Size(75, 23)
-        Me.BtnLogout.TabIndex = 3
+        Me.BtnLogout.TabIndex = 5
         Me.BtnLogout.Text = "Logout"
         Me.BtnLogout.UseVisualStyleBackColor = True
         '
@@ -72,7 +72,7 @@ Partial Class AdminMenu
         Me.btnStatus.Location = New System.Drawing.Point(188, 12)
         Me.btnStatus.Name = "btnStatus"
         Me.btnStatus.Size = New System.Drawing.Size(82, 46)
-        Me.btnStatus.TabIndex = 4
+        Me.btnStatus.TabIndex = 2
         Me.btnStatus.Text = "Status Menu"
         Me.btnStatus.UseVisualStyleBackColor = True
         '
@@ -81,7 +81,7 @@ Partial Class AdminMenu
         Me.btnAccount.Location = New System.Drawing.Point(276, 12)
         Me.btnAccount.Name = "btnAccount"
         Me.btnAccount.Size = New System.Drawing.Size(82, 46)
-        Me.btnAccount.TabIndex = 5
+        Me.btnAccount.TabIndex = 3
         Me.btnAccount.Text = "Account Management"
         Me.btnAccount.UseVisualStyleBackColor = True
         '
@@ -97,6 +97,7 @@ Partial Class AdminMenu
         Me.Controls.Add(Me.BtnLogout)
         Me.Controls.Add(Me.BtnBack)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.MaximizeBox = False
         Me.Name = "AdminMenu"
         Me.Text = "AdminMenu"
         Me.ResumeLayout(False)

@@ -15,7 +15,8 @@ Public Class GTMenu
         SearchCheck = False
         GlobalVars.UserActive = False
     End Sub
-    Private Sub txtGageID_KeyDown(sender As Object, e As KeyEventArgs) 
+
+    Private Sub txtGageID_KeyDown(sender As Object, e As KeyEventArgs)
         If e.KeyCode = Keys.Enter Then
             ' Prevent the ding sound on pressing Enter
             e.SuppressKeyPress = True
@@ -24,17 +25,16 @@ Public Class GTMenu
             BtnSearch_Click(Me, EventArgs.Empty)
         End If
     End Sub
+
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
-        ' Check if the GageID text box is empty
         If String.IsNullOrWhiteSpace(txtGageID.Text) Then
             MessageBox.Show("GageID cannot be blank. Please enter a valid GageID.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return
         End If
 
         Try
-            Using conn As New OleDbConnection(ConnectionString)
+            Using conn As New OleDbConnection(connectionString)
                 conn.Open()
-                ' Check if the GageID already exists
                 Dim checkCmd As New OleDbCommand("SELECT COUNT(*) FROM [CalibrationTracker] WHERE GageID = ?", conn)
                 checkCmd.Parameters.AddWithValue("@GageID", txtGageID.Text)
                 Dim count As Integer = Convert.ToInt32(checkCmd.ExecuteScalar())
@@ -47,8 +47,7 @@ Public Class GTMenu
                     Dim inspectedDate As DateTime = dtInspectedDate.Value
                     Dim dueDate As DateTime = inspectedDate.AddMonths(intervalMonths)
 
-                    Dim addCmd As New OleDbCommand("INSERT INTO [CalibrationTracker] (GageID, PartNumber, PartRev, Status, Description, Department, [Gage Type], Customer, [Calibrated By], [Interval (Months)], [Inspected Date], [Due Date], Comments) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", conn)
-                    ' Prepare and add parameters
+                    Dim addCmd As New OleDbCommand("INSERT INTO [CalibrationTracker] (GageID, PartNumber, PartRev, Status, Description, Department, [Gage Type], Customer, [Calibrated By], [Interval (Months)], [Inspected Date], [Due Date], Comments, aN1, aN2, aN3, aN4, aN5, aA1, aA2, aA3, aA4, aA5, [Serial Number], Owner, [Nist Number]) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", conn)
                     addCmd.Parameters.AddWithValue("@GageID", txtGageID.Text)
                     addCmd.Parameters.AddWithValue("@PartNumber", txtPartNumber.Text)
                     addCmd.Parameters.AddWithValue("@PartRev", txtPartRev.Text)
@@ -62,8 +61,21 @@ Public Class GTMenu
                     addCmd.Parameters.Add(New OleDbParameter("@InspectedDate", OleDbType.Date)).Value = inspectedDate
                     addCmd.Parameters.Add(New OleDbParameter("@DueDate", OleDbType.Date)).Value = dueDate
                     addCmd.Parameters.AddWithValue("@Comments", txtComments.Text)
+                    addCmd.Parameters.AddWithValue("@aN1", txtaN1.Text)
+                    addCmd.Parameters.AddWithValue("@aN2", txtaN2.Text)
+                    addCmd.Parameters.AddWithValue("@aN3", txtaN3.Text)
+                    addCmd.Parameters.AddWithValue("@aN4", txtaN4.Text)
+                    addCmd.Parameters.AddWithValue("@aN5", txtaN5.Text)
+                    addCmd.Parameters.AddWithValue("@aA1", txtaA1.Text)
+                    addCmd.Parameters.AddWithValue("@aA2", txtaA2.Text)
+                    addCmd.Parameters.AddWithValue("@aA3", txtaA3.Text)
+                    addCmd.Parameters.AddWithValue("@aA4", txtaA4.Text)
+                    addCmd.Parameters.AddWithValue("@aA5", txtaA5.Text)
+                    addCmd.Parameters.AddWithValue("@SerialNumber", TxtSerialNumber.Text)
+                    addCmd.Parameters.AddWithValue("@Owner", txtOwner.Text)
+                    addCmd.Parameters.AddWithValue("@NistNumber", TxtNistNumber.Text)
                     addCmd.ExecuteNonQuery()
-                    MessageBox.Show("Record added successfully")
+                    MessageBox.Show("Gage added successfully")
                     LoadGageID()
                 Else
                     MessageBox.Show("This GageID already exists", "Duplicate Entry", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -75,6 +87,7 @@ Public Class GTMenu
             MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+
     Private Sub BtnSearch_Click(sender As Object, e As EventArgs) Handles BtnSearch.Click
         ' Check if the GageID text box is empty
         If String.IsNullOrWhiteSpace(txtGageID.Text) Then
@@ -82,16 +95,17 @@ Public Class GTMenu
             Return
         End If
 
-        Using conn As New OleDbConnection(ConnectionString)
+        Using conn As New OleDbConnection(connectionString)
             Try
                 conn.Open()
-                Dim cmd As New OleDbCommand("SELECT PartNumber, Status, Description, Department, [Gage Type], Customer, [Calibrated By], [Interval (Months)], [Inspected Date], [Due Date], Comments FROM [CalibrationTracker] WHERE GageID = ?", conn)
+                Dim cmd As New OleDbCommand("SELECT PartNumber, PartRev, Status, Description, Department, [Gage Type], Customer, [Calibrated By], [Interval (Months)], [Inspected Date], [Due Date], Comments, aN1, aN2, aN3, aN4, aN5, aA1, aA2, aA3, aA4, aA5, [Serial Number], Owner, [Nist Number] FROM [CalibrationTracker] WHERE GageID = ?", conn)
                 ' Use parameterized queries to prevent SQL Injection
                 cmd.Parameters.AddWithValue("@GageID", txtGageID.Text)
 
                 Using reader As OleDbDataReader = cmd.ExecuteReader()
                     If reader.Read() Then
                         txtPartNumber.Text = reader.Item("PartNumber").ToString()
+                        txtPartRev.Text = reader.Item("PartRev").ToString()
                         ' For the cmbStatus, find the correct status in the items and set it as selected
                         Dim statusIndex As Integer = cmbStatus.FindStringExact(reader.Item("Status").ToString())
                         If statusIndex >= 0 Then
@@ -114,6 +128,21 @@ Public Class GTMenu
                         End If
 
                         txtComments.Text = reader.Item("Comments").ToString()
+                        TxtSerialNumber.Text = reader.Item("Serial Number").ToString()
+                        txtOwner.Text = reader.Item("Owner").ToString()
+                        TxtNistNumber.Text = reader.Item("Nist Number").ToString()
+
+                        ' Measurements
+                        txtaN1.Text = reader.Item("aN1").ToString()
+                        txtaN2.Text = reader.Item("aN2").ToString()
+                        txtaN3.Text = reader.Item("aN3").ToString()
+                        txtaN4.Text = reader.Item("aN4").ToString()
+                        txtaN5.Text = reader.Item("aN5").ToString()
+                        txtaA1.Text = reader.Item("aA1").ToString()
+                        txtaA2.Text = reader.Item("aA2").ToString()
+                        txtaA3.Text = reader.Item("aA3").ToString()
+                        txtaA4.Text = reader.Item("aA4").ToString()
+                        txtaA5.Text = reader.Item("aA5").ToString()
 
                         SearchCheck = True
                     Else
@@ -135,14 +164,16 @@ Public Class GTMenu
             MessageBox.Show("Please search for Gage record.")
         End If
     End Sub
+
     Private Sub BtnUpdateConfirmed() 'Handles BtnUpdate.Click
-        Using conn As New OleDbConnection(ConnectionString)
+        Using conn As New OleDbConnection(connectionString)
             conn.Open()
             ' Prepare your UPDATE SQL command with parameters to prevent SQL injection
-            Dim updateCmd As New OleDbCommand("UPDATE [CalibrationTracker] SET PartNumber = ?, Status = ?, Description = ?, Department = ?, [Gage Type] = ?, Customer = ?, [Calibrated By] = ?, [Interval (Months)] = ?, [Inspected Date] = ?, [Due Date] = ?, Comments = ? WHERE GageID = ?", conn)
+            Dim updateCmd As New OleDbCommand("UPDATE [CalibrationTracker] SET PartNumber = ?, PartRev = ?, Status = ?, Description = ?, Department = ?, [Gage Type] = ?, Customer = ?, [Calibrated By] = ?, [Interval (Months)] = ?, [Inspected Date] = ?, [Due Date] = ?, Comments = ?, aN1 = ?, aN2 = ?, aN3 = ?, aN4 = ?, aN5 = ?, aA1 = ?, aA2 = ?, aA3 = ?, aA4 = ?, aA5 = ?, [Serial Number] = ?, Owner = ?, [Nist Number] = ? WHERE GageID = ?", conn)
 
             ' Add parameters with the values from your form controls
             updateCmd.Parameters.Add(New OleDbParameter("@PartNumber", txtPartNumber.Text))
+            updateCmd.Parameters.Add(New OleDbParameter("@PartRev", txtPartRev.Text))
             updateCmd.Parameters.Add(New OleDbParameter("@Status", cmbStatus.Text))
             updateCmd.Parameters.Add(New OleDbParameter("@Description", txtDescription.Text))
             updateCmd.Parameters.Add(New OleDbParameter("@Department", txtDepartment.Text))
@@ -153,6 +184,19 @@ Public Class GTMenu
             updateCmd.Parameters.Add(New OleDbParameter("@InspectedDate", dtInspectedDate.Value))
             updateCmd.Parameters.Add(New OleDbParameter("@DueDate", dtDueDate.Value))
             updateCmd.Parameters.Add(New OleDbParameter("@Comments", txtComments.Text))
+            updateCmd.Parameters.Add(New OleDbParameter("@aN1", txtaN1.Text))
+            updateCmd.Parameters.Add(New OleDbParameter("@aN2", txtaN2.Text))
+            updateCmd.Parameters.Add(New OleDbParameter("@aN3", txtaN3.Text))
+            updateCmd.Parameters.Add(New OleDbParameter("@aN4", txtaN4.Text))
+            updateCmd.Parameters.Add(New OleDbParameter("@aN5", txtaN5.Text))
+            updateCmd.Parameters.Add(New OleDbParameter("@aA1", txtaA1.Text))
+            updateCmd.Parameters.Add(New OleDbParameter("@aA2", txtaA2.Text))
+            updateCmd.Parameters.Add(New OleDbParameter("@aA3", txtaA3.Text))
+            updateCmd.Parameters.Add(New OleDbParameter("@aA4", txtaA4.Text))
+            updateCmd.Parameters.Add(New OleDbParameter("@aA5", txtaA5.Text))
+            updateCmd.Parameters.Add(New OleDbParameter("@SerialNumber", TxtSerialNumber.Text))
+            updateCmd.Parameters.Add(New OleDbParameter("@Owner", txtOwner.Text))
+            updateCmd.Parameters.Add(New OleDbParameter("@NistNumber", TxtNistNumber.Text))
             updateCmd.Parameters.Add(New OleDbParameter("@GageID", txtGageID.Text))
 
             ' Execute the UPDATE command
@@ -166,22 +210,8 @@ Public Class GTMenu
         End Using
     End Sub
 
-    Private Sub BtnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
-        ' Clear all input fields
-        txtGageID.SelectedIndex = -1 ' Reset the ComboBox selection
-        txtPartNumber.Clear()
-        cmbStatus.SelectedIndex = -1 ' Reset the ComboBox selection
-        txtDescription.Clear()
-        txtDepartment.SelectedIndex = -1 ' Reset the ComboBox selection
-        txtGageType.SelectedIndex = -1 ' Reset the ComboBox selection
-        txtCustomer.SelectedIndex = -1 ' Reset the ComboBox selection
-        txtCalibratedBy.Clear()
-        txtInterval.Clear()
-        txtComments.Clear()
-        dtInspectedDate.Value = DateTime.Now ' Reset to current date or some default
-        dtDueDate.Value = DateTime.Now ' Reset to current date or some default
-
-        SearchCheck = False
+    Private Sub BtnClear_Click(sender As Object, e As EventArgs) Handles BtnClear.Click
+        ClearForms()
     End Sub
 
     Private Sub txtInterval_TextChanged(sender As Object, e As EventArgs) Handles txtInterval.TextChanged
@@ -205,13 +235,15 @@ Public Class GTMenu
             ' dtDueDate.Value = inspectedDate
         End If
     End Sub
-    Private Sub LoadGageID()
+
+    Public Sub LoadGageID()
         Using conn As New OleDbConnection(connectionString)
             Try
                 conn.Open()
                 Dim cmd As New OleDbCommand("SELECT GageID FROM [CalibrationTracker]", conn) ' Adjust table and column names as necessary
                 Dim reader As OleDbDataReader = cmd.ExecuteReader()
                 txtGageID.Items.Clear()
+                GageList.LoadData()
                 While reader.Read()
                     txtGageID.Items.Add(reader("GageID").ToString())
                 End While
@@ -220,6 +252,7 @@ Public Class GTMenu
             End Try
         End Using
     End Sub
+
     Private Sub LoadStatusOptions()
         Using conn As New OleDbConnection(ConnectionString)
             Try
@@ -235,6 +268,7 @@ Public Class GTMenu
             End Try
         End Using
     End Sub
+
     Private Sub LoadDepartmentOptions()
         Using conn As New OleDbConnection(ConnectionString)
             Try
@@ -250,6 +284,7 @@ Public Class GTMenu
             End Try
         End Using
     End Sub
+
     Private Sub LoadGageTypeOptions()
         Using conn As New OleDbConnection(ConnectionString)
             Try
@@ -281,6 +316,7 @@ Public Class GTMenu
             End Try
         End Using
     End Sub
+
     Private Sub BtnAdmin_Click(sender As Object, e As EventArgs) Handles BtnAdmin.Click
         If GlobalVars.UserActive = True Then
             Dim adminMenu As New AdminMenu()
@@ -293,6 +329,7 @@ Public Class GTMenu
             Me.Hide()
         End If
     End Sub
+
     Private Sub BtnGageList_Click(sender As Object, e As EventArgs) Handles BtnGageList.Click
         ' Check if GageList is already open
         Dim isOpen As Boolean = False
@@ -315,12 +352,85 @@ Public Class GTMenu
         End If
 
         ' Hide the current GTMenu form in both cases
-        'Me.Hide()
-        Me.Close() 'Until I add refresh
+        Me.Hide()
+        'Me.Close() 'Until I add refresh
+        GageList.LoadData()
     End Sub
 
     Private Sub btnReportIssue_Click(sender As Object, e As EventArgs) Handles btnReportIssue.Click
         ReportIssue.Show()
         Me.Hide()
+    End Sub
+
+    Private Sub BtnDelete_Click(sender As Object, e As EventArgs) Handles BtnDelete.Click
+        ' Check if the GageID text box is empty
+        If String.IsNullOrWhiteSpace(txtGageID.Text) Then
+            MessageBox.Show("GageID cannot be blank. Please enter a valid GageID.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return
+        End If
+
+        If GlobalVars.UserActive = False Then
+            MessageBox.Show("Must be an logged in to delete gage.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return
+        End If
+
+        ' Confirm with the user before deleting the record
+        Dim result As DialogResult = MessageBox.Show("Are you sure you want to delete this gage?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        If result = DialogResult.Yes Then
+            Try
+                Using conn As New OleDbConnection(connectionString)
+                    conn.Open()
+                    ' Execute the DELETE query
+                    Dim deleteCmd As New OleDbCommand("DELETE FROM [CalibrationTracker] WHERE GageID = ?", conn)
+                    deleteCmd.Parameters.AddWithValue("@GageID", txtGageID.Text)
+                    Dim rowsAffected As Integer = deleteCmd.ExecuteNonQuery()
+                    If rowsAffected > 0 Then
+                        MessageBox.Show("Gage deleted successfully.")
+                        ' Clear the form fields after deletion
+                        ClearForms()
+                        LoadGageID()
+                    Else
+                        MessageBox.Show("No gage deleted. Please check the GageID.")
+                    End If
+                End Using
+            Catch ex As OleDbException
+                MessageBox.Show($"Database error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Catch ex As Exception
+                MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
+        End If
+    End Sub
+
+    Private Sub ClearForms()
+        txtGageID.SelectedIndex = -1 ' Reset the ComboBox selection
+        txtPartNumber.Clear()
+        txtPartRev.Clear()
+        cmbStatus.SelectedIndex = -1 ' Reset the ComboBox selection
+        txtDescription.Clear()
+        txtDepartment.SelectedIndex = -1 ' Reset the ComboBox selection
+        txtGageType.SelectedIndex = -1 ' Reset the ComboBox selection
+        txtCustomer.SelectedIndex = -1 ' Reset the ComboBox selection
+        txtCalibratedBy.Clear()
+        txtInterval.Clear()
+        txtComments.Clear()
+        TxtSerialNumber.Clear()
+        txtOwner.Clear()
+        TxtNistNumber.Clear()
+        dtInspectedDate.Value = DateTime.Now ' Reset to current date or some default
+        dtDueDate.Value = DateTime.Now ' Reset to current date or some default
+
+        ' Clear Measurements
+        txtaN1.Clear()
+        txtaN2.Clear()
+        txtaN3.Clear()
+        txtaN4.Clear()
+        txtaN5.Clear()
+        txtaA1.Clear()
+        txtaA2.Clear()
+        txtaA3.Clear()
+        txtaA4.Clear()
+        txtaA5.Clear()
+
+        SearchCheck = False
     End Sub
 End Class

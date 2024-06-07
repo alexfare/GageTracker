@@ -135,8 +135,9 @@ Partial Class GageList
         '
         'txtVersion
         '
+        Me.txtVersion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtVersion.AutoSize = True
-        Me.txtVersion.Location = New System.Drawing.Point(1036, 531)
+        Me.txtVersion.Location = New System.Drawing.Point(1036, 539)
         Me.txtVersion.Name = "txtVersion"
         Me.txtVersion.Size = New System.Drawing.Size(35, 13)
         Me.txtVersion.TabIndex = 4

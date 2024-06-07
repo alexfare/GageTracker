@@ -75,6 +75,7 @@ Partial Class RemoveGage
         Me.Controls.Add(Me.txtGageID)
         Me.Controls.Add(Me.Label1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.MaximizeBox = False
         Me.Name = "RemoveGage"
         Me.Text = "RemoveGage"
         Me.ResumeLayout(False)

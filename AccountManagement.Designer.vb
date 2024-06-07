@@ -138,6 +138,7 @@ Partial Class AccountManagement
         Me.Controls.Add(Me.BtnBack)
         Me.Controls.Add(Me.txtUsername)
         Me.Controls.Add(Me.Label2)
+        Me.MaximizeBox = False
         Me.Name = "AccountManagement"
         Me.Text = "AccountManagement"
         Me.ResumeLayout(False)

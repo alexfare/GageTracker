@@ -1,7 +1,3 @@
-C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\bin\Release\GageCalTracker.exe.config
-C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\bin\Release\GageCalTracker.exe
-C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\bin\Release\GageCalTracker.pdb
-C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\bin\Release\GageCalTracker.xml
 C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\obj\Release\GageCalibrationTracker.vbproj.AssemblyReference.cache
 C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\obj\Release\GageCalibrationTracker.AccountManagement.resources
 C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\obj\Release\GageCalibrationTracker.AdminMenu.resources
@@ -16,6 +12,10 @@ C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\obj\Rel
 C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\obj\Release\GageCalibrationTracker.StatusMenu.resources
 C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\obj\Release\GageCalibrationTracker.vbproj.GenerateResource.cache
 C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\obj\Release\GageCalibrationTracker.vbproj.CoreCompileInputs.cache
-C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\obj\Release\GageCalTracker.exe
-C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\obj\Release\GageCalTracker.xml
-C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\obj\Release\GageCalTracker.pdb
+C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\bin\Release\GageTracker.exe.config
+C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\bin\Release\GageTracker.exe
+C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\bin\Release\GageTracker.pdb
+C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\bin\Release\GageTracker.xml
+C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\obj\Release\GageTracker.exe
+C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\obj\Release\GageTracker.xml
+C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\obj\Release\GageTracker.pdb

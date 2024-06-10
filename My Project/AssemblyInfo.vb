@@ -8,7 +8,7 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("GageCal-Tracker")>
+<Assembly: AssemblyTitle("GageTracker")>
 <Assembly: AssemblyDescription("Gage Calibration Tracker")>
 <Assembly: AssemblyCompany("Fare")>
 <Assembly: AssemblyProduct("GageCal-Tracker")>
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")>
 
-<Assembly: AssemblyVersion("5.0.0.13")>
-<Assembly: AssemblyFileVersion("5.0.0.13")>
+<Assembly: AssemblyVersion("5.0.0.14")>
+<Assembly: AssemblyFileVersion("5.0.0.14")>

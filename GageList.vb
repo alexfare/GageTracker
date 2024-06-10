@@ -11,6 +11,12 @@ Public Class GageList
         End Try
 
         txtVersion.Text = GlobalVars.VersionString
+        Me.StartPosition = FormStartPosition.CenterScreen
+    End Sub
+
+    Protected Overrides Sub OnLoad(e As EventArgs)
+        MyBase.OnLoad(e)
+        CenterToScreen()
     End Sub
 
     Public Sub LoadData()

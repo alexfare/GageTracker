@@ -10,6 +10,11 @@ Public Class RemoveGage
         txtGageID.Focus()
     End Sub
 
+    Protected Overrides Sub OnLoad(e As EventArgs)
+        MyBase.OnLoad(e)
+        CenterToScreen()
+    End Sub
+
     Private Sub BtnDelete_Click(sender As Object, e As EventArgs) Handles BtnDelete.Click
         ' Check if the GageID text box is empty
         If String.IsNullOrWhiteSpace(txtGageID.Text) Then

@@ -1,3 +1,10 @@
+v5.0.0.14
+Updated GTMenu, Form opens faster by loading SQL data in the background.
+Corrected GTMenu tab order.
+Forms now autocenter. 
+Updated "Calibrated By" to dropdown box.
+Added Autocomplete/suggest to GageID.
+
 v5.0.0.13
 Updated database. 
 Updated GTMenu Nominal / Actual recordings.

@@ -35,56 +35,56 @@
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="GTDatabaseDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_UserDSName="GTDatabaseDataSet" msprop:Generator_DataSetName="GTDatabaseDataSet">
+  <xs:element name="GTDatabaseDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="GTDatabaseDataSet" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="GTDatabaseDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="CalibrationTracker" msprop:Generator_RowEvHandlerName="CalibrationTrackerRowChangeEventHandler" msprop:Generator_RowDeletedName="CalibrationTrackerRowDeleted" msprop:Generator_RowDeletingName="CalibrationTrackerRowDeleting" msprop:Generator_RowEvArgName="CalibrationTrackerRowChangeEvent" msprop:Generator_TablePropName="CalibrationTracker" msprop:Generator_RowChangedName="CalibrationTrackerRowChanged" msprop:Generator_RowChangingName="CalibrationTrackerRowChanging" msprop:Generator_TableClassName="CalibrationTrackerDataTable" msprop:Generator_RowClassName="CalibrationTrackerRow" msprop:Generator_TableVarName="tableCalibrationTracker" msprop:Generator_UserTableName="CalibrationTracker">
+        <xs:element name="CalibrationTracker" msprop:Generator_RowEvHandlerName="CalibrationTrackerRowChangeEventHandler" msprop:Generator_RowDeletedName="CalibrationTrackerRowDeleted" msprop:Generator_RowDeletingName="CalibrationTrackerRowDeleting" msprop:Generator_RowEvArgName="CalibrationTrackerRowChangeEvent" msprop:Generator_TablePropName="CalibrationTracker" msprop:Generator_RowChangedName="CalibrationTrackerRowChanged" msprop:Generator_UserTableName="CalibrationTracker" msprop:Generator_RowChangingName="CalibrationTrackerRowChanging" msprop:Generator_RowClassName="CalibrationTrackerRow" msprop:Generator_TableClassName="CalibrationTrackerDataTable" msprop:Generator_TableVarName="tableCalibrationTracker">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="GageID" msprop:Generator_ColumnPropNameInRow="GageID" msprop:Generator_ColumnPropNameInTable="GageIDColumn" msprop:Generator_ColumnVarNameInTable="columnGageID" msprop:Generator_UserColumnName="GageID" minOccurs="0">
+              <xs:element name="GageID" msprop:Generator_ColumnPropNameInTable="GageIDColumn" msprop:Generator_ColumnPropNameInRow="GageID" msprop:Generator_UserColumnName="GageID" msprop:Generator_ColumnVarNameInTable="columnGageID" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="255" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Status" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_UserColumnName="Status" minOccurs="0">
+              <xs:element name="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_UserColumnName="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="255" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="PartNumber" msprop:Generator_ColumnPropNameInRow="PartNumber" msprop:Generator_ColumnPropNameInTable="PartNumberColumn" msprop:Generator_ColumnVarNameInTable="columnPartNumber" msprop:Generator_UserColumnName="PartNumber" minOccurs="0">
+              <xs:element name="PartNumber" msprop:Generator_ColumnPropNameInTable="PartNumberColumn" msprop:Generator_ColumnPropNameInRow="PartNumber" msprop:Generator_UserColumnName="PartNumber" msprop:Generator_ColumnVarNameInTable="columnPartNumber" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="255" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Description" msprop:Generator_ColumnPropNameInRow="Description" msprop:Generator_ColumnPropNameInTable="DescriptionColumn" msprop:Generator_ColumnVarNameInTable="columnDescription" msprop:Generator_UserColumnName="Description" minOccurs="0">
+              <xs:element name="Description" msprop:Generator_ColumnPropNameInTable="DescriptionColumn" msprop:Generator_ColumnPropNameInRow="Description" msprop:Generator_UserColumnName="Description" msprop:Generator_ColumnVarNameInTable="columnDescription" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="255" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Department" msprop:Generator_ColumnPropNameInRow="Department" msprop:Generator_ColumnPropNameInTable="DepartmentColumn" msprop:Generator_ColumnVarNameInTable="columnDepartment" msprop:Generator_UserColumnName="Department" minOccurs="0">
+              <xs:element name="Department" msprop:Generator_ColumnPropNameInTable="DepartmentColumn" msprop:Generator_ColumnPropNameInRow="Department" msprop:Generator_UserColumnName="Department" msprop:Generator_ColumnVarNameInTable="columnDepartment" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="255" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Gage_x0020_Type" msprop:Generator_ColumnPropNameInRow="Gage_Type" msprop:Generator_ColumnPropNameInTable="Gage_TypeColumn" msprop:Generator_ColumnVarNameInTable="columnGage_Type" msprop:Generator_UserColumnName="Gage Type" minOccurs="0">
+              <xs:element name="Gage_x0020_Type" msprop:Generator_ColumnPropNameInTable="Gage_TypeColumn" msprop:Generator_ColumnPropNameInRow="Gage_Type" msprop:Generator_UserColumnName="Gage Type" msprop:Generator_ColumnVarNameInTable="columnGage_Type" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="255" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Inspected_x0020_Date" msprop:Generator_ColumnPropNameInRow="Inspected_Date" msprop:Generator_ColumnPropNameInTable="Inspected_DateColumn" msprop:Generator_ColumnVarNameInTable="columnInspected_Date" msprop:Generator_UserColumnName="Inspected Date" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="Due_x0020_Date" msprop:Generator_ColumnPropNameInRow="Due_Date" msprop:Generator_ColumnPropNameInTable="Due_DateColumn" msprop:Generator_ColumnVarNameInTable="columnDue_Date" msprop:Generator_UserColumnName="Due Date" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Inspected_x0020_Date" msprop:Generator_ColumnPropNameInTable="Inspected_DateColumn" msprop:Generator_ColumnPropNameInRow="Inspected_Date" msprop:Generator_UserColumnName="Inspected Date" msprop:Generator_ColumnVarNameInTable="columnInspected_Date" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Due_x0020_Date" msprop:Generator_ColumnPropNameInTable="Due_DateColumn" msprop:Generator_ColumnPropNameInRow="Due_Date" msprop:Generator_UserColumnName="Due Date" msprop:Generator_ColumnVarNameInTable="columnDue_Date" type="xs:dateTime" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

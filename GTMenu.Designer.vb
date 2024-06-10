@@ -35,7 +35,6 @@ Partial Class GTMenu
         Me.txtPartNumber = New System.Windows.Forms.TextBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
-        Me.txtCalibratedBy = New System.Windows.Forms.TextBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
@@ -92,6 +91,7 @@ Partial Class GTMenu
         Me.BtnGageList = New System.Windows.Forms.Button()
         Me.btnReportIssue = New System.Windows.Forms.Button()
         Me.BtnDelete = New System.Windows.Forms.Button()
+        Me.txtCalibratedBy = New System.Windows.Forms.ComboBox()
         Me.GroupBox1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -205,13 +205,6 @@ Partial Class GTMenu
         Me.Label8.TabIndex = 15
         Me.Label8.Text = "Department:"
         '
-        'txtCalibratedBy
-        '
-        Me.txtCalibratedBy.Location = New System.Drawing.Point(272, 59)
-        Me.txtCalibratedBy.Name = "txtCalibratedBy"
-        Me.txtCalibratedBy.Size = New System.Drawing.Size(200, 20)
-        Me.txtCalibratedBy.TabIndex = 10
-        '
         'Label9
         '
         Me.Label9.AutoSize = True
@@ -301,7 +294,8 @@ Partial Class GTMenu
         '
         'txtGageID
         '
-        Me.txtGageID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.txtGageID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.txtGageID.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.txtGageID.FormattingEnabled = True
         Me.txtGageID.Location = New System.Drawing.Point(59, 13)
         Me.txtGageID.Name = "txtGageID"
@@ -322,6 +316,7 @@ Partial Class GTMenu
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.txtCalibratedBy)
         Me.TabPage1.Controls.Add(Me.txtCustomer)
         Me.TabPage1.Controls.Add(Me.txtGageType)
         Me.TabPage1.Controls.Add(Me.txtDepartment)
@@ -345,7 +340,6 @@ Partial Class GTMenu
         Me.TabPage1.Controls.Add(Me.Label7)
         Me.TabPage1.Controls.Add(Me.Label9)
         Me.TabPage1.Controls.Add(Me.Label8)
-        Me.TabPage1.Controls.Add(Me.txtCalibratedBy)
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
@@ -360,7 +354,7 @@ Partial Class GTMenu
         Me.txtCustomer.Location = New System.Drawing.Point(272, 19)
         Me.txtCustomer.Name = "txtCustomer"
         Me.txtCustomer.Size = New System.Drawing.Size(200, 21)
-        Me.txtCustomer.TabIndex = 36
+        Me.txtCustomer.TabIndex = 9
         '
         'txtGageType
         '
@@ -708,7 +702,7 @@ Partial Class GTMenu
         Me.BtnAdmin.Location = New System.Drawing.Point(255, 413)
         Me.BtnAdmin.Name = "BtnAdmin"
         Me.BtnAdmin.Size = New System.Drawing.Size(75, 38)
-        Me.BtnAdmin.TabIndex = 17
+        Me.BtnAdmin.TabIndex = 18
         Me.BtnAdmin.Text = "Admin Menu"
         Me.BtnAdmin.UseVisualStyleBackColor = True
         '
@@ -718,7 +712,7 @@ Partial Class GTMenu
         Me.BtnGageList.Location = New System.Drawing.Point(417, 413)
         Me.BtnGageList.Name = "BtnGageList"
         Me.BtnGageList.Size = New System.Drawing.Size(75, 38)
-        Me.BtnGageList.TabIndex = 19
+        Me.BtnGageList.TabIndex = 20
         Me.BtnGageList.Text = "Gage List"
         Me.BtnGageList.UseVisualStyleBackColor = True
         '
@@ -727,7 +721,7 @@ Partial Class GTMenu
         Me.btnReportIssue.Location = New System.Drawing.Point(336, 413)
         Me.btnReportIssue.Name = "btnReportIssue"
         Me.btnReportIssue.Size = New System.Drawing.Size(75, 38)
-        Me.btnReportIssue.TabIndex = 18
+        Me.btnReportIssue.TabIndex = 19
         Me.btnReportIssue.Text = "Report Issue"
         Me.btnReportIssue.UseVisualStyleBackColor = True
         '
@@ -736,9 +730,17 @@ Partial Class GTMenu
         Me.BtnDelete.Location = New System.Drawing.Point(174, 413)
         Me.BtnDelete.Name = "BtnDelete"
         Me.BtnDelete.Size = New System.Drawing.Size(75, 38)
-        Me.BtnDelete.TabIndex = 33
+        Me.BtnDelete.TabIndex = 17
         Me.BtnDelete.Text = "Delete Gage"
         Me.BtnDelete.UseVisualStyleBackColor = True
+        '
+        'txtCalibratedBy
+        '
+        Me.txtCalibratedBy.FormattingEnabled = True
+        Me.txtCalibratedBy.Location = New System.Drawing.Point(272, 58)
+        Me.txtCalibratedBy.Name = "txtCalibratedBy"
+        Me.txtCalibratedBy.Size = New System.Drawing.Size(200, 21)
+        Me.txtCalibratedBy.TabIndex = 36
         '
         'GTMenu
         '
@@ -786,7 +788,6 @@ Partial Class GTMenu
     Friend WithEvents txtPartNumber As TextBox
     Friend WithEvents Label7 As Label
     Friend WithEvents Label8 As Label
-    Friend WithEvents txtCalibratedBy As TextBox
     Friend WithEvents Label9 As Label
     Friend WithEvents Label10 As Label
     Friend WithEvents Label11 As Label
@@ -843,4 +844,5 @@ Partial Class GTMenu
     Friend WithEvents Label27 As Label
     Friend WithEvents txtOwner As TextBox
     Friend WithEvents BtnDelete As Button
+    Friend WithEvents txtCalibratedBy As ComboBox
 End Class

@@ -4,16 +4,23 @@ Public Class GTMenu
     Dim connectionString As String
     Dim SearchCheck As Boolean
 
-    Private Sub Menu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Async Sub Menu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
-        LoadGageID()
-        LoadStatusOptions()
-        LoadDepartmentOptions()
-        LoadGageTypeOptions()
-        LoadCustomerOptions()
+        Await Task.Run(Sub() LoadGageID())
+        Await Task.Run(Sub() LoadStatus())
+        Await Task.Run(Sub() LoadDepartment())
+        Await Task.Run(Sub() LoadGageType())
+        Await Task.Run(Sub() LoadUser())
+        Await Task.Run(Sub() LoadCustomers())
         txtGageID.Focus()
         SearchCheck = False
         GlobalVars.UserActive = False
+        Me.StartPosition = FormStartPosition.CenterScreen
+    End Sub
+
+    Protected Overrides Sub OnLoad(e As EventArgs)
+        MyBase.OnLoad(e)
+        CenterToScreen()
     End Sub
 
     Private Sub txtGageID_KeyDown(sender As Object, e As KeyEventArgs)
@@ -77,6 +84,7 @@ Public Class GTMenu
                     addCmd.ExecuteNonQuery()
                     MessageBox.Show("Gage added successfully")
                     LoadGageID()
+                    GageList.LoadData()
                 Else
                     MessageBox.Show("This GageID already exists", "Duplicate Entry", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 End If
@@ -240,79 +248,167 @@ Public Class GTMenu
         Using conn As New OleDbConnection(connectionString)
             Try
                 conn.Open()
-                Dim cmd As New OleDbCommand("SELECT GageID FROM [CalibrationTracker]", conn) ' Adjust table and column names as necessary
+                Dim cmd As New OleDbCommand("SELECT GageID FROM [CalibrationTracker]", conn)
                 Dim reader As OleDbDataReader = cmd.ExecuteReader()
-                txtGageID.Items.Clear()
-                GageList.LoadData()
+                Dim items As New List(Of String)() ' Temporary list to hold GageID data
+
                 While reader.Read()
-                    txtGageID.Items.Add(reader("GageID").ToString())
+                    items.Add(reader("GageID").ToString())
                 End While
+
+                ' Close the reader and connection
+                reader.Close()
+
+                ' Now invoke the UI thread to update the ComboBox
+                Me.Invoke(Sub()
+                              txtGageID.Items.Clear()
+                              txtGageID.AutoCompleteMode = AutoCompleteMode.SuggestAppend
+                              txtGageID.AutoCompleteSource = AutoCompleteSource.ListItems
+
+                              For Each item As String In items
+                                  txtGageID.Items.Add(item)
+                              Next
+                          End Sub)
+
             Catch ex As Exception
                 MessageBox.Show("An error occurred while loading GageID options: " & ex.Message)
+            Finally
+                ' Ensure connection is closed if exception occurs
+                If conn.State = ConnectionState.Open Then
+                    conn.Close()
+                End If
             End Try
         End Using
     End Sub
 
-    Private Sub LoadStatusOptions()
-        Using conn As New OleDbConnection(ConnectionString)
+    Private Sub LoadStatus()
+        Using conn As New OleDbConnection(connectionString)
             Try
                 conn.Open()
-                Dim cmd As New OleDbCommand("SELECT Status FROM [Status]", conn) ' Adjust table and column names as necessary
+                Dim cmd As New OleDbCommand("SELECT Status FROM [Status]", conn) ' Ensure the table name and column name are correct
                 Dim reader As OleDbDataReader = cmd.ExecuteReader()
-                cmbStatus.Items.Clear()
+                Dim items As New List(Of String)() ' Temporary list to hold status data
+
                 While reader.Read()
-                    cmbStatus.Items.Add(reader("Status").ToString())
+                    items.Add(reader("Status").ToString())
                 End While
+
+                ' Now invoke the UI thread to update the ComboBox
+                Me.Invoke(Sub()
+                              cmbStatus.Items.Clear()
+                              For Each item As String In items
+                                  cmbStatus.Items.Add(item)
+                              Next
+                          End Sub)
+
             Catch ex As Exception
                 MessageBox.Show("An error occurred while loading status options: " & ex.Message)
             End Try
         End Using
     End Sub
 
-    Private Sub LoadDepartmentOptions()
-        Using conn As New OleDbConnection(ConnectionString)
+
+    Private Sub LoadDepartment()
+        Using conn As New OleDbConnection(connectionString)
             Try
                 conn.Open()
                 Dim cmd As New OleDbCommand("SELECT Departments FROM [Departments]", conn) ' Adjust table and column names as necessary
                 Dim reader As OleDbDataReader = cmd.ExecuteReader()
-                txtDepartment.Items.Clear()
+                Dim items As New List(Of String)() ' Temporary list to hold Department data
+
                 While reader.Read()
-                    txtDepartment.Items.Add(reader("Departments").ToString())
+                    items.Add(reader("Departments").ToString())
                 End While
+
+                ' Use Invoke to update the ComboBox on the UI thread
+                Me.Invoke(Sub()
+                              txtDepartment.Items.Clear()
+                              For Each item As String In items
+                                  txtDepartment.Items.Add(item)
+                              Next
+                          End Sub)
+
             Catch ex As Exception
                 MessageBox.Show("An error occurred while loading Departments options: " & ex.Message)
             End Try
         End Using
     End Sub
 
-    Private Sub LoadGageTypeOptions()
-        Using conn As New OleDbConnection(ConnectionString)
+
+    Private Sub LoadGageType()
+        Using conn As New OleDbConnection(connectionString)
             Try
                 conn.Open()
                 Dim cmd As New OleDbCommand("SELECT GageType FROM [GageType]", conn) ' Adjust table and column names as necessary
                 Dim reader As OleDbDataReader = cmd.ExecuteReader()
-                txtGageType.Items.Clear()
+                Dim items As New List(Of String)() ' Temporary list to hold Gage Type data
+
                 While reader.Read()
-                    txtGageType.Items.Add(reader("GageType").ToString())
+                    items.Add(reader("GageType").ToString())
                 End While
+
+                ' Use Invoke to update the ComboBox on the UI thread
+                Me.Invoke(Sub()
+                              txtGageType.Items.Clear()
+                              For Each item As String In items
+                                  txtGageType.Items.Add(item)
+                              Next
+                          End Sub)
+
             Catch ex As Exception
-                MessageBox.Show("An error occurred while loading GageType options: " & ex.Message)
+                MessageBox.Show("An error occurred while loading Gage Type options: " & ex.Message)
             End Try
         End Using
     End Sub
 
-    Private Sub LoadCustomerOptions()
-        Using conn As New OleDbConnection(ConnectionString)
+    Private Sub LoadCustomers()
+        Using conn As New OleDbConnection(connectionString)
             Try
                 conn.Open()
-                Dim cmd As New OleDbCommand("SELECT CustomerName FROM Customers", conn)
+                Dim cmd As New OleDbCommand("SELECT CustomerName FROM Customers", conn) ' Make sure the table name is correct
                 Dim reader As OleDbDataReader = cmd.ExecuteReader()
-                txtCustomer.Items.Clear()
+                Dim items As New List(Of String)() ' Temporary list to hold Customer data
+
                 While reader.Read()
-                    txtCustomer.Items.Add(reader("CustomerName").ToString())
+                    items.Add(reader("CustomerName").ToString())
                 End While
+
+                ' Use Invoke to update the ComboBox on the UI thread
+                Me.Invoke(Sub()
+                              txtCustomer.Items.Clear()
+                              For Each item As String In items
+                                  txtCustomer.Items.Add(item)
+                              Next
+                          End Sub)
+
             Catch ex As Exception
-                MessageBox.Show("An error occurred while loading Customers: " & ex.Message)
+                MessageBox.Show("An error occurred while loading Customer options: " & ex.Message)
+            End Try
+        End Using
+    End Sub
+
+    Private Sub LoadUser()
+        Using conn As New OleDbConnection(connectionString)
+            Try
+                conn.Open()
+                Dim cmd As New OleDbCommand("SELECT Username FROM [Credentials]", conn) ' Adjust table and column names as necessary
+                Dim reader As OleDbDataReader = cmd.ExecuteReader()
+                Dim items As New List(Of String)() ' Temporary list to hold Gage Type data
+
+                While reader.Read()
+                    items.Add(reader("Username").ToString())
+                End While
+
+                ' Use Invoke to update the ComboBox on the UI thread
+                Me.Invoke(Sub()
+                              txtCalibratedBy.Items.Clear()
+                              For Each item As String In items
+                                  txtCalibratedBy.Items.Add(item)
+                              Next
+                          End Sub)
+
+            Catch ex As Exception
+                MessageBox.Show("An error occurred while loading Gage Type options: " & ex.Message)
             End Try
         End Using
     End Sub
@@ -410,7 +506,7 @@ Public Class GTMenu
         txtDepartment.SelectedIndex = -1 ' Reset the ComboBox selection
         txtGageType.SelectedIndex = -1 ' Reset the ComboBox selection
         txtCustomer.SelectedIndex = -1 ' Reset the ComboBox selection
-        txtCalibratedBy.Clear()
+        txtCalibratedBy.SelectedIndex = -1 ' Reset the ComboBox selection
         txtInterval.Clear()
         txtComments.Clear()
         TxtSerialNumber.Clear()

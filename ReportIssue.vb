@@ -7,6 +7,11 @@ Public Class ReportIssue
         ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
     End Sub
 
+    Protected Overrides Sub OnLoad(e As EventArgs)
+        MyBase.OnLoad(e)
+        CenterToScreen()
+    End Sub
+
     Private Sub btnSend_Click(sender As Object, e As EventArgs) Handles btnSend.Click
         ' Validate the Name field
         If String.IsNullOrWhiteSpace(txtName.Text) Then

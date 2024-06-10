@@ -9,6 +9,11 @@ Public Class CustomerEntry
         LoadCustomers()
     End Sub
 
+    Protected Overrides Sub OnLoad(e As EventArgs)
+        MyBase.OnLoad(e)
+        CenterToScreen()
+    End Sub
+
     Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
         ' Check for blank customer name
         If String.IsNullOrWhiteSpace(txtCustomerName.Text) Then

@@ -9,6 +9,11 @@ Public Class StatusMenu
         LoadStatus()
     End Sub
 
+    Protected Overrides Sub OnLoad(e As EventArgs)
+        MyBase.OnLoad(e)
+        CenterToScreen()
+    End Sub
+
     Private Sub LoadStatus()
         Using conn As New OleDbConnection(connectionString)
             Try

@@ -8,6 +8,11 @@ Public Class AdminMenu
         connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
     End Sub
 
+    Protected Overrides Sub OnLoad(e As EventArgs)
+        MyBase.OnLoad(e)
+        CenterToScreen()
+    End Sub
+
     Private Sub BtnBack_Click(sender As Object, e As EventArgs) Handles BtnBack.Click
         GTMenu.Show()
         Me.Hide()

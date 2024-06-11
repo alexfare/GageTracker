@@ -1,3 +1,9 @@
+v5.0.0.15
+Updated GageList refresh when updating gage.
+Fixed updated Search issue after update.
+Added Customer display on GageList.
+Adjusted GageList size.
+
 v5.0.0.14
 Updated GTMenu, Form opens faster by loading SQL data in the background.
 Corrected GTMenu tab order.

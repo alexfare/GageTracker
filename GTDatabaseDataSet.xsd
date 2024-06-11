@@ -9,10 +9,11 @@
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="CalibrationTrackerTableAdapter" GeneratorDataComponentClassName="CalibrationTrackerTableAdapter" Name="CalibrationTracker" UserDataComponentName="CalibrationTrackerTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="GTDatabaseConnectionString (MySettings)" DbObjectName="CalibrationTracker" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="GTDatabaseConnectionString (MySettings)" DbObjectName="CalibrationTracker" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT GageID, Status, PartNumber, Description, Department, [Gage Type], [Inspected Date], [Due Date] FROM CalibrationTracker</CommandText>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        GageID, Status, PartNumber, Description, Department, [Gage Type], [Inspected Date], [Due Date], Customer
+FROM            CalibrationTracker</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -27,8 +28,18 @@
               <Mapping SourceColumn="Gage Type" DataSetColumn="Gage Type" />
               <Mapping SourceColumn="Inspected Date" DataSetColumn="Inspected Date" />
               <Mapping SourceColumn="Due Date" DataSetColumn="Due Date" />
+              <Mapping SourceColumn="Customer" DataSetColumn="Customer" />
             </Mappings>
-            <Sources />
+            <Sources>
+              <DbSource ConnectionRef="GTDatabaseConnectionString (MySettings)" DbObjectName="CalibrationTracker" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillBy" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillBy" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillBy">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT Customer, Department, Description, [Due Date], [Gage Type], GageID, [Inspected Date], PartNumber, Status FROM CalibrationTracker</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
           </TableAdapter>
         </Tables>
         <Sources />
@@ -85,6 +96,13 @@
               </xs:element>
               <xs:element name="Inspected_x0020_Date" msprop:Generator_ColumnPropNameInTable="Inspected_DateColumn" msprop:Generator_ColumnPropNameInRow="Inspected_Date" msprop:Generator_UserColumnName="Inspected Date" msprop:Generator_ColumnVarNameInTable="columnInspected_Date" type="xs:dateTime" minOccurs="0" />
               <xs:element name="Due_x0020_Date" msprop:Generator_ColumnPropNameInTable="Due_DateColumn" msprop:Generator_ColumnPropNameInRow="Due_Date" msprop:Generator_UserColumnName="Due Date" msprop:Generator_ColumnVarNameInTable="columnDue_Date" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Customer" msprop:Generator_ColumnPropNameInRow="Customer" msprop:Generator_ColumnPropNameInTable="CustomerColumn" msprop:Generator_ColumnVarNameInTable="columnCustomer" msprop:Generator_UserColumnName="Customer" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>

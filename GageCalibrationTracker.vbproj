@@ -141,6 +141,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GTDatabaseDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="GTDatabaseDataSet.vb">
+      <DependentUpon>GTDatabaseDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="LoadingScreen.Designer.vb">
       <DependentUpon>LoadingScreen.vb</DependentUpon>
     </Compile>

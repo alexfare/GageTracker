@@ -22,7 +22,7 @@ Public Class GageList
     Public Sub LoadData()
         Dim connectionString As String
         connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
-        Dim query As String = "SELECT GageID, [Status], [PartNumber], [Description], Department, [Gage Type], [Inspected Date], [Due Date] FROM CalibrationTracker"
+        Dim query As String = "SELECT GageID, [Status], [PartNumber], [Description], Department, [Gage Type], [Customer], [Inspected Date], [Due Date] FROM CalibrationTracker"
 
         Using connection As New OleDbConnection(connectionString)
             Try
@@ -65,5 +65,14 @@ Public Class GageList
         ' Show the GTMenu form regardless of whether GageID was set
         GTMenu.Show()
         GTMenu.LoadGageID()
+    End Sub
+
+    Private Sub FillByToolStripButton_Click(sender As Object, e As EventArgs)
+        Try
+            Me.CalibrationTrackerTableAdapter.FillBy(Me.GTDatabaseDataSet.CalibrationTracker)
+        Catch ex As System.Exception
+            System.Windows.Forms.MessageBox.Show(ex.Message)
+        End Try
+
     End Sub
 End Class

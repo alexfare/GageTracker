@@ -299,6 +299,8 @@ Partial Public Class GTDatabaseDataSet
         
         Private columnDue_Date As Global.System.Data.DataColumn
         
+        Private columnCustomer As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Sub New()
@@ -399,6 +401,14 @@ Partial Public Class GTDatabaseDataSet
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property CustomerColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCustomer
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -435,9 +445,9 @@ Partial Public Class GTDatabaseDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Overloads Function AddCalibrationTrackerRow(ByVal GageID As String, ByVal Status As String, ByVal PartNumber As String, ByVal Description As String, ByVal Department As String, ByVal Gage_Type As String, ByVal Inspected_Date As Date, ByVal Due_Date As Date) As CalibrationTrackerRow
+        Public Overloads Function AddCalibrationTrackerRow(ByVal GageID As String, ByVal Status As String, ByVal PartNumber As String, ByVal Description As String, ByVal Department As String, ByVal Gage_Type As String, ByVal Inspected_Date As Date, ByVal Due_Date As Date, ByVal Customer As String) As CalibrationTrackerRow
             Dim rowCalibrationTrackerRow As CalibrationTrackerRow = CType(Me.NewRow,CalibrationTrackerRow)
-            Dim columnValuesArray() As Object = New Object() {GageID, Status, PartNumber, Description, Department, Gage_Type, Inspected_Date, Due_Date}
+            Dim columnValuesArray() As Object = New Object() {GageID, Status, PartNumber, Description, Department, Gage_Type, Inspected_Date, Due_Date, Customer}
             rowCalibrationTrackerRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowCalibrationTrackerRow)
             Return rowCalibrationTrackerRow
@@ -468,6 +478,7 @@ Partial Public Class GTDatabaseDataSet
             Me.columnGage_Type = MyBase.Columns("Gage Type")
             Me.columnInspected_Date = MyBase.Columns("Inspected Date")
             Me.columnDue_Date = MyBase.Columns("Due Date")
+            Me.columnCustomer = MyBase.Columns("Customer")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -489,12 +500,15 @@ Partial Public Class GTDatabaseDataSet
             MyBase.Columns.Add(Me.columnInspected_Date)
             Me.columnDue_Date = New Global.System.Data.DataColumn("Due Date", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnDue_Date)
+            Me.columnCustomer = New Global.System.Data.DataColumn("Customer", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCustomer)
             Me.columnGageID.MaxLength = 255
             Me.columnStatus.MaxLength = 255
             Me.columnPartNumber.MaxLength = 255
             Me.columnDescription.MaxLength = 255
             Me.columnDepartment.MaxLength = 255
             Me.columnGage_Type.MaxLength = 255
+            Me.columnCustomer.MaxLength = 255
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -761,6 +775,21 @@ Partial Public Class GTDatabaseDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property Customer() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableCalibrationTracker.CustomerColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Customer' in table 'CalibrationTracker' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableCalibrationTracker.CustomerColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Function IsGageIDNull() As Boolean
             Return Me.IsNull(Me.tableCalibrationTracker.GageIDColumn)
         End Function
@@ -853,6 +882,18 @@ Partial Public Class GTDatabaseDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Sub SetDue_DateNull()
             Me(Me.tableCalibrationTracker.Due_DateColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsCustomerNull() As Boolean
+            Return Me.IsNull(Me.tableCalibrationTracker.CustomerColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetCustomerNull()
+            Me(Me.tableCalibrationTracker.CustomerColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -1030,6 +1071,7 @@ Namespace GTDatabaseDataSetTableAdapters
             tableMapping.ColumnMappings.Add("Gage Type", "Gage Type")
             tableMapping.ColumnMappings.Add("Inspected Date", "Inspected Date")
             tableMapping.ColumnMappings.Add("Due Date", "Due Date")
+            tableMapping.ColumnMappings.Add("Customer", "Customer")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -1043,12 +1085,17 @@ Namespace GTDatabaseDataSetTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.OleDb.OleDbCommand(0) {}
+            Me._commandCollection = New Global.System.Data.OleDb.OleDbCommand(1) {}
             Me._commandCollection(0) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT GageID, Status, PartNumber, Description, Department, [Gage Type], [Inspect"& _ 
-                "ed Date], [Due Date] FROM CalibrationTracker"
+            Me._commandCollection(0).CommandText = "SELECT        GageID, Status, PartNumber, Description, Department, [Gage Type], ["& _ 
+                "Inspected Date], [Due Date], Customer"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            CalibrationTracker"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(1) = New Global.System.Data.OleDb.OleDbCommand()
+            Me._commandCollection(1).Connection = Me.Connection
+            Me._commandCollection(1).CommandText = "SELECT Customer, Department, Description, [Due Date], [Gage Type], GageID, [Inspe"& _ 
+                "cted Date], PartNumber, Status FROM CalibrationTracker"
+            Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1073,6 +1120,19 @@ Namespace GTDatabaseDataSetTableAdapters
             Dim dataTable As GTDatabaseDataSet.CalibrationTrackerDataTable = New GTDatabaseDataSet.CalibrationTrackerDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
+        Public Overloads Overridable Function FillBy(ByVal dataTable As GTDatabaseDataSet.CalibrationTrackerDataTable) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(1)
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
         End Function
     End Class
     

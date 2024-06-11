@@ -211,7 +211,8 @@ Public Class GTMenu
             Dim rowsAffected As Integer = updateCmd.ExecuteNonQuery()
             If rowsAffected > 0 Then
                 MessageBox.Show("Record updated successfully")
-                SearchCheck = False
+                'SearchCheck = False
+                GageList.LoadData()
             Else
                 MessageBox.Show("No record updated. Please check the GageID.")
             End If
@@ -237,10 +238,6 @@ Public Class GTMenu
             Dim inspectedDate As DateTime = dtInspectedDate.Value
             Dim dueDate As DateTime = inspectedDate.AddMonths(intervalMonths)
             dtDueDate.Value = dueDate
-        Else
-            ' Optionally handle the case where the interval is not a valid number
-            ' For example, you could clear the due date or set it to the inspected date
-            ' dtDueDate.Value = inspectedDate
         End If
     End Sub
 

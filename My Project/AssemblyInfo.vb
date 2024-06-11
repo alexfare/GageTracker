@@ -11,7 +11,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyTitle("GageTracker")>
 <Assembly: AssemblyDescription("Gage Calibration Tracker")>
 <Assembly: AssemblyCompany("Fare")>
-<Assembly: AssemblyProduct("GageCal-Tracker")>
+<Assembly: AssemblyProduct("GageTracker")>
 <Assembly: AssemblyCopyright("Copyright ©  2024")>
 <Assembly: AssemblyTrademark("")>
 
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")>
 
-<Assembly: AssemblyVersion("5.0.0.14")>
-<Assembly: AssemblyFileVersion("5.0.0.14")>
+<Assembly: AssemblyVersion("5.0.0.15")>
+<Assembly: AssemblyFileVersion("5.0.0.15")>

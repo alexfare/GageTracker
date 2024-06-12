@@ -32,7 +32,7 @@ Partial Class StatusMenu
         '
         'btnRemove
         '
-        Me.btnRemove.Location = New System.Drawing.Point(120, 52)
+        Me.btnRemove.Location = New System.Drawing.Point(121, 52)
         Me.btnRemove.Name = "btnRemove"
         Me.btnRemove.Size = New System.Drawing.Size(75, 23)
         Me.btnRemove.TabIndex = 21
@@ -50,7 +50,7 @@ Partial Class StatusMenu
         'btnBack
         '
         Me.btnBack.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btnBack.Location = New System.Drawing.Point(228, 52)
+        Me.btnBack.Location = New System.Drawing.Point(15, 52)
         Me.btnBack.Name = "btnBack"
         Me.btnBack.Size = New System.Drawing.Size(75, 23)
         Me.btnBack.TabIndex = 22
@@ -59,7 +59,7 @@ Partial Class StatusMenu
         '
         'BtnAdd
         '
-        Me.BtnAdd.Location = New System.Drawing.Point(15, 52)
+        Me.BtnAdd.Location = New System.Drawing.Point(228, 52)
         Me.BtnAdd.Name = "BtnAdd"
         Me.BtnAdd.Size = New System.Drawing.Size(75, 23)
         Me.BtnAdd.TabIndex = 17

@@ -304,7 +304,6 @@ Public Class GTMenu
         End Using
     End Sub
 
-
     Private Sub LoadDepartment()
         Using conn As New OleDbConnection(connectionString)
             Try
@@ -330,7 +329,6 @@ Public Class GTMenu
             End Try
         End Using
     End Sub
-
 
     Private Sub LoadGageType()
         Using conn As New OleDbConnection(connectionString)
@@ -446,7 +444,6 @@ Public Class GTMenu
 
         ' Hide the current GTMenu form in both cases
         Me.Hide()
-        'Me.Close() 'Until I add refresh
         GageList.LoadData()
     End Sub
 

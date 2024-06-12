@@ -1,3 +1,12 @@
+v5.0.0.16
+Corrected AccountManagement Icon.
+Corrected RemoveGage size.
+Updated StatusMenu layout.
+Removed unused code from GageList.
+GageList Menu button formatting change.
+Updated ReportIssue allowing blank comment to send.
+Corrected GTMenu tab order..again.
+
 v5.0.0.15
 Updated GageList refresh when updating gage.
 Fixed updated Search issue after update.

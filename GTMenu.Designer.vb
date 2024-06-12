@@ -48,6 +48,7 @@ Partial Class GTMenu
         Me.txtGageID = New System.Windows.Forms.ComboBox()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.txtCalibratedBy = New System.Windows.Forms.ComboBox()
         Me.txtCustomer = New System.Windows.Forms.ComboBox()
         Me.txtGageType = New System.Windows.Forms.ComboBox()
         Me.txtDepartment = New System.Windows.Forms.ComboBox()
@@ -91,7 +92,6 @@ Partial Class GTMenu
         Me.BtnGageList = New System.Windows.Forms.Button()
         Me.btnReportIssue = New System.Windows.Forms.Button()
         Me.BtnDelete = New System.Windows.Forms.Button()
-        Me.txtCalibratedBy = New System.Windows.Forms.ComboBox()
         Me.GroupBox1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -115,7 +115,7 @@ Partial Class GTMenu
         Me.BtnAdd.Location = New System.Drawing.Point(12, 413)
         Me.BtnAdd.Name = "BtnAdd"
         Me.BtnAdd.Size = New System.Drawing.Size(75, 38)
-        Me.BtnAdd.TabIndex = 15
+        Me.BtnAdd.TabIndex = 16
         Me.BtnAdd.Text = "Add Gage"
         Me.BtnAdd.UseVisualStyleBackColor = True
         '
@@ -237,7 +237,7 @@ Partial Class GTMenu
         Me.txtInterval.Location = New System.Drawing.Point(272, 137)
         Me.txtInterval.Name = "txtInterval"
         Me.txtInterval.Size = New System.Drawing.Size(200, 20)
-        Me.txtInterval.TabIndex = 12
+        Me.txtInterval.TabIndex = 13
         '
         'Label12
         '
@@ -253,21 +253,21 @@ Partial Class GTMenu
         Me.dtInspectedDate.Location = New System.Drawing.Point(272, 98)
         Me.dtInspectedDate.Name = "dtInspectedDate"
         Me.dtInspectedDate.Size = New System.Drawing.Size(200, 20)
-        Me.dtInspectedDate.TabIndex = 11
+        Me.dtInspectedDate.TabIndex = 12
         '
         'dtDueDate
         '
         Me.dtDueDate.Location = New System.Drawing.Point(272, 174)
         Me.dtDueDate.Name = "dtDueDate"
         Me.dtDueDate.Size = New System.Drawing.Size(200, 20)
-        Me.dtDueDate.TabIndex = 13
+        Me.dtDueDate.TabIndex = 14
         '
         'BtnUpdate
         '
         Me.BtnUpdate.Location = New System.Drawing.Point(93, 413)
         Me.BtnUpdate.Name = "BtnUpdate"
         Me.BtnUpdate.Size = New System.Drawing.Size(75, 38)
-        Me.BtnUpdate.TabIndex = 16
+        Me.BtnUpdate.TabIndex = 17
         Me.BtnUpdate.Text = "Update Gage"
         Me.BtnUpdate.UseVisualStyleBackColor = True
         '
@@ -348,6 +348,14 @@ Partial Class GTMenu
         Me.TabPage1.Text = "Gage Information"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
+        'txtCalibratedBy
+        '
+        Me.txtCalibratedBy.FormattingEnabled = True
+        Me.txtCalibratedBy.Location = New System.Drawing.Point(272, 58)
+        Me.txtCalibratedBy.Name = "txtCalibratedBy"
+        Me.txtCalibratedBy.Size = New System.Drawing.Size(200, 21)
+        Me.txtCalibratedBy.TabIndex = 10
+        '
         'txtCustomer
         '
         Me.txtCustomer.FormattingEnabled = True
@@ -393,7 +401,7 @@ Partial Class GTMenu
         Me.txtComments.Location = New System.Drawing.Point(6, 216)
         Me.txtComments.Name = "txtComments"
         Me.txtComments.Size = New System.Drawing.Size(466, 96)
-        Me.txtComments.TabIndex = 14
+        Me.txtComments.TabIndex = 15
         Me.txtComments.Text = ""
         '
         'cmbStatus
@@ -702,7 +710,7 @@ Partial Class GTMenu
         Me.BtnAdmin.Location = New System.Drawing.Point(255, 413)
         Me.BtnAdmin.Name = "BtnAdmin"
         Me.BtnAdmin.Size = New System.Drawing.Size(75, 38)
-        Me.BtnAdmin.TabIndex = 18
+        Me.BtnAdmin.TabIndex = 19
         Me.BtnAdmin.Text = "Admin Menu"
         Me.BtnAdmin.UseVisualStyleBackColor = True
         '
@@ -712,7 +720,7 @@ Partial Class GTMenu
         Me.BtnGageList.Location = New System.Drawing.Point(417, 413)
         Me.BtnGageList.Name = "BtnGageList"
         Me.BtnGageList.Size = New System.Drawing.Size(75, 38)
-        Me.BtnGageList.TabIndex = 20
+        Me.BtnGageList.TabIndex = 21
         Me.BtnGageList.Text = "Gage List"
         Me.BtnGageList.UseVisualStyleBackColor = True
         '
@@ -721,7 +729,7 @@ Partial Class GTMenu
         Me.btnReportIssue.Location = New System.Drawing.Point(336, 413)
         Me.btnReportIssue.Name = "btnReportIssue"
         Me.btnReportIssue.Size = New System.Drawing.Size(75, 38)
-        Me.btnReportIssue.TabIndex = 19
+        Me.btnReportIssue.TabIndex = 20
         Me.btnReportIssue.Text = "Report Issue"
         Me.btnReportIssue.UseVisualStyleBackColor = True
         '
@@ -730,17 +738,9 @@ Partial Class GTMenu
         Me.BtnDelete.Location = New System.Drawing.Point(174, 413)
         Me.BtnDelete.Name = "BtnDelete"
         Me.BtnDelete.Size = New System.Drawing.Size(75, 38)
-        Me.BtnDelete.TabIndex = 17
+        Me.BtnDelete.TabIndex = 18
         Me.BtnDelete.Text = "Delete Gage"
         Me.BtnDelete.UseVisualStyleBackColor = True
-        '
-        'txtCalibratedBy
-        '
-        Me.txtCalibratedBy.FormattingEnabled = True
-        Me.txtCalibratedBy.Location = New System.Drawing.Point(272, 58)
-        Me.txtCalibratedBy.Name = "txtCalibratedBy"
-        Me.txtCalibratedBy.Size = New System.Drawing.Size(200, 21)
-        Me.txtCalibratedBy.TabIndex = 36
         '
         'GTMenu
         '

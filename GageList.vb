@@ -43,36 +43,8 @@ Public Class GageList
     End Sub
 
     Private Sub BtnMenu_Click(sender As Object, e As EventArgs) Handles BtnMenu.Click
-        If DataGridView1.Columns.Contains("GageID") Then ' Check if any row is selected in the DataGridView
-            If DataGridView1.SelectedRows.Count > 0 Then
-                Dim selectedRow As DataGridViewRow = DataGridView1.SelectedRows(0)
-                ' Use Try-Catch to handle potential errors when accessing a cell value
-                Try
-                    Dim gageID As String = selectedRow.Cells("GageID").Value.ToString()
-                    ' Set the GageID in the global variable if found
-                    GlobalVars.GageIDString = gageID
-                Catch ex As Exception
-                    ' Handle the case where GageID could not be retrieved
-                    MessageBox.Show("Error retrieving GageID: " & ex.Message)
-                End Try
-            Else
-                ' Optionally, inform the user when no row is selected
-                MessageBox.Show("No row selected. Proceeding without GageID.")
-            End If
-        Else
-            'MessageBox.Show("The column 'GageID' does not exist.")
-        End If
         ' Show the GTMenu form regardless of whether GageID was set
         GTMenu.Show()
         GTMenu.LoadGageID()
-    End Sub
-
-    Private Sub FillByToolStripButton_Click(sender As Object, e As EventArgs)
-        Try
-            Me.CalibrationTrackerTableAdapter.FillBy(Me.GTDatabaseDataSet.CalibrationTracker)
-        Catch ex As System.Exception
-            System.Windows.Forms.MessageBox.Show(ex.Message)
-        End Try
-
     End Sub
 End Class

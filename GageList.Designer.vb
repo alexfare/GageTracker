@@ -25,12 +25,6 @@ Partial Class GageList
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(GageList))
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.BtnMenu = New System.Windows.Forms.Button()
-        Me.ColorDialog1 = New System.Windows.Forms.ColorDialog()
-        Me.txtVersion = New System.Windows.Forms.Label()
-        Me.CalibrationTrackerBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.GTDatabaseDataSet = New GageCalibrationTracker.GTDatabaseDataSet()
-        Me.CalibrationTrackerTableAdapter = New GageCalibrationTracker.GTDatabaseDataSetTableAdapters.CalibrationTrackerTableAdapter()
         Me.GageIDDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.StatusDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PartNumberDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -40,6 +34,12 @@ Partial Class GageList
         Me.Customer = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.InspectedDateDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DueDateDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CalibrationTrackerBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.GTDatabaseDataSet = New GageCalibrationTracker.GTDatabaseDataSet()
+        Me.BtnMenu = New System.Windows.Forms.Button()
+        Me.ColorDialog1 = New System.Windows.Forms.ColorDialog()
+        Me.txtVersion = New System.Windows.Forms.Label()
+        Me.CalibrationTrackerTableAdapter = New GageCalibrationTracker.GTDatabaseDataSetTableAdapters.CalibrationTrackerTableAdapter()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CalibrationTrackerBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GTDatabaseDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -59,41 +59,6 @@ Partial Class GageList
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.Size = New System.Drawing.Size(1277, 601)
         Me.DataGridView1.TabIndex = 0
-        '
-        'BtnMenu
-        '
-        Me.BtnMenu.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.BtnMenu.Location = New System.Drawing.Point(12, 619)
-        Me.BtnMenu.Name = "BtnMenu"
-        Me.BtnMenu.Size = New System.Drawing.Size(293, 23)
-        Me.BtnMenu.TabIndex = 2
-        Me.BtnMenu.Text = "Menu"
-        Me.BtnMenu.UseVisualStyleBackColor = True
-        '
-        'txtVersion
-        '
-        Me.txtVersion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtVersion.AutoSize = True
-        Me.txtVersion.Location = New System.Drawing.Point(1254, 632)
-        Me.txtVersion.Name = "txtVersion"
-        Me.txtVersion.Size = New System.Drawing.Size(35, 13)
-        Me.txtVersion.TabIndex = 4
-        Me.txtVersion.Text = "NULL"
-        '
-        'CalibrationTrackerBindingSource
-        '
-        Me.CalibrationTrackerBindingSource.DataMember = "CalibrationTracker"
-        Me.CalibrationTrackerBindingSource.DataSource = Me.GTDatabaseDataSet
-        '
-        'GTDatabaseDataSet
-        '
-        Me.GTDatabaseDataSet.DataSetName = "GTDatabaseDataSet"
-        Me.GTDatabaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'CalibrationTrackerTableAdapter
-        '
-        Me.CalibrationTrackerTableAdapter.ClearBeforeFill = True
         '
         'GageIDDataGridViewTextBoxColumn
         '
@@ -148,6 +113,41 @@ Partial Class GageList
         Me.DueDateDataGridViewTextBoxColumn.DataPropertyName = "Due Date"
         Me.DueDateDataGridViewTextBoxColumn.HeaderText = "Due Date"
         Me.DueDateDataGridViewTextBoxColumn.Name = "DueDateDataGridViewTextBoxColumn"
+        '
+        'CalibrationTrackerBindingSource
+        '
+        Me.CalibrationTrackerBindingSource.DataMember = "CalibrationTracker"
+        Me.CalibrationTrackerBindingSource.DataSource = Me.GTDatabaseDataSet
+        '
+        'GTDatabaseDataSet
+        '
+        Me.GTDatabaseDataSet.DataSetName = "GTDatabaseDataSet"
+        Me.GTDatabaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'BtnMenu
+        '
+        Me.BtnMenu.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.BtnMenu.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.BtnMenu.Location = New System.Drawing.Point(12, 619)
+        Me.BtnMenu.Name = "BtnMenu"
+        Me.BtnMenu.Size = New System.Drawing.Size(293, 23)
+        Me.BtnMenu.TabIndex = 2
+        Me.BtnMenu.Text = "Menu"
+        Me.BtnMenu.UseVisualStyleBackColor = True
+        '
+        'txtVersion
+        '
+        Me.txtVersion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtVersion.AutoSize = True
+        Me.txtVersion.Location = New System.Drawing.Point(1254, 632)
+        Me.txtVersion.Name = "txtVersion"
+        Me.txtVersion.Size = New System.Drawing.Size(35, 13)
+        Me.txtVersion.TabIndex = 4
+        Me.txtVersion.Text = "NULL"
+        '
+        'CalibrationTrackerTableAdapter
+        '
+        Me.CalibrationTrackerTableAdapter.ClearBeforeFill = True
         '
         'GageList
         '

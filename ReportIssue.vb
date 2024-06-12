@@ -13,9 +13,13 @@ Public Class ReportIssue
     End Sub
 
     Private Sub btnSend_Click(sender As Object, e As EventArgs) Handles btnSend.Click
-        ' Validate the Name field
+        ' Validate fields
         If String.IsNullOrWhiteSpace(txtName.Text) Then
             MessageBox.Show("Name is required.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return
+        End If
+        If String.IsNullOrWhiteSpace(txtComment.Text) Then
+            MessageBox.Show("Comment is required.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return
         End If
 

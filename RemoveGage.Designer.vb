@@ -69,7 +69,7 @@ Partial Class RemoveGage
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.ClientSize = New System.Drawing.Size(283, 98)
         Me.Controls.Add(Me.BtnDelete)
         Me.Controls.Add(Me.btnBack)
         Me.Controls.Add(Me.txtGageID)

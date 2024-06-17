@@ -300,6 +300,11 @@ Public Class GTMenu
 
             Catch ex As Exception
                 MessageBox.Show("An error occurred while loading status options: " & ex.Message)
+            Finally
+                ' Ensure connection is closed if exception occurs
+                If conn.State = ConnectionState.Open Then
+                    conn.Close()
+                End If
             End Try
         End Using
     End Sub
@@ -326,6 +331,11 @@ Public Class GTMenu
 
             Catch ex As Exception
                 MessageBox.Show("An error occurred while loading Departments options: " & ex.Message)
+            Finally
+                ' Ensure connection is closed if exception occurs
+                If conn.State = ConnectionState.Open Then
+                    conn.Close()
+                End If
             End Try
         End Using
     End Sub
@@ -352,6 +362,11 @@ Public Class GTMenu
 
             Catch ex As Exception
                 MessageBox.Show("An error occurred while loading Gage Type options: " & ex.Message)
+            Finally
+                ' Ensure connection is closed if exception occurs
+                If conn.State = ConnectionState.Open Then
+                    conn.Close()
+                End If
             End Try
         End Using
     End Sub
@@ -378,6 +393,11 @@ Public Class GTMenu
 
             Catch ex As Exception
                 MessageBox.Show("An error occurred while loading Customer options: " & ex.Message)
+            Finally
+                ' Ensure connection is closed if exception occurs
+                If conn.State = ConnectionState.Open Then
+                    conn.Close()
+                End If
             End Try
         End Using
     End Sub
@@ -404,6 +424,11 @@ Public Class GTMenu
 
             Catch ex As Exception
                 MessageBox.Show("An error occurred while loading Gage Type options: " & ex.Message)
+            Finally
+                ' Ensure connection is closed if exception occurs
+                If conn.State = ConnectionState.Open Then
+                    conn.Close()
+                End If
             End Try
         End Using
     End Sub
@@ -460,7 +485,7 @@ Public Class GTMenu
         End If
 
         If GlobalVars.UserActive = False Then
-            MessageBox.Show("Must be an logged in to delete gage.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Must be logged in to delete gage.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return
         End If
 

@@ -1,3 +1,10 @@
+v5.0.0.17
+Updated spelling.
+Updated code in GTMenu.
+Added Title at the top of GageList.
+Added Autocomplete/suggest for Status, Department, Gage Type, Customer and Calibrated By on Menu.
+Added Autocomplete/suggest on StatusMenu, CustomerEntry, AccountManagement and RemoveGage.
+
 v5.0.0.16
 Corrected AccountManagement Icon.
 Corrected RemoveGage size.

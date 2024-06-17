@@ -41,6 +41,8 @@ Partial Class StatusMenu
         '
         'txtStatus
         '
+        Me.txtStatus.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.txtStatus.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.txtStatus.FormattingEnabled = True
         Me.txtStatus.Location = New System.Drawing.Point(15, 25)
         Me.txtStatus.Name = "txtStatus"

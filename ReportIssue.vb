@@ -27,7 +27,7 @@ Public Class ReportIssue
         Dim mail As New MailMessage()
         mail.From = New MailAddress("ninsosoft@gmail.com")
         mail.To.Add("alexfare94@gmail.com")
-        mail.Subject = "GageCal-Tracker User Feedback"
+        mail.Subject = "GageTracker-v5 User Feedback"
         mail.Body = $"Name: {txtName.Text}" + Environment.NewLine +
             $"Email: {If(String.IsNullOrWhiteSpace(txtEmail.Text), "Not provided", txtEmail.Text)}" + Environment.NewLine +
             $"Comment: {txtComment.Text}" + Environment.NewLine +

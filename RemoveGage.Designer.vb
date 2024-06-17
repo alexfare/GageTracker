@@ -31,7 +31,8 @@ Partial Class RemoveGage
         '
         'txtGageID
         '
-        Me.txtGageID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.txtGageID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.txtGageID.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.txtGageID.FormattingEnabled = True
         Me.txtGageID.Location = New System.Drawing.Point(15, 25)
         Me.txtGageID.Name = "txtGageID"

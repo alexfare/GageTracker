@@ -37,6 +37,8 @@ Partial Class AccountManagement
         '
         'txtUsername
         '
+        Me.txtUsername.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.txtUsername.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.txtUsername.FormattingEnabled = True
         Me.txtUsername.Location = New System.Drawing.Point(60, 23)
         Me.txtUsername.Name = "txtUsername"

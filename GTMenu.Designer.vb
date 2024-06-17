@@ -350,6 +350,8 @@ Partial Class GTMenu
         '
         'txtCalibratedBy
         '
+        Me.txtCalibratedBy.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.txtCalibratedBy.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.txtCalibratedBy.FormattingEnabled = True
         Me.txtCalibratedBy.Location = New System.Drawing.Point(272, 58)
         Me.txtCalibratedBy.Name = "txtCalibratedBy"
@@ -358,6 +360,8 @@ Partial Class GTMenu
         '
         'txtCustomer
         '
+        Me.txtCustomer.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.txtCustomer.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.txtCustomer.FormattingEnabled = True
         Me.txtCustomer.Location = New System.Drawing.Point(272, 19)
         Me.txtCustomer.Name = "txtCustomer"
@@ -366,6 +370,8 @@ Partial Class GTMenu
         '
         'txtGageType
         '
+        Me.txtGageType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.txtGageType.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.txtGageType.FormattingEnabled = True
         Me.txtGageType.Location = New System.Drawing.Point(6, 177)
         Me.txtGageType.Name = "txtGageType"
@@ -374,6 +380,8 @@ Partial Class GTMenu
         '
         'txtDepartment
         '
+        Me.txtDepartment.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.txtDepartment.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.txtDepartment.FormattingEnabled = True
         Me.txtDepartment.Location = New System.Drawing.Point(6, 136)
         Me.txtDepartment.Name = "txtDepartment"
@@ -406,6 +414,8 @@ Partial Class GTMenu
         '
         'cmbStatus
         '
+        Me.cmbStatus.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.cmbStatus.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.cmbStatus.FormattingEnabled = True
         Me.cmbStatus.Location = New System.Drawing.Point(6, 58)
         Me.cmbStatus.Name = "cmbStatus"

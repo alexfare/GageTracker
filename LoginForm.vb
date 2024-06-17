@@ -37,6 +37,7 @@ Public Class LoginForm1
                         adminMenu.Show()
                         Me.Close()  ' Optionally hide or close the LoginForm
                         GlobalVars.UserActive = True
+                        GlobalVars.LoggedInUser = txtUsername.Text
                     Else
                         MessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     End If

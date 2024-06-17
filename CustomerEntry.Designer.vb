@@ -116,6 +116,8 @@ Partial Class CustomerEntry
         '
         'txtCustomerName
         '
+        Me.txtCustomerName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.txtCustomerName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.txtCustomerName.FormattingEnabled = True
         Me.txtCustomerName.Location = New System.Drawing.Point(15, 25)
         Me.txtCustomerName.Name = "txtCustomerName"

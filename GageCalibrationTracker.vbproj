@@ -14,23 +14,28 @@
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>publish\</PublishUrl>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <PublishUrl>C:\Users\alex.fare\OneDrive\!Projects\Publish\GageTracker\</PublishUrl>
     <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
+    <InstallUrl>https://github.com/alexfare/GageTracker/releases/latest/</InstallUrl>
+    <UpdateUrl>https://github.com/alexfare/GageTracker/releases/latest/</UpdateUrl>
+    <SupportUrl>https://github.com/alexfare/GageTracker</SupportUrl>
+    <ErrorReportUrl>https://github.com/alexfare/GageTracker</ErrorReportUrl>
     <ProductName>GageTracker</ProductName>
     <PublisherName>Alex Fare</PublisherName>
-    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationRevision>19</ApplicationRevision>
     <ApplicationVersion>5.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -83,6 +88,9 @@
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>GageTrackSign2024.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -127,6 +135,12 @@
       <DependentUpon>CustomerEntry.vb</DependentUpon>
     </Compile>
     <Compile Include="CustomerEntry.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DueDateCategorizer.Designer.vb">
+      <DependentUpon>DueDateCategorizer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="DueDateCategorizer.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GageList.Designer.vb">
@@ -208,6 +222,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CustomerEntry.resx">
       <DependentUpon>CustomerEntry.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DueDateCategorizer.resx">
+      <DependentUpon>DueDateCategorizer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GageList.resx">
       <DependentUpon>GageList.vb</DependentUpon>

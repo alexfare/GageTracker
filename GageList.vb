@@ -42,9 +42,25 @@ Public Class GageList
         End Using
     End Sub
 
+    'Set Zebra striping
+    Private Sub DataGridView1_RowPostPaint(sender As Object, e As DataGridViewRowPostPaintEventArgs) Handles DataGridView1.RowPostPaint
+        Dim grid As DataGridView = CType(sender, DataGridView)
+        If e.RowIndex >= 0 Then
+            If e.RowIndex Mod 2 = 0 Then
+                grid.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.LightGray
+            Else
+                grid.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.White
+            End If
+        End If
+    End Sub
+
     Private Sub BtnMenu_Click(sender As Object, e As EventArgs) Handles BtnMenu.Click
         ' Show the GTMenu form regardless of whether GageID was set
         GTMenu.Show()
         GTMenu.LoadGageID()
+    End Sub
+
+    Private Sub BtnDueList_Click(sender As Object, e As EventArgs) Handles BtnDueList.Click
+        DueDateCategorizer.Show()
     End Sub
 End Class

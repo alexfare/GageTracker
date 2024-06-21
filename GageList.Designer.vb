@@ -41,6 +41,7 @@ Partial Class GageList
         Me.txtVersion = New System.Windows.Forms.Label()
         Me.CalibrationTrackerTableAdapter = New GageCalibrationTracker.GTDatabaseDataSetTableAdapters.CalibrationTrackerTableAdapter()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.BtnDueList = New System.Windows.Forms.Button()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CalibrationTrackerBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GTDatabaseDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -160,12 +161,22 @@ Partial Class GageList
         Me.Label1.TabIndex = 5
         Me.Label1.Text = "GageTracker"
         '
+        'BtnDueList
+        '
+        Me.BtnDueList.Location = New System.Drawing.Point(1151, 28)
+        Me.BtnDueList.Name = "BtnDueList"
+        Me.BtnDueList.Size = New System.Drawing.Size(138, 23)
+        Me.BtnDueList.TabIndex = 6
+        Me.BtnDueList.Text = "Due Date Calender"
+        Me.BtnDueList.UseVisualStyleBackColor = True
+        '
         'GageList
         '
         Me.AcceptButton = Me.BtnMenu
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1301, 654)
+        Me.Controls.Add(Me.BtnDueList)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.txtVersion)
         Me.Controls.Add(Me.BtnMenu)
@@ -198,4 +209,5 @@ Partial Class GageList
     Friend WithEvents InspectedDateDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents DueDateDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents Label1 As Label
+    Friend WithEvents BtnDueList As Button
 End Class

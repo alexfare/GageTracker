@@ -2,12 +2,15 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <PublishUrlHistory>C:\Users\alex.fare\OneDrive\!Projects\Publish\GageTracker\|publish\</PublishUrlHistory>
-    <InstallUrlHistory>https://github.com/alexfare/GageTracker/releases/latest/</InstallUrlHistory>
-    <SupportUrlHistory />
-    <UpdateUrlHistory />
+    <InstallUrlHistory>https://faregaming.com/GageTracker/latest/|https://github.com/alexfare/GageTracker/releases/latest/</InstallUrlHistory>
+    <SupportUrlHistory>https://github.com/alexfare/GageTracker</SupportUrlHistory>
+    <UpdateUrlHistory>https://faregaming.com/GageTracker/latest/|https://github.com/alexfare/GageTracker/releases/latest/</UpdateUrlHistory>
     <BootstrapperUrlHistory />
-    <ErrorReportUrlHistory />
+    <ErrorReportUrlHistory>https://github.com/alexfare/GageTracker</ErrorReportUrlHistory>
     <FallbackCulture>en-US</FallbackCulture>
     <VerifyUploadedFiles>false</VerifyUploadedFiles>
+  </PropertyGroup>
+  <PropertyGroup>
+    <EnableSecurityDebugging>false</EnableSecurityDebugging>
   </PropertyGroup>
 </Project>

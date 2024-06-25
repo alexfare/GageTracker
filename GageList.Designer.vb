@@ -163,6 +163,7 @@ Partial Class GageList
         '
         'BtnDueList
         '
+        Me.BtnDueList.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.BtnDueList.Location = New System.Drawing.Point(1151, 28)
         Me.BtnDueList.Name = "BtnDueList"
         Me.BtnDueList.Size = New System.Drawing.Size(138, 23)

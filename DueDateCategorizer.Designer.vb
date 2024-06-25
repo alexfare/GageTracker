@@ -125,6 +125,7 @@ Partial Class DueDateCategorizer
         Me.Controls.Add(Me.BtnGageList)
         Me.Controls.Add(Me.TabControl1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.MaximizeBox = False
         Me.Name = "DueDateCategorizer"
         Me.Text = "DueDateCategorizer"
         Me.TabControl1.ResumeLayout(False)

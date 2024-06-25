@@ -1,3 +1,11 @@
+v5.0.0.20
+Updated Due Date Calender settings.
+Updated Due Date Calender Button format.
+Updated LoadingScreen background.
+
+v5.0.0.19
+Fixed Installer.
+
 v5.0.0.18
 Added Zebra striping to GageList to help with readability.
 Added Due Date Calender (Displays past due, due within 30 days and due within 60 days).

@@ -20,3 +20,7 @@ C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\obj\Deb
 C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\obj\Debug\GageTracker.xml
 C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\obj\Debug\GageTracker.pdb
 C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\obj\Debug\GageCalibrationTracker.DueDateCategorizer.resources
+C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\bin\Debug\GageTracker.exe.manifest
+C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\bin\Debug\GageTracker.application
+C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\obj\Debug\GageTracker.exe.manifest
+C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\obj\Debug\GageTracker.application

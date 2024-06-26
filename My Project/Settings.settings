@@ -10,5 +10,8 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Provider=Microsoft.ACE.OLEDB.12.0;Data Source=R:\Quality\GageCalibration\GTDatabase.accdb</Value>
     </Setting>
+    <Setting Name="DatabaseLocation" Type="System.String" Scope="User">
+      <Value Profile="(Default)">R:\Quality\GageCalibration\GTDatabase.accdb</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

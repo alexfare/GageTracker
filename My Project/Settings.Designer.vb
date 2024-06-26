@@ -64,6 +64,18 @@ Namespace My
                 Return CType(Me("GTDatabaseConnectionString"),String)
             End Get
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("R:\Quality\GageCalibration\GTDatabase.accdb")>  _
+        Public Property DatabaseLocation() As String
+            Get
+                Return CType(Me("DatabaseLocation"),String)
+            End Get
+            Set
+                Me("DatabaseLocation") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

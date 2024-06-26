@@ -1,3 +1,7 @@
+v5.0.1.21
+Fixed database not found error.
+Fixed how the database location is saved.
+
 v5.0.0.20
 Updated Due Date Calender settings.
 Updated Due Date Calender Button format.

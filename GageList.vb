@@ -3,6 +3,7 @@
 Public Class GageList
     Private Sub GageList_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
+            GlobalVars.LoadDatabaseLocation()
             LoadData()
         Catch ex As OleDbException
             MessageBox.Show("Database error: " & ex.Message)
@@ -20,6 +21,17 @@ Public Class GageList
     End Sub
 
     Public Sub LoadData()
+        If Not System.IO.File.Exists(GlobalVars.DatabaseLocation) Then
+            If PromptForDatabaseLocation() Then
+                ' Try loading the data again with the new location
+                LoadData()
+                Return
+            Else
+                MessageBox.Show("No valid database selected. Application will exit.")
+                Application.Exit()
+            End If
+        End If
+
         Dim connectionString As String
         connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
         Dim query As String = "SELECT GageID, [Status], [PartNumber], [Description], Department, [Gage Type], [Customer], [Inspected Date], [Due Date] FROM CalibrationTracker"
@@ -42,7 +54,26 @@ Public Class GageList
         End Using
     End Sub
 
-    'Set Zebra striping
+    Private Function PromptForDatabaseLocation() As Boolean
+        Dim result As DialogResult = MessageBox.Show("No database found. Would you like to select a new database location?", "Database Not Found", MessageBoxButtons.YesNo)
+        If result = DialogResult.Yes Then
+            Using openFileDialog As New OpenFileDialog()
+                openFileDialog.InitialDirectory = "C:\"
+                openFileDialog.Filter = "Access Database Files (*.accdb)|*.accdb"
+                openFileDialog.FilterIndex = 1
+                openFileDialog.RestoreDirectory = True
+
+                If openFileDialog.ShowDialog() = DialogResult.OK Then
+                    GlobalVars.DatabaseLocation = openFileDialog.FileName
+                    GlobalVars.SaveDatabaseLocation(GlobalVars.DatabaseLocation)
+                    Return True
+                End If
+            End Using
+        End If
+        Return False
+    End Function
+
+    ' Set Zebra striping
     Private Sub DataGridView1_RowPostPaint(sender As Object, e As DataGridViewRowPostPaintEventArgs) Handles DataGridView1.RowPostPaint
         Dim grid As DataGridView = CType(sender, DataGridView)
         If e.RowIndex >= 0 Then

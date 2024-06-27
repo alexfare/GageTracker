@@ -213,6 +213,7 @@ Public Class GTMenu
                 MessageBox.Show("Record updated successfully")
                 'SearchCheck = False
                 GageList.LoadData()
+                DueDateCategorizer.LoadData()
             Else
                 MessageBox.Show("No record updated. Please check the GageID.")
             End If
@@ -518,14 +519,20 @@ Public Class GTMenu
 
     Private Sub ClearForms()
         txtGageID.SelectedIndex = -1 ' Reset the ComboBox selection
+        txtGageID.Text = ""
         txtPartNumber.Clear()
         txtPartRev.Clear()
         cmbStatus.SelectedIndex = -1 ' Reset the ComboBox selection
+        cmbStatus.Text = ""
         txtDescription.Clear()
         txtDepartment.SelectedIndex = -1 ' Reset the ComboBox selection
+        txtDepartment.Text = ""
         txtGageType.SelectedIndex = -1 ' Reset the ComboBox selection
+        txtGageType.Text = ""
         txtCustomer.SelectedIndex = -1 ' Reset the ComboBox selection
+        txtCustomer.Text = ""
         txtCalibratedBy.SelectedIndex = -1 ' Reset the ComboBox selection
+        txtCalibratedBy.Text = ""
         txtInterval.Clear()
         txtComments.Clear()
         TxtSerialNumber.Clear()

@@ -1,7 +1,7 @@
 ﻿Module GlobalVars
     Public UserActive As Boolean
     Public GageIDString As String
-    Public VersionString As String = "5.0.1.21"
+    Public VersionString As String = "5.0.1.22"
     Public DatabaseLocation As String
     Public LoggedInUser As String = ""
 

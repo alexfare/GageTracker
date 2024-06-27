@@ -18,7 +18,7 @@ Public Class DueDateCategorizer
         CenterToScreen()
     End Sub
 
-    Private Sub LoadData()
+    Public Sub LoadData()
         Dim connectionString As String
         connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
         Dim query As String = "SELECT GageID, [Status], [PartNumber], [Description], Department, [Gage Type], [Customer], [Inspected Date], [Due Date] FROM CalibrationTracker"

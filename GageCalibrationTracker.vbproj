@@ -31,7 +31,7 @@
     <ErrorReportUrl>https://github.com/alexfare/GageTracker</ErrorReportUrl>
     <ProductName>GageTracker</ProductName>
     <PublisherName>Alex Fare</PublisherName>
-    <ApplicationRevision>21</ApplicationRevision>
+    <ApplicationRevision>23</ApplicationRevision>
     <ApplicationVersion>5.0.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -196,9 +196,7 @@
     <Compile Include="RemoveGage.Designer.vb">
       <DependentUpon>RemoveGage.vb</DependentUpon>
     </Compile>
-    <Compile Include="RemoveGage.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="RemoveGage.vb" />
     <Compile Include="ReportIssue.Designer.vb">
       <DependentUpon>ReportIssue.vb</DependentUpon>
     </Compile>

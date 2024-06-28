@@ -1,18 +1,20 @@
 # GageTracker
-version 5.0
-Introducing Gage Calibration Tracker, a simple yet sophisticated gage calibration management software solution designed to simplify the task of maintaining tool calibration records. This user-friendly software is seamlessly integrated with Microsoft Excel, offering a highly efficient and free-running experience.
-
-Default Username: "Admin"<br>
-Default Password: "Admin"<br>
+Introducing GageTracker, a simple yet sophisticated gage calibration management software solution designed to simplify the task of maintaining tool calibration records. ISO 9001:2015 compliant, this user-friendly software offers advanced features and intuitive functionality to ensure accurate and efficient calibration management. <br>
+<br>
+Default Admin credentials:<br>
+Username: "Admin"<br>
+Password: "Admin"<br>
 
 Gage List:<br>
-![image](https://github.com/alexfare/GageTracker/assets/40654995/880e633e-6f00-43a4-b7a5-5899b0de5623)
+![image](https://github.com/alexfare/GageTracker/assets/40654995/7506e672-7378-4940-8d44-8fb6eccf53b9)
 <br>
+See upcoming due dates on gages within 30-60 days including past due:<br>
+![image](https://github.com/alexfare/GageTracker/assets/40654995/1a3e669e-0059-4cda-b593-769fa2ca2b22)
 Gage Menu:<br>
-![image](https://github.com/alexfare/GageTracker/assets/40654995/00d62028-3500-4a59-8249-295c659e3515)
+![image](https://github.com/alexfare/GageTracker/assets/40654995/338c9a59-aaac-4704-9a69-87de86947607)
 <br>
 Login Menu:<br>
-![image](https://github.com/alexfare/GageTracker/assets/40654995/cce11e19-726b-4f0f-afe9-70695f7cfdbe)
+![image](https://github.com/alexfare/GageTracker/assets/40654995/17aeb870-e7b0-4b48-9363-01fa87fb9dd8)
 <br>
 Admin Menu (Early WIP):<br>
 ![image](https://github.com/alexfare/GageTracker/assets/40654995/4a44256b-7697-49f5-b7f0-196cb78ffb57)

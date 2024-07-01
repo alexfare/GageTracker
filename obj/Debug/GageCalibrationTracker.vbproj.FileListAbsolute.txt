@@ -24,3 +24,4 @@ C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\bin\Deb
 C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\bin\Debug\GageTracker.application
 C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\obj\Debug\GageTracker.exe.manifest
 C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\obj\Debug\GageTracker.application
+C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\obj\Debug\GageCalibrationTracker.About.resources

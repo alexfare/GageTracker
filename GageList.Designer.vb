@@ -42,9 +42,18 @@ Partial Class GageList
         Me.CalibrationTrackerTableAdapter = New GageCalibrationTracker.GTDatabaseDataSetTableAdapters.CalibrationTrackerTableAdapter()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.BtnDueList = New System.Windows.Forms.Button()
+        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
+        Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ChangeDatabaseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AdminToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SettingsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MenuToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CalibrationTrackerBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GTDatabaseDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'DataGridView1
@@ -57,9 +66,9 @@ Partial Class GageList
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GageIDDataGridViewTextBoxColumn, Me.StatusDataGridViewTextBoxColumn, Me.PartNumberDataGridViewTextBoxColumn, Me.DescriptionDataGridViewTextBoxColumn, Me.DepartmentDataGridViewTextBoxColumn, Me.GageTypeDataGridViewTextBoxColumn, Me.Customer, Me.InspectedDateDataGridViewTextBoxColumn, Me.DueDateDataGridViewTextBoxColumn})
         Me.DataGridView1.DataSource = Me.CalibrationTrackerBindingSource
-        Me.DataGridView1.Location = New System.Drawing.Point(12, 54)
+        Me.DataGridView1.Location = New System.Drawing.Point(12, 72)
         Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.Size = New System.Drawing.Size(1277, 559)
+        Me.DataGridView1.Size = New System.Drawing.Size(1277, 541)
         Me.DataGridView1.TabIndex = 0
         '
         'GageIDDataGridViewTextBoxColumn
@@ -155,7 +164,7 @@ Partial Class GageList
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 27.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(12, 9)
+        Me.Label1.Location = New System.Drawing.Point(5, 27)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(248, 42)
         Me.Label1.TabIndex = 5
@@ -164,12 +173,65 @@ Partial Class GageList
         'BtnDueList
         '
         Me.BtnDueList.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.BtnDueList.Location = New System.Drawing.Point(1151, 28)
+        Me.BtnDueList.Location = New System.Drawing.Point(1151, 43)
         Me.BtnDueList.Name = "BtnDueList"
         Me.BtnDueList.Size = New System.Drawing.Size(138, 23)
         Me.BtnDueList.TabIndex = 6
         Me.BtnDueList.Text = "Due Date Calender"
         Me.BtnDueList.UseVisualStyleBackColor = True
+        '
+        'MenuStrip1
+        '
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.AdminToolStripMenuItem, Me.SettingsToolStripMenuItem})
+        Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
+        Me.MenuStrip1.Name = "MenuStrip1"
+        Me.MenuStrip1.Size = New System.Drawing.Size(1301, 24)
+        Me.MenuStrip1.TabIndex = 7
+        Me.MenuStrip1.Text = "MenuStrip1"
+        '
+        'FileToolStripMenuItem
+        '
+        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MenuToolStripMenuItem, Me.ChangeDatabaseToolStripMenuItem, Me.ExitToolStripMenuItem})
+        Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
+        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
+        Me.FileToolStripMenuItem.Text = "File"
+        '
+        'ChangeDatabaseToolStripMenuItem
+        '
+        Me.ChangeDatabaseToolStripMenuItem.Name = "ChangeDatabaseToolStripMenuItem"
+        Me.ChangeDatabaseToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ChangeDatabaseToolStripMenuItem.Text = "Change Database"
+        '
+        'ExitToolStripMenuItem
+        '
+        Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ExitToolStripMenuItem.Text = "Exit"
+        '
+        'AdminToolStripMenuItem
+        '
+        Me.AdminToolStripMenuItem.Name = "AdminToolStripMenuItem"
+        Me.AdminToolStripMenuItem.Size = New System.Drawing.Size(55, 20)
+        Me.AdminToolStripMenuItem.Text = "Admin"
+        '
+        'SettingsToolStripMenuItem
+        '
+        Me.SettingsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AboutToolStripMenuItem})
+        Me.SettingsToolStripMenuItem.Name = "SettingsToolStripMenuItem"
+        Me.SettingsToolStripMenuItem.Size = New System.Drawing.Size(61, 20)
+        Me.SettingsToolStripMenuItem.Text = "Settings"
+        '
+        'AboutToolStripMenuItem
+        '
+        Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
+        Me.AboutToolStripMenuItem.Text = "About"
+        '
+        'MenuToolStripMenuItem
+        '
+        Me.MenuToolStripMenuItem.Name = "MenuToolStripMenuItem"
+        Me.MenuToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.MenuToolStripMenuItem.Text = "Menu"
         '
         'GageList
         '
@@ -182,12 +244,16 @@ Partial Class GageList
         Me.Controls.Add(Me.txtVersion)
         Me.Controls.Add(Me.BtnMenu)
         Me.Controls.Add(Me.DataGridView1)
+        Me.Controls.Add(Me.MenuStrip1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "GageList"
         Me.Text = "GageList"
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CalibrationTrackerBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GTDatabaseDataSet, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.MenuStrip1.ResumeLayout(False)
+        Me.MenuStrip1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -211,4 +277,12 @@ Partial Class GageList
     Friend WithEvents DueDateDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents Label1 As Label
     Friend WithEvents BtnDueList As Button
+    Friend WithEvents MenuStrip1 As MenuStrip
+    Friend WithEvents FileToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ChangeDatabaseToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ExitToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AdminToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SettingsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AboutToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents MenuToolStripMenuItem As ToolStripMenuItem
 End Class

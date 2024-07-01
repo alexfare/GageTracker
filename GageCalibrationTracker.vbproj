@@ -32,7 +32,7 @@
     <ProductName>GageTracker</ProductName>
     <PublisherName>Alex Fare</PublisherName>
     <ApplicationRevision>23</ApplicationRevision>
-    <ApplicationVersion>5.0.1.%2a</ApplicationVersion>
+    <ApplicationVersion>5.1.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -117,6 +117,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="About.Designer.vb">
+      <DependentUpon>About.vb</DependentUpon>
+    </Compile>
+    <Compile Include="About.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="AccountManagement.Designer.vb">
       <DependentUpon>AccountManagement.vb</DependentUpon>
     </Compile>
@@ -196,7 +202,9 @@
     <Compile Include="RemoveGage.Designer.vb">
       <DependentUpon>RemoveGage.vb</DependentUpon>
     </Compile>
-    <Compile Include="RemoveGage.vb" />
+    <Compile Include="RemoveGage.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ReportIssue.Designer.vb">
       <DependentUpon>ReportIssue.vb</DependentUpon>
     </Compile>
@@ -212,6 +220,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="About.resx">
+      <DependentUpon>About.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AccountManagement.resx">
       <DependentUpon>AccountManagement.vb</DependentUpon>
     </EmbeddedResource>

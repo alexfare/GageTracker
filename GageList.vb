@@ -94,4 +94,45 @@ Public Class GageList
     Private Sub BtnDueList_Click(sender As Object, e As EventArgs) Handles BtnDueList.Click
         DueDateCategorizer.Show()
     End Sub
+
+    Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
+        About.Show()
+    End Sub
+
+    Private Sub AdminToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AdminToolStripMenuItem.Click
+        If GlobalVars.UserActive = True Then
+            Dim adminMenu As New AdminMenu()
+            adminMenu.Show()
+            Me.Hide()
+
+        Else
+            Dim loginForm As New LoginForm1()
+            loginForm.Show()
+            Me.Hide()
+        End If
+    End Sub
+
+    Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
+        Application.Exit()
+    End Sub
+
+    Private Sub ChangeDatabaseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ChangeDatabaseToolStripMenuItem.Click
+        Using openFileDialog As New OpenFileDialog()
+            openFileDialog.InitialDirectory = "C:\"
+            openFileDialog.Filter = "Access Database Files (*.accdb)|*.accdb"
+            openFileDialog.FilterIndex = 1
+            openFileDialog.RestoreDirectory = True
+
+            If openFileDialog.ShowDialog() = DialogResult.OK Then
+                GlobalVars.DatabaseLocation = openFileDialog.FileName
+                GlobalVars.SaveDatabaseLocation(GlobalVars.DatabaseLocation)
+            End If
+        End Using
+    End Sub
+
+    Private Sub MenuToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MenuToolStripMenuItem.Click
+        ' Show the GTMenu form regardless of whether GageID was set
+        GTMenu.Show()
+        GTMenu.LoadGageID()
+    End Sub
 End Class

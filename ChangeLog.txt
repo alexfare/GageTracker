@@ -1,3 +1,11 @@
+v5.0.1.23
+Slight UI update to Menu.
+Slight UI update to DueDateCategorizer.
+Added File Menu to GageList.
+Added Fule Menu to GTMenu.
+Added Ability to change the database.
+Added About Page.
+
 v5.0.1.22
 Fixed clear error when the user has a custom entry in a combobox.
 Fixed Due Date Calender not updating.

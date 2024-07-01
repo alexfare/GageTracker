@@ -57,7 +57,7 @@ Partial Class DueDateCategorizer
         Me.TabControl1.Location = New System.Drawing.Point(12, 12)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(980, 585)
+        Me.TabControl1.Size = New System.Drawing.Size(974, 585)
         Me.TabControl1.TabIndex = 4
         '
         'TabPage1
@@ -66,7 +66,7 @@ Partial Class DueDateCategorizer
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(972, 559)
+        Me.TabPage1.Size = New System.Drawing.Size(966, 559)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Past Due"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -74,9 +74,10 @@ Partial Class DueDateCategorizer
         'DataGridViewPastDue
         '
         Me.DataGridViewPastDue.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewPastDue.Location = New System.Drawing.Point(6, 6)
+        Me.DataGridViewPastDue.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DataGridViewPastDue.Location = New System.Drawing.Point(3, 3)
         Me.DataGridViewPastDue.Name = "DataGridViewPastDue"
-        Me.DataGridViewPastDue.Size = New System.Drawing.Size(960, 547)
+        Me.DataGridViewPastDue.Size = New System.Drawing.Size(960, 553)
         Me.DataGridViewPastDue.TabIndex = 0
         '
         'TabPage2
@@ -93,9 +94,10 @@ Partial Class DueDateCategorizer
         'DataGridViewWithin30Days
         '
         Me.DataGridViewWithin30Days.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewWithin30Days.Location = New System.Drawing.Point(6, 6)
+        Me.DataGridViewWithin30Days.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DataGridViewWithin30Days.Location = New System.Drawing.Point(3, 3)
         Me.DataGridViewWithin30Days.Name = "DataGridViewWithin30Days"
-        Me.DataGridViewWithin30Days.Size = New System.Drawing.Size(960, 547)
+        Me.DataGridViewWithin30Days.Size = New System.Drawing.Size(966, 553)
         Me.DataGridViewWithin30Days.TabIndex = 1
         '
         'TabPage3
@@ -112,9 +114,10 @@ Partial Class DueDateCategorizer
         'DataGridViewWithin60Days
         '
         Me.DataGridViewWithin60Days.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewWithin60Days.Location = New System.Drawing.Point(6, 6)
+        Me.DataGridViewWithin60Days.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DataGridViewWithin60Days.Location = New System.Drawing.Point(3, 3)
         Me.DataGridViewWithin60Days.Name = "DataGridViewWithin60Days"
-        Me.DataGridViewWithin60Days.Size = New System.Drawing.Size(960, 547)
+        Me.DataGridViewWithin60Days.Size = New System.Drawing.Size(966, 553)
         Me.DataGridViewWithin60Days.TabIndex = 2
         '
         'DueDateCategorizer

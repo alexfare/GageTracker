@@ -555,4 +555,59 @@ Public Class GTMenu
 
         SearchCheck = False
     End Sub
+
+    Private Sub AdminToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AdminToolStripMenuItem.Click
+        If GlobalVars.UserActive = True Then
+            Dim adminMenu As New AdminMenu()
+            adminMenu.Show()
+            Me.Hide()
+
+        Else
+            Dim loginForm As New LoginForm1()
+            loginForm.Show()
+            Me.Hide()
+        End If
+    End Sub
+
+    Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
+        Application.Exit()
+    End Sub
+
+    Private Sub GageListToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GageListToolStripMenuItem.Click
+        ' Check if GageList is already open
+        Dim isOpen As Boolean = False
+        Dim openForm As Form = Nothing ' To hold the already open GageList form
+        For Each frm As Form In Application.OpenForms
+            If TypeOf frm Is GageList Then
+                isOpen = True
+                openForm = frm ' Store the reference to the open GageList form
+                Exit For
+            End If
+        Next
+
+        If isOpen AndAlso openForm IsNot Nothing Then
+            ' Bring the already open GageList form to the front
+            openForm.Activate()
+        Else
+            ' Only open a new instance if it is not already open
+            Dim gagelist As New GageList()
+            gagelist.Show()
+        End If
+
+        ' Hide the current GTMenu form in both cases
+        Me.Hide()
+        GageList.LoadData()
+    End Sub
+
+    Private Sub AddGageToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddGageToolStripMenuItem.Click
+        BtnAdd.PerformClick()
+    End Sub
+
+    Private Sub UpdateGageToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UpdateGageToolStripMenuItem.Click
+        BtnUpdate.PerformClick()
+    End Sub
+
+    Private Sub DeleteGageToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteGageToolStripMenuItem.Click
+        BtnDelete.PerformClick
+    End Sub
 End Class

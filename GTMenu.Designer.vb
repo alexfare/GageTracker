@@ -815,19 +815,19 @@ Partial Class GTMenu
         'AddGageToolStripMenuItem
         '
         Me.AddGageToolStripMenuItem.Name = "AddGageToolStripMenuItem"
-        Me.AddGageToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.AddGageToolStripMenuItem.Size = New System.Drawing.Size(142, 22)
         Me.AddGageToolStripMenuItem.Text = "Add Gage"
         '
         'UpdateGageToolStripMenuItem
         '
         Me.UpdateGageToolStripMenuItem.Name = "UpdateGageToolStripMenuItem"
-        Me.UpdateGageToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.UpdateGageToolStripMenuItem.Size = New System.Drawing.Size(142, 22)
         Me.UpdateGageToolStripMenuItem.Text = "Update Gage"
         '
         'DeleteGageToolStripMenuItem
         '
         Me.DeleteGageToolStripMenuItem.Name = "DeleteGageToolStripMenuItem"
-        Me.DeleteGageToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.DeleteGageToolStripMenuItem.Size = New System.Drawing.Size(142, 22)
         Me.DeleteGageToolStripMenuItem.Text = "Delete Gage"
         '
         'AdminToolStripMenuItem
@@ -847,6 +847,7 @@ Partial Class GTMenu
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.MenuStrip1)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
         Me.MaximizeBox = False

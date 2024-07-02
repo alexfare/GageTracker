@@ -104,11 +104,13 @@ Public Class GageList
             Dim adminMenu As New AdminMenu()
             adminMenu.Show()
             Me.Hide()
+            GlobalVars.AdminLoad = "1"
 
         Else
             Dim loginForm As New LoginForm1()
             loginForm.Show()
             Me.Hide()
+            GlobalVars.AdminLoad = "1"
         End If
     End Sub
 

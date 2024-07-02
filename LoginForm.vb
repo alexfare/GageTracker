@@ -53,9 +53,13 @@ Public Class LoginForm1
     End Sub
 
     Private Sub Cancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Cancel.Click
-        Dim menu As New GTMenu()
-        menu.Show()
-        Me.Close()
+        If GlobalVars.AdminLoad = "1" Then
+            GageList.Show()
+            GlobalVars.AdminLoad = ""
+        Else
+            GTMenu.Show()
+        End If
+        Me.Hide()
     End Sub
 
     Private Function HashPassword(password As String) As String

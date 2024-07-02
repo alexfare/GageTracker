@@ -96,6 +96,7 @@ Partial Class AdminMenu
         Me.Controls.Add(Me.btnCustomer)
         Me.Controls.Add(Me.BtnLogout)
         Me.Controls.Add(Me.BtnBack)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.Name = "AdminMenu"

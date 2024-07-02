@@ -14,14 +14,24 @@ Public Class AdminMenu
     End Sub
 
     Private Sub BtnBack_Click(sender As Object, e As EventArgs) Handles BtnBack.Click
-        GTMenu.Show()
+        If GlobalVars.AdminLoad = "1" Then
+            GageList.Show()
+            GlobalVars.AdminLoad = ""
+        Else
+            GTMenu.Show()
+        End If
         Me.Hide()
     End Sub
 
     Private Sub BtnLogout_Click(sender As Object, e As EventArgs) Handles BtnLogout.Click
         GlobalVars.UserActive = False
-        GTMenu.Show()
-        Me.Close()
+        If GlobalVars.AdminLoad = "1" Then
+            GageList.Show()
+            GlobalVars.AdminLoad = ""
+        Else
+            GTMenu.Show()
+        End If
+        Me.Hide()
     End Sub
 
     Private Sub btnCustomer_Click(sender As Object, e As EventArgs) Handles btnCustomer.Click

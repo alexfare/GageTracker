@@ -1,4 +1,9 @@
-v5.0.1.23
+v5.2.1.24
+Fixed glitch going from GageList to Admin Menu and back.
+GTMenu no longer resizable.
+Admin Menu no longer resizable.
+
+v5.1.1.23
 Slight UI update to Menu.
 Slight UI update to DueDateCategorizer.
 Added File Menu to GageList.

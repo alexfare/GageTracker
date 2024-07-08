@@ -44,12 +44,14 @@ Partial Class GageList
         Me.BtnDueList = New System.Windows.Forms.Button()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MenuToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ChangeDatabaseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AdminToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AdminMenuToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SettingsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ReportIssueToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.MenuToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CalibrationTrackerBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GTDatabaseDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -196,42 +198,55 @@ Partial Class GageList
         Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
         Me.FileToolStripMenuItem.Text = "File"
         '
+        'MenuToolStripMenuItem
+        '
+        Me.MenuToolStripMenuItem.Name = "MenuToolStripMenuItem"
+        Me.MenuToolStripMenuItem.Size = New System.Drawing.Size(166, 22)
+        Me.MenuToolStripMenuItem.Text = "Menu"
+        '
         'ChangeDatabaseToolStripMenuItem
         '
         Me.ChangeDatabaseToolStripMenuItem.Name = "ChangeDatabaseToolStripMenuItem"
-        Me.ChangeDatabaseToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ChangeDatabaseToolStripMenuItem.Size = New System.Drawing.Size(166, 22)
         Me.ChangeDatabaseToolStripMenuItem.Text = "Change Database"
         '
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(166, 22)
         Me.ExitToolStripMenuItem.Text = "Exit"
         '
         'AdminToolStripMenuItem
         '
+        Me.AdminToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AdminMenuToolStripMenuItem})
         Me.AdminToolStripMenuItem.Name = "AdminToolStripMenuItem"
         Me.AdminToolStripMenuItem.Size = New System.Drawing.Size(55, 20)
         Me.AdminToolStripMenuItem.Text = "Admin"
         '
+        'AdminMenuToolStripMenuItem
+        '
+        Me.AdminMenuToolStripMenuItem.Name = "AdminMenuToolStripMenuItem"
+        Me.AdminMenuToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.AdminMenuToolStripMenuItem.Text = "Admin Menu"
+        '
         'SettingsToolStripMenuItem
         '
-        Me.SettingsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AboutToolStripMenuItem})
+        Me.SettingsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ReportIssueToolStripMenuItem, Me.AboutToolStripMenuItem})
         Me.SettingsToolStripMenuItem.Name = "SettingsToolStripMenuItem"
         Me.SettingsToolStripMenuItem.Size = New System.Drawing.Size(61, 20)
         Me.SettingsToolStripMenuItem.Text = "Settings"
         '
+        'ReportIssueToolStripMenuItem
+        '
+        Me.ReportIssueToolStripMenuItem.Name = "ReportIssueToolStripMenuItem"
+        Me.ReportIssueToolStripMenuItem.Size = New System.Drawing.Size(138, 22)
+        Me.ReportIssueToolStripMenuItem.Text = "Report Issue"
+        '
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(138, 22)
         Me.AboutToolStripMenuItem.Text = "About"
-        '
-        'MenuToolStripMenuItem
-        '
-        Me.MenuToolStripMenuItem.Name = "MenuToolStripMenuItem"
-        Me.MenuToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.MenuToolStripMenuItem.Text = "Menu"
         '
         'GageList
         '
@@ -285,4 +300,6 @@ Partial Class GageList
     Friend WithEvents SettingsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AboutToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents MenuToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ReportIssueToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AdminMenuToolStripMenuItem As ToolStripMenuItem
 End Class

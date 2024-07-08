@@ -1,3 +1,10 @@
+v5.3.1.25
+Updated GTMenu, Added Clear buttons for Nominal & Actual.
+Updated GTMenu, AuditLog, WIP not working yet.
+Updated GageList Menu.
+Updated DueDateCategorizer columns to auto resize.
+Updated DueDateCategorizer page settings for manual resizing.
+
 v5.2.1.24
 Fixed glitch going from GageList to Admin Menu and back.
 GTMenu no longer resizable.

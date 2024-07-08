@@ -610,4 +610,20 @@ Public Class GTMenu
     Private Sub DeleteGageToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteGageToolStripMenuItem.Click
         BtnDelete.PerformClick
     End Sub
+
+    Private Sub BtnClearNom_Click(sender As Object, e As EventArgs) Handles BtnClearNom.Click
+        txtaN1.Clear()
+        txtaN2.Clear()
+        txtaN3.Clear()
+        txtaN4.Clear()
+        txtaN5.Clear()
+    End Sub
+
+    Private Sub BtnClearActual_Click(sender As Object, e As EventArgs) Handles BtnClearActual.Click
+        txtaA1.Clear()
+        txtaA2.Clear()
+        txtaA3.Clear()
+        txtaA4.Clear()
+        txtaA5.Clear()
+    End Sub
 End Class

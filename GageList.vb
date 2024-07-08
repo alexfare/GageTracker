@@ -99,21 +99,6 @@ Public Class GageList
         About.Show()
     End Sub
 
-    Private Sub AdminToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AdminToolStripMenuItem.Click
-        If GlobalVars.UserActive = True Then
-            Dim adminMenu As New AdminMenu()
-            adminMenu.Show()
-            Me.Hide()
-            GlobalVars.AdminLoad = "1"
-
-        Else
-            Dim loginForm As New LoginForm1()
-            loginForm.Show()
-            Me.Hide()
-            GlobalVars.AdminLoad = "1"
-        End If
-    End Sub
-
     Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
         Application.Exit()
     End Sub
@@ -136,5 +121,24 @@ Public Class GageList
         ' Show the GTMenu form regardless of whether GageID was set
         GTMenu.Show()
         GTMenu.LoadGageID()
+    End Sub
+
+    Private Sub ReportIssueToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ReportIssueToolStripMenuItem.Click
+        ReportIssue.Show()
+    End Sub
+
+    Private Sub AdminMenuToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AdminMenuToolStripMenuItem.Click
+        If GlobalVars.UserActive = True Then
+            Dim adminMenu As New AdminMenu()
+            adminMenu.Show()
+            Me.Hide()
+            GlobalVars.AdminLoad = "1"
+
+        Else
+            Dim loginForm As New LoginForm1()
+            loginForm.Show()
+            Me.Hide()
+            GlobalVars.AdminLoad = "1"
+        End If
     End Sub
 End Class

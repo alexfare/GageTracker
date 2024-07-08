@@ -32,7 +32,7 @@
     <ProductName>GageTracker</ProductName>
     <PublisherName>Alex Fare</PublisherName>
     <ApplicationRevision>25</ApplicationRevision>
-    <ApplicationVersion>5.2.1.%2a</ApplicationVersion>
+    <ApplicationVersion>5.3.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>

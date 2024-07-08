@@ -52,6 +52,11 @@ Public Class DueDateCategorizer
                 DataGridViewWithin30Days.DataSource = within30Days
                 DataGridViewWithin60Days.DataSource = within60Days
 
+                ' Set auto size mode for columns
+                DataGridViewPastDue.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
+                DataGridViewWithin30Days.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
+                DataGridViewWithin60Days.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
+
             Catch ex As OleDbException
                 MessageBox.Show("OleDb error: " & ex.Message)
             Finally
@@ -74,7 +79,7 @@ Public Class DueDateCategorizer
         End If
     End Sub
 
-    'Set Zebra striping
+    ' Set Zebra striping
     Private Sub DataGridViewPastDue_RowPostPaint(sender As Object, e As DataGridViewRowPostPaintEventArgs) Handles DataGridViewPastDue.RowPostPaint
         Dim grid As DataGridView = CType(sender, DataGridView)
         If e.RowIndex >= 0 Then
@@ -107,6 +112,7 @@ Public Class DueDateCategorizer
             End If
         End If
     End Sub
+
     Private Sub BtnGageList_Click(sender As Object, e As EventArgs) Handles BtnGageList.Click
         ' Show the GTMenu form regardless of whether GageID was set
         Me.Close()

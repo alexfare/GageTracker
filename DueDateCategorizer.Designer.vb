@@ -45,7 +45,7 @@ Partial Class DueDateCategorizer
         Me.BtnGageList.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.BtnGageList.Location = New System.Drawing.Point(0, 612)
         Me.BtnGageList.Name = "BtnGageList"
-        Me.BtnGageList.Size = New System.Drawing.Size(998, 23)
+        Me.BtnGageList.Size = New System.Drawing.Size(978, 23)
         Me.BtnGageList.TabIndex = 3
         Me.BtnGageList.Text = "GageList"
         Me.BtnGageList.UseVisualStyleBackColor = True
@@ -59,7 +59,7 @@ Partial Class DueDateCategorizer
         Me.TabControl1.Location = New System.Drawing.Point(0, 0)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(998, 635)
+        Me.TabControl1.Size = New System.Drawing.Size(978, 635)
         Me.TabControl1.TabIndex = 4
         '
         'TabPage1
@@ -68,7 +68,7 @@ Partial Class DueDateCategorizer
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(990, 609)
+        Me.TabPage1.Size = New System.Drawing.Size(970, 609)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Past Due"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -79,7 +79,7 @@ Partial Class DueDateCategorizer
         Me.DataGridViewPastDue.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewPastDue.Location = New System.Drawing.Point(3, 3)
         Me.DataGridViewPastDue.Name = "DataGridViewPastDue"
-        Me.DataGridViewPastDue.Size = New System.Drawing.Size(984, 603)
+        Me.DataGridViewPastDue.Size = New System.Drawing.Size(964, 603)
         Me.DataGridViewPastDue.TabIndex = 0
         '
         'TabPage2
@@ -88,7 +88,7 @@ Partial Class DueDateCategorizer
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(966, 559)
+        Me.TabPage2.Size = New System.Drawing.Size(990, 609)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "30 days"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -99,7 +99,7 @@ Partial Class DueDateCategorizer
         Me.DataGridViewWithin30Days.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewWithin30Days.Location = New System.Drawing.Point(3, 3)
         Me.DataGridViewWithin30Days.Name = "DataGridViewWithin30Days"
-        Me.DataGridViewWithin30Days.Size = New System.Drawing.Size(960, 553)
+        Me.DataGridViewWithin30Days.Size = New System.Drawing.Size(984, 603)
         Me.DataGridViewWithin30Days.TabIndex = 1
         '
         'TabPage3
@@ -108,7 +108,7 @@ Partial Class DueDateCategorizer
         Me.TabPage3.Location = New System.Drawing.Point(4, 22)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(966, 559)
+        Me.TabPage3.Size = New System.Drawing.Size(990, 609)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "60 Days"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -119,16 +119,17 @@ Partial Class DueDateCategorizer
         Me.DataGridViewWithin60Days.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewWithin60Days.Location = New System.Drawing.Point(3, 3)
         Me.DataGridViewWithin60Days.Name = "DataGridViewWithin60Days"
-        Me.DataGridViewWithin60Days.Size = New System.Drawing.Size(960, 553)
+        Me.DataGridViewWithin60Days.Size = New System.Drawing.Size(984, 603)
         Me.DataGridViewWithin60Days.TabIndex = 2
         '
         'DueDateCategorizer
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(998, 635)
+        Me.ClientSize = New System.Drawing.Size(978, 635)
         Me.Controls.Add(Me.BtnGageList)
         Me.Controls.Add(Me.TabControl1)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.Name = "DueDateCategorizer"

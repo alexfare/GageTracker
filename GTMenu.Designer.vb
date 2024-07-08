@@ -65,6 +65,8 @@ Partial Class GTMenu
         Me.TxtSerialNumber = New System.Windows.Forms.TextBox()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.BtnClearActual = New System.Windows.Forms.Button()
+        Me.BtnClearNom = New System.Windows.Forms.Button()
         Me.Label24 = New System.Windows.Forms.Label()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.txtaA5 = New System.Windows.Forms.TextBox()
@@ -88,6 +90,15 @@ Partial Class GTMenu
         Me.txtaN3 = New System.Windows.Forms.TextBox()
         Me.Label21 = New System.Windows.Forms.Label()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.LblEditBy = New System.Windows.Forms.TextBox()
+        Me.LblLastEdited = New System.Windows.Forms.TextBox()
+        Me.LblLastSearched = New System.Windows.Forms.TextBox()
+        Me.LblDateAdded = New System.Windows.Forms.TextBox()
+        Me.Label31 = New System.Windows.Forms.Label()
+        Me.Label30 = New System.Windows.Forms.Label()
+        Me.Label29 = New System.Windows.Forms.Label()
+        Me.Label28 = New System.Windows.Forms.Label()
         Me.BtnAdmin = New System.Windows.Forms.Button()
         Me.BtnGageList = New System.Windows.Forms.Button()
         Me.btnReportIssue = New System.Windows.Forms.Button()
@@ -108,6 +119,8 @@ Partial Class GTMenu
         Me.TabPage2.SuspendLayout()
         Me.TabPage3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
+        Me.TabPage4.SuspendLayout()
+        Me.Panel2.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -511,6 +524,8 @@ Partial Class GTMenu
         '
         'GroupBox2
         '
+        Me.GroupBox2.Controls.Add(Me.BtnClearActual)
+        Me.GroupBox2.Controls.Add(Me.BtnClearNom)
         Me.GroupBox2.Controls.Add(Me.Label24)
         Me.GroupBox2.Controls.Add(Me.Label16)
         Me.GroupBox2.Controls.Add(Me.txtaA5)
@@ -533,11 +548,30 @@ Partial Class GTMenu
         Me.GroupBox2.Controls.Add(Me.Label15)
         Me.GroupBox2.Controls.Add(Me.txtaN3)
         Me.GroupBox2.Controls.Add(Me.Label21)
-        Me.GroupBox2.Location = New System.Drawing.Point(55, 6)
+        Me.GroupBox2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupBox2.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(308, 185)
+        Me.GroupBox2.Size = New System.Drawing.Size(482, 314)
         Me.GroupBox2.TabIndex = 34
         Me.GroupBox2.TabStop = False
+        '
+        'BtnClearActual
+        '
+        Me.BtnClearActual.Location = New System.Drawing.Point(194, 162)
+        Me.BtnClearActual.Name = "BtnClearActual"
+        Me.BtnClearActual.Size = New System.Drawing.Size(91, 23)
+        Me.BtnClearActual.TabIndex = 24
+        Me.BtnClearActual.Text = "Clear"
+        Me.BtnClearActual.UseVisualStyleBackColor = True
+        '
+        'BtnClearNom
+        '
+        Me.BtnClearNom.Location = New System.Drawing.Point(80, 162)
+        Me.BtnClearNom.Name = "BtnClearNom"
+        Me.BtnClearNom.Size = New System.Drawing.Size(93, 23)
+        Me.BtnClearNom.TabIndex = 23
+        Me.BtnClearNom.Text = "Clear"
+        Me.BtnClearNom.UseVisualStyleBackColor = True
         '
         'Label24
         '
@@ -719,6 +753,7 @@ Partial Class GTMenu
         '
         'TabPage4
         '
+        Me.TabPage4.Controls.Add(Me.Panel2)
         Me.TabPage4.Location = New System.Drawing.Point(4, 22)
         Me.TabPage4.Name = "TabPage4"
         Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
@@ -726,6 +761,93 @@ Partial Class GTMenu
         Me.TabPage4.TabIndex = 3
         Me.TabPage4.Text = "Audit Log"
         Me.TabPage4.UseVisualStyleBackColor = True
+        '
+        'Panel2
+        '
+        Me.Panel2.Controls.Add(Me.LblEditBy)
+        Me.Panel2.Controls.Add(Me.LblLastEdited)
+        Me.Panel2.Controls.Add(Me.LblLastSearched)
+        Me.Panel2.Controls.Add(Me.LblDateAdded)
+        Me.Panel2.Controls.Add(Me.Label31)
+        Me.Panel2.Controls.Add(Me.Label30)
+        Me.Panel2.Controls.Add(Me.Label29)
+        Me.Panel2.Controls.Add(Me.Label28)
+        Me.Panel2.Location = New System.Drawing.Point(6, 6)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(476, 308)
+        Me.Panel2.TabIndex = 1
+        '
+        'LblEditBy
+        '
+        Me.LblEditBy.Location = New System.Drawing.Point(107, 94)
+        Me.LblEditBy.Name = "LblEditBy"
+        Me.LblEditBy.ReadOnly = True
+        Me.LblEditBy.Size = New System.Drawing.Size(197, 20)
+        Me.LblEditBy.TabIndex = 7
+        '
+        'LblLastEdited
+        '
+        Me.LblLastEdited.Location = New System.Drawing.Point(107, 68)
+        Me.LblLastEdited.Name = "LblLastEdited"
+        Me.LblLastEdited.ReadOnly = True
+        Me.LblLastEdited.Size = New System.Drawing.Size(197, 20)
+        Me.LblLastEdited.TabIndex = 6
+        '
+        'LblLastSearched
+        '
+        Me.LblLastSearched.Location = New System.Drawing.Point(107, 42)
+        Me.LblLastSearched.Name = "LblLastSearched"
+        Me.LblLastSearched.ReadOnly = True
+        Me.LblLastSearched.Size = New System.Drawing.Size(197, 20)
+        Me.LblLastSearched.TabIndex = 5
+        '
+        'LblDateAdded
+        '
+        Me.LblDateAdded.Location = New System.Drawing.Point(107, 16)
+        Me.LblDateAdded.Name = "LblDateAdded"
+        Me.LblDateAdded.ReadOnly = True
+        Me.LblDateAdded.Size = New System.Drawing.Size(197, 20)
+        Me.LblDateAdded.TabIndex = 4
+        '
+        'Label31
+        '
+        Me.Label31.AutoSize = True
+        Me.Label31.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label31.Location = New System.Drawing.Point(5, 98)
+        Me.Label31.Name = "Label31"
+        Me.Label31.Size = New System.Drawing.Size(96, 16)
+        Me.Label31.TabIndex = 3
+        Me.Label31.Text = "Last Edited By:"
+        '
+        'Label30
+        '
+        Me.Label30.AutoSize = True
+        Me.Label30.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label30.Location = New System.Drawing.Point(24, 72)
+        Me.Label30.Name = "Label30"
+        Me.Label30.Size = New System.Drawing.Size(77, 16)
+        Me.Label30.TabIndex = 2
+        Me.Label30.Text = "Last Edited:"
+        '
+        'Label29
+        '
+        Me.Label29.AutoSize = True
+        Me.Label29.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label29.Location = New System.Drawing.Point(4, 46)
+        Me.Label29.Name = "Label29"
+        Me.Label29.Size = New System.Drawing.Size(97, 16)
+        Me.Label29.TabIndex = 1
+        Me.Label29.Text = "Last Searched:"
+        '
+        'Label28
+        '
+        Me.Label28.AutoSize = True
+        Me.Label28.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label28.Location = New System.Drawing.Point(18, 20)
+        Me.Label28.Name = "Label28"
+        Me.Label28.Size = New System.Drawing.Size(83, 16)
+        Me.Label28.TabIndex = 0
+        Me.Label28.Text = "Date Added:"
         '
         'BtnAdmin
         '
@@ -864,6 +986,9 @@ Partial Class GTMenu
         Me.TabPage3.ResumeLayout(False)
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
+        Me.TabPage4.ResumeLayout(False)
+        Me.Panel2.ResumeLayout(False)
+        Me.Panel2.PerformLayout()
         Me.Panel1.ResumeLayout(False)
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
@@ -951,4 +1076,15 @@ Partial Class GTMenu
     Friend WithEvents UpdateGageToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents DeleteGageToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AdminToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents BtnClearActual As Button
+    Friend WithEvents BtnClearNom As Button
+    Friend WithEvents Panel2 As Panel
+    Friend WithEvents Label28 As Label
+    Friend WithEvents LblEditBy As TextBox
+    Friend WithEvents LblLastEdited As TextBox
+    Friend WithEvents LblLastSearched As TextBox
+    Friend WithEvents LblDateAdded As TextBox
+    Friend WithEvents Label31 As Label
+    Friend WithEvents Label30 As Label
+    Friend WithEvents Label29 As Label
 End Class

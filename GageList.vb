@@ -1,6 +1,8 @@
 ﻿Imports System.Data.OleDb
 
 Public Class GageList
+    Private isClosing As Boolean = False
+
     Private Sub GageList_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             GlobalVars.LoadDatabaseLocation()
@@ -95,6 +97,7 @@ Public Class GageList
         DueDateCategorizer.Show()
     End Sub
 
+    '/----- Toolbar Strip -----/
     Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
         About.Show()
     End Sub
@@ -141,4 +144,34 @@ Public Class GageList
             GlobalVars.AdminLoad = "1"
         End If
     End Sub
+
+    Private Sub DueDateCalenderToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DueDateCalenderToolStripMenuItem.Click
+        DueDateCategorizer.Show()
+    End Sub
+
+    Private Sub MainForm_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        ' Check if the closing process has already been initiated
+        If isClosing Then
+            Return
+        End If
+
+        ' Check if the user really wants to close the application
+        If MessageBox.Show("Are you sure you want to exit?", "Exit", MessageBoxButtons.YesNo) = DialogResult.Yes Then
+            ' Set the flag to true to indicate the application is closing
+            isClosing = True
+
+            ' Ensure all forms are closed
+            Dim openForms As New List(Of Form)(Application.OpenForms.Cast(Of Form)())
+            For Each frm As Form In openForms
+                frm.Close()
+            Next
+
+            ' Ensure all threads and resources are terminated
+            Application.Exit()
+        Else
+            ' Cancel the close event if the user decides not to close
+            e.Cancel = True
+        End If
+    End Sub
+
 End Class

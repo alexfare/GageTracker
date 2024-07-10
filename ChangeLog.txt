@@ -1,3 +1,11 @@
+v5.4.1.26
+Updated GTMenu Menu Strip.
+Updated GageList Menu Strip.
+Updated About to center.
+Updated About Info.
+Updated Audit Log Display. (Search Working)
+Added a warning before closing GageList.
+
 v5.3.1.25
 Updated GTMenu, Added Clear buttons for Nominal & Actual.
 Updated GTMenu, AuditLog, WIP not working yet.

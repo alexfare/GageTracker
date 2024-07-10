@@ -6,5 +6,11 @@
     ' StartupNextInstance: Raised when launching a single-instance application and the application is already active. 
     ' NetworkAvailabilityChanged: Raised when the network connection is connected or disconnected.
     Partial Friend Class MyApplication
+        ' Application shutdown event handler
+        Private Sub MyApplication_Shutdown(sender As Object, e As EventArgs) Handles Me.Shutdown
+            ' Ensure all threads and resources are terminated
+            'Application.Exit()
+        End Sub
+
     End Class
 End Namespace

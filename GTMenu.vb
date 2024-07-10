@@ -1,4 +1,5 @@
 ﻿Imports System.Data.OleDb
+Imports System.Threading.Tasks
 
 Public Class GTMenu
     Dim connectionString As String
@@ -6,16 +7,24 @@ Public Class GTMenu
 
     Private Async Sub Menu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
-        Await Task.Run(Sub() LoadGageID())
-        Await Task.Run(Sub() LoadStatus())
-        Await Task.Run(Sub() LoadDepartment())
-        Await Task.Run(Sub() LoadGageType())
-        Await Task.Run(Sub() LoadUser())
-        Await Task.Run(Sub() LoadCustomers())
+
+        ' Disable search controls
+        DisableSearchControls()
+
+        ' Load data
+        Await Task.WhenAll(Task.Run(Sub() LoadGageID()),
+                           Task.Run(Sub() LoadStatus()),
+                           Task.Run(Sub() LoadDepartment()),
+                           Task.Run(Sub() LoadGageType()),
+                           Task.Run(Sub() LoadUser()),
+                           Task.Run(Sub() LoadCustomers()))
+
+        ' Enable search controls
+        EnableSearchControls()
+
         txtGageID.Focus()
         SearchCheck = False
         GlobalVars.UserActive = False
-        Me.StartPosition = FormStartPosition.CenterScreen
     End Sub
 
     Protected Overrides Sub OnLoad(e As EventArgs)
@@ -23,7 +32,7 @@ Public Class GTMenu
         CenterToScreen()
     End Sub
 
-    Private Sub txtGageID_KeyDown(sender As Object, e As KeyEventArgs)
+    Private Sub txtGageID_KeyDown(sender As Object, e As KeyEventArgs) Handles txtGageID.KeyDown
         If e.KeyCode = Keys.Enter Then
             ' Prevent the ding sound on pressing Enter
             e.SuppressKeyPress = True
@@ -151,6 +160,9 @@ Public Class GTMenu
                         txtaA3.Text = reader.Item("aA3").ToString()
                         txtaA4.Text = reader.Item("aA4").ToString()
                         txtaA5.Text = reader.Item("aA5").ToString()
+
+                        'Audit Log
+                        SearchAuditLog()
 
                         SearchCheck = True
                     Else
@@ -553,20 +565,13 @@ Public Class GTMenu
         txtaA4.Clear()
         txtaA5.Clear()
 
+        ' Audit Log
+        LblDateAdded.Clear()
+        LblLastSearched.Clear()
+        LblLastEdited.Clear()
+        LblEditBy.Clear()
+
         SearchCheck = False
-    End Sub
-
-    Private Sub AdminToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AdminToolStripMenuItem.Click
-        If GlobalVars.UserActive = True Then
-            Dim adminMenu As New AdminMenu()
-            adminMenu.Show()
-            Me.Hide()
-
-        Else
-            Dim loginForm As New LoginForm1()
-            loginForm.Show()
-            Me.Hide()
-        End If
     End Sub
 
     Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
@@ -608,7 +613,7 @@ Public Class GTMenu
     End Sub
 
     Private Sub DeleteGageToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteGageToolStripMenuItem.Click
-        BtnDelete.PerformClick
+        BtnDelete.PerformClick()
     End Sub
 
     Private Sub BtnClearNom_Click(sender As Object, e As EventArgs) Handles BtnClearNom.Click
@@ -626,4 +631,52 @@ Public Class GTMenu
         txtaA4.Clear()
         txtaA5.Clear()
     End Sub
+
+    Private Sub AdminMenuToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AdminMenuToolStripMenuItem.Click
+        If GlobalVars.UserActive = True Then
+            Dim adminMenu As New AdminMenu()
+            adminMenu.Show()
+            Me.Hide()
+
+        Else
+            Dim loginForm As New LoginForm1()
+            loginForm.Show()
+            Me.Hide()
+        End If
+    End Sub
+
+    Private Sub DisableSearchControls()
+        txtGageID.Enabled = False
+        BtnSearch.Enabled = False
+    End Sub
+
+    Private Sub EnableSearchControls()
+        txtGageID.Enabled = True
+        BtnSearch.Enabled = True
+    End Sub
+
+    Private Sub SearchAuditLog()
+        Try
+            Using conn As New OleDbConnection(connectionString)
+                conn.Open()
+                Dim searchCmd As New OleDbCommand("SELECT [Date Added], [Last Edited], [Last User] FROM [CalibrationTracker] WHERE GageID = ?", conn)
+                searchCmd.Parameters.AddWithValue("@GageID", txtGageID.Text)
+
+                Using reader As OleDbDataReader = searchCmd.ExecuteReader()
+                    If reader.HasRows Then
+                        reader.Read()
+                        LblDateAdded.Text = If(IsDBNull(reader("Date Added")), String.Empty, reader("Date Added").ToString())
+                        LblLastEdited.Text = If(IsDBNull(reader("Last Edited")), String.Empty, reader("Last Edited").ToString())
+                        LblEditBy.Text = If(IsDBNull(reader("Last User")), String.Empty, reader("Last User").ToString())
+                    Else
+                        MessageBox.Show("No records found for the given GageID.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    End If
+                End Using
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("An error occurred: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+
 End Class

@@ -47,6 +47,8 @@ Partial Class GageList
         Me.MenuToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ChangeDatabaseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DueDateCalenderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AdminToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AdminMenuToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SettingsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -184,7 +186,7 @@ Partial Class GageList
         '
         'MenuStrip1
         '
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.AdminToolStripMenuItem, Me.SettingsToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.ViewToolStripMenuItem, Me.AdminToolStripMenuItem, Me.SettingsToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Size = New System.Drawing.Size(1301, 24)
@@ -216,6 +218,19 @@ Partial Class GageList
         Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(166, 22)
         Me.ExitToolStripMenuItem.Text = "Exit"
         '
+        'ViewToolStripMenuItem
+        '
+        Me.ViewToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DueDateCalenderToolStripMenuItem})
+        Me.ViewToolStripMenuItem.Name = "ViewToolStripMenuItem"
+        Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
+        Me.ViewToolStripMenuItem.Text = "View"
+        '
+        'DueDateCalenderToolStripMenuItem
+        '
+        Me.DueDateCalenderToolStripMenuItem.Name = "DueDateCalenderToolStripMenuItem"
+        Me.DueDateCalenderToolStripMenuItem.Size = New System.Drawing.Size(172, 22)
+        Me.DueDateCalenderToolStripMenuItem.Text = "Due Date Calender"
+        '
         'AdminToolStripMenuItem
         '
         Me.AdminToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AdminMenuToolStripMenuItem})
@@ -226,7 +241,7 @@ Partial Class GageList
         'AdminMenuToolStripMenuItem
         '
         Me.AdminMenuToolStripMenuItem.Name = "AdminMenuToolStripMenuItem"
-        Me.AdminMenuToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.AdminMenuToolStripMenuItem.Size = New System.Drawing.Size(144, 22)
         Me.AdminMenuToolStripMenuItem.Text = "Admin Menu"
         '
         'SettingsToolStripMenuItem
@@ -302,4 +317,6 @@ Partial Class GageList
     Friend WithEvents MenuToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ReportIssueToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AdminMenuToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ViewToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents DueDateCalenderToolStripMenuItem As ToolStripMenuItem
 End Class

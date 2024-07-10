@@ -31,8 +31,8 @@
     <ErrorReportUrl>https://github.com/alexfare/GageTracker</ErrorReportUrl>
     <ProductName>GageTracker</ProductName>
     <PublisherName>Alex Fare</PublisherName>
-    <ApplicationRevision>25</ApplicationRevision>
-    <ApplicationVersion>5.3.1.%2a</ApplicationVersion>
+    <ApplicationRevision>27</ApplicationRevision>
+    <ApplicationVersion>5.4.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>

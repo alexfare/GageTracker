@@ -13,5 +13,14 @@
     <Setting Name="DatabaseLocation" Type="System.String" Scope="User">
       <Value Profile="(Default)">R:\Quality\GageCalibration\GTDatabase.accdb</Value>
     </Setting>
+    <Setting Name="isAdmin" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="LoggedUser" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="FromList" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

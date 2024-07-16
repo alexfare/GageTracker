@@ -76,6 +76,42 @@ Namespace My
                 Me("DatabaseLocation") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property isAdmin() As Boolean
+            Get
+                Return CType(Me("isAdmin"),Boolean)
+            End Get
+            Set
+                Me("isAdmin") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property LoggedUser() As String
+            Get
+                Return CType(Me("LoggedUser"),String)
+            End Get
+            Set
+                Me("LoggedUser") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property FromList() As Boolean
+            Get
+                Return CType(Me("FromList"),Boolean)
+            End Get
+            Set
+                Me("FromList") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

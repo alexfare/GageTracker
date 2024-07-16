@@ -4,6 +4,8 @@ Imports System.Threading.Tasks
 Public Class GTMenu
     Dim connectionString As String
     Dim SearchCheck As Boolean
+    Dim activeUser As String
+    Private isClosing As Boolean = False
 
     Private Async Sub Menu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
@@ -188,8 +190,17 @@ Public Class GTMenu
     Private Sub BtnUpdateConfirmed() 'Handles BtnUpdate.Click
         Using conn As New OleDbConnection(connectionString)
             conn.Open()
+
+            ' Determine the value for Last User
+            Dim lastUser As String
+            If String.IsNullOrEmpty(My.Settings.LoggedUser) Then
+                lastUser = Environment.UserName ' Use the current logged-in computer user
+            Else
+                lastUser = My.Settings.LoggedUser
+            End If
+
             ' Prepare your UPDATE SQL command with parameters to prevent SQL injection
-            Dim updateCmd As New OleDbCommand("UPDATE [CalibrationTracker] SET PartNumber = ?, PartRev = ?, Status = ?, Description = ?, Department = ?, [Gage Type] = ?, Customer = ?, [Calibrated By] = ?, [Interval (Months)] = ?, [Inspected Date] = ?, [Due Date] = ?, Comments = ?, aN1 = ?, aN2 = ?, aN3 = ?, aN4 = ?, aN5 = ?, aA1 = ?, aA2 = ?, aA3 = ?, aA4 = ?, aA5 = ?, [Serial Number] = ?, Owner = ?, [Nist Number] = ? WHERE GageID = ?", conn)
+            Dim updateCmd As New OleDbCommand("UPDATE [CalibrationTracker] SET PartNumber = ?, PartRev = ?, Status = ?, Description = ?, Department = ?, [Gage Type] = ?, Customer = ?, [Calibrated By] = ?, [Interval (Months)] = ?, [Inspected Date] = ?, [Due Date] = ?, Comments = ?, aN1 = ?, aN2 = ?, aN3 = ?, aN4 = ?, aN5 = ?, aA1 = ?, aA2 = ?, aA3 = ?, aA4 = ?, aA5 = ?, [Serial Number] = ?, Owner = ?, [Nist Number] = ?, [Last User] = ? WHERE GageID = ?", conn)
 
             ' Add parameters with the values from your form controls
             updateCmd.Parameters.Add(New OleDbParameter("@PartNumber", txtPartNumber.Text))
@@ -217,6 +228,7 @@ Public Class GTMenu
             updateCmd.Parameters.Add(New OleDbParameter("@SerialNumber", TxtSerialNumber.Text))
             updateCmd.Parameters.Add(New OleDbParameter("@Owner", txtOwner.Text))
             updateCmd.Parameters.Add(New OleDbParameter("@NistNumber", TxtNistNumber.Text))
+            updateCmd.Parameters.Add(New OleDbParameter("@LastUser", lastUser))
             updateCmd.Parameters.Add(New OleDbParameter("@GageID", txtGageID.Text))
 
             ' Execute the UPDATE command
@@ -447,15 +459,10 @@ Public Class GTMenu
     End Sub
 
     Private Sub BtnAdmin_Click(sender As Object, e As EventArgs) Handles BtnAdmin.Click
-        If GlobalVars.UserActive = True Then
-            Dim adminMenu As New AdminMenu()
-            adminMenu.Show()
-            Me.Hide()
-
+        If My.Settings.isAdmin = True Then
+            StartAdmin()
         Else
-            Dim loginForm As New LoginForm1()
-            loginForm.Show()
-            Me.Hide()
+            StartLogin()
         End If
     End Sub
 
@@ -567,7 +574,6 @@ Public Class GTMenu
 
         ' Audit Log
         LblDateAdded.Clear()
-        LblLastSearched.Clear()
         LblLastEdited.Clear()
         LblEditBy.Clear()
 
@@ -633,15 +639,10 @@ Public Class GTMenu
     End Sub
 
     Private Sub AdminMenuToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AdminMenuToolStripMenuItem.Click
-        If GlobalVars.UserActive = True Then
-            Dim adminMenu As New AdminMenu()
-            adminMenu.Show()
-            Me.Hide()
-
+        If My.Settings.isAdmin = True Then
+            StartAdmin()
         Else
-            Dim loginForm As New LoginForm1()
-            loginForm.Show()
-            Me.Hide()
+            StartLogin()
         End If
     End Sub
 
@@ -678,5 +679,17 @@ Public Class GTMenu
         End Try
     End Sub
 
+    Private Sub StartLogin()
+        Dim loginForm As New LoginForm1()
+        loginForm.Show()
+        Me.Hide()
+        My.Settings.FromList = False
+    End Sub
 
+    Private Sub StartAdmin()
+        Dim adminMenu As New AdminMenu()
+        adminMenu.Show()
+        Me.Hide()
+        My.Settings.FromList = False
+    End Sub
 End Class

@@ -131,18 +131,26 @@ Public Class GageList
     End Sub
 
     Private Sub AdminMenuToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AdminMenuToolStripMenuItem.Click
-        If GlobalVars.UserActive = True Then
-            Dim adminMenu As New AdminMenu()
-            adminMenu.Show()
-            Me.Hide()
-            GlobalVars.AdminLoad = "1"
-
+        If My.Settings.isAdmin = True Then
+            StartAdmin()
         Else
-            Dim loginForm As New LoginForm1()
-            loginForm.Show()
-            Me.Hide()
-            GlobalVars.AdminLoad = "1"
+            StartLogin()
         End If
+    End Sub
+
+    Private Sub StartLogin()
+        Dim loginForm As New LoginForm1()
+        loginForm.Show()
+        Me.Hide()
+        My.Settings.FromList = True
+        GlobalVars.AdminLoad = "1"
+    End Sub
+
+    Private Sub StartAdmin()
+        Dim adminMenu As New AdminMenu()
+        adminMenu.Show()
+        Me.Hide()
+        My.Settings.FromList = True
     End Sub
 
     Private Sub DueDateCalenderToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DueDateCalenderToolStripMenuItem.Click

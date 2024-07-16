@@ -14,24 +14,25 @@ Public Class AdminMenu
     End Sub
 
     Private Sub BtnBack_Click(sender As Object, e As EventArgs) Handles BtnBack.Click
-        If GlobalVars.AdminLoad = "1" Then
+        If My.Settings.FromList = True Then
             GageList.Show()
-            GlobalVars.AdminLoad = ""
+            My.Settings.FromList = False
         Else
             GTMenu.Show()
         End If
-        Me.Hide()
+        Me.Close()
     End Sub
 
     Private Sub BtnLogout_Click(sender As Object, e As EventArgs) Handles BtnLogout.Click
-        GlobalVars.UserActive = False
-        If GlobalVars.AdminLoad = "1" Then
+        My.Settings.isAdmin = False
+
+        If My.Settings.FromList = True Then
             GageList.Show()
-            GlobalVars.AdminLoad = ""
+            My.Settings.FromList = False
         Else
             GTMenu.Show()
         End If
-        Me.Hide()
+        Me.Close()
     End Sub
 
     Private Sub btnCustomer_Click(sender As Object, e As EventArgs) Handles btnCustomer.Click
@@ -41,7 +42,7 @@ Public Class AdminMenu
 
     Private Sub btnRemoveGage_Click(sender As Object, e As EventArgs) Handles btnRemoveGage.Click
         RemoveGage.Show()
-        Me.Hide()
+        Me.Close()
     End Sub
 
     Private Sub btnStatus_Click(sender As Object, e As EventArgs) Handles btnStatus.Click
@@ -50,6 +51,27 @@ Public Class AdminMenu
 
     Private Sub btnAccount_Click(sender As Object, e As EventArgs) Handles btnAccount.Click
         AccountManagement.Show()
-        Me.Hide()
+        Me.Close()
+    End Sub
+
+    Private Sub CloseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CloseToolStripMenuItem.Click
+        If My.Settings.FromList = True Then
+            GageList.Show()
+            My.Settings.FromList = False
+        Else
+            GTMenu.Show()
+        End If
+        Me.Close()
+    End Sub
+
+    Private Sub MenuToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MenuToolStripMenuItem.Click
+        GTMenu.Show()
+        Me.Close()
+    End Sub
+
+    Private Sub GageListToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GageListToolStripMenuItem.Click
+        GageList.Show()
+        My.Settings.FromList = False
+        Me.Close()
     End Sub
 End Class

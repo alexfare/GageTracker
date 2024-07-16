@@ -35,9 +35,11 @@ Public Class LoginForm1
                         ' Passwords match
                         Dim adminMenu As New AdminMenu()
                         adminMenu.Show()
+                        My.Settings.LoggedUser = txtUsername.Text
+
+                        'New Settings
+                        My.Settings.isAdmin = True
                         Me.Close()  ' Optionally hide or close the LoginForm
-                        GlobalVars.UserActive = True
-                        GlobalVars.LoggedInUser = txtUsername.Text
                     Else
                         MessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     End If
@@ -53,9 +55,9 @@ Public Class LoginForm1
     End Sub
 
     Private Sub Cancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Cancel.Click
-        If GlobalVars.AdminLoad = "1" Then
+        If My.Settings.FromList = True Then
             GageList.Show()
-            GlobalVars.AdminLoad = ""
+            My.Settings.FromList = False
         Else
             GTMenu.Show()
         End If

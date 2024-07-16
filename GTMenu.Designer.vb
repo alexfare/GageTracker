@@ -89,15 +89,11 @@ Partial Class GTMenu
         Me.Label15 = New System.Windows.Forms.Label()
         Me.txtaN3 = New System.Windows.Forms.TextBox()
         Me.Label21 = New System.Windows.Forms.Label()
-        Me.TabPage4 = New System.Windows.Forms.TabPage()
-        Me.Panel2 = New System.Windows.Forms.Panel()
         Me.LblEditBy = New System.Windows.Forms.TextBox()
         Me.LblLastEdited = New System.Windows.Forms.TextBox()
-        Me.LblLastSearched = New System.Windows.Forms.TextBox()
         Me.LblDateAdded = New System.Windows.Forms.TextBox()
         Me.Label31 = New System.Windows.Forms.Label()
         Me.Label30 = New System.Windows.Forms.Label()
-        Me.Label29 = New System.Windows.Forms.Label()
         Me.Label28 = New System.Windows.Forms.Label()
         Me.BtnAdmin = New System.Windows.Forms.Button()
         Me.BtnGageList = New System.Windows.Forms.Button()
@@ -114,16 +110,18 @@ Partial Class GTMenu
         Me.DeleteGageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AdminToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AdminMenuToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.Panel4 = New System.Windows.Forms.Panel()
         Me.GroupBox1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         Me.TabPage3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
-        Me.TabPage4.SuspendLayout()
-        Me.Panel2.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
+        Me.Panel3.SuspendLayout()
+        Me.Panel4.SuspendLayout()
         Me.SuspendLayout()
         '
         'BtnSearch
@@ -333,7 +331,6 @@ Partial Class GTMenu
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Controls.Add(Me.TabPage3)
-        Me.TabControl1.Controls.Add(Me.TabPage4)
         Me.TabControl1.Location = New System.Drawing.Point(12, 76)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
@@ -450,12 +447,8 @@ Partial Class GTMenu
         '
         'TabPage2
         '
-        Me.TabPage2.Controls.Add(Me.Label27)
-        Me.TabPage2.Controls.Add(Me.txtOwner)
-        Me.TabPage2.Controls.Add(Me.Label13)
-        Me.TabPage2.Controls.Add(Me.TxtNistNumber)
-        Me.TabPage2.Controls.Add(Me.LblSerial)
-        Me.TabPage2.Controls.Add(Me.TxtSerialNumber)
+        Me.TabPage2.Controls.Add(Me.Panel4)
+        Me.TabPage2.Controls.Add(Me.Panel3)
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
@@ -467,7 +460,7 @@ Partial Class GTMenu
         'Label27
         '
         Me.Label27.AutoSize = True
-        Me.Label27.Location = New System.Drawing.Point(6, 67)
+        Me.Label27.Location = New System.Drawing.Point(4, 58)
         Me.Label27.Name = "Label27"
         Me.Label27.Size = New System.Drawing.Size(41, 13)
         Me.Label27.TabIndex = 10
@@ -475,7 +468,7 @@ Partial Class GTMenu
         '
         'txtOwner
         '
-        Me.txtOwner.Location = New System.Drawing.Point(81, 64)
+        Me.txtOwner.Location = New System.Drawing.Point(79, 55)
         Me.txtOwner.Name = "txtOwner"
         Me.txtOwner.Size = New System.Drawing.Size(200, 20)
         Me.txtOwner.TabIndex = 9
@@ -483,7 +476,7 @@ Partial Class GTMenu
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(6, 41)
+        Me.Label13.Location = New System.Drawing.Point(4, 32)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(75, 13)
         Me.Label13.TabIndex = 8
@@ -491,7 +484,7 @@ Partial Class GTMenu
         '
         'TxtNistNumber
         '
-        Me.TxtNistNumber.Location = New System.Drawing.Point(81, 38)
+        Me.TxtNistNumber.Location = New System.Drawing.Point(79, 29)
         Me.TxtNistNumber.Name = "TxtNistNumber"
         Me.TxtNistNumber.Size = New System.Drawing.Size(200, 20)
         Me.TxtNistNumber.TabIndex = 7
@@ -499,7 +492,7 @@ Partial Class GTMenu
         'LblSerial
         '
         Me.LblSerial.AutoSize = True
-        Me.LblSerial.Location = New System.Drawing.Point(6, 15)
+        Me.LblSerial.Location = New System.Drawing.Point(4, 6)
         Me.LblSerial.Name = "LblSerial"
         Me.LblSerial.Size = New System.Drawing.Size(76, 13)
         Me.LblSerial.TabIndex = 6
@@ -507,7 +500,7 @@ Partial Class GTMenu
         '
         'TxtSerialNumber
         '
-        Me.TxtSerialNumber.Location = New System.Drawing.Point(81, 12)
+        Me.TxtSerialNumber.Location = New System.Drawing.Point(79, 3)
         Me.TxtSerialNumber.Name = "TxtSerialNumber"
         Me.TxtSerialNumber.Size = New System.Drawing.Size(200, 20)
         Me.TxtSerialNumber.TabIndex = 5
@@ -752,35 +745,9 @@ Partial Class GTMenu
         Me.Label21.TabIndex = 11
         Me.Label21.Text = "Attribute #3:"
         '
-        'TabPage4
-        '
-        Me.TabPage4.Controls.Add(Me.Panel2)
-        Me.TabPage4.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage4.Name = "TabPage4"
-        Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage4.Size = New System.Drawing.Size(488, 320)
-        Me.TabPage4.TabIndex = 3
-        Me.TabPage4.Text = "Audit Log"
-        Me.TabPage4.UseVisualStyleBackColor = True
-        '
-        'Panel2
-        '
-        Me.Panel2.Controls.Add(Me.LblEditBy)
-        Me.Panel2.Controls.Add(Me.LblLastEdited)
-        Me.Panel2.Controls.Add(Me.LblLastSearched)
-        Me.Panel2.Controls.Add(Me.LblDateAdded)
-        Me.Panel2.Controls.Add(Me.Label31)
-        Me.Panel2.Controls.Add(Me.Label30)
-        Me.Panel2.Controls.Add(Me.Label29)
-        Me.Panel2.Controls.Add(Me.Label28)
-        Me.Panel2.Location = New System.Drawing.Point(6, 6)
-        Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(476, 308)
-        Me.Panel2.TabIndex = 1
-        '
         'LblEditBy
         '
-        Me.LblEditBy.Location = New System.Drawing.Point(107, 94)
+        Me.LblEditBy.Location = New System.Drawing.Point(104, 55)
         Me.LblEditBy.Name = "LblEditBy"
         Me.LblEditBy.ReadOnly = True
         Me.LblEditBy.Size = New System.Drawing.Size(197, 20)
@@ -788,23 +755,15 @@ Partial Class GTMenu
         '
         'LblLastEdited
         '
-        Me.LblLastEdited.Location = New System.Drawing.Point(107, 68)
+        Me.LblLastEdited.Location = New System.Drawing.Point(104, 29)
         Me.LblLastEdited.Name = "LblLastEdited"
         Me.LblLastEdited.ReadOnly = True
         Me.LblLastEdited.Size = New System.Drawing.Size(197, 20)
         Me.LblLastEdited.TabIndex = 6
         '
-        'LblLastSearched
-        '
-        Me.LblLastSearched.Location = New System.Drawing.Point(107, 42)
-        Me.LblLastSearched.Name = "LblLastSearched"
-        Me.LblLastSearched.ReadOnly = True
-        Me.LblLastSearched.Size = New System.Drawing.Size(197, 20)
-        Me.LblLastSearched.TabIndex = 5
-        '
         'LblDateAdded
         '
-        Me.LblDateAdded.Location = New System.Drawing.Point(107, 16)
+        Me.LblDateAdded.Location = New System.Drawing.Point(104, 3)
         Me.LblDateAdded.Name = "LblDateAdded"
         Me.LblDateAdded.ReadOnly = True
         Me.LblDateAdded.Size = New System.Drawing.Size(197, 20)
@@ -814,7 +773,7 @@ Partial Class GTMenu
         '
         Me.Label31.AutoSize = True
         Me.Label31.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label31.Location = New System.Drawing.Point(5, 98)
+        Me.Label31.Location = New System.Drawing.Point(2, 59)
         Me.Label31.Name = "Label31"
         Me.Label31.Size = New System.Drawing.Size(96, 16)
         Me.Label31.TabIndex = 3
@@ -824,27 +783,17 @@ Partial Class GTMenu
         '
         Me.Label30.AutoSize = True
         Me.Label30.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label30.Location = New System.Drawing.Point(24, 72)
+        Me.Label30.Location = New System.Drawing.Point(21, 33)
         Me.Label30.Name = "Label30"
         Me.Label30.Size = New System.Drawing.Size(77, 16)
         Me.Label30.TabIndex = 2
         Me.Label30.Text = "Last Edited:"
         '
-        'Label29
-        '
-        Me.Label29.AutoSize = True
-        Me.Label29.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label29.Location = New System.Drawing.Point(4, 46)
-        Me.Label29.Name = "Label29"
-        Me.Label29.Size = New System.Drawing.Size(97, 16)
-        Me.Label29.TabIndex = 1
-        Me.Label29.Text = "Last Searched:"
-        '
         'Label28
         '
         Me.Label28.AutoSize = True
         Me.Label28.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label28.Location = New System.Drawing.Point(18, 20)
+        Me.Label28.Location = New System.Drawing.Point(15, 7)
         Me.Label28.Name = "Label28"
         Me.Label28.Size = New System.Drawing.Size(83, 16)
         Me.Label28.TabIndex = 0
@@ -905,7 +854,7 @@ Partial Class GTMenu
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.GageManagementToolStripMenuItem, Me.AdminToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(520, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(509, 24)
         Me.MenuStrip1.TabIndex = 34
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -963,8 +912,34 @@ Partial Class GTMenu
         'AdminMenuToolStripMenuItem
         '
         Me.AdminMenuToolStripMenuItem.Name = "AdminMenuToolStripMenuItem"
-        Me.AdminMenuToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.AdminMenuToolStripMenuItem.Size = New System.Drawing.Size(144, 22)
         Me.AdminMenuToolStripMenuItem.Text = "Admin Menu"
+        '
+        'Panel3
+        '
+        Me.Panel3.Controls.Add(Me.LblEditBy)
+        Me.Panel3.Controls.Add(Me.LblDateAdded)
+        Me.Panel3.Controls.Add(Me.Label28)
+        Me.Panel3.Controls.Add(Me.LblLastEdited)
+        Me.Panel3.Controls.Add(Me.Label30)
+        Me.Panel3.Controls.Add(Me.Label31)
+        Me.Panel3.Location = New System.Drawing.Point(6, 148)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(312, 94)
+        Me.Panel3.TabIndex = 11
+        '
+        'Panel4
+        '
+        Me.Panel4.Controls.Add(Me.LblSerial)
+        Me.Panel4.Controls.Add(Me.Label27)
+        Me.Panel4.Controls.Add(Me.TxtSerialNumber)
+        Me.Panel4.Controls.Add(Me.txtOwner)
+        Me.Panel4.Controls.Add(Me.TxtNistNumber)
+        Me.Panel4.Controls.Add(Me.Label13)
+        Me.Panel4.Location = New System.Drawing.Point(6, 6)
+        Me.Panel4.Name = "Panel4"
+        Me.Panel4.Size = New System.Drawing.Size(312, 93)
+        Me.Panel4.TabIndex = 35
         '
         'GTMenu
         '
@@ -972,7 +947,7 @@ Partial Class GTMenu
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.BtnGageList
-        Me.ClientSize = New System.Drawing.Size(520, 482)
+        Me.ClientSize = New System.Drawing.Size(509, 482)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.GroupBox1)
@@ -990,16 +965,16 @@ Partial Class GTMenu
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout()
         Me.TabPage2.ResumeLayout(False)
-        Me.TabPage2.PerformLayout()
         Me.TabPage3.ResumeLayout(False)
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
-        Me.TabPage4.ResumeLayout(False)
-        Me.Panel2.ResumeLayout(False)
-        Me.Panel2.PerformLayout()
         Me.Panel1.ResumeLayout(False)
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
+        Me.Panel3.ResumeLayout(False)
+        Me.Panel3.PerformLayout()
+        Me.Panel4.ResumeLayout(False)
+        Me.Panel4.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1031,7 +1006,6 @@ Partial Class GTMenu
     Friend WithEvents TabPage1 As TabPage
     Friend WithEvents TabPage2 As TabPage
     Friend WithEvents TabPage3 As TabPage
-    Friend WithEvents TabPage4 As TabPage
     Friend WithEvents cmbStatus As ComboBox
     Friend WithEvents BtnAdmin As Button
     Friend WithEvents Label13 As Label
@@ -1086,14 +1060,13 @@ Partial Class GTMenu
     Friend WithEvents AdminToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents BtnClearActual As Button
     Friend WithEvents BtnClearNom As Button
-    Friend WithEvents Panel2 As Panel
     Friend WithEvents Label28 As Label
     Friend WithEvents LblEditBy As TextBox
     Friend WithEvents LblLastEdited As TextBox
-    Friend WithEvents LblLastSearched As TextBox
     Friend WithEvents LblDateAdded As TextBox
     Friend WithEvents Label31 As Label
     Friend WithEvents Label30 As Label
-    Friend WithEvents Label29 As Label
     Friend WithEvents AdminMenuToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents Panel4 As Panel
+    Friend WithEvents Panel3 As Panel
 End Class

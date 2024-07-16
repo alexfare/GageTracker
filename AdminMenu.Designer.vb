@@ -29,6 +29,15 @@ Partial Class AdminMenu
         Me.btnRemoveGage = New System.Windows.Forms.Button()
         Me.btnStatus = New System.Windows.Forms.Button()
         Me.btnAccount = New System.Windows.Forms.Button()
+        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
+        Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MenuToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GageListToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SettingsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ChangeDatabaseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CloseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'BtnBack
@@ -51,7 +60,7 @@ Partial Class AdminMenu
         '
         'btnCustomer
         '
-        Me.btnCustomer.Location = New System.Drawing.Point(12, 12)
+        Me.btnCustomer.Location = New System.Drawing.Point(13, 27)
         Me.btnCustomer.Name = "btnCustomer"
         Me.btnCustomer.Size = New System.Drawing.Size(82, 46)
         Me.btnCustomer.TabIndex = 0
@@ -60,7 +69,7 @@ Partial Class AdminMenu
         '
         'btnRemoveGage
         '
-        Me.btnRemoveGage.Location = New System.Drawing.Point(100, 12)
+        Me.btnRemoveGage.Location = New System.Drawing.Point(101, 27)
         Me.btnRemoveGage.Name = "btnRemoveGage"
         Me.btnRemoveGage.Size = New System.Drawing.Size(82, 46)
         Me.btnRemoveGage.TabIndex = 1
@@ -69,7 +78,7 @@ Partial Class AdminMenu
         '
         'btnStatus
         '
-        Me.btnStatus.Location = New System.Drawing.Point(188, 12)
+        Me.btnStatus.Location = New System.Drawing.Point(189, 27)
         Me.btnStatus.Name = "btnStatus"
         Me.btnStatus.Size = New System.Drawing.Size(82, 46)
         Me.btnStatus.TabIndex = 2
@@ -78,12 +87,66 @@ Partial Class AdminMenu
         '
         'btnAccount
         '
-        Me.btnAccount.Location = New System.Drawing.Point(276, 12)
+        Me.btnAccount.Location = New System.Drawing.Point(277, 27)
         Me.btnAccount.Name = "btnAccount"
         Me.btnAccount.Size = New System.Drawing.Size(82, 46)
         Me.btnAccount.TabIndex = 3
         Me.btnAccount.Text = "Account Management"
         Me.btnAccount.UseVisualStyleBackColor = True
+        '
+        'MenuStrip1
+        '
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.ViewToolStripMenuItem, Me.SettingsToolStripMenuItem})
+        Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
+        Me.MenuStrip1.Name = "MenuStrip1"
+        Me.MenuStrip1.Size = New System.Drawing.Size(374, 24)
+        Me.MenuStrip1.TabIndex = 6
+        Me.MenuStrip1.Text = "MenuStrip1"
+        '
+        'FileToolStripMenuItem
+        '
+        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CloseToolStripMenuItem})
+        Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
+        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
+        Me.FileToolStripMenuItem.Text = "File"
+        '
+        'ViewToolStripMenuItem
+        '
+        Me.ViewToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MenuToolStripMenuItem, Me.GageListToolStripMenuItem})
+        Me.ViewToolStripMenuItem.Name = "ViewToolStripMenuItem"
+        Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
+        Me.ViewToolStripMenuItem.Text = "View"
+        '
+        'MenuToolStripMenuItem
+        '
+        Me.MenuToolStripMenuItem.Name = "MenuToolStripMenuItem"
+        Me.MenuToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.MenuToolStripMenuItem.Text = "Menu"
+        '
+        'GageListToolStripMenuItem
+        '
+        Me.GageListToolStripMenuItem.Name = "GageListToolStripMenuItem"
+        Me.GageListToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.GageListToolStripMenuItem.Text = "GageList"
+        '
+        'SettingsToolStripMenuItem
+        '
+        Me.SettingsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ChangeDatabaseToolStripMenuItem})
+        Me.SettingsToolStripMenuItem.Name = "SettingsToolStripMenuItem"
+        Me.SettingsToolStripMenuItem.Size = New System.Drawing.Size(61, 20)
+        Me.SettingsToolStripMenuItem.Text = "Settings"
+        '
+        'ChangeDatabaseToolStripMenuItem
+        '
+        Me.ChangeDatabaseToolStripMenuItem.Name = "ChangeDatabaseToolStripMenuItem"
+        Me.ChangeDatabaseToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ChangeDatabaseToolStripMenuItem.Text = "Change Database"
+        '
+        'CloseToolStripMenuItem
+        '
+        Me.CloseToolStripMenuItem.Name = "CloseToolStripMenuItem"
+        Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.CloseToolStripMenuItem.Text = "Close"
         '
         'AdminMenu
         '
@@ -96,12 +159,17 @@ Partial Class AdminMenu
         Me.Controls.Add(Me.btnCustomer)
         Me.Controls.Add(Me.BtnLogout)
         Me.Controls.Add(Me.BtnBack)
+        Me.Controls.Add(Me.MenuStrip1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.MainMenuStrip = Me.MenuStrip1
         Me.MaximizeBox = False
         Me.Name = "AdminMenu"
         Me.Text = "AdminMenu"
+        Me.MenuStrip1.ResumeLayout(False)
+        Me.MenuStrip1.PerformLayout()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -111,4 +179,12 @@ Partial Class AdminMenu
     Friend WithEvents btnRemoveGage As Button
     Friend WithEvents btnStatus As Button
     Friend WithEvents btnAccount As Button
+    Friend WithEvents MenuStrip1 As MenuStrip
+    Friend WithEvents FileToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ViewToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents MenuToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GageListToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SettingsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ChangeDatabaseToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CloseToolStripMenuItem As ToolStripMenuItem
 End Class

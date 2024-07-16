@@ -32,4 +32,8 @@
         Copyright.Text = My.Application.Info.Copyright
     End Sub
 
+    Private Sub Menu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        My.Settings.isAdmin = False
+        My.Settings.LoggedUser = ""
+    End Sub
 End Class

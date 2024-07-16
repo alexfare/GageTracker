@@ -1,3 +1,13 @@
+v5.4.1.28
+Updated AuditLog.
+Moved AuditLog under Serial Information.
+AuditLog is still a WIP.
+
+v5.4.1.27
+Added File Menu to Admin Panel.
+Updated how GageTracker handles logins.
+Updated how GageTracker handles logged in users.
+
 v5.4.1.26
 Updated GTMenu Menu Strip.
 Updated GageList Menu Strip.

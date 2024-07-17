@@ -90,7 +90,7 @@ Partial Class StatusMenu
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.Name = "StatusMenu"
-        Me.Text = "StatusMenu"
+        Me.Text = "GageTracker - StatusMenu"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

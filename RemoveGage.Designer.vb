@@ -78,7 +78,7 @@ Partial Class RemoveGage
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.Name = "RemoveGage"
-        Me.Text = "RemoveGage"
+        Me.Text = "GageTracker - RemoveGage"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

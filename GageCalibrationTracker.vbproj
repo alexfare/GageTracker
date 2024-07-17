@@ -25,14 +25,15 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>https://faregaming.com/GageTracker/latest/</InstallUrl>
-    <UpdateUrl>https://faregaming.com/GageTracker/latest/</UpdateUrl>
+    <InstallUrl>https://alexfare.com/programs/gagetracker/latest/</InstallUrl>
+    <UpdateUrl>https://alexfare.com/programs/gagetracker/latest/</UpdateUrl>
     <SupportUrl>https://github.com/alexfare/GageTracker</SupportUrl>
     <ErrorReportUrl>https://github.com/alexfare/GageTracker</ErrorReportUrl>
     <ProductName>GageTracker</ProductName>
     <PublisherName>Alex Fare</PublisherName>
-    <ApplicationRevision>28</ApplicationRevision>
-    <ApplicationVersion>5.4.1.%2a</ApplicationVersion>
+    <MinimumRequiredVersion>5.5.1.29</MinimumRequiredVersion>
+    <ApplicationRevision>30</ApplicationRevision>
+    <ApplicationVersion>5.5.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>

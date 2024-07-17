@@ -167,7 +167,7 @@ Partial Class About
         Me.Padding = New System.Windows.Forms.Padding(9)
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "About"
+        Me.Text = "GageTracker - About"
         Me.TableLayoutPanel.ResumeLayout(False)
         Me.TableLayoutPanel.PerformLayout()
         CType(Me.LogoPictureBox, System.ComponentModel.ISupportInitialize).EndInit()

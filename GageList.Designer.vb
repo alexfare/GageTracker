@@ -54,6 +54,8 @@ Partial Class GageList
         Me.SettingsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReportIssueToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CmbContains = New System.Windows.Forms.ComboBox()
+        Me.TextContains = New System.Windows.Forms.TextBox()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CalibrationTrackerBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GTDatabaseDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -263,12 +265,30 @@ Partial Class GageList
         Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(138, 22)
         Me.AboutToolStripMenuItem.Text = "About"
         '
+        'CmbContains
+        '
+        Me.CmbContains.FormattingEnabled = True
+        Me.CmbContains.Items.AddRange(New Object() {"GageID", "Status", "PartNumber", "Description", "Department", "Gage Type", "Customer", "Inspected Date", "Due Date", "Comments"})
+        Me.CmbContains.Location = New System.Drawing.Point(278, 43)
+        Me.CmbContains.Name = "CmbContains"
+        Me.CmbContains.Size = New System.Drawing.Size(121, 21)
+        Me.CmbContains.TabIndex = 8
+        '
+        'TextContains
+        '
+        Me.TextContains.Location = New System.Drawing.Point(406, 43)
+        Me.TextContains.Name = "TextContains"
+        Me.TextContains.Size = New System.Drawing.Size(339, 20)
+        Me.TextContains.TabIndex = 9
+        '
         'GageList
         '
         Me.AcceptButton = Me.BtnMenu
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1301, 654)
+        Me.Controls.Add(Me.TextContains)
+        Me.Controls.Add(Me.CmbContains)
         Me.Controls.Add(Me.BtnDueList)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.txtVersion)
@@ -278,7 +298,7 @@ Partial Class GageList
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "GageList"
-        Me.Text = "GageList"
+        Me.Text = "GageTracker - GageList"
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CalibrationTrackerBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GTDatabaseDataSet, System.ComponentModel.ISupportInitialize).EndInit()
@@ -319,4 +339,6 @@ Partial Class GageList
     Friend WithEvents AdminMenuToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ViewToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents DueDateCalenderToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CmbContains As ComboBox
+    Friend WithEvents TextContains As TextBox
 End Class

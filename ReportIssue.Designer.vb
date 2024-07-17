@@ -119,7 +119,7 @@ Partial Class ReportIssue
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.Name = "ReportIssue"
-        Me.Text = "ReportIssue"
+        Me.Text = "GageTracker - ReportIssue"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

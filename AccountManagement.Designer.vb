@@ -144,7 +144,7 @@ Partial Class AccountManagement
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.Name = "AccountManagement"
-        Me.Text = "AccountManagement"
+        Me.Text = "GageTracker - AccountManagement"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

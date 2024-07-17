@@ -39,7 +39,7 @@ Public Class LoginForm1
 
                         'New Settings
                         My.Settings.isAdmin = True
-                        Me.Close()  ' Optionally hide or close the LoginForm
+                        Me.Close()
                     Else
                         MessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     End If
@@ -56,12 +56,12 @@ Public Class LoginForm1
 
     Private Sub Cancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Cancel.Click
         If My.Settings.FromList = True Then
-            GageList.Show()
+            Me.Close()
             My.Settings.FromList = False
         Else
             GTMenu.Show()
+            Me.Close()
         End If
-        Me.Hide()
     End Sub
 
     Private Function HashPassword(password As String) As String

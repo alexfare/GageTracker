@@ -1,3 +1,10 @@
+v5.5.1.29
+Updated Menu titles.
+Updated Admin & Login Menu code.
+Updated update url.
+Added Menu to DueDateCategorizer.
+Added Filtering to GageList.
+
 v5.4.1.28
 Updated AuditLog.
 Moved AuditLog under Serial Information.

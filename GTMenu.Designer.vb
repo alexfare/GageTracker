@@ -57,12 +57,20 @@ Partial Class GTMenu
         Me.txtComments = New System.Windows.Forms.RichTextBox()
         Me.cmbStatus = New System.Windows.Forms.ComboBox()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
-        Me.Label27 = New System.Windows.Forms.Label()
-        Me.txtOwner = New System.Windows.Forms.TextBox()
-        Me.Label13 = New System.Windows.Forms.Label()
-        Me.TxtNistNumber = New System.Windows.Forms.TextBox()
+        Me.Panel4 = New System.Windows.Forms.Panel()
         Me.LblSerial = New System.Windows.Forms.Label()
+        Me.Label27 = New System.Windows.Forms.Label()
         Me.TxtSerialNumber = New System.Windows.Forms.TextBox()
+        Me.txtOwner = New System.Windows.Forms.TextBox()
+        Me.TxtNistNumber = New System.Windows.Forms.TextBox()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.LblEditBy = New System.Windows.Forms.TextBox()
+        Me.LblDateAdded = New System.Windows.Forms.TextBox()
+        Me.Label28 = New System.Windows.Forms.Label()
+        Me.LblLastEdited = New System.Windows.Forms.TextBox()
+        Me.Label30 = New System.Windows.Forms.Label()
+        Me.Label31 = New System.Windows.Forms.Label()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.BtnClearActual = New System.Windows.Forms.Button()
@@ -89,12 +97,6 @@ Partial Class GTMenu
         Me.Label15 = New System.Windows.Forms.Label()
         Me.txtaN3 = New System.Windows.Forms.TextBox()
         Me.Label21 = New System.Windows.Forms.Label()
-        Me.LblEditBy = New System.Windows.Forms.TextBox()
-        Me.LblLastEdited = New System.Windows.Forms.TextBox()
-        Me.LblDateAdded = New System.Windows.Forms.TextBox()
-        Me.Label31 = New System.Windows.Forms.Label()
-        Me.Label30 = New System.Windows.Forms.Label()
-        Me.Label28 = New System.Windows.Forms.Label()
         Me.BtnAdmin = New System.Windows.Forms.Button()
         Me.BtnGageList = New System.Windows.Forms.Button()
         Me.btnReportIssue = New System.Windows.Forms.Button()
@@ -110,18 +112,16 @@ Partial Class GTMenu
         Me.DeleteGageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AdminToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AdminMenuToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.Panel3 = New System.Windows.Forms.Panel()
-        Me.Panel4 = New System.Windows.Forms.Panel()
         Me.GroupBox1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
+        Me.Panel4.SuspendLayout()
+        Me.Panel3.SuspendLayout()
         Me.TabPage3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
-        Me.Panel3.SuspendLayout()
-        Me.Panel4.SuspendLayout()
         Me.SuspendLayout()
         '
         'BtnSearch
@@ -457,37 +457,18 @@ Partial Class GTMenu
         Me.TabPage2.Text = "Serial Information"
         Me.TabPage2.UseVisualStyleBackColor = True
         '
-        'Label27
+        'Panel4
         '
-        Me.Label27.AutoSize = True
-        Me.Label27.Location = New System.Drawing.Point(4, 58)
-        Me.Label27.Name = "Label27"
-        Me.Label27.Size = New System.Drawing.Size(41, 13)
-        Me.Label27.TabIndex = 10
-        Me.Label27.Text = "Owner:"
-        '
-        'txtOwner
-        '
-        Me.txtOwner.Location = New System.Drawing.Point(79, 55)
-        Me.txtOwner.Name = "txtOwner"
-        Me.txtOwner.Size = New System.Drawing.Size(200, 20)
-        Me.txtOwner.TabIndex = 9
-        '
-        'Label13
-        '
-        Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(4, 32)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(75, 13)
-        Me.Label13.TabIndex = 8
-        Me.Label13.Text = "NIST Number:"
-        '
-        'TxtNistNumber
-        '
-        Me.TxtNistNumber.Location = New System.Drawing.Point(79, 29)
-        Me.TxtNistNumber.Name = "TxtNistNumber"
-        Me.TxtNistNumber.Size = New System.Drawing.Size(200, 20)
-        Me.TxtNistNumber.TabIndex = 7
+        Me.Panel4.Controls.Add(Me.LblSerial)
+        Me.Panel4.Controls.Add(Me.Label27)
+        Me.Panel4.Controls.Add(Me.TxtSerialNumber)
+        Me.Panel4.Controls.Add(Me.txtOwner)
+        Me.Panel4.Controls.Add(Me.TxtNistNumber)
+        Me.Panel4.Controls.Add(Me.Label13)
+        Me.Panel4.Location = New System.Drawing.Point(6, 6)
+        Me.Panel4.Name = "Panel4"
+        Me.Panel4.Size = New System.Drawing.Size(312, 93)
+        Me.Panel4.TabIndex = 35
         '
         'LblSerial
         '
@@ -498,12 +479,111 @@ Partial Class GTMenu
         Me.LblSerial.TabIndex = 6
         Me.LblSerial.Text = "Serial Number:"
         '
+        'Label27
+        '
+        Me.Label27.AutoSize = True
+        Me.Label27.Location = New System.Drawing.Point(4, 58)
+        Me.Label27.Name = "Label27"
+        Me.Label27.Size = New System.Drawing.Size(41, 13)
+        Me.Label27.TabIndex = 10
+        Me.Label27.Text = "Owner:"
+        '
         'TxtSerialNumber
         '
         Me.TxtSerialNumber.Location = New System.Drawing.Point(79, 3)
         Me.TxtSerialNumber.Name = "TxtSerialNumber"
         Me.TxtSerialNumber.Size = New System.Drawing.Size(200, 20)
         Me.TxtSerialNumber.TabIndex = 5
+        '
+        'txtOwner
+        '
+        Me.txtOwner.Location = New System.Drawing.Point(79, 55)
+        Me.txtOwner.Name = "txtOwner"
+        Me.txtOwner.Size = New System.Drawing.Size(200, 20)
+        Me.txtOwner.TabIndex = 9
+        '
+        'TxtNistNumber
+        '
+        Me.TxtNistNumber.Location = New System.Drawing.Point(79, 29)
+        Me.TxtNistNumber.Name = "TxtNistNumber"
+        Me.TxtNistNumber.Size = New System.Drawing.Size(200, 20)
+        Me.TxtNistNumber.TabIndex = 7
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(4, 32)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(75, 13)
+        Me.Label13.TabIndex = 8
+        Me.Label13.Text = "NIST Number:"
+        '
+        'Panel3
+        '
+        Me.Panel3.Controls.Add(Me.LblEditBy)
+        Me.Panel3.Controls.Add(Me.LblDateAdded)
+        Me.Panel3.Controls.Add(Me.Label28)
+        Me.Panel3.Controls.Add(Me.LblLastEdited)
+        Me.Panel3.Controls.Add(Me.Label30)
+        Me.Panel3.Controls.Add(Me.Label31)
+        Me.Panel3.Location = New System.Drawing.Point(6, 148)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(312, 94)
+        Me.Panel3.TabIndex = 11
+        '
+        'LblEditBy
+        '
+        Me.LblEditBy.Location = New System.Drawing.Point(104, 55)
+        Me.LblEditBy.Name = "LblEditBy"
+        Me.LblEditBy.ReadOnly = True
+        Me.LblEditBy.Size = New System.Drawing.Size(197, 20)
+        Me.LblEditBy.TabIndex = 7
+        '
+        'LblDateAdded
+        '
+        Me.LblDateAdded.Location = New System.Drawing.Point(104, 3)
+        Me.LblDateAdded.Name = "LblDateAdded"
+        Me.LblDateAdded.ReadOnly = True
+        Me.LblDateAdded.Size = New System.Drawing.Size(197, 20)
+        Me.LblDateAdded.TabIndex = 4
+        '
+        'Label28
+        '
+        Me.Label28.AutoSize = True
+        Me.Label28.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label28.Location = New System.Drawing.Point(15, 7)
+        Me.Label28.Name = "Label28"
+        Me.Label28.Size = New System.Drawing.Size(83, 16)
+        Me.Label28.TabIndex = 0
+        Me.Label28.Text = "Date Added:"
+        '
+        'LblLastEdited
+        '
+        Me.LblLastEdited.Location = New System.Drawing.Point(104, 29)
+        Me.LblLastEdited.Name = "LblLastEdited"
+        Me.LblLastEdited.ReadOnly = True
+        Me.LblLastEdited.Size = New System.Drawing.Size(197, 20)
+        Me.LblLastEdited.TabIndex = 6
+        '
+        'Label30
+        '
+        Me.Label30.AutoSize = True
+        Me.Label30.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label30.Location = New System.Drawing.Point(21, 33)
+        Me.Label30.Name = "Label30"
+        Me.Label30.Size = New System.Drawing.Size(77, 16)
+        Me.Label30.TabIndex = 2
+        Me.Label30.Text = "Last Edited:"
+        '
+        'Label31
+        '
+        Me.Label31.AutoSize = True
+        Me.Label31.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label31.Location = New System.Drawing.Point(2, 59)
+        Me.Label31.Name = "Label31"
+        Me.Label31.Size = New System.Drawing.Size(96, 16)
+        Me.Label31.TabIndex = 3
+        Me.Label31.Text = "Last Edited By:"
         '
         'TabPage3
         '
@@ -745,60 +825,6 @@ Partial Class GTMenu
         Me.Label21.TabIndex = 11
         Me.Label21.Text = "Attribute #3:"
         '
-        'LblEditBy
-        '
-        Me.LblEditBy.Location = New System.Drawing.Point(104, 55)
-        Me.LblEditBy.Name = "LblEditBy"
-        Me.LblEditBy.ReadOnly = True
-        Me.LblEditBy.Size = New System.Drawing.Size(197, 20)
-        Me.LblEditBy.TabIndex = 7
-        '
-        'LblLastEdited
-        '
-        Me.LblLastEdited.Location = New System.Drawing.Point(104, 29)
-        Me.LblLastEdited.Name = "LblLastEdited"
-        Me.LblLastEdited.ReadOnly = True
-        Me.LblLastEdited.Size = New System.Drawing.Size(197, 20)
-        Me.LblLastEdited.TabIndex = 6
-        '
-        'LblDateAdded
-        '
-        Me.LblDateAdded.Location = New System.Drawing.Point(104, 3)
-        Me.LblDateAdded.Name = "LblDateAdded"
-        Me.LblDateAdded.ReadOnly = True
-        Me.LblDateAdded.Size = New System.Drawing.Size(197, 20)
-        Me.LblDateAdded.TabIndex = 4
-        '
-        'Label31
-        '
-        Me.Label31.AutoSize = True
-        Me.Label31.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label31.Location = New System.Drawing.Point(2, 59)
-        Me.Label31.Name = "Label31"
-        Me.Label31.Size = New System.Drawing.Size(96, 16)
-        Me.Label31.TabIndex = 3
-        Me.Label31.Text = "Last Edited By:"
-        '
-        'Label30
-        '
-        Me.Label30.AutoSize = True
-        Me.Label30.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label30.Location = New System.Drawing.Point(21, 33)
-        Me.Label30.Name = "Label30"
-        Me.Label30.Size = New System.Drawing.Size(77, 16)
-        Me.Label30.TabIndex = 2
-        Me.Label30.Text = "Last Edited:"
-        '
-        'Label28
-        '
-        Me.Label28.AutoSize = True
-        Me.Label28.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label28.Location = New System.Drawing.Point(15, 7)
-        Me.Label28.Name = "Label28"
-        Me.Label28.Size = New System.Drawing.Size(83, 16)
-        Me.Label28.TabIndex = 0
-        Me.Label28.Text = "Date Added:"
-        '
         'BtnAdmin
         '
         Me.BtnAdmin.Location = New System.Drawing.Point(246, 3)
@@ -915,32 +941,6 @@ Partial Class GTMenu
         Me.AdminMenuToolStripMenuItem.Size = New System.Drawing.Size(144, 22)
         Me.AdminMenuToolStripMenuItem.Text = "Admin Menu"
         '
-        'Panel3
-        '
-        Me.Panel3.Controls.Add(Me.LblEditBy)
-        Me.Panel3.Controls.Add(Me.LblDateAdded)
-        Me.Panel3.Controls.Add(Me.Label28)
-        Me.Panel3.Controls.Add(Me.LblLastEdited)
-        Me.Panel3.Controls.Add(Me.Label30)
-        Me.Panel3.Controls.Add(Me.Label31)
-        Me.Panel3.Location = New System.Drawing.Point(6, 148)
-        Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(312, 94)
-        Me.Panel3.TabIndex = 11
-        '
-        'Panel4
-        '
-        Me.Panel4.Controls.Add(Me.LblSerial)
-        Me.Panel4.Controls.Add(Me.Label27)
-        Me.Panel4.Controls.Add(Me.TxtSerialNumber)
-        Me.Panel4.Controls.Add(Me.txtOwner)
-        Me.Panel4.Controls.Add(Me.TxtNistNumber)
-        Me.Panel4.Controls.Add(Me.Label13)
-        Me.Panel4.Location = New System.Drawing.Point(6, 6)
-        Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(312, 93)
-        Me.Panel4.TabIndex = 35
-        '
         'GTMenu
         '
         Me.AcceptButton = Me.BtnSearch
@@ -957,7 +957,7 @@ Partial Class GTMenu
         Me.MainMenuStrip = Me.MenuStrip1
         Me.MaximizeBox = False
         Me.Name = "GTMenu"
-        Me.Text = "Menu"
+        Me.Text = "GageTracker - Menu"
         Me.TopMost = True
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
@@ -965,16 +965,16 @@ Partial Class GTMenu
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout()
         Me.TabPage2.ResumeLayout(False)
+        Me.Panel4.ResumeLayout(False)
+        Me.Panel4.PerformLayout()
+        Me.Panel3.ResumeLayout(False)
+        Me.Panel3.PerformLayout()
         Me.TabPage3.ResumeLayout(False)
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
         Me.Panel1.ResumeLayout(False)
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
-        Me.Panel3.ResumeLayout(False)
-        Me.Panel3.PerformLayout()
-        Me.Panel4.ResumeLayout(False)
-        Me.Panel4.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

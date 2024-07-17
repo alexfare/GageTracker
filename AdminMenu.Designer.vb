@@ -31,12 +31,12 @@ Partial Class AdminMenu
         Me.btnAccount = New System.Windows.Forms.Button()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CloseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GageListToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SettingsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ChangeDatabaseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CloseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -110,6 +110,12 @@ Partial Class AdminMenu
         Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
         Me.FileToolStripMenuItem.Text = "File"
         '
+        'CloseToolStripMenuItem
+        '
+        Me.CloseToolStripMenuItem.Name = "CloseToolStripMenuItem"
+        Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(103, 22)
+        Me.CloseToolStripMenuItem.Text = "Close"
+        '
         'ViewToolStripMenuItem
         '
         Me.ViewToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MenuToolStripMenuItem, Me.GageListToolStripMenuItem})
@@ -120,13 +126,13 @@ Partial Class AdminMenu
         'MenuToolStripMenuItem
         '
         Me.MenuToolStripMenuItem.Name = "MenuToolStripMenuItem"
-        Me.MenuToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.MenuToolStripMenuItem.Size = New System.Drawing.Size(119, 22)
         Me.MenuToolStripMenuItem.Text = "Menu"
         '
         'GageListToolStripMenuItem
         '
         Me.GageListToolStripMenuItem.Name = "GageListToolStripMenuItem"
-        Me.GageListToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.GageListToolStripMenuItem.Size = New System.Drawing.Size(119, 22)
         Me.GageListToolStripMenuItem.Text = "GageList"
         '
         'SettingsToolStripMenuItem
@@ -139,14 +145,8 @@ Partial Class AdminMenu
         'ChangeDatabaseToolStripMenuItem
         '
         Me.ChangeDatabaseToolStripMenuItem.Name = "ChangeDatabaseToolStripMenuItem"
-        Me.ChangeDatabaseToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ChangeDatabaseToolStripMenuItem.Size = New System.Drawing.Size(166, 22)
         Me.ChangeDatabaseToolStripMenuItem.Text = "Change Database"
-        '
-        'CloseToolStripMenuItem
-        '
-        Me.CloseToolStripMenuItem.Name = "CloseToolStripMenuItem"
-        Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.CloseToolStripMenuItem.Text = "Close"
         '
         'AdminMenu
         '
@@ -165,7 +165,7 @@ Partial Class AdminMenu
         Me.MainMenuStrip = Me.MenuStrip1
         Me.MaximizeBox = False
         Me.Name = "AdminMenu"
-        Me.Text = "AdminMenu"
+        Me.Text = "GageTracker - AdminMenu"
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
         Me.ResumeLayout(False)

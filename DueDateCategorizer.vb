@@ -117,4 +117,14 @@ Public Class DueDateCategorizer
         ' Show the GTMenu form regardless of whether GageID was set
         Me.Close()
     End Sub
+
+    Private Sub MenuToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MenuToolStripMenuItem.Click
+        ' Show the GTMenu form regardless of whether GageID was set
+        GTMenu.Show()
+        GTMenu.LoadGageID()
+    End Sub
+
+    Private Sub CloseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CloseToolStripMenuItem.Click
+        Me.Close()
+    End Sub
 End Class

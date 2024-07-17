@@ -1,10 +1,9 @@
 ﻿Module GlobalVars
     Public UserActive As Boolean
     Public GageIDString As String
-    Public VersionString As String = "5.4.1.28"
+    Public VersionString As String = "5.5.1.29"
     Public DatabaseLocation As String
     Public LoggedInUser As String = ""
-    Public AdminLoad As String = ""
 
     Public Sub LoadDatabaseLocation()
         ' Try to read the database location from a configuration file or registry

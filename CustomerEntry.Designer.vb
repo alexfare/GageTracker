@@ -173,7 +173,7 @@ Partial Class CustomerEntry
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.Name = "CustomerEntry"
-        Me.Text = "CustomerEntry"
+        Me.Text = "GageTracker - CustomerEntry"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

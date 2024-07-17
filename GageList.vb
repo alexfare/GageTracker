@@ -22,7 +22,7 @@ Public Class GageList
         CenterToScreen()
     End Sub
 
-    Public Sub LoadData()
+    Public Sub LoadData(Optional filterQuery As String = "")
         If Not System.IO.File.Exists(GlobalVars.DatabaseLocation) Then
             If PromptForDatabaseLocation() Then
                 ' Try loading the data again with the new location
@@ -37,6 +37,10 @@ Public Class GageList
         Dim connectionString As String
         connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
         Dim query As String = "SELECT GageID, [Status], [PartNumber], [Description], Department, [Gage Type], [Customer], [Inspected Date], [Due Date] FROM CalibrationTracker"
+
+        If Not String.IsNullOrEmpty(filterQuery) Then
+            query &= " WHERE " & filterQuery
+        End If
 
         Using connection As New OleDbConnection(connectionString)
             Try
@@ -141,15 +145,12 @@ Public Class GageList
     Private Sub StartLogin()
         Dim loginForm As New LoginForm1()
         loginForm.Show()
-        Me.Hide()
         My.Settings.FromList = True
-        GlobalVars.AdminLoad = "1"
     End Sub
 
     Private Sub StartAdmin()
         Dim adminMenu As New AdminMenu()
         adminMenu.Show()
-        Me.Hide()
         My.Settings.FromList = True
     End Sub
 
@@ -180,6 +181,18 @@ Public Class GageList
             ' Cancel the close event if the user decides not to close
             e.Cancel = True
         End If
+    End Sub
+
+    Private Sub TextContains_TextChanged(sender As Object, e As EventArgs) Handles TextContains.TextChanged
+        Dim selectedColumn As String = CmbContains.SelectedItem.ToString()
+        Dim filterText As String = TextContains.Text.Trim()
+        Dim filterQuery As String = ""
+
+        If Not String.IsNullOrEmpty(filterText) Then
+            filterQuery = "[" & selectedColumn & "] LIKE '%" & filterText & "%'"
+        End If
+
+        LoadData(filterQuery)
     End Sub
 
 End Class

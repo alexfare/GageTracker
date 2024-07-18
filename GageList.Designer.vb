@@ -54,8 +54,9 @@ Partial Class GageList
         Me.SettingsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReportIssueToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CmbContains = New System.Windows.Forms.ComboBox()
         Me.TextContains = New System.Windows.Forms.TextBox()
+        Me.CmbFilterType = New System.Windows.Forms.ComboBox()
+        Me.CmbContains = New System.Windows.Forms.ComboBox()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CalibrationTrackerBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GTDatabaseDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -205,19 +206,19 @@ Partial Class GageList
         'MenuToolStripMenuItem
         '
         Me.MenuToolStripMenuItem.Name = "MenuToolStripMenuItem"
-        Me.MenuToolStripMenuItem.Size = New System.Drawing.Size(166, 22)
+        Me.MenuToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.MenuToolStripMenuItem.Text = "Menu"
         '
         'ChangeDatabaseToolStripMenuItem
         '
         Me.ChangeDatabaseToolStripMenuItem.Name = "ChangeDatabaseToolStripMenuItem"
-        Me.ChangeDatabaseToolStripMenuItem.Size = New System.Drawing.Size(166, 22)
+        Me.ChangeDatabaseToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ChangeDatabaseToolStripMenuItem.Text = "Change Database"
         '
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(166, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ExitToolStripMenuItem.Text = "Exit"
         '
         'ViewToolStripMenuItem
@@ -265,21 +266,28 @@ Partial Class GageList
         Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(138, 22)
         Me.AboutToolStripMenuItem.Text = "About"
         '
-        'CmbContains
-        '
-        Me.CmbContains.FormattingEnabled = True
-        Me.CmbContains.Items.AddRange(New Object() {"GageID", "Status", "PartNumber", "Description", "Department", "Gage Type", "Customer", "Inspected Date", "Due Date", "Comments"})
-        Me.CmbContains.Location = New System.Drawing.Point(278, 43)
-        Me.CmbContains.Name = "CmbContains"
-        Me.CmbContains.Size = New System.Drawing.Size(121, 21)
-        Me.CmbContains.TabIndex = 8
-        '
         'TextContains
         '
-        Me.TextContains.Location = New System.Drawing.Point(406, 43)
+        Me.TextContains.Location = New System.Drawing.Point(532, 44)
         Me.TextContains.Name = "TextContains"
         Me.TextContains.Size = New System.Drawing.Size(339, 20)
         Me.TextContains.TabIndex = 9
+        '
+        'CmbFilterType
+        '
+        Me.CmbFilterType.FormattingEnabled = True
+        Me.CmbFilterType.Location = New System.Drawing.Point(405, 43)
+        Me.CmbFilterType.Name = "CmbFilterType"
+        Me.CmbFilterType.Size = New System.Drawing.Size(121, 21)
+        Me.CmbFilterType.TabIndex = 10
+        '
+        'CmbContains
+        '
+        Me.CmbContains.FormattingEnabled = True
+        Me.CmbContains.Location = New System.Drawing.Point(278, 43)
+        Me.CmbContains.Name = "CmbContains"
+        Me.CmbContains.Size = New System.Drawing.Size(121, 21)
+        Me.CmbContains.TabIndex = 11
         '
         'GageList
         '
@@ -287,8 +295,9 @@ Partial Class GageList
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1301, 654)
-        Me.Controls.Add(Me.TextContains)
         Me.Controls.Add(Me.CmbContains)
+        Me.Controls.Add(Me.CmbFilterType)
+        Me.Controls.Add(Me.TextContains)
         Me.Controls.Add(Me.BtnDueList)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.txtVersion)
@@ -339,6 +348,7 @@ Partial Class GageList
     Friend WithEvents AdminMenuToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ViewToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents DueDateCalenderToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents CmbContains As ComboBox
     Friend WithEvents TextContains As TextBox
+    Friend WithEvents CmbFilterType As ComboBox
+    Friend WithEvents CmbContains As ComboBox
 End Class

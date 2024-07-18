@@ -97,7 +97,6 @@ Public Class AccountManagement
     End Sub
 
     Private Sub BtnBack_Click(sender As Object, e As EventArgs) Handles BtnBack.Click
-        AdminMenu.Show()
         Me.Close()
     End Sub
 

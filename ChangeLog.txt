@@ -1,3 +1,9 @@
+v5.5.1.30
+Updates to filtering on GageList.
+Updated AdminMenu
+-Menus no longer close AdminMenu
+-Fixed Change Database menu option.
+
 v5.5.1.29
 Updated Menu titles.
 Updated Admin & Login Menu code.

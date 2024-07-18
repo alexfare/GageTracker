@@ -145,7 +145,7 @@ Partial Class AdminMenu
         'ChangeDatabaseToolStripMenuItem
         '
         Me.ChangeDatabaseToolStripMenuItem.Name = "ChangeDatabaseToolStripMenuItem"
-        Me.ChangeDatabaseToolStripMenuItem.Size = New System.Drawing.Size(166, 22)
+        Me.ChangeDatabaseToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ChangeDatabaseToolStripMenuItem.Text = "Change Database"
         '
         'AdminMenu

@@ -15,6 +15,18 @@ Public Class GageList
 
         txtVersion.Text = GlobalVars.VersionString
         Me.StartPosition = FormStartPosition.CenterScreen
+
+        ' Populate the ComboBox for Filter Type
+        CmbFilterType.Items.Add("Contains")
+        CmbFilterType.Items.Add("Exact")
+        CmbFilterType.SelectedIndex = 0 ' Default to Exact
+
+        ' Populate the ComboBox for Contains with relevant column names
+        CmbContains.Items.AddRange(New String() {"GageID", "Status", "PartNumber", "Description", "Gage Type", "Customer", "Inspected Date", "Due Date", "Comments"})
+        CmbContains.SelectedIndex = 0 ' Default to Status
+
+        ' Set default text for TextContains
+        TextContains.Text = ""
     End Sub
 
     Protected Overrides Sub OnLoad(e As EventArgs)
@@ -186,10 +198,15 @@ Public Class GageList
     Private Sub TextContains_TextChanged(sender As Object, e As EventArgs) Handles TextContains.TextChanged
         Dim selectedColumn As String = CmbContains.SelectedItem.ToString()
         Dim filterText As String = TextContains.Text.Trim()
+        Dim filterType As String = CmbFilterType.SelectedItem.ToString()
         Dim filterQuery As String = ""
 
         If Not String.IsNullOrEmpty(filterText) Then
-            filterQuery = "[" & selectedColumn & "] LIKE '%" & filterText & "%'"
+            If filterType = "Contains" Then
+                filterQuery = "[" & selectedColumn & "] LIKE '%" & filterText & "%'"
+            ElseIf filterType = "Exact" Then
+                filterQuery = "[" & selectedColumn & "] = '" & filterText & "'"
+            End If
         End If
 
         LoadData(filterQuery)

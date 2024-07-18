@@ -37,12 +37,10 @@ Public Class AdminMenu
 
     Private Sub btnCustomer_Click(sender As Object, e As EventArgs) Handles btnCustomer.Click
         CustomerEntry.Show()
-        Me.Hide()
     End Sub
 
     Private Sub btnRemoveGage_Click(sender As Object, e As EventArgs) Handles btnRemoveGage.Click
         RemoveGage.Show()
-        Me.Hide()
     End Sub
 
     Private Sub btnStatus_Click(sender As Object, e As EventArgs) Handles btnStatus.Click
@@ -51,7 +49,6 @@ Public Class AdminMenu
 
     Private Sub btnAccount_Click(sender As Object, e As EventArgs) Handles btnAccount.Click
         AccountManagement.Show()
-        Me.Hide()
     End Sub
 
     Private Sub CloseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CloseToolStripMenuItem.Click
@@ -72,5 +69,19 @@ Public Class AdminMenu
     Private Sub GageListToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GageListToolStripMenuItem.Click
         My.Settings.FromList = False
         Me.Hide()
+    End Sub
+
+    Private Sub ChangeDatabaseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ChangeDatabaseToolStripMenuItem.Click
+        Using openFileDialog As New OpenFileDialog()
+            openFileDialog.InitialDirectory = "C:\"
+            openFileDialog.Filter = "Access Database Files (*.accdb)|*.accdb"
+            openFileDialog.FilterIndex = 1
+            openFileDialog.RestoreDirectory = True
+
+            If openFileDialog.ShowDialog() = DialogResult.OK Then
+                GlobalVars.DatabaseLocation = openFileDialog.FileName
+                GlobalVars.SaveDatabaseLocation(GlobalVars.DatabaseLocation)
+            End If
+        End Using
     End Sub
 End Class

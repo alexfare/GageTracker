@@ -61,7 +61,6 @@ Public Class CustomerEntry
 
 
     Private Sub btnBack_Click(sender As Object, e As EventArgs) Handles btnBack.Click
-        AdminMenu.Show()
         Me.Close()
     End Sub
 

@@ -112,6 +112,18 @@ Namespace My
                 Me("FromList") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property SelectedGage() As String
+            Get
+                Return CType(Me("SelectedGage"),String)
+            End Get
+            Set
+                Me("SelectedGage") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

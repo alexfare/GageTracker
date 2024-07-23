@@ -75,6 +75,7 @@ Partial Class GageList
         Me.DataGridView1.DataSource = Me.CalibrationTrackerBindingSource
         Me.DataGridView1.Location = New System.Drawing.Point(12, 72)
         Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.ReadOnly = True
         Me.DataGridView1.Size = New System.Drawing.Size(1277, 541)
         Me.DataGridView1.TabIndex = 0
         '
@@ -83,54 +84,63 @@ Partial Class GageList
         Me.GageIDDataGridViewTextBoxColumn.DataPropertyName = "GageID"
         Me.GageIDDataGridViewTextBoxColumn.HeaderText = "GageID"
         Me.GageIDDataGridViewTextBoxColumn.Name = "GageIDDataGridViewTextBoxColumn"
+        Me.GageIDDataGridViewTextBoxColumn.ReadOnly = True
         '
         'StatusDataGridViewTextBoxColumn
         '
         Me.StatusDataGridViewTextBoxColumn.DataPropertyName = "Status"
         Me.StatusDataGridViewTextBoxColumn.HeaderText = "Status"
         Me.StatusDataGridViewTextBoxColumn.Name = "StatusDataGridViewTextBoxColumn"
+        Me.StatusDataGridViewTextBoxColumn.ReadOnly = True
         '
         'PartNumberDataGridViewTextBoxColumn
         '
         Me.PartNumberDataGridViewTextBoxColumn.DataPropertyName = "PartNumber"
         Me.PartNumberDataGridViewTextBoxColumn.HeaderText = "PartNumber"
         Me.PartNumberDataGridViewTextBoxColumn.Name = "PartNumberDataGridViewTextBoxColumn"
+        Me.PartNumberDataGridViewTextBoxColumn.ReadOnly = True
         '
         'DescriptionDataGridViewTextBoxColumn
         '
         Me.DescriptionDataGridViewTextBoxColumn.DataPropertyName = "Description"
         Me.DescriptionDataGridViewTextBoxColumn.HeaderText = "Description"
         Me.DescriptionDataGridViewTextBoxColumn.Name = "DescriptionDataGridViewTextBoxColumn"
+        Me.DescriptionDataGridViewTextBoxColumn.ReadOnly = True
         '
         'DepartmentDataGridViewTextBoxColumn
         '
         Me.DepartmentDataGridViewTextBoxColumn.DataPropertyName = "Department"
         Me.DepartmentDataGridViewTextBoxColumn.HeaderText = "Department"
         Me.DepartmentDataGridViewTextBoxColumn.Name = "DepartmentDataGridViewTextBoxColumn"
+        Me.DepartmentDataGridViewTextBoxColumn.ReadOnly = True
         '
         'GageTypeDataGridViewTextBoxColumn
         '
         Me.GageTypeDataGridViewTextBoxColumn.DataPropertyName = "Gage Type"
         Me.GageTypeDataGridViewTextBoxColumn.HeaderText = "Gage Type"
         Me.GageTypeDataGridViewTextBoxColumn.Name = "GageTypeDataGridViewTextBoxColumn"
+        Me.GageTypeDataGridViewTextBoxColumn.ReadOnly = True
         '
         'Customer
         '
         Me.Customer.DataPropertyName = "Customer"
         Me.Customer.HeaderText = "Customer"
         Me.Customer.Name = "Customer"
+        Me.Customer.ReadOnly = True
         '
         'InspectedDateDataGridViewTextBoxColumn
         '
         Me.InspectedDateDataGridViewTextBoxColumn.DataPropertyName = "Inspected Date"
         Me.InspectedDateDataGridViewTextBoxColumn.HeaderText = "Inspected Date"
         Me.InspectedDateDataGridViewTextBoxColumn.Name = "InspectedDateDataGridViewTextBoxColumn"
+        Me.InspectedDateDataGridViewTextBoxColumn.ReadOnly = True
         '
         'DueDateDataGridViewTextBoxColumn
         '
         Me.DueDateDataGridViewTextBoxColumn.DataPropertyName = "Due Date"
         Me.DueDateDataGridViewTextBoxColumn.HeaderText = "Due Date"
         Me.DueDateDataGridViewTextBoxColumn.Name = "DueDateDataGridViewTextBoxColumn"
+        Me.DueDateDataGridViewTextBoxColumn.ReadOnly = True
         '
         'CalibrationTrackerBindingSource
         '
@@ -206,19 +216,19 @@ Partial Class GageList
         'MenuToolStripMenuItem
         '
         Me.MenuToolStripMenuItem.Name = "MenuToolStripMenuItem"
-        Me.MenuToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.MenuToolStripMenuItem.Size = New System.Drawing.Size(166, 22)
         Me.MenuToolStripMenuItem.Text = "Menu"
         '
         'ChangeDatabaseToolStripMenuItem
         '
         Me.ChangeDatabaseToolStripMenuItem.Name = "ChangeDatabaseToolStripMenuItem"
-        Me.ChangeDatabaseToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ChangeDatabaseToolStripMenuItem.Size = New System.Drawing.Size(166, 22)
         Me.ChangeDatabaseToolStripMenuItem.Text = "Change Database"
         '
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(166, 22)
         Me.ExitToolStripMenuItem.Text = "Exit"
         '
         'ViewToolStripMenuItem

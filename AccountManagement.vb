@@ -77,6 +77,7 @@ Public Class AccountManagement
             MessageBox.Show("User account created successfully.")
             txtUsername.SelectedIndex = -1 ' Reset the ComboBox selection
             LoadUsers()
+            ClearInputs()
         End Using
     End Sub
 
@@ -136,4 +137,8 @@ Public Class AccountManagement
         End Using
     End Sub
 
+    Private Sub ClearInputs()
+        txtPassword.Clear()
+        txtConfirmPassword.Clear()
+    End Sub
 End Class

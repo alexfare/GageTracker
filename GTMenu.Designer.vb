@@ -104,8 +104,10 @@ Partial Class GTMenu
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GageListToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GageListToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DueToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GageManagementToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AddGageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UpdateGageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -877,7 +879,7 @@ Partial Class GTMenu
         '
         'MenuStrip1
         '
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.GageManagementToolStripMenuItem, Me.AdminToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.ViewToolStripMenuItem, Me.GageManagementToolStripMenuItem, Me.AdminToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Size = New System.Drawing.Size(509, 24)
@@ -886,22 +888,35 @@ Partial Class GTMenu
         '
         'FileToolStripMenuItem
         '
-        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GageListToolStripMenuItem, Me.ExitToolStripMenuItem})
+        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExitToolStripMenuItem})
         Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
         Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
         Me.FileToolStripMenuItem.Text = "File"
         '
-        'GageListToolStripMenuItem
-        '
-        Me.GageListToolStripMenuItem.Name = "GageListToolStripMenuItem"
-        Me.GageListToolStripMenuItem.Size = New System.Drawing.Size(119, 22)
-        Me.GageListToolStripMenuItem.Text = "GageList"
-        '
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(119, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ExitToolStripMenuItem.Text = "Exit"
+        '
+        'ViewToolStripMenuItem
+        '
+        Me.ViewToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GageListToolStripMenuItem1, Me.DueToolStripMenuItem})
+        Me.ViewToolStripMenuItem.Name = "ViewToolStripMenuItem"
+        Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
+        Me.ViewToolStripMenuItem.Text = "View"
+        '
+        'GageListToolStripMenuItem1
+        '
+        Me.GageListToolStripMenuItem1.Name = "GageListToolStripMenuItem1"
+        Me.GageListToolStripMenuItem1.Size = New System.Drawing.Size(180, 22)
+        Me.GageListToolStripMenuItem1.Text = "GageList"
+        '
+        'DueToolStripMenuItem
+        '
+        Me.DueToolStripMenuItem.Name = "DueToolStripMenuItem"
+        Me.DueToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.DueToolStripMenuItem.Text = "Due Date Calender"
         '
         'GageManagementToolStripMenuItem
         '
@@ -1051,7 +1066,6 @@ Partial Class GTMenu
     Friend WithEvents Panel1 As Panel
     Friend WithEvents MenuStrip1 As MenuStrip
     Friend WithEvents FileToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents GageListToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ExitToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GageManagementToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AddGageToolStripMenuItem As ToolStripMenuItem
@@ -1069,4 +1083,7 @@ Partial Class GTMenu
     Friend WithEvents AdminMenuToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents Panel4 As Panel
     Friend WithEvents Panel3 As Panel
+    Friend WithEvents ViewToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GageListToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents DueToolStripMenuItem As ToolStripMenuItem
 End Class

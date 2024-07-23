@@ -84,6 +84,7 @@ Partial Class DueDateCategorizer
         Me.DataGridViewPastDue.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewPastDue.Location = New System.Drawing.Point(3, 3)
         Me.DataGridViewPastDue.Name = "DataGridViewPastDue"
+        Me.DataGridViewPastDue.ReadOnly = True
         Me.DataGridViewPastDue.Size = New System.Drawing.Size(964, 579)
         Me.DataGridViewPastDue.TabIndex = 0
         '
@@ -93,7 +94,7 @@ Partial Class DueDateCategorizer
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(970, 559)
+        Me.TabPage2.Size = New System.Drawing.Size(970, 585)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "30 days"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -104,7 +105,7 @@ Partial Class DueDateCategorizer
         Me.DataGridViewWithin30Days.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewWithin30Days.Location = New System.Drawing.Point(3, 3)
         Me.DataGridViewWithin30Days.Name = "DataGridViewWithin30Days"
-        Me.DataGridViewWithin30Days.Size = New System.Drawing.Size(964, 553)
+        Me.DataGridViewWithin30Days.Size = New System.Drawing.Size(964, 579)
         Me.DataGridViewWithin30Days.TabIndex = 1
         '
         'TabPage3
@@ -113,7 +114,7 @@ Partial Class DueDateCategorizer
         Me.TabPage3.Location = New System.Drawing.Point(4, 22)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(970, 559)
+        Me.TabPage3.Size = New System.Drawing.Size(970, 585)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "60 Days"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -124,7 +125,7 @@ Partial Class DueDateCategorizer
         Me.DataGridViewWithin60Days.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewWithin60Days.Location = New System.Drawing.Point(3, 3)
         Me.DataGridViewWithin60Days.Name = "DataGridViewWithin60Days"
-        Me.DataGridViewWithin60Days.Size = New System.Drawing.Size(964, 553)
+        Me.DataGridViewWithin60Days.Size = New System.Drawing.Size(964, 579)
         Me.DataGridViewWithin60Days.TabIndex = 2
         '
         'MenuStrip1
@@ -146,13 +147,13 @@ Partial Class DueDateCategorizer
         'MenuToolStripMenuItem
         '
         Me.MenuToolStripMenuItem.Name = "MenuToolStripMenuItem"
-        Me.MenuToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.MenuToolStripMenuItem.Size = New System.Drawing.Size(105, 22)
         Me.MenuToolStripMenuItem.Text = "Menu"
         '
         'CloseToolStripMenuItem
         '
         Me.CloseToolStripMenuItem.Name = "CloseToolStripMenuItem"
-        Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(105, 22)
         Me.CloseToolStripMenuItem.Text = "Close"
         '
         'DueDateCategorizer

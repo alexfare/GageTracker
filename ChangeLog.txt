@@ -1,3 +1,9 @@
+v5.5.1.31
+Updated AccountManagement to clear password field.
+Updated filtering to include departments.
+Updated GageList & DueDateCategorizer dataset permissions.
+Updated GTMenu Menu Strip.
+
 v5.5.1.30
 Updates to filtering on GageList.
 Updated AdminMenu

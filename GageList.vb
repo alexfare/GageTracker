@@ -22,7 +22,7 @@ Public Class GageList
         CmbFilterType.SelectedIndex = 0 ' Default to Exact
 
         ' Populate the ComboBox for Contains with relevant column names
-        CmbContains.Items.AddRange(New String() {"GageID", "Status", "PartNumber", "Description", "Gage Type", "Customer", "Inspected Date", "Due Date", "Comments"})
+        CmbContains.Items.AddRange(New String() {"GageID", "Status", "PartNumber", "Description", "Department", "Gage Type", "Customer", "Inspected Date", "Due Date", "Comments"})
         CmbContains.SelectedIndex = 0 ' Default to Status
 
         ' Set default text for TextContains

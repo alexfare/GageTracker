@@ -25,5 +25,8 @@
     <Setting Name="SelectedGage" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="VersionString" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">v5.6.1.32</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

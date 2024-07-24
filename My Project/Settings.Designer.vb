@@ -124,6 +124,15 @@ Namespace My
                 Me("SelectedGage") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("v5.6.1.32")>  _
+        Public ReadOnly Property VersionString() As String
+            Get
+                Return CType(Me("VersionString"),String)
+            End Get
+        End Property
     End Class
 End Namespace
 

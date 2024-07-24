@@ -475,48 +475,51 @@ Partial Class GTMenu
         'LblSerial
         '
         Me.LblSerial.AutoSize = True
-        Me.LblSerial.Location = New System.Drawing.Point(4, 6)
+        Me.LblSerial.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LblSerial.Location = New System.Drawing.Point(8, 4)
         Me.LblSerial.Name = "LblSerial"
-        Me.LblSerial.Size = New System.Drawing.Size(76, 13)
+        Me.LblSerial.Size = New System.Drawing.Size(90, 15)
         Me.LblSerial.TabIndex = 6
         Me.LblSerial.Text = "Serial Number:"
         '
         'Label27
         '
         Me.Label27.AutoSize = True
-        Me.Label27.Location = New System.Drawing.Point(4, 58)
+        Me.Label27.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label27.Location = New System.Drawing.Point(52, 60)
         Me.Label27.Name = "Label27"
-        Me.Label27.Size = New System.Drawing.Size(41, 13)
+        Me.Label27.Size = New System.Drawing.Size(46, 15)
         Me.Label27.TabIndex = 10
         Me.Label27.Text = "Owner:"
         '
         'TxtSerialNumber
         '
-        Me.TxtSerialNumber.Location = New System.Drawing.Point(79, 3)
+        Me.TxtSerialNumber.Location = New System.Drawing.Point(104, 3)
         Me.TxtSerialNumber.Name = "TxtSerialNumber"
-        Me.TxtSerialNumber.Size = New System.Drawing.Size(200, 20)
+        Me.TxtSerialNumber.Size = New System.Drawing.Size(197, 20)
         Me.TxtSerialNumber.TabIndex = 5
         '
         'txtOwner
         '
-        Me.txtOwner.Location = New System.Drawing.Point(79, 55)
+        Me.txtOwner.Location = New System.Drawing.Point(104, 55)
         Me.txtOwner.Name = "txtOwner"
-        Me.txtOwner.Size = New System.Drawing.Size(200, 20)
+        Me.txtOwner.Size = New System.Drawing.Size(197, 20)
         Me.txtOwner.TabIndex = 9
         '
         'TxtNistNumber
         '
-        Me.TxtNistNumber.Location = New System.Drawing.Point(79, 29)
+        Me.TxtNistNumber.Location = New System.Drawing.Point(104, 29)
         Me.TxtNistNumber.Name = "TxtNistNumber"
-        Me.TxtNistNumber.Size = New System.Drawing.Size(200, 20)
+        Me.TxtNistNumber.Size = New System.Drawing.Size(197, 20)
         Me.TxtNistNumber.TabIndex = 7
         '
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(4, 32)
+        Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label13.Location = New System.Drawing.Point(13, 34)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(75, 13)
+        Me.Label13.Size = New System.Drawing.Size(85, 15)
         Me.Label13.TabIndex = 8
         Me.Label13.Text = "NIST Number:"
         '
@@ -896,7 +899,7 @@ Partial Class GTMenu
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(93, 22)
         Me.ExitToolStripMenuItem.Text = "Exit"
         '
         'ViewToolStripMenuItem
@@ -909,13 +912,13 @@ Partial Class GTMenu
         'GageListToolStripMenuItem1
         '
         Me.GageListToolStripMenuItem1.Name = "GageListToolStripMenuItem1"
-        Me.GageListToolStripMenuItem1.Size = New System.Drawing.Size(180, 22)
+        Me.GageListToolStripMenuItem1.Size = New System.Drawing.Size(172, 22)
         Me.GageListToolStripMenuItem1.Text = "GageList"
         '
         'DueToolStripMenuItem
         '
         Me.DueToolStripMenuItem.Name = "DueToolStripMenuItem"
-        Me.DueToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.DueToolStripMenuItem.Size = New System.Drawing.Size(172, 22)
         Me.DueToolStripMenuItem.Text = "Due Date Calender"
         '
         'GageManagementToolStripMenuItem

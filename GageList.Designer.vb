@@ -38,10 +38,8 @@ Partial Class GageList
         Me.GTDatabaseDataSet = New GageCalibrationTracker.GTDatabaseDataSet()
         Me.BtnMenu = New System.Windows.Forms.Button()
         Me.ColorDialog1 = New System.Windows.Forms.ColorDialog()
-        Me.txtVersion = New System.Windows.Forms.Label()
         Me.CalibrationTrackerTableAdapter = New GageCalibrationTracker.GTDatabaseDataSetTableAdapters.CalibrationTrackerTableAdapter()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.BtnDueList = New System.Windows.Forms.Button()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -163,16 +161,6 @@ Partial Class GageList
         Me.BtnMenu.Text = "Menu"
         Me.BtnMenu.UseVisualStyleBackColor = True
         '
-        'txtVersion
-        '
-        Me.txtVersion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtVersion.AutoSize = True
-        Me.txtVersion.Location = New System.Drawing.Point(1254, 632)
-        Me.txtVersion.Name = "txtVersion"
-        Me.txtVersion.Size = New System.Drawing.Size(35, 13)
-        Me.txtVersion.TabIndex = 4
-        Me.txtVersion.Text = "NULL"
-        '
         'CalibrationTrackerTableAdapter
         '
         Me.CalibrationTrackerTableAdapter.ClearBeforeFill = True
@@ -186,16 +174,6 @@ Partial Class GageList
         Me.Label1.Size = New System.Drawing.Size(248, 42)
         Me.Label1.TabIndex = 5
         Me.Label1.Text = "GageTracker"
-        '
-        'BtnDueList
-        '
-        Me.BtnDueList.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.BtnDueList.Location = New System.Drawing.Point(1151, 43)
-        Me.BtnDueList.Name = "BtnDueList"
-        Me.BtnDueList.Size = New System.Drawing.Size(138, 23)
-        Me.BtnDueList.TabIndex = 6
-        Me.BtnDueList.Text = "Due Date Calender"
-        Me.BtnDueList.UseVisualStyleBackColor = True
         '
         'MenuStrip1
         '
@@ -308,9 +286,7 @@ Partial Class GageList
         Me.Controls.Add(Me.CmbContains)
         Me.Controls.Add(Me.CmbFilterType)
         Me.Controls.Add(Me.TextContains)
-        Me.Controls.Add(Me.BtnDueList)
         Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.txtVersion)
         Me.Controls.Add(Me.BtnMenu)
         Me.Controls.Add(Me.DataGridView1)
         Me.Controls.Add(Me.MenuStrip1)
@@ -334,7 +310,6 @@ Partial Class GageList
     Friend WithEvents CalibrationTrackerTableAdapter As GTDatabaseDataSetTableAdapters.CalibrationTrackerTableAdapter
     Friend WithEvents BtnMenu As Button
     Friend WithEvents ColorDialog1 As ColorDialog
-    Friend WithEvents txtVersion As Label
     Friend WithEvents GageIDDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents StatusDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents PartNumberDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
@@ -345,7 +320,6 @@ Partial Class GageList
     Friend WithEvents InspectedDateDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents DueDateDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents Label1 As Label
-    Friend WithEvents BtnDueList As Button
     Friend WithEvents MenuStrip1 As MenuStrip
     Friend WithEvents FileToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ChangeDatabaseToolStripMenuItem As ToolStripMenuItem

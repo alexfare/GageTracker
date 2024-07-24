@@ -105,6 +105,7 @@ Partial Class DueDateCategorizer
         Me.DataGridViewWithin30Days.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewWithin30Days.Location = New System.Drawing.Point(3, 3)
         Me.DataGridViewWithin30Days.Name = "DataGridViewWithin30Days"
+        Me.DataGridViewWithin30Days.ReadOnly = True
         Me.DataGridViewWithin30Days.Size = New System.Drawing.Size(964, 579)
         Me.DataGridViewWithin30Days.TabIndex = 1
         '
@@ -125,6 +126,7 @@ Partial Class DueDateCategorizer
         Me.DataGridViewWithin60Days.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewWithin60Days.Location = New System.Drawing.Point(3, 3)
         Me.DataGridViewWithin60Days.Name = "DataGridViewWithin60Days"
+        Me.DataGridViewWithin60Days.ReadOnly = True
         Me.DataGridViewWithin60Days.Size = New System.Drawing.Size(964, 579)
         Me.DataGridViewWithin60Days.TabIndex = 2
         '

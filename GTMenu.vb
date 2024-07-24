@@ -1,5 +1,6 @@
 ﻿Imports System.Data.OleDb
 Imports System.Threading.Tasks
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 
 Public Class GTMenu
     Dim connectionString As String
@@ -27,6 +28,12 @@ Public Class GTMenu
         txtGageID.Focus()
         SearchCheck = False
         GlobalVars.UserActive = False
+
+        If Not String.IsNullOrEmpty(My.Settings.SelectedGage) Then
+            ' Set the ComboBox to the saved value
+            txtGageID.SelectedItem = My.Settings.SelectedGage
+            BtnSearch_Click(Me, EventArgs.Empty)
+        End If
     End Sub
 
     Protected Overrides Sub OnLoad(e As EventArgs)

@@ -1,3 +1,10 @@
+v5.6.1.32
+Fixed DueDateCategorizer 30 Days & 60 Days dataset being editable still.
+Added the ability to select a gage from gagelist and search.
+Added the ability to double click a gage from gagelist.
+Updated gagelist UI, Removed DueDateCategorizer button (Menu Strip).
+Updated gagelist UI, Removed version display (See About).
+
 v5.5.1.31
 Updated AccountManagement to clear password field.
 Updated filtering to include departments.

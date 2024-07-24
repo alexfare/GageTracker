@@ -2,6 +2,7 @@
 
 Public Class GageList
     Private isClosing As Boolean = False
+    Private selectedGage As String ' Variable to hold the selected GageID
 
     Private Sub GageList_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
@@ -13,7 +14,6 @@ Public Class GageList
             MessageBox.Show("General error: " & ex.Message)
         End Try
 
-        txtVersion.Text = GlobalVars.VersionString
         Me.StartPosition = FormStartPosition.CenterScreen
 
         ' Populate the ComboBox for Filter Type
@@ -27,6 +27,12 @@ Public Class GageList
 
         ' Set default text for TextContains
         TextContains.Text = ""
+
+        ' Add handler for DataGridView selection changed event
+        AddHandler DataGridView1.SelectionChanged, AddressOf DataGridView1_SelectionChanged
+
+        ' Add handler for DataGridView cell double click event
+        AddHandler DataGridView1.CellDoubleClick, AddressOf DataGridView1_CellDoubleClick
     End Sub
 
     Protected Overrides Sub OnLoad(e As EventArgs)
@@ -107,10 +113,6 @@ Public Class GageList
         ' Show the GTMenu form regardless of whether GageID was set
         GTMenu.Show()
         GTMenu.LoadGageID()
-    End Sub
-
-    Private Sub BtnDueList_Click(sender As Object, e As EventArgs) Handles BtnDueList.Click
-        DueDateCategorizer.Show()
     End Sub
 
     '/----- Toolbar Strip -----/
@@ -212,4 +214,32 @@ Public Class GageList
         LoadData(filterQuery)
     End Sub
 
+    Private Sub DataGridView1_SelectionChanged(sender As Object, e As EventArgs)
+        If DataGridView1.SelectedRows.Count > 0 Then
+            Dim selectedRow As DataGridViewRow = DataGridView1.SelectedRows(0)
+
+            ' Ensure the selected row is not a new row and has the required columns
+            If Not selectedRow.IsNewRow AndAlso selectedRow.Cells.Count > 0 AndAlso selectedRow.Cells(0) IsNot Nothing AndAlso Not IsDBNull(selectedRow.Cells(0).Value) Then
+                selectedGage = selectedRow.Cells(0).Value.ToString()
+                My.Settings.SelectedGage = selectedGage
+                ' MessageBox.Show("Selected GageID: " & selectedGage) 'For debugging purposes
+            End If
+        End If
+    End Sub
+
+    Private Sub DataGridView1_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs)
+        If DataGridView1.SelectedRows.Count > 0 Then
+            Dim selectedRow As DataGridViewRow = DataGridView1.SelectedRows(0)
+
+            ' Ensure the selected row is not a new row and has the required columns
+            If Not selectedRow.IsNewRow AndAlso selectedRow.Cells.Count > 0 AndAlso selectedRow.Cells(0) IsNot Nothing AndAlso Not IsDBNull(selectedRow.Cells(0).Value) Then
+                selectedGage = selectedRow.Cells(0).Value.ToString()
+                My.Settings.SelectedGage = selectedGage
+                ' MessageBox.Show("Selected GageID: " & selectedGage) 'For debugging purposes
+            End If
+            ' Open the GTMenu form
+            GTMenu.Show()
+            GTMenu.LoadGageID()
+        End If
+    End Sub
 End Class

@@ -38,14 +38,14 @@ Partial Class GTMenu
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
-        Me.txtInterval = New System.Windows.Forms.TextBox()
+        Me.TxtInterval = New System.Windows.Forms.TextBox()
         Me.Label12 = New System.Windows.Forms.Label()
-        Me.dtInspectedDate = New System.Windows.Forms.DateTimePicker()
+        Me.DtInspectedDate = New System.Windows.Forms.DateTimePicker()
         Me.dtDueDate = New System.Windows.Forms.DateTimePicker()
         Me.BtnUpdate = New System.Windows.Forms.Button()
         Me.BtnClear = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.txtGageID = New System.Windows.Forms.ComboBox()
+        Me.TxtGageID = New System.Windows.Forms.ComboBox()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.txtCalibratedBy = New System.Windows.Forms.ComboBox()
@@ -99,7 +99,7 @@ Partial Class GTMenu
         Me.Label21 = New System.Windows.Forms.Label()
         Me.BtnAdmin = New System.Windows.Forms.Button()
         Me.BtnGageList = New System.Windows.Forms.Button()
-        Me.btnReportIssue = New System.Windows.Forms.Button()
+        Me.BtnReportIssue = New System.Windows.Forms.Button()
         Me.BtnDelete = New System.Windows.Forms.Button()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
@@ -258,12 +258,12 @@ Partial Class GTMenu
         Me.Label11.TabIndex = 22
         Me.Label11.Text = "Comments:"
         '
-        'txtInterval
+        'TxtInterval
         '
-        Me.txtInterval.Location = New System.Drawing.Point(258, 137)
-        Me.txtInterval.Name = "txtInterval"
-        Me.txtInterval.Size = New System.Drawing.Size(214, 20)
-        Me.txtInterval.TabIndex = 13
+        Me.TxtInterval.Location = New System.Drawing.Point(258, 137)
+        Me.TxtInterval.Name = "TxtInterval"
+        Me.TxtInterval.Size = New System.Drawing.Size(214, 20)
+        Me.TxtInterval.TabIndex = 13
         '
         'Label12
         '
@@ -274,12 +274,12 @@ Partial Class GTMenu
         Me.Label12.TabIndex = 24
         Me.Label12.Text = "Interval (Months):"
         '
-        'dtInspectedDate
+        'DtInspectedDate
         '
-        Me.dtInspectedDate.Location = New System.Drawing.Point(258, 98)
-        Me.dtInspectedDate.Name = "dtInspectedDate"
-        Me.dtInspectedDate.Size = New System.Drawing.Size(214, 20)
-        Me.dtInspectedDate.TabIndex = 12
+        Me.DtInspectedDate.Location = New System.Drawing.Point(258, 98)
+        Me.DtInspectedDate.Name = "DtInspectedDate"
+        Me.DtInspectedDate.Size = New System.Drawing.Size(214, 20)
+        Me.DtInspectedDate.TabIndex = 12
         '
         'dtDueDate
         '
@@ -308,7 +308,7 @@ Partial Class GTMenu
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.txtGageID)
+        Me.GroupBox1.Controls.Add(Me.TxtGageID)
         Me.GroupBox1.Controls.Add(Me.BtnSearch)
         Me.GroupBox1.Controls.Add(Me.BtnClear)
         Me.GroupBox1.Controls.Add(Me.Label1)
@@ -318,15 +318,15 @@ Partial Class GTMenu
         Me.GroupBox1.TabIndex = 31
         Me.GroupBox1.TabStop = False
         '
-        'txtGageID
+        'TxtGageID
         '
-        Me.txtGageID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.txtGageID.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.txtGageID.FormattingEnabled = True
-        Me.txtGageID.Location = New System.Drawing.Point(59, 13)
-        Me.txtGageID.Name = "txtGageID"
-        Me.txtGageID.Size = New System.Drawing.Size(255, 21)
-        Me.txtGageID.TabIndex = 0
+        Me.TxtGageID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.TxtGageID.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.TxtGageID.FormattingEnabled = True
+        Me.TxtGageID.Location = New System.Drawing.Point(59, 13)
+        Me.TxtGageID.Name = "TxtGageID"
+        Me.TxtGageID.Size = New System.Drawing.Size(255, 21)
+        Me.TxtGageID.TabIndex = 0
         '
         'TabControl1
         '
@@ -354,11 +354,11 @@ Partial Class GTMenu
         Me.TabPage1.Controls.Add(Me.Label4)
         Me.TabPage1.Controls.Add(Me.dtDueDate)
         Me.TabPage1.Controls.Add(Me.Label5)
-        Me.TabPage1.Controls.Add(Me.dtInspectedDate)
+        Me.TabPage1.Controls.Add(Me.DtInspectedDate)
         Me.TabPage1.Controls.Add(Me.Label6)
         Me.TabPage1.Controls.Add(Me.Label12)
         Me.TabPage1.Controls.Add(Me.txtDescription)
-        Me.TabPage1.Controls.Add(Me.txtInterval)
+        Me.TabPage1.Controls.Add(Me.TxtInterval)
         Me.TabPage1.Controls.Add(Me.Label11)
         Me.TabPage1.Controls.Add(Me.txtPartNumber)
         Me.TabPage1.Controls.Add(Me.Label10)
@@ -849,14 +849,14 @@ Partial Class GTMenu
         Me.BtnGageList.Text = "Gage List"
         Me.BtnGageList.UseVisualStyleBackColor = True
         '
-        'btnReportIssue
+        'BtnReportIssue
         '
-        Me.btnReportIssue.Location = New System.Drawing.Point(327, 3)
-        Me.btnReportIssue.Name = "btnReportIssue"
-        Me.btnReportIssue.Size = New System.Drawing.Size(75, 38)
-        Me.btnReportIssue.TabIndex = 20
-        Me.btnReportIssue.Text = "Report Issue"
-        Me.btnReportIssue.UseVisualStyleBackColor = True
+        Me.BtnReportIssue.Location = New System.Drawing.Point(327, 3)
+        Me.BtnReportIssue.Name = "BtnReportIssue"
+        Me.BtnReportIssue.Size = New System.Drawing.Size(75, 38)
+        Me.BtnReportIssue.TabIndex = 20
+        Me.BtnReportIssue.Text = "Report Issue"
+        Me.BtnReportIssue.UseVisualStyleBackColor = True
         '
         'BtnDelete
         '
@@ -869,7 +869,7 @@ Partial Class GTMenu
         '
         'Panel1
         '
-        Me.Panel1.Controls.Add(Me.btnReportIssue)
+        Me.Panel1.Controls.Add(Me.BtnReportIssue)
         Me.Panel1.Controls.Add(Me.BtnDelete)
         Me.Panel1.Controls.Add(Me.BtnAdd)
         Me.Panel1.Controls.Add(Me.BtnUpdate)
@@ -965,7 +965,7 @@ Partial Class GTMenu
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.BtnGageList
-        Me.ClientSize = New System.Drawing.Size(509, 482)
+        Me.ClientSize = New System.Drawing.Size(509, 480)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.GroupBox1)
@@ -1013,9 +1013,9 @@ Partial Class GTMenu
     Friend WithEvents Label9 As Label
     Friend WithEvents Label10 As Label
     Friend WithEvents Label11 As Label
-    Friend WithEvents txtInterval As TextBox
+    Friend WithEvents TxtInterval As TextBox
     Friend WithEvents Label12 As Label
-    Friend WithEvents dtInspectedDate As DateTimePicker
+    Friend WithEvents DtInspectedDate As DateTimePicker
     Friend WithEvents dtDueDate As DateTimePicker
     Friend WithEvents BtnUpdate As Button
     Friend WithEvents BtnClear As Button
@@ -1058,10 +1058,10 @@ Partial Class GTMenu
     Friend WithEvents Label26 As Label
     Friend WithEvents BtnGageList As Button
     Friend WithEvents txtDepartment As ComboBox
-    Friend WithEvents txtGageID As ComboBox
+    Friend WithEvents TxtGageID As ComboBox
     Friend WithEvents txtGageType As ComboBox
     Friend WithEvents txtCustomer As ComboBox
-    Friend WithEvents btnReportIssue As Button
+    Friend WithEvents BtnReportIssue As Button
     Friend WithEvents Label27 As Label
     Friend WithEvents txtOwner As TextBox
     Friend WithEvents BtnDelete As Button

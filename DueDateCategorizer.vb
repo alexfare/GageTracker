@@ -1,7 +1,18 @@
 ﻿Imports System.Data.OleDb
 
 Public Class DueDateCategorizer
+    Private selectedGage As String
     Private Sub DueDateCategorizer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'Double Click
+        AddHandler DataGridViewPastDue.CellDoubleClick, AddressOf DataGridViewPastDue_CellDoubleClick
+        AddHandler DataGridViewWithin30Days.CellDoubleClick, AddressOf DataGridViewWithin30Days_CellDoubleClick
+        AddHandler DataGridViewWithin60Days.CellDoubleClick, AddressOf DataGridViewWithin60Days_CellDoubleClick
+
+        'Selection
+        AddHandler DataGridViewPastDue.SelectionChanged, AddressOf DataGridViewPastDue_SelectionChanged
+        AddHandler DataGridViewWithin30Days.SelectionChanged, AddressOf DataGridViewWithin30Days_SelectionChanged
+        AddHandler DataGridViewWithin60Days.SelectionChanged, AddressOf DataGridViewWithin60Days_SelectionChanged
+
         Try
             LoadData()
         Catch ex As OleDbException
@@ -126,5 +137,86 @@ Public Class DueDateCategorizer
 
     Private Sub CloseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CloseToolStripMenuItem.Click
         Me.Close()
+    End Sub
+
+    Private Sub DataGridViewPastDue_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs)
+        If DataGridViewPastDue.SelectedRows.Count > 0 Then
+            Dim selectedRow As DataGridViewRow = DataGridViewPastDue.SelectedRows(0)
+
+            ' Ensure the selected row is not a new row and has the required columns
+            If Not selectedRow.IsNewRow AndAlso selectedRow.Cells.Count > 0 AndAlso selectedRow.Cells(0) IsNot Nothing AndAlso Not IsDBNull(selectedRow.Cells(0).Value) Then
+                selectedGage = selectedRow.Cells(0).Value.ToString()
+                My.Settings.SelectedGage = selectedGage
+            End If
+            ' Open the GTMenu form
+            GTMenu.Show()
+            GTMenu.LoadGageID()
+        End If
+    End Sub
+
+    Private Sub DataGridViewWithin30Days_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs)
+        If DataGridViewWithin30Days.SelectedRows.Count > 0 Then
+            Dim selectedRow As DataGridViewRow = DataGridViewWithin30Days.SelectedRows(0)
+
+            ' Ensure the selected row is not a new row and has the required columns
+            If Not selectedRow.IsNewRow AndAlso selectedRow.Cells.Count > 0 AndAlso selectedRow.Cells(0) IsNot Nothing AndAlso Not IsDBNull(selectedRow.Cells(0).Value) Then
+                selectedGage = selectedRow.Cells(0).Value.ToString()
+                My.Settings.SelectedGage = selectedGage
+            End If
+            ' Open the GTMenu form
+            GTMenu.Show()
+            GTMenu.LoadGageID()
+        End If
+    End Sub
+
+    Private Sub DataGridViewWithin60Days_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs)
+        If DataGridViewWithin60Days.SelectedRows.Count > 0 Then
+            Dim selectedRow As DataGridViewRow = DataGridViewWithin60Days.SelectedRows(0)
+
+            ' Ensure the selected row is not a new row and has the required columns
+            If Not selectedRow.IsNewRow AndAlso selectedRow.Cells.Count > 0 AndAlso selectedRow.Cells(0) IsNot Nothing AndAlso Not IsDBNull(selectedRow.Cells(0).Value) Then
+                selectedGage = selectedRow.Cells(0).Value.ToString()
+                My.Settings.SelectedGage = selectedGage
+            End If
+            ' Open the GTMenu form
+            GTMenu.Show()
+            GTMenu.LoadGageID()
+        End If
+    End Sub
+
+    Private Sub DataGridViewPastDue_SelectionChanged(sender As Object, e As EventArgs)
+        If DataGridViewPastDue.SelectedRows.Count > 0 Then
+            Dim selectedRow As DataGridViewRow = DataGridViewPastDue.SelectedRows(0)
+
+            ' Ensure the selected row is not a new row and has the required columns
+            If Not selectedRow.IsNewRow AndAlso selectedRow.Cells.Count > 0 AndAlso selectedRow.Cells(0) IsNot Nothing AndAlso Not IsDBNull(selectedRow.Cells(0).Value) Then
+                selectedGage = selectedRow.Cells(0).Value.ToString()
+                My.Settings.SelectedGage = selectedGage
+            End If
+        End If
+    End Sub
+
+    Private Sub DataGridViewWithin30Days_SelectionChanged(sender As Object, e As EventArgs)
+        If DataGridViewWithin30Days.SelectedRows.Count > 0 Then
+            Dim selectedRow As DataGridViewRow = DataGridViewWithin30Days.SelectedRows(0)
+
+            ' Ensure the selected row is not a new row and has the required columns
+            If Not selectedRow.IsNewRow AndAlso selectedRow.Cells.Count > 0 AndAlso selectedRow.Cells(0) IsNot Nothing AndAlso Not IsDBNull(selectedRow.Cells(0).Value) Then
+                selectedGage = selectedRow.Cells(0).Value.ToString()
+                My.Settings.SelectedGage = selectedGage
+            End If
+        End If
+    End Sub
+
+    Private Sub DataGridViewWithin60Days_SelectionChanged(sender As Object, e As EventArgs)
+        If DataGridViewWithin60Days.SelectedRows.Count > 0 Then
+            Dim selectedRow As DataGridViewRow = DataGridViewWithin60Days.SelectedRows(0)
+
+            ' Ensure the selected row is not a new row and has the required columns
+            If Not selectedRow.IsNewRow AndAlso selectedRow.Cells.Count > 0 AndAlso selectedRow.Cells(0) IsNot Nothing AndAlso Not IsDBNull(selectedRow.Cells(0).Value) Then
+                selectedGage = selectedRow.Cells(0).Value.ToString()
+                My.Settings.SelectedGage = selectedGage
+            End If
+        End If
     End Sub
 End Class

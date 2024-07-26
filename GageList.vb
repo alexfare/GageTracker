@@ -5,6 +5,13 @@ Public Class GageList
     Private selectedGage As String ' Variable to hold the selected GageID
 
     Private Sub GageList_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ' Add handler for DataGridView selection changed event
+        AddHandler DataGridView1.SelectionChanged, AddressOf DataGridView1_SelectionChanged
+
+        ' Add handler for DataGridView cell double click event
+        AddHandler DataGridView1.CellDoubleClick, AddressOf DataGridView1_CellDoubleClick
+
+        'Check if database exists
         Try
             GlobalVars.LoadDatabaseLocation()
             LoadData()
@@ -13,8 +20,6 @@ Public Class GageList
         Catch ex As Exception
             MessageBox.Show("General error: " & ex.Message)
         End Try
-
-        Me.StartPosition = FormStartPosition.CenterScreen
 
         ' Populate the ComboBox for Filter Type
         CmbFilterType.Items.Add("Contains")
@@ -28,11 +33,7 @@ Public Class GageList
         ' Set default text for TextContains
         TextContains.Text = ""
 
-        ' Add handler for DataGridView selection changed event
-        AddHandler DataGridView1.SelectionChanged, AddressOf DataGridView1_SelectionChanged
-
-        ' Add handler for DataGridView cell double click event
-        AddHandler DataGridView1.CellDoubleClick, AddressOf DataGridView1_CellDoubleClick
+        Me.StartPosition = FormStartPosition.CenterScreen
     End Sub
 
     Protected Overrides Sub OnLoad(e As EventArgs)
@@ -172,31 +173,6 @@ Public Class GageList
         DueDateCategorizer.Show()
     End Sub
 
-    Private Sub MainForm_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
-        ' Check if the closing process has already been initiated
-        If isClosing Then
-            Return
-        End If
-
-        ' Check if the user really wants to close the application
-        If MessageBox.Show("Are you sure you want to exit?", "Exit", MessageBoxButtons.YesNo) = DialogResult.Yes Then
-            ' Set the flag to true to indicate the application is closing
-            isClosing = True
-
-            ' Ensure all forms are closed
-            Dim openForms As New List(Of Form)(Application.OpenForms.Cast(Of Form)())
-            For Each frm As Form In openForms
-                frm.Close()
-            Next
-
-            ' Ensure all threads and resources are terminated
-            Application.Exit()
-        Else
-            ' Cancel the close event if the user decides not to close
-            e.Cancel = True
-        End If
-    End Sub
-
     Private Sub TextContains_TextChanged(sender As Object, e As EventArgs) Handles TextContains.TextChanged
         Dim selectedColumn As String = CmbContains.SelectedItem.ToString()
         Dim filterText As String = TextContains.Text.Trim()
@@ -222,7 +198,6 @@ Public Class GageList
             If Not selectedRow.IsNewRow AndAlso selectedRow.Cells.Count > 0 AndAlso selectedRow.Cells(0) IsNot Nothing AndAlso Not IsDBNull(selectedRow.Cells(0).Value) Then
                 selectedGage = selectedRow.Cells(0).Value.ToString()
                 My.Settings.SelectedGage = selectedGage
-                ' MessageBox.Show("Selected GageID: " & selectedGage) 'For debugging purposes
             End If
         End If
     End Sub
@@ -235,11 +210,35 @@ Public Class GageList
             If Not selectedRow.IsNewRow AndAlso selectedRow.Cells.Count > 0 AndAlso selectedRow.Cells(0) IsNot Nothing AndAlso Not IsDBNull(selectedRow.Cells(0).Value) Then
                 selectedGage = selectedRow.Cells(0).Value.ToString()
                 My.Settings.SelectedGage = selectedGage
-                ' MessageBox.Show("Selected GageID: " & selectedGage) 'For debugging purposes
             End If
             ' Open the GTMenu form
             GTMenu.Show()
             GTMenu.LoadGageID()
+        End If
+    End Sub
+
+    Private Sub MainForm_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        ' Check if the closing process has already been initiated
+        If isClosing Then
+            Return
+        End If
+
+        ' Check if the user really wants to close the application
+        If MessageBox.Show("Are you sure you want to exit?", "Exit", MessageBoxButtons.YesNo) = DialogResult.Yes Then
+            ' Set the flag to true to indicate the application is closing
+            isClosing = True
+
+            ' Ensure all forms are closed
+            Dim openForms As New List(Of Form)(Application.OpenForms.Cast(Of Form)())
+            For Each frm As Form In openForms
+                frm.Close()
+            Next
+
+            ' Ensure all threads and resources are terminated
+            Application.Exit()
+        Else
+            ' Cancel the close event if the user decides not to close
+            e.Cancel = True
         End If
     End Sub
 End Class

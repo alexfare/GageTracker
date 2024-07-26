@@ -1,3 +1,7 @@
+v5.6.1.33
+Updated DueDateCategorizer, added double clicking and selection.
+Misc code improvements/updates.
+
 v5.6.1.32
 Fixed DueDateCategorizer 30 Days & 60 Days dataset being editable still.
 Added the ability to select a gage from gagelist and search.

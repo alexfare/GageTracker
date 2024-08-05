@@ -114,6 +114,7 @@ Partial Class GTMenu
         Me.DeleteGageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AdminToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AdminMenuToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TxtStatus = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -959,13 +960,23 @@ Partial Class GTMenu
         Me.AdminMenuToolStripMenuItem.Size = New System.Drawing.Size(144, 22)
         Me.AdminMenuToolStripMenuItem.Text = "Admin Menu"
         '
+        'TxtStatus
+        '
+        Me.TxtStatus.AutoSize = True
+        Me.TxtStatus.Location = New System.Drawing.Point(13, 477)
+        Me.TxtStatus.Name = "TxtStatus"
+        Me.TxtStatus.Size = New System.Drawing.Size(35, 13)
+        Me.TxtStatus.TabIndex = 35
+        Me.TxtStatus.Text = "NULL"
+        '
         'GTMenu
         '
         Me.AcceptButton = Me.BtnSearch
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.BtnGageList
-        Me.ClientSize = New System.Drawing.Size(509, 480)
+        Me.ClientSize = New System.Drawing.Size(509, 493)
+        Me.Controls.Add(Me.TxtStatus)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.GroupBox1)
@@ -1089,4 +1100,5 @@ Partial Class GTMenu
     Friend WithEvents ViewToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GageListToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents DueToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents TxtStatus As Label
 End Class

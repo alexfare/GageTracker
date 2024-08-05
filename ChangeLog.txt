@@ -1,3 +1,9 @@
+v5.7.1.34
+Added Logo to About form.
+Fixed Delete login issue on GTMenu.
+Fixed Delete not refreshing GageList.
+Updating, Adding & Deleting no longer displays a message box. Displays at the bottom of the GTMenu for 3 seconds.
+
 v5.6.1.33
 Updated DueDateCategorizer, added double clicking and selection.
 Misc code improvements/updates.

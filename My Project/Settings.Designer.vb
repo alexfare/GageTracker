@@ -127,7 +127,7 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("v5.6.1.33")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("v5.7.1.34")>  _
         Public ReadOnly Property VersionString() As String
             Get
                 Return CType(Me("VersionString"),String)

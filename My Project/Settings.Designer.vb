@@ -127,11 +127,58 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("v5.7.1.34")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("v5.8.1.35")>  _
         Public ReadOnly Property VersionString() As String
             Get
                 Return CType(Me("VersionString"),String)
             End Get
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property LastOpened() As Date
+            Get
+                Return CType(Me("LastOpened"),Date)
+            End Get
+            Set
+                Me("LastOpened") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property LastEdit() As String
+            Get
+                Return CType(Me("LastEdit"),String)
+            End Get
+            Set
+                Me("LastEdit") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property LastActivity() As String
+            Get
+                Return CType(Me("LastActivity"),String)
+            End Get
+            Set
+                Me("LastActivity") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property ProgramOpenCount() As Integer
+            Get
+                Return CType(Me("ProgramOpenCount"),Integer)
+            End Get
+            Set
+                Me("ProgramOpenCount") = value
+            End Set
         End Property
     End Class
 End Namespace

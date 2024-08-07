@@ -74,7 +74,7 @@ Partial Class GageList
         Me.DataGridView1.Location = New System.Drawing.Point(12, 72)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
-        Me.DataGridView1.Size = New System.Drawing.Size(1277, 541)
+        Me.DataGridView1.Size = New System.Drawing.Size(1277, 549)
         Me.DataGridView1.TabIndex = 0
         '
         'GageIDDataGridViewTextBoxColumn
@@ -154,7 +154,7 @@ Partial Class GageList
         '
         Me.BtnMenu.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.BtnMenu.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.BtnMenu.Location = New System.Drawing.Point(12, 619)
+        Me.BtnMenu.Location = New System.Drawing.Point(12, 627)
         Me.BtnMenu.Name = "BtnMenu"
         Me.BtnMenu.Size = New System.Drawing.Size(293, 23)
         Me.BtnMenu.TabIndex = 2
@@ -282,7 +282,7 @@ Partial Class GageList
         Me.AcceptButton = Me.BtnMenu
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1301, 654)
+        Me.ClientSize = New System.Drawing.Size(1301, 662)
         Me.Controls.Add(Me.CmbContains)
         Me.Controls.Add(Me.CmbFilterType)
         Me.Controls.Add(Me.TextContains)

@@ -122,7 +122,7 @@ Public Class GageList
     End Sub
 
     Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
-        Application.Exit()
+        Me.Close()
     End Sub
 
     Private Sub ChangeDatabaseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ChangeDatabaseToolStripMenuItem.Click
@@ -140,7 +140,7 @@ Public Class GageList
     End Sub
 
     Private Sub MenuToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MenuToolStripMenuItem.Click
-        ' Show the GTMenu form regardless of whether GageID was set
+        My.Settings.SelectedGage = ""
         GTMenu.Show()
         GTMenu.LoadGageID()
     End Sub

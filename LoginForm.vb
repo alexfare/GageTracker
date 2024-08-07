@@ -35,7 +35,7 @@ Public Class LoginForm1
                         ' Passwords match
                         Dim adminMenu As New AdminMenu()
                         adminMenu.Show()
-                        My.Settings.LoggedUser = txtUsername.Text
+                        My.Settings.LoggedUser = username
 
                         'New Settings
                         My.Settings.isAdmin = True

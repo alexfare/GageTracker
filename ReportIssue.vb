@@ -31,7 +31,7 @@ Public Class ReportIssue
         mail.Body = $"Name: {txtName.Text}" + Environment.NewLine +
             $"Email: {If(String.IsNullOrWhiteSpace(txtEmail.Text), "Not provided", txtEmail.Text)}" + Environment.NewLine +
             $"Comment: {txtComment.Text}" + Environment.NewLine +
-            $"Version: {GlobalVars.VersionString}"
+            $"Version: {My.Settings.VersionString}"
 
         Dim ZGVjcnlwdGVkUGFzc3dvcmQ = CredentialsManager.R2V0RGVjcnlwdGVkUGFzc3dvcmQ
         Dim smtp As New SmtpClient("smtp.gmail.com")

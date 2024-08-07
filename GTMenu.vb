@@ -592,7 +592,8 @@ Public Class GTMenu
     End Sub
 
     Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
-        Application.Exit()
+        'Application.Exit()
+        Me.Close()
     End Sub
 
     Private Sub AddGageToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddGageToolStripMenuItem.Click

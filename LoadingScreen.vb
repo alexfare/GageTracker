@@ -35,5 +35,11 @@
     Private Sub Menu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         My.Settings.isAdmin = False
         My.Settings.LoggedUser = ""
+        My.Settings.LastOpened = Now
+
+        Dim CurrentOpenCount As Integer
+
+        CurrentOpenCount = My.Settings.ProgramOpenCount
+        My.Settings.ProgramOpenCount = CurrentOpenCount + 1
     End Sub
 End Class

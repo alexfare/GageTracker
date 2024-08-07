@@ -6,6 +6,11 @@ Public Class AdminMenu
 
     Private Sub AdminMenu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
+
+        'Audit Log
+        TxtCurrentUser.Text = My.Settings.LoggedUser
+        TxtLastOpened.Text = My.Settings.LastOpened
+        TxtOpenCount.Text = My.Settings.ProgramOpenCount
     End Sub
 
     Protected Overrides Sub OnLoad(e As EventArgs)

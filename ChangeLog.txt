@@ -1,3 +1,13 @@
+v5.8.1.35
+File > Menu on GageList no longer opens the selected gage. Opens a blank GTMenu.
+Updates to AdminMenu.
+Added more audit information to AdminMenu.
+Added TabControl to AdminMenu.
+Slight adjustment to the GageList display.
+Removed unused variables in GlobalVars.
+Corrected ReportIssue version control.
+Fixed error after using File > Exit.
+
 v5.7.1.34
 Added Logo to About form.
 Fixed Delete login issue on GTMenu.

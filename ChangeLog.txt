@@ -1,3 +1,8 @@
+v5.8.1.36
+Fixed Program Open Count under AdminMenu Audit.
+Updated/cleaned code across various forms.
+Moved Open Count to ApplicationEvents.
+
 v5.8.1.35
 File > Menu on GageList no longer opens the selected gage. Opens a blank GTMenu.
 Updates to AdminMenu.

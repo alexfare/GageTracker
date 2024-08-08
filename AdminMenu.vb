@@ -1,5 +1,5 @@
 ﻿Imports System.Text
-Imports System.Windows.Forms ' Make sure this import is present for clipboard access
+Imports System.Windows.Forms
 
 Public Class AdminMenu
     Dim connectionString As String

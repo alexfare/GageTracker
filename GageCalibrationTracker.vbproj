@@ -32,7 +32,7 @@
     <ProductName>GageTracker</ProductName>
     <PublisherName>Alex Fare</PublisherName>
     <MinimumRequiredVersion>5.5.1.29</MinimumRequiredVersion>
-    <ApplicationRevision>36</ApplicationRevision>
+    <ApplicationRevision>37</ApplicationRevision>
     <ApplicationVersion>5.8.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -174,7 +174,9 @@
     <Compile Include="LoginForm.Designer.vb">
       <DependentUpon>LoginForm.vb</DependentUpon>
     </Compile>
-    <Compile Include="LoginForm.vb" />
+    <Compile Include="LoginForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="GTMenu.vb">
       <SubType>Form</SubType>
     </Compile>

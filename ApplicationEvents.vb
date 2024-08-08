@@ -1,16 +1,27 @@
 ﻿Namespace My
-    ' The following events are available for MyApplication:
-    ' Startup: Raised when the application starts, before the startup form is created.
-    ' Shutdown: Raised after all application forms are closed.  This event is not raised if the application terminates abnormally.
-    ' UnhandledException: Raised if the application encounters an unhandled exception.
-    ' StartupNextInstance: Raised when launching a single-instance application and the application is already active. 
-    ' NetworkAvailabilityChanged: Raised when the network connection is connected or disconnected.
     Partial Friend Class MyApplication
-        ' Application shutdown event handler
         Private Sub MyApplication_Shutdown(sender As Object, e As EventArgs) Handles Me.Shutdown
-            ' Ensure all threads and resources are terminated
-            'Application.Exit()
+            My.Settings.isAdmin = False
+            My.Settings.LoggedUser = ""
+            My.Settings.LastOpened = Now
+
+            Dim CurrentOpenCount As Integer
+            Dim NewOpenCount As Integer
+
+            CurrentOpenCount = My.Settings.ProgramOpenCount
+            NewOpenCount = CurrentOpenCount + 1
+            My.Settings.ProgramOpenCount = NewOpenCount
         End Sub
 
+        Private Sub MyApplication_UnhandledException(sender As Object, e As Microsoft.VisualBasic.ApplicationServices.UnhandledExceptionEventArgs) Handles Me.UnhandledException
+            MessageBox.Show("An unhandled exception occurred: " & e.Exception.Message)
+            e.ExitApplication = False
+        End Sub
+
+        Private Sub MyApplication_StartupNextInstance(sender As Object, e As Microsoft.VisualBasic.ApplicationServices.StartupNextInstanceEventArgs) Handles Me.StartupNextInstance
+            If Me.MainForm IsNot Nothing Then
+                Me.MainForm.Activate()
+            End If
+        End Sub
     End Class
 End Namespace

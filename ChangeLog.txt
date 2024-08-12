@@ -1,3 +1,10 @@
+v5.9.0.37
+Added a filter for filtering out all status options besides "Active" on GageList.
+Added website button under settings on GageList.
+Added Github button under settings on GageList.
+Updated how verison control works. (vMajor.Minor.Patch.Build)
+Misc code improvements/updates.
+
 v5.8.1.36
 Fixed Program Open Count under AdminMenu Audit.
 Updated/cleaned code across various forms.

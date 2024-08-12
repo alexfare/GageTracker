@@ -52,9 +52,12 @@ Partial Class GageList
         Me.SettingsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReportIssueToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GithubToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.WebsiteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TextContains = New System.Windows.Forms.TextBox()
         Me.CmbFilterType = New System.Windows.Forms.ComboBox()
         Me.CmbContains = New System.Windows.Forms.ComboBox()
+        Me.CheckBoxShowAll = New System.Windows.Forms.CheckBox()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CalibrationTrackerBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GTDatabaseDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -237,7 +240,7 @@ Partial Class GageList
         '
         'SettingsToolStripMenuItem
         '
-        Me.SettingsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ReportIssueToolStripMenuItem, Me.AboutToolStripMenuItem})
+        Me.SettingsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ReportIssueToolStripMenuItem, Me.AboutToolStripMenuItem, Me.GithubToolStripMenuItem, Me.WebsiteToolStripMenuItem})
         Me.SettingsToolStripMenuItem.Name = "SettingsToolStripMenuItem"
         Me.SettingsToolStripMenuItem.Size = New System.Drawing.Size(61, 20)
         Me.SettingsToolStripMenuItem.Text = "Settings"
@@ -253,6 +256,18 @@ Partial Class GageList
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
         Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(138, 22)
         Me.AboutToolStripMenuItem.Text = "About"
+        '
+        'GithubToolStripMenuItem
+        '
+        Me.GithubToolStripMenuItem.Name = "GithubToolStripMenuItem"
+        Me.GithubToolStripMenuItem.Size = New System.Drawing.Size(138, 22)
+        Me.GithubToolStripMenuItem.Text = "Github"
+        '
+        'WebsiteToolStripMenuItem
+        '
+        Me.WebsiteToolStripMenuItem.Name = "WebsiteToolStripMenuItem"
+        Me.WebsiteToolStripMenuItem.Size = New System.Drawing.Size(138, 22)
+        Me.WebsiteToolStripMenuItem.Text = "Website"
         '
         'TextContains
         '
@@ -277,12 +292,23 @@ Partial Class GageList
         Me.CmbContains.Size = New System.Drawing.Size(121, 21)
         Me.CmbContains.TabIndex = 11
         '
+        'CheckBoxShowAll
+        '
+        Me.CheckBoxShowAll.AutoSize = True
+        Me.CheckBoxShowAll.Location = New System.Drawing.Point(1063, 47)
+        Me.CheckBoxShowAll.Name = "CheckBoxShowAll"
+        Me.CheckBoxShowAll.Size = New System.Drawing.Size(81, 17)
+        Me.CheckBoxShowAll.TabIndex = 12
+        Me.CheckBoxShowAll.Text = "Filter Status"
+        Me.CheckBoxShowAll.UseVisualStyleBackColor = True
+        '
         'GageList
         '
         Me.AcceptButton = Me.BtnMenu
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1301, 662)
+        Me.Controls.Add(Me.CheckBoxShowAll)
         Me.Controls.Add(Me.CmbContains)
         Me.Controls.Add(Me.CmbFilterType)
         Me.Controls.Add(Me.TextContains)
@@ -335,4 +361,7 @@ Partial Class GageList
     Friend WithEvents TextContains As TextBox
     Friend WithEvents CmbFilterType As ComboBox
     Friend WithEvents CmbContains As ComboBox
+    Friend WithEvents CheckBoxShowAll As CheckBox
+    Friend WithEvents WebsiteToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GithubToolStripMenuItem As ToolStripMenuItem
 End Class

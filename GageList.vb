@@ -5,13 +5,11 @@ Public Class GageList
     Private selectedGage As String ' Variable to hold the selected GageID
 
     Private Sub GageList_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ' Add handler for DataGridView selection changed event
+        ' Handlers for Datagrid selection.
         AddHandler DataGridView1.SelectionChanged, AddressOf DataGridView1_SelectionChanged
-
-        ' Add handler for DataGridView cell double click event
         AddHandler DataGridView1.CellDoubleClick, AddressOf DataGridView1_CellDoubleClick
 
-        'Check if database exists
+        ' Check if database exists
         Try
             GlobalVars.LoadDatabaseLocation()
             LoadData()
@@ -30,8 +28,11 @@ Public Class GageList
         CmbContains.Items.AddRange(New String() {"GageID", "Status", "PartNumber", "Description", "Department", "Gage Type", "Customer", "Inspected Date", "Due Date", "Comments"})
         CmbContains.SelectedIndex = 0 ' Default to Status
 
-        ' Set default text for TextContains
-        TextContains.Text = ""
+        TextContains.Text = "" ' Set default text for TextContains
+
+        ' Initialize the CheckBox setting
+        CheckBoxShowAll.Checked = My.Settings.ShowAll
+        ApplyStatusFilter()
 
         Me.StartPosition = FormStartPosition.CenterScreen
     End Sub
@@ -98,11 +99,11 @@ Public Class GageList
         Return False
     End Function
 
-    ' Set Zebra striping
-    Private Sub DataGridView1_RowPostPaint(sender As Object, e As DataGridViewRowPostPaintEventArgs) Handles DataGridView1.RowPostPaint
+    Private Sub DataGridView1_RowPostPaint(sender As Object, e As DataGridViewRowPostPaintEventArgs) Handles DataGridView1.RowPostPaint ' Set Zebra striping
         Dim grid As DataGridView = CType(sender, DataGridView)
         If e.RowIndex >= 0 Then
             If e.RowIndex Mod 2 = 0 Then
+                'grid.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.Cyan
                 grid.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.LightGray
             Else
                 grid.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.White
@@ -158,14 +159,12 @@ Public Class GageList
     End Sub
 
     Private Sub StartLogin()
-        Dim loginForm As New LoginForm1()
-        loginForm.Show()
+        LoginForm1.Show()
         My.Settings.FromList = True
     End Sub
 
     Private Sub StartAdmin()
-        Dim adminMenu As New AdminMenu()
-        adminMenu.Show()
+        AdminMenu.Show()
         My.Settings.FromList = True
     End Sub
 
@@ -217,16 +216,47 @@ Public Class GageList
         End If
     End Sub
 
+    Private Sub CheckBoxShowAll_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxShowAll.CheckedChanged
+        ' Save the setting and apply the filter
+        My.Settings.ShowAll = CheckBoxShowAll.Checked
+        My.Settings.Save()
+        ApplyStatusFilter()
+    End Sub
+
+    Private Sub ApplyStatusFilter()
+        ' Apply filter based on the CheckBox state
+        Dim filterQuery As String = ""
+        If Not My.Settings.ShowAll Then
+            filterQuery = "[Status] = 'Active'"
+        End If
+        LoadData(filterQuery)
+    End Sub
+
+    Private Sub GithubToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GithubToolStripMenuItem.Click
+        Dim url As String = "https://github.com/alexfare/GageTracker"
+        Try
+            Process.Start(url)
+        Catch ex As Exception
+            MessageBox.Show("An error occurred while trying to open the URL: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub WebsiteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles WebsiteToolStripMenuItem.Click
+        Dim url As String = "http://alexfare.com"
+        Try
+            Process.Start(url)
+        Catch ex As Exception
+            MessageBox.Show("An error occurred while trying to open the URL: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
     Private Sub MainForm_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
-        ' Check if the closing process has already been initiated
         If isClosing Then
             Return
         End If
 
-        ' Check if the user really wants to close the application
         If MessageBox.Show("Are you sure you want to exit?", "Exit", MessageBoxButtons.YesNo) = DialogResult.Yes Then
-            ' Set the flag to true to indicate the application is closing
-            isClosing = True
+            isClosing = True ' Set the flag to true to indicate the application is closing
 
             ' Ensure all forms are closed
             Dim openForms As New List(Of Form)(Application.OpenForms.Cast(Of Form)())
@@ -234,11 +264,9 @@ Public Class GageList
                 frm.Close()
             Next
 
-            ' Ensure all threads and resources are terminated
             Application.Exit()
         Else
-            ' Cancel the close event if the user decides not to close
-            e.Cancel = True
+            e.Cancel = True ' Cancel the close event if the user decides not to close
         End If
     End Sub
 End Class

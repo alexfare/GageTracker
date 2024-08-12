@@ -3,8 +3,7 @@ Imports System.IO
 Imports System.Text
 
 Public Class SecureHandler
-    ' Method to encrypt a string
-    Public Shared Function EncryptString(input As String, key As Byte(), iv As Byte()) As String
+    Public Shared Function EncryptString(input As String, key As Byte(), iv As Byte()) As String ' Method to encrypt a string
         Using aes As Aes = Aes.Create()
             aes.Key = key
             aes.IV = iv
@@ -21,8 +20,7 @@ Public Class SecureHandler
         End Using
     End Function
 
-    ' Method to decrypt a string
-    Public Shared Function DecryptString(input As String, key As Byte(), iv As Byte()) As String
+    Public Shared Function DecryptString(input As String, key As Byte(), iv As Byte()) As String ' Method to decrypt a string
         Dim buffer As Byte() = Convert.FromBase64String(input)
         Using aes As Aes = Aes.Create()
             aes.Key = key

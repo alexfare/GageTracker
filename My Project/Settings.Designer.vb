@@ -127,7 +127,7 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("v5.8.1.36")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("v5.9.0.37")>  _
         Public ReadOnly Property VersionString() As String
             Get
                 Return CType(Me("VersionString"),String)
@@ -178,6 +178,18 @@ Namespace My
             End Get
             Set
                 Me("ProgramOpenCount") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property ShowAll() As Boolean
+            Get
+                Return CType(Me("ShowAll"),Boolean)
+            End Get
+            Set
+                Me("ShowAll") = value
             End Set
         End Property
     End Class

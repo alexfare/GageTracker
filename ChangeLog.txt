@@ -1,3 +1,9 @@
+v5.9.1.38
+Updated GTMenu Menu bar, Adding Settings tab.
+Updated GTMenu, No longer stays in front.
+Removed ReportIssue button on GTMenu. (See Menu Bar).
+Updated GageList.
+
 v5.9.0.37
 Added a filter for filtering out all status options besides "Active" on GageList.
 Added website button under settings on GageList.

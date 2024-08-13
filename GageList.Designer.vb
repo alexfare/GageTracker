@@ -295,11 +295,11 @@ Partial Class GageList
         'CheckBoxShowAll
         '
         Me.CheckBoxShowAll.AutoSize = True
-        Me.CheckBoxShowAll.Location = New System.Drawing.Point(1063, 47)
+        Me.CheckBoxShowAll.Location = New System.Drawing.Point(1170, 47)
         Me.CheckBoxShowAll.Name = "CheckBoxShowAll"
-        Me.CheckBoxShowAll.Size = New System.Drawing.Size(81, 17)
+        Me.CheckBoxShowAll.Size = New System.Drawing.Size(119, 17)
         Me.CheckBoxShowAll.TabIndex = 12
-        Me.CheckBoxShowAll.Text = "Filter Status"
+        Me.CheckBoxShowAll.Text = "Show / Filter Status"
         Me.CheckBoxShowAll.UseVisualStyleBackColor = True
         '
         'GageList

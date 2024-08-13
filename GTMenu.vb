@@ -501,7 +501,7 @@ Public Class GTMenu
         GageList.LoadData()
     End Sub
 
-    Private Sub BtnReportIssue_Click(sender As Object, e As EventArgs) Handles BtnReportIssue.Click
+    Private Sub BtnReportIssue_Click(sender As Object, e As EventArgs)
         ReportIssue.Show()
         Me.Hide()
     End Sub
@@ -712,5 +712,22 @@ Public Class GTMenu
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         TxtStatus.Text = ""  ' Clear the text
         Timer1.Enabled = False  ' Stop the timer
+    End Sub
+
+    Private Sub ReportIssueToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ReportIssueToolStripMenuItem.Click
+        ReportIssue.Show()
+    End Sub
+
+    Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
+        About.Show()
+    End Sub
+
+    Private Sub WebsiteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles WebsiteToolStripMenuItem.Click
+        Dim url As String = "http://alexfare.com"
+        Try
+            Process.Start(url)
+        Catch ex As Exception
+            MessageBox.Show("An error occurred while trying to open the URL: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
 End Class

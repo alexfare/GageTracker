@@ -99,7 +99,6 @@ Partial Class GTMenu
         Me.Label21 = New System.Windows.Forms.Label()
         Me.BtnAdmin = New System.Windows.Forms.Button()
         Me.BtnGageList = New System.Windows.Forms.Button()
-        Me.BtnReportIssue = New System.Windows.Forms.Button()
         Me.BtnDelete = New System.Windows.Forms.Button()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
@@ -114,6 +113,10 @@ Partial Class GTMenu
         Me.DeleteGageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AdminToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AdminMenuToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SettingsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ReportIssueToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.WebsiteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TxtStatus = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -139,9 +142,9 @@ Partial Class GTMenu
         '
         'BtnAdd
         '
-        Me.BtnAdd.Location = New System.Drawing.Point(3, 3)
+        Me.BtnAdd.Location = New System.Drawing.Point(3, 5)
         Me.BtnAdd.Name = "BtnAdd"
-        Me.BtnAdd.Size = New System.Drawing.Size(75, 38)
+        Me.BtnAdd.Size = New System.Drawing.Size(91, 38)
         Me.BtnAdd.TabIndex = 16
         Me.BtnAdd.Text = "Add Gage"
         Me.BtnAdd.UseVisualStyleBackColor = True
@@ -291,9 +294,9 @@ Partial Class GTMenu
         '
         'BtnUpdate
         '
-        Me.BtnUpdate.Location = New System.Drawing.Point(84, 3)
+        Me.BtnUpdate.Location = New System.Drawing.Point(100, 5)
         Me.BtnUpdate.Name = "BtnUpdate"
-        Me.BtnUpdate.Size = New System.Drawing.Size(75, 38)
+        Me.BtnUpdate.Size = New System.Drawing.Size(91, 38)
         Me.BtnUpdate.TabIndex = 17
         Me.BtnUpdate.Text = "Update Gage"
         Me.BtnUpdate.UseVisualStyleBackColor = True
@@ -833,9 +836,9 @@ Partial Class GTMenu
         '
         'BtnAdmin
         '
-        Me.BtnAdmin.Location = New System.Drawing.Point(246, 3)
+        Me.BtnAdmin.Location = New System.Drawing.Point(294, 5)
         Me.BtnAdmin.Name = "BtnAdmin"
-        Me.BtnAdmin.Size = New System.Drawing.Size(75, 38)
+        Me.BtnAdmin.Size = New System.Drawing.Size(91, 38)
         Me.BtnAdmin.TabIndex = 19
         Me.BtnAdmin.Text = "Admin Menu"
         Me.BtnAdmin.UseVisualStyleBackColor = True
@@ -843,34 +846,24 @@ Partial Class GTMenu
         'BtnGageList
         '
         Me.BtnGageList.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.BtnGageList.Location = New System.Drawing.Point(408, 3)
+        Me.BtnGageList.Location = New System.Drawing.Point(391, 5)
         Me.BtnGageList.Name = "BtnGageList"
-        Me.BtnGageList.Size = New System.Drawing.Size(75, 38)
+        Me.BtnGageList.Size = New System.Drawing.Size(91, 38)
         Me.BtnGageList.TabIndex = 21
         Me.BtnGageList.Text = "Gage List"
         Me.BtnGageList.UseVisualStyleBackColor = True
         '
-        'BtnReportIssue
-        '
-        Me.BtnReportIssue.Location = New System.Drawing.Point(327, 3)
-        Me.BtnReportIssue.Name = "BtnReportIssue"
-        Me.BtnReportIssue.Size = New System.Drawing.Size(75, 38)
-        Me.BtnReportIssue.TabIndex = 20
-        Me.BtnReportIssue.Text = "Report Issue"
-        Me.BtnReportIssue.UseVisualStyleBackColor = True
-        '
         'BtnDelete
         '
-        Me.BtnDelete.Location = New System.Drawing.Point(165, 3)
+        Me.BtnDelete.Location = New System.Drawing.Point(197, 5)
         Me.BtnDelete.Name = "BtnDelete"
-        Me.BtnDelete.Size = New System.Drawing.Size(75, 38)
+        Me.BtnDelete.Size = New System.Drawing.Size(91, 38)
         Me.BtnDelete.TabIndex = 18
         Me.BtnDelete.Text = "Delete Gage"
         Me.BtnDelete.UseVisualStyleBackColor = True
         '
         'Panel1
         '
-        Me.Panel1.Controls.Add(Me.BtnReportIssue)
         Me.Panel1.Controls.Add(Me.BtnDelete)
         Me.Panel1.Controls.Add(Me.BtnAdd)
         Me.Panel1.Controls.Add(Me.BtnUpdate)
@@ -883,7 +876,7 @@ Partial Class GTMenu
         '
         'MenuStrip1
         '
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.ViewToolStripMenuItem, Me.GageManagementToolStripMenuItem, Me.AdminToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.ViewToolStripMenuItem, Me.GageManagementToolStripMenuItem, Me.AdminToolStripMenuItem, Me.SettingsToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Size = New System.Drawing.Size(509, 24)
@@ -960,6 +953,31 @@ Partial Class GTMenu
         Me.AdminMenuToolStripMenuItem.Size = New System.Drawing.Size(144, 22)
         Me.AdminMenuToolStripMenuItem.Text = "Admin Menu"
         '
+        'SettingsToolStripMenuItem
+        '
+        Me.SettingsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ReportIssueToolStripMenuItem, Me.AboutToolStripMenuItem, Me.WebsiteToolStripMenuItem})
+        Me.SettingsToolStripMenuItem.Name = "SettingsToolStripMenuItem"
+        Me.SettingsToolStripMenuItem.Size = New System.Drawing.Size(61, 20)
+        Me.SettingsToolStripMenuItem.Text = "Settings"
+        '
+        'ReportIssueToolStripMenuItem
+        '
+        Me.ReportIssueToolStripMenuItem.Name = "ReportIssueToolStripMenuItem"
+        Me.ReportIssueToolStripMenuItem.Size = New System.Drawing.Size(138, 22)
+        Me.ReportIssueToolStripMenuItem.Text = "Report Issue"
+        '
+        'AboutToolStripMenuItem
+        '
+        Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(138, 22)
+        Me.AboutToolStripMenuItem.Text = "About"
+        '
+        'WebsiteToolStripMenuItem
+        '
+        Me.WebsiteToolStripMenuItem.Name = "WebsiteToolStripMenuItem"
+        Me.WebsiteToolStripMenuItem.Size = New System.Drawing.Size(138, 22)
+        Me.WebsiteToolStripMenuItem.Text = "Website"
+        '
         'TxtStatus
         '
         Me.TxtStatus.AutoSize = True
@@ -987,7 +1005,6 @@ Partial Class GTMenu
         Me.MaximizeBox = False
         Me.Name = "GTMenu"
         Me.Text = "GageTracker - Menu"
-        Me.TopMost = True
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.TabControl1.ResumeLayout(False)
@@ -1072,7 +1089,6 @@ Partial Class GTMenu
     Friend WithEvents TxtGageID As ComboBox
     Friend WithEvents txtGageType As ComboBox
     Friend WithEvents txtCustomer As ComboBox
-    Friend WithEvents BtnReportIssue As Button
     Friend WithEvents Label27 As Label
     Friend WithEvents txtOwner As TextBox
     Friend WithEvents BtnDelete As Button
@@ -1101,4 +1117,8 @@ Partial Class GTMenu
     Friend WithEvents GageListToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents DueToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents TxtStatus As Label
+    Friend WithEvents SettingsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ReportIssueToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AboutToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents WebsiteToolStripMenuItem As ToolStripMenuItem
 End Class

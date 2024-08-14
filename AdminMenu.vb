@@ -9,6 +9,7 @@ Public Class AdminMenu
 
         'Audit Log
         TxtCurrentUser.Text = My.Settings.LoggedUser
+        TxtLastActivity.Text = GlobalVars.LastActivity
         TxtLastOpened.Text = My.Settings.LastOpened
         TxtOpenCount.Text = My.Settings.ProgramOpenCount
     End Sub

@@ -72,8 +72,9 @@ Public Class GTMenu
 
                     Dim inspectedDate As DateTime = DtInspectedDate.Value
                     Dim dueDate As DateTime = inspectedDate.AddMonths(intervalMonths)
+                    Dim dateAdded As DateTime = Now
 
-                    Dim addCmd As New OleDbCommand("INSERT INTO [CalibrationTracker] (GageID, PartNumber, PartRev, Status, Description, Department, [Gage Type], Customer, [Calibrated By], [Interval (Months)], [Inspected Date], [Due Date], Comments, aN1, aN2, aN3, aN4, aN5, aA1, aA2, aA3, aA4, aA5, [Serial Number], Owner, [Nist Number]) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", conn)
+                    Dim addCmd As New OleDbCommand("INSERT INTO [CalibrationTracker] (GageID, PartNumber, PartRev, Status, Description, Department, [Gage Type], Customer, [Calibrated By], [Interval (Months)], [Inspected Date], [Due Date], Comments, aN1, aN2, aN3, aN4, aN5, aA1, aA2, aA3, aA4, aA5, [Serial Number], Owner, [Nist Number], [Date Added]) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", conn)
                     addCmd.Parameters.AddWithValue("@GageID", TxtGageID.Text)
                     addCmd.Parameters.AddWithValue("@PartNumber", txtPartNumber.Text)
                     addCmd.Parameters.AddWithValue("@PartRev", txtPartRev.Text)
@@ -100,6 +101,7 @@ Public Class GTMenu
                     addCmd.Parameters.AddWithValue("@SerialNumber", TxtSerialNumber.Text)
                     addCmd.Parameters.AddWithValue("@Owner", txtOwner.Text)
                     addCmd.Parameters.AddWithValue("@NistNumber", TxtNistNumber.Text)
+                    addCmd.Parameters.Add(New OleDbParameter("@DateAdded", OleDbType.Date)).Value = dateAdded
                     addCmd.ExecuteNonQuery()
                     TxtStatus.Text = "Gage added successfully"
                     Timer1.Enabled = True
@@ -209,7 +211,8 @@ Public Class GTMenu
             End If
 
             ' Prepare your UPDATE SQL command with parameters to prevent SQL injection
-            Dim updateCmd As New OleDbCommand("UPDATE [CalibrationTracker] SET PartNumber = ?, PartRev = ?, Status = ?, Description = ?, Department = ?, [Gage Type] = ?, Customer = ?, [Calibrated By] = ?, [Interval (Months)] = ?, [Inspected Date] = ?, [Due Date] = ?, Comments = ?, aN1 = ?, aN2 = ?, aN3 = ?, aN4 = ?, aN5 = ?, aA1 = ?, aA2 = ?, aA3 = ?, aA4 = ?, aA5 = ?, [Serial Number] = ?, Owner = ?, [Nist Number] = ?, [Last User] = ? WHERE GageID = ?", conn)
+            Dim updateCmd As New OleDbCommand("UPDATE [CalibrationTracker] SET PartNumber = ?, PartRev = ?, Status = ?, Description = ?, Department = ?, [Gage Type] = ?, Customer = ?, [Calibrated By] = ?, [Interval (Months)] = ?, [Inspected Date] = ?, [Due Date] = ?, Comments = ?, aN1 = ?, aN2 = ?, aN3 = ?, aN4 = ?, aN5 = ?, aA1 = ?, aA2 = ?, aA3 = ?, aA4 = ?, aA5 = ?, [Serial Number] = ?, Owner = ?, [Nist Number] = ?, [Last User] = ?, [Last Edited] = ? WHERE GageID = ?", conn)
+            Dim lastEdited As DateTime = Now
 
             ' Add parameters with the values from your form controls
             updateCmd.Parameters.Add(New OleDbParameter("@PartNumber", txtPartNumber.Text))
@@ -238,6 +241,7 @@ Public Class GTMenu
             updateCmd.Parameters.Add(New OleDbParameter("@Owner", txtOwner.Text))
             updateCmd.Parameters.Add(New OleDbParameter("@NistNumber", TxtNistNumber.Text))
             updateCmd.Parameters.Add(New OleDbParameter("@LastUser", lastUser))
+            updateCmd.Parameters.Add(New OleDbParameter("@LastEdited", OleDbType.Date)).Value = lastEdited
             updateCmd.Parameters.Add(New OleDbParameter("@GageID", TxtGageID.Text))
 
             ' Execute the UPDATE command
@@ -247,6 +251,10 @@ Public Class GTMenu
                 Timer1.Enabled = True
                 GageList.LoadData()
                 DueDateCategorizer.LoadData()
+
+                'Display until restart
+                LblLastEdited.Text = lastEdited
+                LblEditBy.Text = lastUser
             Else
                 MessageBox.Show("No record updated. Please check the GageID.")
             End If

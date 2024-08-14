@@ -28,12 +28,13 @@ Public Class GageList
         CmbContains.Items.AddRange(New String() {"GageID", "Status", "PartNumber", "Description", "Department", "Gage Type", "Customer", "Inspected Date", "Due Date", "Comments"})
         CmbContains.SelectedIndex = 0 ' Default to Status
 
-        TextContains.Text = "" ' Set default text for TextContains
-
         ' Initialize the CheckBox setting
         CheckBoxShowAll.Checked = My.Settings.ShowAll
         ApplyStatusFilter()
 
+        'Misc
+        TextContains.Text = "" ' Set default text for TextContains
+        My.Settings.SelectedGage = ""
         Me.StartPosition = FormStartPosition.CenterScreen
     End Sub
 

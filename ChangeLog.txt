@@ -1,3 +1,11 @@
+v5.9.2.39
+Fixed selected gage not clearing on startup.
+Updated properties setting.
+Updated Focus on ReportIssue after attempting to send with blank name/comment.
+Updated LoginForm UI.
+Updated AuditLog (Added Date Added and Last Edited Date).
+Fixed Issue with AuditLog that wouldn't update until closing GTMenu.
+
 v5.9.1.38
 Updated GTMenu Menu bar, Adding Settings tab.
 Updated GTMenu, No longer stays in front.

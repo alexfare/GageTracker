@@ -32,13 +32,10 @@ Public Class LoginForm1
 
                     ' Compare the entered password hash with the stored hash
                     If enteredPasswordHash.Equals(storedPasswordHash.ToString(), StringComparison.OrdinalIgnoreCase) Then
-                        ' Passwords match
-                        Dim adminMenu As New AdminMenu()
-                        adminMenu.Show()
                         My.Settings.LoggedUser = username
-
-                        'New Settings
                         My.Settings.isAdmin = True
+                        My.Settings.Save()
+                        AdminMenu.Show()
                         Me.Close()
                     Else
                         MessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error)

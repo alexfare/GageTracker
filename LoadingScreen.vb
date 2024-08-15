@@ -12,5 +12,8 @@
 
         'Copyright info
         Copyright.Text = My.Application.Info.Copyright
+
+        'Aduit
+        GlobalVars.LastActivity = My.Settings.LastActivity
     End Sub
 End Class

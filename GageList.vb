@@ -224,7 +224,7 @@ Public Class GageList
         ApplyStatusFilter()
     End Sub
 
-    Private Sub ApplyStatusFilter()
+    Public Sub ApplyStatusFilter()
         ' Apply filter based on the CheckBox state
         Dim filterQuery As String = ""
         If Not My.Settings.ShowAll Then
@@ -264,6 +264,9 @@ Public Class GageList
             For Each frm As Form In openForms
                 frm.Close()
             Next
+
+            My.Settings.LastActivity = GlobalVars.LastActivity
+            My.Settings.Save()
 
             Application.Exit()
         Else

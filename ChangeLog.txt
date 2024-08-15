@@ -1,3 +1,11 @@
+v5.9.3.40
+Fixed GageList Filtering reseting after updating gage.
+Fixed AdminMenu logged in user not updating.
+Fixed AdminMenu last activity.
+Updated GageList, Show / Filter Status anchored when adjusting windows size.
+Updated database (Removed unused columns).
+Updated GageList Settings Menu order.
+
 v5.9.2.39
 Fixed selected gage not clearing on startup.
 Updated properties setting.

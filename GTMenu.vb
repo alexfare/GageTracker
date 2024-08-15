@@ -42,6 +42,13 @@ Public Class GTMenu
         CenterToScreen()
     End Sub
 
+    Private Sub ReloadData()
+        LoadGageID()
+        GageList.LoadData()
+        DueDateCategorizer.LoadData()
+        GageList.ApplyStatusFilter()
+    End Sub
+
     Private Sub TxtGageID_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtGageID.KeyDown
         If e.KeyCode = Keys.Enter Then
             ' Prevent the ding sound on pressing Enter
@@ -105,8 +112,8 @@ Public Class GTMenu
                     addCmd.ExecuteNonQuery()
                     TxtStatus.Text = "Gage added successfully"
                     Timer1.Enabled = True
-                    LoadGageID()
-                    GageList.LoadData()
+                    ReloadData()
+                    GlobalVars.LastActivity = TxtGageID.Text + " Added."
                 Else
                     MessageBox.Show("This GageID already exists", "Duplicate Entry", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 End If
@@ -176,6 +183,7 @@ Public Class GTMenu
 
                         'Audit Log
                         SearchAuditLog()
+                        GlobalVars.LastActivity = TxtGageID.Text + " Searched."
 
                         SearchCheck = True
                     Else
@@ -249,8 +257,8 @@ Public Class GTMenu
             If rowsAffected > 0 Then
                 TxtStatus.Text = "Record updated successfully"
                 Timer1.Enabled = True
-                GageList.LoadData()
-                DueDateCategorizer.LoadData()
+                ReloadData()
+                GlobalVars.LastActivity = TxtGageID.Text + " updated."
 
                 'Display until restart
                 LblLastEdited.Text = lastEdited
@@ -543,6 +551,7 @@ Public Class GTMenu
                         ClearForms()
                         GageList.LoadData()
                         DueDateCategorizer.LoadData()
+                        GlobalVars.LastActivity = TxtGageID.Text + " deleted."
                     Else
                         MessageBox.Show("No gage deleted. Please check the GageID.")
                     End If

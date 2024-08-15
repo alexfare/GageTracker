@@ -240,7 +240,7 @@ Partial Class GageList
         '
         'SettingsToolStripMenuItem
         '
-        Me.SettingsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ReportIssueToolStripMenuItem, Me.AboutToolStripMenuItem, Me.GithubToolStripMenuItem, Me.WebsiteToolStripMenuItem})
+        Me.SettingsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AboutToolStripMenuItem, Me.ReportIssueToolStripMenuItem, Me.GithubToolStripMenuItem, Me.WebsiteToolStripMenuItem})
         Me.SettingsToolStripMenuItem.Name = "SettingsToolStripMenuItem"
         Me.SettingsToolStripMenuItem.Size = New System.Drawing.Size(61, 20)
         Me.SettingsToolStripMenuItem.Text = "Settings"
@@ -248,25 +248,25 @@ Partial Class GageList
         'ReportIssueToolStripMenuItem
         '
         Me.ReportIssueToolStripMenuItem.Name = "ReportIssueToolStripMenuItem"
-        Me.ReportIssueToolStripMenuItem.Size = New System.Drawing.Size(138, 22)
+        Me.ReportIssueToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ReportIssueToolStripMenuItem.Text = "Report Issue"
         '
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(138, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.AboutToolStripMenuItem.Text = "About"
         '
         'GithubToolStripMenuItem
         '
         Me.GithubToolStripMenuItem.Name = "GithubToolStripMenuItem"
-        Me.GithubToolStripMenuItem.Size = New System.Drawing.Size(138, 22)
+        Me.GithubToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.GithubToolStripMenuItem.Text = "Github"
         '
         'WebsiteToolStripMenuItem
         '
         Me.WebsiteToolStripMenuItem.Name = "WebsiteToolStripMenuItem"
-        Me.WebsiteToolStripMenuItem.Size = New System.Drawing.Size(138, 22)
+        Me.WebsiteToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.WebsiteToolStripMenuItem.Text = "Website"
         '
         'TextContains
@@ -294,6 +294,8 @@ Partial Class GageList
         '
         'CheckBoxShowAll
         '
+        Me.CheckBoxShowAll.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.CheckBoxShowAll.AutoSize = True
         Me.CheckBoxShowAll.Location = New System.Drawing.Point(1170, 47)
         Me.CheckBoxShowAll.Name = "CheckBoxShowAll"

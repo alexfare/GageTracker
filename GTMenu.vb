@@ -113,6 +113,7 @@ Public Class GTMenu
                     TxtStatus.Text = "Gage added successfully"
                     Timer1.Enabled = True
                     ReloadData()
+                    BtnClear.PerformClick()
                     GlobalVars.LastActivity = TxtGageID.Text + " Added."
                 Else
                     MessageBox.Show("This GageID already exists", "Duplicate Entry", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -683,15 +684,13 @@ Public Class GTMenu
     End Sub
 
     Private Sub StartLogin()
-        Dim loginForm As New LoginForm1()
-        loginForm.Show()
+        LoginForm1.Show()
         Me.Hide()
         My.Settings.FromList = False
     End Sub
 
     Private Sub StartAdmin()
-        Dim adminMenu As New AdminMenu()
-        adminMenu.Show()
+        AdminMenu.Show()
         Me.Hide()
         My.Settings.FromList = False
     End Sub
@@ -713,15 +712,11 @@ Public Class GTMenu
         Next
 
         If isOpen AndAlso openForm IsNot Nothing Then
-            ' Bring the already open GageList form to the front
             openForm.Activate()
         Else
-            ' Only open a new instance if it is not already open
-            Dim gagelist As New GageList()
-            gagelist.Show()
+            GageList.Show()
         End If
 
-        ' Hide the current GTMenu form in both cases
         Me.Hide()
         GageList.LoadData()
     End Sub

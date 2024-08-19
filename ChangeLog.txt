@@ -1,3 +1,7 @@
+v5.10.0.41
+Fixed Issue with GageList not selecting gages properly.
+Fixed Issue with Admin NOT being logged out after restart.
+
 v5.9.3.40
 Fixed GageList Filtering reseting after updating gage.
 Fixed AdminMenu logged in user not updating.

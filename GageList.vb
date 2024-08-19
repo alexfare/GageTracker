@@ -198,6 +198,7 @@ Public Class GageList
             If Not selectedRow.IsNewRow AndAlso selectedRow.Cells.Count > 0 AndAlso selectedRow.Cells(0) IsNot Nothing AndAlso Not IsDBNull(selectedRow.Cells(0).Value) Then
                 selectedGage = selectedRow.Cells(0).Value.ToString()
                 My.Settings.SelectedGage = selectedGage
+                My.Settings.Save()
             End If
         End If
     End Sub
@@ -210,6 +211,7 @@ Public Class GageList
             If Not selectedRow.IsNewRow AndAlso selectedRow.Cells.Count > 0 AndAlso selectedRow.Cells(0) IsNot Nothing AndAlso Not IsDBNull(selectedRow.Cells(0).Value) Then
                 selectedGage = selectedRow.Cells(0).Value.ToString()
                 My.Settings.SelectedGage = selectedGage
+                My.Settings.Save()
             End If
             ' Open the GTMenu form
             GTMenu.Show()
@@ -266,6 +268,8 @@ Public Class GageList
             Next
 
             My.Settings.LastActivity = GlobalVars.LastActivity
+            My.Settings.isAdmin = False
+            My.Settings.LoggedUser = ""
             My.Settings.Save()
 
             Application.Exit()

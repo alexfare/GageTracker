@@ -32,8 +32,8 @@
     <ProductName>GageTracker</ProductName>
     <PublisherName>Alex Fare</PublisherName>
     <MinimumRequiredVersion>5.5.1.29</MinimumRequiredVersion>
-    <ApplicationRevision>41</ApplicationRevision>
-    <ApplicationVersion>5.9.3.%2a</ApplicationVersion>
+    <ApplicationRevision>42</ApplicationRevision>
+    <ApplicationVersion>5.10.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>

@@ -19,16 +19,12 @@ Public Class GageList
             MessageBox.Show("General error: " & ex.Message)
         End Try
 
-        ' Populate the ComboBox for Filter Type
+        'Status Filter setup
         CmbFilterType.Items.Add("Contains")
         CmbFilterType.Items.Add("Exact")
         CmbFilterType.SelectedIndex = 0 ' Default to Exact
-
-        ' Populate the ComboBox for Contains with relevant column names
         CmbContains.Items.AddRange(New String() {"GageID", "Status", "PartNumber", "Description", "Department", "Gage Type", "Customer", "Inspected Date", "Due Date", "Comments"})
         CmbContains.SelectedIndex = 0 ' Default to Status
-
-        ' Initialize the CheckBox setting
         CheckBoxShowAll.Checked = My.Settings.ShowAll
         ApplyStatusFilter()
 
@@ -118,61 +114,6 @@ Public Class GageList
         GTMenu.LoadGageID()
     End Sub
 
-    '/----- Toolbar Strip -----/
-    Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
-        About.Show()
-    End Sub
-
-    Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
-        Me.Close()
-    End Sub
-
-    Private Sub ChangeDatabaseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ChangeDatabaseToolStripMenuItem.Click
-        Using openFileDialog As New OpenFileDialog()
-            openFileDialog.InitialDirectory = "C:\"
-            openFileDialog.Filter = "Access Database Files (*.accdb)|*.accdb"
-            openFileDialog.FilterIndex = 1
-            openFileDialog.RestoreDirectory = True
-
-            If openFileDialog.ShowDialog() = DialogResult.OK Then
-                GlobalVars.DatabaseLocation = openFileDialog.FileName
-                GlobalVars.SaveDatabaseLocation(GlobalVars.DatabaseLocation)
-            End If
-        End Using
-    End Sub
-
-    Private Sub MenuToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MenuToolStripMenuItem.Click
-        My.Settings.SelectedGage = ""
-        GTMenu.Show()
-        GTMenu.LoadGageID()
-    End Sub
-
-    Private Sub ReportIssueToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ReportIssueToolStripMenuItem.Click
-        ReportIssue.Show()
-    End Sub
-
-    Private Sub AdminMenuToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AdminMenuToolStripMenuItem.Click
-        If My.Settings.isAdmin = True Then
-            StartAdmin()
-        Else
-            StartLogin()
-        End If
-    End Sub
-
-    Private Sub StartLogin()
-        LoginForm1.Show()
-        My.Settings.FromList = True
-    End Sub
-
-    Private Sub StartAdmin()
-        AdminMenu.Show()
-        My.Settings.FromList = True
-    End Sub
-
-    Private Sub DueDateCalenderToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DueDateCalenderToolStripMenuItem.Click
-        DueDateCategorizer.Show()
-    End Sub
-
     Private Sub TextContains_TextChanged(sender As Object, e As EventArgs) Handles TextContains.TextChanged
         Dim selectedColumn As String = CmbContains.SelectedItem.ToString()
         Dim filterText As String = TextContains.Text.Trim()
@@ -235,6 +176,61 @@ Public Class GageList
         LoadData(filterQuery)
     End Sub
 
+    '/----- Menu Toolbar Strip -----/
+    Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
+        About.Show()
+    End Sub
+
+    Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
+        Me.Close()
+    End Sub
+
+    Private Sub ChangeDatabaseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ChangeDatabaseToolStripMenuItem.Click
+        Using openFileDialog As New OpenFileDialog()
+            openFileDialog.InitialDirectory = "C:\"
+            openFileDialog.Filter = "Access Database Files (*.accdb)|*.accdb"
+            openFileDialog.FilterIndex = 1
+            openFileDialog.RestoreDirectory = True
+
+            If openFileDialog.ShowDialog() = DialogResult.OK Then
+                GlobalVars.DatabaseLocation = openFileDialog.FileName
+                GlobalVars.SaveDatabaseLocation(GlobalVars.DatabaseLocation)
+            End If
+        End Using
+    End Sub
+
+    Private Sub MenuToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MenuToolStripMenuItem.Click
+        My.Settings.SelectedGage = ""
+        GTMenu.Show()
+        GTMenu.LoadGageID()
+    End Sub
+
+    Private Sub ReportIssueToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ReportIssueToolStripMenuItem.Click
+        ReportIssue.Show()
+    End Sub
+
+    Private Sub AdminMenuToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AdminMenuToolStripMenuItem.Click
+        If My.Settings.isAdmin = True Then
+            StartAdmin()
+        Else
+            StartLogin()
+        End If
+    End Sub
+
+    Private Sub StartLogin()
+        LoginForm1.Show()
+        My.Settings.FromList = True
+    End Sub
+
+    Private Sub StartAdmin()
+        AdminMenu.Show()
+        My.Settings.FromList = True
+    End Sub
+
+    Private Sub DueDateCalenderToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DueDateCalenderToolStripMenuItem.Click
+        DueDateCategorizer.Show()
+    End Sub
+
     Private Sub GithubToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GithubToolStripMenuItem.Click
         Dim url As String = "https://github.com/alexfare/GageTracker"
         Try
@@ -245,36 +241,11 @@ Public Class GageList
     End Sub
 
     Private Sub WebsiteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles WebsiteToolStripMenuItem.Click
-        Dim url As String = "http://alexfare.com"
+        Dim url As String = "https://alexfare.com/programs/gagetracker/latest/"
         Try
             Process.Start(url)
         Catch ex As Exception
             MessageBox.Show("An error occurred while trying to open the URL: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
-    End Sub
-
-    Private Sub MainForm_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
-        If isClosing Then
-            Return
-        End If
-
-        If MessageBox.Show("Are you sure you want to exit?", "Exit", MessageBoxButtons.YesNo) = DialogResult.Yes Then
-            isClosing = True ' Set the flag to true to indicate the application is closing
-
-            ' Ensure all forms are closed
-            Dim openForms As New List(Of Form)(Application.OpenForms.Cast(Of Form)())
-            For Each frm As Form In openForms
-                frm.Close()
-            Next
-
-            My.Settings.LastActivity = GlobalVars.LastActivity
-            My.Settings.isAdmin = False
-            My.Settings.LoggedUser = ""
-            My.Settings.Save()
-
-            Application.Exit()
-        Else
-            e.Cancel = True ' Cancel the close event if the user decides not to close
-        End If
     End Sub
 End Class

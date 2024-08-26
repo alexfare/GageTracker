@@ -7,7 +7,7 @@ Public Class GTMenu
     Dim SearchCheck As Boolean
     Dim activeUser As String
     Private isClosing As Boolean = False
-    Private WithEvents Timer1 As New Timer With {.Interval = 3000, .Enabled = False}
+    Public WithEvents Timer1 As New Timer With {.Interval = 3000, .Enabled = False}
 
     Private Async Sub Menu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
@@ -51,10 +51,10 @@ Public Class GTMenu
 
     Private Sub TxtGageID_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtGageID.KeyDown
         If e.KeyCode = Keys.Enter Then
-            ' Prevent the ding sound on pressing Enter
+            'Prevent the ding sound on pressing Enter
             e.SuppressKeyPress = True
 
-            ' Call the BtnSearch click event handler
+            'Call the BtnSearch click event handler
             BtnSearch_Click(Me, EventArgs.Empty)
         End If
     End Sub
@@ -258,6 +258,7 @@ Public Class GTMenu
             If rowsAffected > 0 Then
                 TxtStatus.Text = "Record updated successfully"
                 Timer1.Enabled = True
+                SearchCheck = False
                 ReloadData()
                 GlobalVars.LastActivity = TxtGageID.Text + " updated."
 
@@ -329,7 +330,7 @@ Public Class GTMenu
         End Using
     End Sub
 
-    Private Sub LoadStatus()
+    Public Sub LoadStatus()
         Using conn As New OleDbConnection(connectionString)
             Try
                 conn.Open()
@@ -360,7 +361,7 @@ Public Class GTMenu
         End Using
     End Sub
 
-    Private Sub LoadDepartment()
+    Public Sub LoadDepartment()
         Using conn As New OleDbConnection(connectionString)
             Try
                 conn.Open()
@@ -391,7 +392,7 @@ Public Class GTMenu
         End Using
     End Sub
 
-    Private Sub LoadGageType()
+    Public Sub LoadGageType()
         Using conn As New OleDbConnection(connectionString)
             Try
                 conn.Open()
@@ -422,7 +423,7 @@ Public Class GTMenu
         End Using
     End Sub
 
-    Private Sub LoadCustomers()
+    Public Sub LoadCustomers()
         Using conn As New OleDbConnection(connectionString)
             Try
                 conn.Open()
@@ -453,7 +454,7 @@ Public Class GTMenu
         End Using
     End Sub
 
-    Private Sub LoadUser()
+    Public Sub LoadUser()
         Using conn As New OleDbConnection(connectionString)
             Try
                 conn.Open()
@@ -524,6 +525,14 @@ Public Class GTMenu
     End Sub
 
     Private Sub BtnDelete_Click(sender As Object, e As EventArgs) Handles BtnDelete.Click
+        If SearchCheck = True Then
+            DeleteConfirmed()
+        Else
+            MessageBox.Show("Please search for Gage record.")
+        End If
+    End Sub
+
+    Private Sub DeleteConfirmed()
         ' Check if the GageID text box is empty
         If String.IsNullOrWhiteSpace(TxtGageID.Text) Then
             MessageBox.Show("GageID cannot be blank. Please enter a valid GageID.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -548,10 +557,10 @@ Public Class GTMenu
                     If rowsAffected > 0 Then
                         TxtStatus.Text = "Gage deleted successfully."
                         Timer1.Enabled = True
+                        SearchCheck = False
                         ' Clear the form fields after deletion
                         ClearForms()
-                        GageList.LoadData()
-                        DueDateCategorizer.LoadData()
+                        ReloadData()
                         GlobalVars.LastActivity = TxtGageID.Text + " deleted."
                     Else
                         MessageBox.Show("No gage deleted. Please check the GageID.")
@@ -735,11 +744,35 @@ Public Class GTMenu
     End Sub
 
     Private Sub WebsiteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles WebsiteToolStripMenuItem.Click
-        Dim url As String = "http://alexfare.com"
+        Dim url As String = "https://alexfare.com/programs/gagetracker/latest/"
         Try
             Process.Start(url)
         Catch ex As Exception
             MessageBox.Show("An error occurred while trying to open the URL: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
+    End Sub
+    Private Sub MainForm_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        If isClosing Then
+            Return
+        End If
+
+        If MessageBox.Show("Are you sure you want to exit?", "Exit", MessageBoxButtons.YesNo) = DialogResult.Yes Then
+            isClosing = True ' Set the flag to true to indicate the application is closing
+
+            ' Ensure all forms are closed
+            Dim openForms As New List(Of Form)(Application.OpenForms.Cast(Of Form)())
+            For Each frm As Form In openForms
+                frm.Close()
+            Next
+
+            My.Settings.LastActivity = GlobalVars.LastActivity
+            My.Settings.isAdmin = False
+            My.Settings.LoggedUser = ""
+            My.Settings.Save()
+
+            Application.Exit()
+        Else
+            e.Cancel = True ' Cancel the close event if the user decides not to close
+        End If
     End Sub
 End Class

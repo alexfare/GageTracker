@@ -1,3 +1,12 @@
+v5.11.0.42
+Updated ReportIssue UI.
+Adjusted About menu size.
+Updated website URL on GageList & GTMenu.
+Updated AdminMenu. Can now add, remove, update gages. (Doesn't update Audit)
+Fixed program open counter.
+Fixed issue allowing you to update Gages without searching. (After searching the 1st gage).
+Fixed issue allow you to delete gages without searching.
+
 v5.10.0.41
 Fixed Issue with GageList not selecting gages properly.
 Fixed Issue with Admin NOT being logged out after restart.

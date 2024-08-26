@@ -13,7 +13,7 @@ Public Class ReportIssue
     End Sub
 
     Private Sub btnSend_Click(sender As Object, e As EventArgs) Handles btnSend.Click
-        ' Validate fields
+        'Validate fields
         If String.IsNullOrWhiteSpace(txtName.Text) Then
             MessageBox.Show("Name is required.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             txtName.Focus()
@@ -25,7 +25,7 @@ Public Class ReportIssue
             Return
         End If
 
-        ' Setup the MailMessage
+        'Setup the MailMessage
         Dim mail As New MailMessage()
         mail.From = New MailAddress("ninsosoft@gmail.com")
         mail.To.Add("alexfare94@gmail.com")
@@ -43,7 +43,7 @@ Public Class ReportIssue
         smtp.Credentials = New System.Net.NetworkCredential("ninsosoft@gmail.com", ZGVjcnlwdGVkUGFzc3dvcmQ)
 
 
-        ' Send the email
+        'Send the email
         Try
             smtp.Send(mail)
             MessageBox.Show("Report sent successfully.")
@@ -54,6 +54,10 @@ Public Class ReportIssue
     End Sub
 
     Private Sub btnBack_Click(sender As Object, e As EventArgs) Handles btnBack.Click
+        Me.Close()
+    End Sub
+
+    Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
         Me.Close()
     End Sub
 End Class

@@ -57,7 +57,7 @@ Partial Class LoginForm1
         Me.UsernameLabel.Name = "UsernameLabel"
         Me.UsernameLabel.Size = New System.Drawing.Size(220, 23)
         Me.UsernameLabel.TabIndex = 0
-        Me.UsernameLabel.Text = "&User name"
+        Me.UsernameLabel.Text = "&User name:"
         Me.UsernameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'PasswordLabel
@@ -66,7 +66,7 @@ Partial Class LoginForm1
         Me.PasswordLabel.Name = "PasswordLabel"
         Me.PasswordLabel.Size = New System.Drawing.Size(220, 23)
         Me.PasswordLabel.TabIndex = 2
-        Me.PasswordLabel.Text = "&Password"
+        Me.PasswordLabel.Text = "&Password:"
         Me.PasswordLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'txtUsername
@@ -86,18 +86,18 @@ Partial Class LoginForm1
         '
         'btnLogin
         '
-        Me.btnLogin.Location = New System.Drawing.Point(300, 145)
+        Me.btnLogin.Location = New System.Drawing.Point(300, 138)
         Me.btnLogin.Name = "btnLogin"
-        Me.btnLogin.Size = New System.Drawing.Size(94, 23)
+        Me.btnLogin.Size = New System.Drawing.Size(94, 30)
         Me.btnLogin.TabIndex = 4
         Me.btnLogin.Text = "&Login"
         '
         'Cancel
         '
         Me.Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.Cancel.Location = New System.Drawing.Point(174, 145)
+        Me.Cancel.Location = New System.Drawing.Point(174, 138)
         Me.Cancel.Name = "Cancel"
-        Me.Cancel.Size = New System.Drawing.Size(94, 23)
+        Me.Cancel.Size = New System.Drawing.Size(94, 30)
         Me.Cancel.TabIndex = 5
         Me.Cancel.Text = "&Cancel"
         '

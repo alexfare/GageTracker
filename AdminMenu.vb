@@ -275,6 +275,14 @@ Public Class AdminMenu
         End Using
     End Sub
 
+    Private Sub BtnDelete_Click(sender As Object, e As EventArgs) Handles BtnDelete.Click
+        If SearchCheck = True Then
+            DeleteConfirmed()
+        Else
+            MessageBox.Show("Please search for Gage record.")
+        End If
+    End Sub
+
     Private Sub DeleteConfirmed()
         ' Check if the GageID text box is empty
         If String.IsNullOrWhiteSpace(TxtGageID.Text) Then

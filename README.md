@@ -16,8 +16,8 @@ Gage Menu:<br>
 Login Menu:<br>
 ![image](https://github.com/alexfare/GageTracker/assets/40654995/17aeb870-e7b0-4b48-9363-01fa87fb9dd8)
 <br>
-Admin Menu (Early WIP):<br>
-![image](https://github.com/alexfare/GageTracker/assets/40654995/4a44256b-7697-49f5-b7f0-196cb78ffb57)
+Admin Menu:<br>
+![image](https://github.com/user-attachments/assets/8e5589c0-862c-471b-8f38-519656b1451a)
 <br>
 Customer Entry:<br>
 ![image](https://github.com/alexfare/GageTracker/assets/40654995/901dc06f-c349-4789-9893-609d27356fed)

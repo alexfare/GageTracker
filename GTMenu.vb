@@ -751,28 +751,4 @@ Public Class GTMenu
             MessageBox.Show("An error occurred while trying to open the URL: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
-    Private Sub MainForm_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
-        If isClosing Then
-            Return
-        End If
-
-        If MessageBox.Show("Are you sure you want to exit?", "Exit", MessageBoxButtons.YesNo) = DialogResult.Yes Then
-            isClosing = True ' Set the flag to true to indicate the application is closing
-
-            ' Ensure all forms are closed
-            Dim openForms As New List(Of Form)(Application.OpenForms.Cast(Of Form)())
-            For Each frm As Form In openForms
-                frm.Close()
-            Next
-
-            My.Settings.LastActivity = GlobalVars.LastActivity
-            My.Settings.isAdmin = False
-            My.Settings.LoggedUser = ""
-            My.Settings.Save()
-
-            Application.Exit()
-        Else
-            e.Cancel = True ' Cancel the close event if the user decides not to close
-        End If
-    End Sub
 End Class

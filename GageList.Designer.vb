@@ -46,12 +46,14 @@ Partial Class GageList
         Me.ChangeDatabaseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.DueDateCalenderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PastDueToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DueWithin30DaysToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DueWithin60DaysToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AdminToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AdminMenuToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SettingsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ReportIssueToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ReportIssueToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GithubToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.WebsiteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TextContains = New System.Windows.Forms.TextBox()
@@ -214,16 +216,28 @@ Partial Class GageList
         '
         'ViewToolStripMenuItem
         '
-        Me.ViewToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DueDateCalenderToolStripMenuItem})
+        Me.ViewToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PastDueToolStripMenuItem, Me.DueWithin30DaysToolStripMenuItem, Me.DueWithin60DaysToolStripMenuItem})
         Me.ViewToolStripMenuItem.Name = "ViewToolStripMenuItem"
         Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
         Me.ViewToolStripMenuItem.Text = "View"
         '
-        'DueDateCalenderToolStripMenuItem
+        'PastDueToolStripMenuItem
         '
-        Me.DueDateCalenderToolStripMenuItem.Name = "DueDateCalenderToolStripMenuItem"
-        Me.DueDateCalenderToolStripMenuItem.Size = New System.Drawing.Size(172, 22)
-        Me.DueDateCalenderToolStripMenuItem.Text = "Due Date Calender"
+        Me.PastDueToolStripMenuItem.Name = "PastDueToolStripMenuItem"
+        Me.PastDueToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.PastDueToolStripMenuItem.Text = "Past Due"
+        '
+        'DueWithin30DaysToolStripMenuItem
+        '
+        Me.DueWithin30DaysToolStripMenuItem.Name = "DueWithin30DaysToolStripMenuItem"
+        Me.DueWithin30DaysToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.DueWithin30DaysToolStripMenuItem.Text = "Due within 30 days"
+        '
+        'DueWithin60DaysToolStripMenuItem
+        '
+        Me.DueWithin60DaysToolStripMenuItem.Name = "DueWithin60DaysToolStripMenuItem"
+        Me.DueWithin60DaysToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.DueWithin60DaysToolStripMenuItem.Text = "Due within 60 days"
         '
         'AdminToolStripMenuItem
         '
@@ -245,28 +259,28 @@ Partial Class GageList
         Me.SettingsToolStripMenuItem.Size = New System.Drawing.Size(61, 20)
         Me.SettingsToolStripMenuItem.Text = "Settings"
         '
-        'ReportIssueToolStripMenuItem
-        '
-        Me.ReportIssueToolStripMenuItem.Name = "ReportIssueToolStripMenuItem"
-        Me.ReportIssueToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.ReportIssueToolStripMenuItem.Text = "Report Issue"
-        '
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(138, 22)
         Me.AboutToolStripMenuItem.Text = "About"
+        '
+        'ReportIssueToolStripMenuItem
+        '
+        Me.ReportIssueToolStripMenuItem.Name = "ReportIssueToolStripMenuItem"
+        Me.ReportIssueToolStripMenuItem.Size = New System.Drawing.Size(138, 22)
+        Me.ReportIssueToolStripMenuItem.Text = "Report Issue"
         '
         'GithubToolStripMenuItem
         '
         Me.GithubToolStripMenuItem.Name = "GithubToolStripMenuItem"
-        Me.GithubToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.GithubToolStripMenuItem.Size = New System.Drawing.Size(138, 22)
         Me.GithubToolStripMenuItem.Text = "Github"
         '
         'WebsiteToolStripMenuItem
         '
         Me.WebsiteToolStripMenuItem.Name = "WebsiteToolStripMenuItem"
-        Me.WebsiteToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.WebsiteToolStripMenuItem.Size = New System.Drawing.Size(138, 22)
         Me.WebsiteToolStripMenuItem.Text = "Website"
         '
         'TextContains
@@ -359,11 +373,13 @@ Partial Class GageList
     Friend WithEvents ReportIssueToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AdminMenuToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ViewToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents DueDateCalenderToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents TextContains As TextBox
     Friend WithEvents CmbFilterType As ComboBox
     Friend WithEvents CmbContains As ComboBox
     Friend WithEvents CheckBoxShowAll As CheckBox
     Friend WithEvents WebsiteToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GithubToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents PastDueToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents DueWithin30DaysToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents DueWithin60DaysToolStripMenuItem As ToolStripMenuItem
 End Class

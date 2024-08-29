@@ -1,6 +1,7 @@
 ﻿Module GlobalVars
     Public DatabaseLocation As String
     Public LastActivity As String
+    Public DueDateMenuSelect As String
 
     Public Sub LoadDatabaseLocation()
         DatabaseLocation = My.Settings.DatabaseLocation

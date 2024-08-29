@@ -227,10 +227,6 @@ Public Class GageList
         My.Settings.FromList = True
     End Sub
 
-    Private Sub DueDateCalenderToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DueDateCalenderToolStripMenuItem.Click
-        DueDateCategorizer.Show()
-    End Sub
-
     Private Sub GithubToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GithubToolStripMenuItem.Click
         Dim url As String = "https://github.com/alexfare/GageTracker"
         Try
@@ -247,5 +243,44 @@ Public Class GageList
         Catch ex As Exception
             MessageBox.Show("An error occurred while trying to open the URL: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
+    End Sub
+    Private Sub MainForm_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        If isClosing Then
+            Return
+        End If
+
+        If MessageBox.Show("Are you sure you want to exit?", "Exit", MessageBoxButtons.YesNo) = DialogResult.Yes Then
+            isClosing = True ' Set the flag to true to indicate the application is closing
+
+            ' Ensure all forms are closed
+            Dim openForms As New List(Of Form)(Application.OpenForms.Cast(Of Form)())
+            For Each frm As Form In openForms
+                frm.Close()
+            Next
+
+            My.Settings.LastActivity = GlobalVars.LastActivity
+            My.Settings.isAdmin = False
+            My.Settings.LoggedUser = ""
+            My.Settings.Save()
+
+            Application.Exit()
+        Else
+            e.Cancel = True ' Cancel the close event if the user decides not to close
+        End If
+    End Sub
+
+    Private Sub PastDueToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PastDueToolStripMenuItem.Click
+        GlobalVars.DueDateMenuSelect = "Past"
+        DueDateCategorizer.Show()
+    End Sub
+
+    Private Sub DueWithin30DaysToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DueWithin30DaysToolStripMenuItem.Click
+        GlobalVars.DueDateMenuSelect = "30"
+        DueDateCategorizer.Show()
+    End Sub
+
+    Private Sub DueWithin60DaysToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DueWithin60DaysToolStripMenuItem.Click
+        GlobalVars.DueDateMenuSelect = "60"
+        DueDateCategorizer.Show()
     End Sub
 End Class

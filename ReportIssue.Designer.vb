@@ -53,7 +53,7 @@ Partial Class ReportIssue
         '
         Me.txtName.Location = New System.Drawing.Point(17, 28)
         Me.txtName.Name = "txtName"
-        Me.txtName.Size = New System.Drawing.Size(221, 20)
+        Me.txtName.Size = New System.Drawing.Size(239, 20)
         Me.txtName.TabIndex = 0
         '
         'Label1
@@ -69,14 +69,14 @@ Partial Class ReportIssue
         '
         Me.txtEmail.Location = New System.Drawing.Point(17, 80)
         Me.txtEmail.Name = "txtEmail"
-        Me.txtEmail.Size = New System.Drawing.Size(221, 20)
+        Me.txtEmail.Size = New System.Drawing.Size(239, 20)
         Me.txtEmail.TabIndex = 1
         '
         'txtComment
         '
         Me.txtComment.Location = New System.Drawing.Point(17, 132)
         Me.txtComment.Name = "txtComment"
-        Me.txtComment.Size = New System.Drawing.Size(221, 114)
+        Me.txtComment.Size = New System.Drawing.Size(239, 114)
         Me.txtComment.TabIndex = 2
         Me.txtComment.Text = ""
         '
@@ -91,7 +91,7 @@ Partial Class ReportIssue
         '
         'btnSend
         '
-        Me.btnSend.Location = New System.Drawing.Point(163, 252)
+        Me.btnSend.Location = New System.Drawing.Point(181, 252)
         Me.btnSend.Name = "btnSend"
         Me.btnSend.Size = New System.Drawing.Size(75, 23)
         Me.btnSend.TabIndex = 3
@@ -130,7 +130,7 @@ Partial Class ReportIssue
         Me.Panel1.Controls.Add(Me.txtComment)
         Me.Panel1.Location = New System.Drawing.Point(12, 27)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(251, 284)
+        Me.Panel1.Size = New System.Drawing.Size(277, 295)
         Me.Panel1.TabIndex = 11
         '
         'MenuStrip1
@@ -138,7 +138,7 @@ Partial Class ReportIssue
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(271, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(301, 24)
         Me.MenuStrip1.TabIndex = 12
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -152,7 +152,7 @@ Partial Class ReportIssue
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(93, 22)
         Me.ExitToolStripMenuItem.Text = "Exit"
         '
         'ReportIssue
@@ -161,7 +161,7 @@ Partial Class ReportIssue
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.btnBack
-        Me.ClientSize = New System.Drawing.Size(271, 317)
+        Me.ClientSize = New System.Drawing.Size(301, 334)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.MenuStrip1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)

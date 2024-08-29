@@ -22,6 +22,7 @@ Public Class DueDateCategorizer
         End Try
 
         Me.StartPosition = FormStartPosition.CenterScreen
+        TabSelect()
     End Sub
 
     Protected Overrides Sub OnLoad(e As EventArgs)
@@ -218,5 +219,18 @@ Public Class DueDateCategorizer
                 My.Settings.SelectedGage = selectedGage
             End If
         End If
+    End Sub
+
+    Private Sub TabSelect()
+        If GlobalVars.DueDateMenuSelect = "Past" Then
+            TabControl1.SelectedIndex = 0
+        ElseIf GlobalVars.DueDateMenuSelect = "30" Then
+            TabControl1.SelectedIndex = 1
+        ElseIf GlobalVars.DueDateMenuSelect = "60" Then
+            TabControl1.SelectedIndex = 2
+        Else
+            TabControl1.SelectedIndex = 0
+        End If
+        GlobalVars.DueDateMenuSelect = ""
     End Sub
 End Class

@@ -12,23 +12,19 @@ Public Class GTMenu
     Private Async Sub Menu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
 
-        ' Disable search controls
-        DisableSearchControls()
+        SearchCheck = False
+        TxtStatus.Text = ""
 
-        ' Load data
+        DisableSearchControls() 'Disable search controls
         Await Task.WhenAll(Task.Run(Sub() LoadGageID()),
                            Task.Run(Sub() LoadStatus()),
                            Task.Run(Sub() LoadDepartment()),
                            Task.Run(Sub() LoadGageType()),
                            Task.Run(Sub() LoadUser()),
                            Task.Run(Sub() LoadCustomers()))
-
-        ' Enable search controls
-        EnableSearchControls()
+        EnableSearchControls() 'Enable search controls
 
         TxtGageID.Focus()
-        SearchCheck = False
-        TxtStatus.Text = ""
 
         If Not String.IsNullOrEmpty(My.Settings.SelectedGage) Then
             ' Set the ComboBox to the saved value

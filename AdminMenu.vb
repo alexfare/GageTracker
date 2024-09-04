@@ -11,20 +11,19 @@ Public Class AdminMenu
     Private Async Sub AdminMenu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
 
-        DisableSearchControls() 'Disable search controls
+        SearchCheck = False
+        TxtStatus.Text = ""
 
+        DisableSearchControls() 'Disable search controls
         Await Task.WhenAll(Task.Run(Sub() LoadGageID()),
                            Task.Run(Sub() LoadStatus()),
                            Task.Run(Sub() LoadDepartment()),
                            Task.Run(Sub() LoadGageType()),
                            Task.Run(Sub() LoadUser()),
                            Task.Run(Sub() LoadCustomers()))
-
         EnableSearchControls() 'Enable search controls
 
         TxtGageID.Focus()
-        SearchCheck = False
-        TxtStatus.Text = ""
 
         If Not String.IsNullOrEmpty(My.Settings.SelectedGage) Then
             ' Set the ComboBox to the saved value

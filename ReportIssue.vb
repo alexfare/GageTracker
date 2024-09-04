@@ -42,7 +42,6 @@ Public Class ReportIssue
         smtp.UseDefaultCredentials = False
         smtp.Credentials = New System.Net.NetworkCredential("ninsosoft@gmail.com", ZGVjcnlwdGVkUGFzc3dvcmQ)
 
-
         'Send the email
         Try
             smtp.Send(mail)

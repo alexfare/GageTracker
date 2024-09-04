@@ -36,6 +36,8 @@ Public Class RemoveGage
                         MessageBox.Show("Record deleted successfully")
                         ' Clear the form fields after deletion
                         ClearFormFields()
+                        LoadGageIDOptions()
+                        txtGageID.Focus()
                     Else
                         MessageBox.Show("No record deleted. Please check the GageID.")
                     End If

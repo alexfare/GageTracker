@@ -1,3 +1,10 @@
+v5.11.3.45
+Updated GageList Tab order (Now starts on search bar).
+Updated GageList code (Organization).
+Updated GageList UI.
+Fixed RemoveGage Menu not reloading dataset after deleting gage.
+Updated Menu & AdminMenu load order.
+
 v5.11.2.44
 Fixed Exit prompt. This was mistakenly moved.
 Updated ReportIssue UI (Slight resizing).

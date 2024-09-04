@@ -39,6 +39,30 @@ Public Class GageList
         CenterToScreen()
     End Sub
 
+    Private Sub TextContains_TextChanged(sender As Object, e As EventArgs) Handles TextContains.TextChanged
+        Dim selectedColumn As String = CmbContains.SelectedItem.ToString()
+        Dim filterText As String = TextContains.Text.Trim()
+        Dim filterType As String = CmbFilterType.SelectedItem.ToString()
+        Dim filterQuery As String = ""
+
+        If Not String.IsNullOrEmpty(filterText) Then
+            If filterType = "Contains" Then
+                filterQuery = "[" & selectedColumn & "] LIKE '%" & filterText & "%'"
+            ElseIf filterType = "Exact" Then
+                filterQuery = "[" & selectedColumn & "] = '" & filterText & "'"
+            End If
+        End If
+
+        LoadData(filterQuery)
+    End Sub
+
+    Private Sub BtnMenu_Click(sender As Object, e As EventArgs) Handles BtnMenu.Click
+        ' Show the GTMenu form regardless of whether GageID was set
+        GTMenu.Show()
+        GTMenu.LoadGageID()
+    End Sub
+
+    '/---- Database ----/
     Public Sub LoadData(Optional filterQuery As String = "")
         If Not System.IO.File.Exists(GlobalVars.DatabaseLocation) Then
             If PromptForDatabaseLocation() Then
@@ -96,6 +120,21 @@ Public Class GageList
         Return False
     End Function
 
+    Private Sub ChangeDatabaseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ChangeDatabaseToolStripMenuItem.Click
+        Using openFileDialog As New OpenFileDialog()
+            openFileDialog.InitialDirectory = "C:\"
+            openFileDialog.Filter = "Access Database Files (*.accdb)|*.accdb"
+            openFileDialog.FilterIndex = 1
+            openFileDialog.RestoreDirectory = True
+
+            If openFileDialog.ShowDialog() = DialogResult.OK Then
+                GlobalVars.DatabaseLocation = openFileDialog.FileName
+                GlobalVars.SaveDatabaseLocation(GlobalVars.DatabaseLocation)
+            End If
+        End Using
+    End Sub
+
+    '/---- DataGrid ----/
     Private Sub DataGridView1_RowPostPaint(sender As Object, e As DataGridViewRowPostPaintEventArgs) Handles DataGridView1.RowPostPaint ' Set Zebra striping
         Dim grid As DataGridView = CType(sender, DataGridView)
         If e.RowIndex >= 0 Then
@@ -106,29 +145,6 @@ Public Class GageList
                 grid.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.White
             End If
         End If
-    End Sub
-
-    Private Sub BtnMenu_Click(sender As Object, e As EventArgs) Handles BtnMenu.Click
-        ' Show the GTMenu form regardless of whether GageID was set
-        GTMenu.Show()
-        GTMenu.LoadGageID()
-    End Sub
-
-    Private Sub TextContains_TextChanged(sender As Object, e As EventArgs) Handles TextContains.TextChanged
-        Dim selectedColumn As String = CmbContains.SelectedItem.ToString()
-        Dim filterText As String = TextContains.Text.Trim()
-        Dim filterType As String = CmbFilterType.SelectedItem.ToString()
-        Dim filterQuery As String = ""
-
-        If Not String.IsNullOrEmpty(filterText) Then
-            If filterType = "Contains" Then
-                filterQuery = "[" & selectedColumn & "] LIKE '%" & filterText & "%'"
-            ElseIf filterType = "Exact" Then
-                filterQuery = "[" & selectedColumn & "] = '" & filterText & "'"
-            End If
-        End If
-
-        LoadData(filterQuery)
     End Sub
 
     Private Sub DataGridView1_SelectionChanged(sender As Object, e As EventArgs)
@@ -160,6 +176,7 @@ Public Class GageList
         End If
     End Sub
 
+    '/---- Settings & Misc ----/
     Private Sub CheckBoxShowAll_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxShowAll.CheckedChanged
         ' Save the setting and apply the filter
         My.Settings.ShowAll = CheckBoxShowAll.Checked
@@ -176,6 +193,16 @@ Public Class GageList
         LoadData(filterQuery)
     End Sub
 
+    Private Sub StartLogin()
+        LoginForm1.Show()
+        My.Settings.FromList = True
+    End Sub
+
+    Private Sub StartAdmin()
+        AdminMenu.Show()
+        My.Settings.FromList = True
+    End Sub
+
     '/----- Menu Toolbar Strip -----/
     Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
         About.Show()
@@ -185,18 +212,37 @@ Public Class GageList
         Me.Close()
     End Sub
 
-    Private Sub ChangeDatabaseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ChangeDatabaseToolStripMenuItem.Click
-        Using openFileDialog As New OpenFileDialog()
-            openFileDialog.InitialDirectory = "C:\"
-            openFileDialog.Filter = "Access Database Files (*.accdb)|*.accdb"
-            openFileDialog.FilterIndex = 1
-            openFileDialog.RestoreDirectory = True
+    Private Sub PastDueToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PastDueToolStripMenuItem.Click
+        GlobalVars.DueDateMenuSelect = "Past"
+        DueDateCategorizer.Show()
+    End Sub
 
-            If openFileDialog.ShowDialog() = DialogResult.OK Then
-                GlobalVars.DatabaseLocation = openFileDialog.FileName
-                GlobalVars.SaveDatabaseLocation(GlobalVars.DatabaseLocation)
-            End If
-        End Using
+    Private Sub DueWithin30DaysToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DueWithin30DaysToolStripMenuItem.Click
+        GlobalVars.DueDateMenuSelect = "30"
+        DueDateCategorizer.Show()
+    End Sub
+
+    Private Sub DueWithin60DaysToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DueWithin60DaysToolStripMenuItem.Click
+        GlobalVars.DueDateMenuSelect = "60"
+        DueDateCategorizer.Show()
+    End Sub
+
+    Private Sub GithubToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GithubToolStripMenuItem.Click
+        Dim url As String = "https://github.com/alexfare/GageTracker"
+        Try
+            Process.Start(url)
+        Catch ex As Exception
+            MessageBox.Show("An error occurred while trying to open the URL: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub WebsiteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles WebsiteToolStripMenuItem.Click
+        Dim url As String = "https://alexfare.com/programs/gagetracker/latest/"
+        Try
+            Process.Start(url)
+        Catch ex As Exception
+            MessageBox.Show("An error occurred while trying to open the URL: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
 
     Private Sub MenuToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MenuToolStripMenuItem.Click
@@ -217,33 +263,7 @@ Public Class GageList
         End If
     End Sub
 
-    Private Sub StartLogin()
-        LoginForm1.Show()
-        My.Settings.FromList = True
-    End Sub
-
-    Private Sub StartAdmin()
-        AdminMenu.Show()
-        My.Settings.FromList = True
-    End Sub
-
-    Private Sub GithubToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GithubToolStripMenuItem.Click
-        Dim url As String = "https://github.com/alexfare/GageTracker"
-        Try
-            Process.Start(url)
-        Catch ex As Exception
-            MessageBox.Show("An error occurred while trying to open the URL: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-    End Sub
-
-    Private Sub WebsiteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles WebsiteToolStripMenuItem.Click
-        Dim url As String = "https://alexfare.com/programs/gagetracker/latest/"
-        Try
-            Process.Start(url)
-        Catch ex As Exception
-            MessageBox.Show("An error occurred while trying to open the URL: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-    End Sub
+    '/---- Closing Actions ----/
     Private Sub MainForm_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         If isClosing Then
             Return
@@ -267,20 +287,5 @@ Public Class GageList
         Else
             e.Cancel = True ' Cancel the close event if the user decides not to close
         End If
-    End Sub
-
-    Private Sub PastDueToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PastDueToolStripMenuItem.Click
-        GlobalVars.DueDateMenuSelect = "Past"
-        DueDateCategorizer.Show()
-    End Sub
-
-    Private Sub DueWithin30DaysToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DueWithin30DaysToolStripMenuItem.Click
-        GlobalVars.DueDateMenuSelect = "30"
-        DueDateCategorizer.Show()
-    End Sub
-
-    Private Sub DueWithin60DaysToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DueWithin60DaysToolStripMenuItem.Click
-        GlobalVars.DueDateMenuSelect = "60"
-        DueDateCategorizer.Show()
     End Sub
 End Class

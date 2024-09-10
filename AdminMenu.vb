@@ -26,7 +26,7 @@ Public Class AdminMenu
         TxtGageID.Focus()
 
         If Not String.IsNullOrEmpty(My.Settings.SelectedGage) Then
-            ' Set the ComboBox to the saved value
+            'Set the ComboBox to the saved value
             TxtGageID.SelectedItem = My.Settings.SelectedGage
             BtnAdminSearch_Click(Me, EventArgs.Empty)
         End If
@@ -61,7 +61,6 @@ Public Class AdminMenu
     End Sub
 
     Private Sub BtnAdminSearch_Click(sender As Object, e As EventArgs) Handles BtnAdminSearch.Click
-        ' Check if the GageID text box is empty
         If String.IsNullOrWhiteSpace(TxtGageID.Text) Then
             MessageBox.Show("GageID cannot be blank. Please enter a valid GageID.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return
@@ -71,19 +70,19 @@ Public Class AdminMenu
             Try
                 conn.Open()
                 Dim cmd As New OleDbCommand("SELECT PartNumber, PartRev, Status, Description, Department, [Gage Type], Customer, [Calibrated By], [Interval (Months)], [Inspected Date], [Due Date], Comments, aN1, aN2, aN3, aN4, aN5, aA1, aA2, aA3, aA4, aA5, [Serial Number], Owner, [Nist Number] FROM [CalibrationTracker] WHERE GageID = ?", conn)
-                ' Use parameterized queries to prevent SQL Injection
+
                 cmd.Parameters.AddWithValue("@GageID", TxtGageID.Text)
 
                 Using reader As OleDbDataReader = cmd.ExecuteReader()
                     If reader.Read() Then
                         txtPartNumber.Text = reader.Item("PartNumber").ToString()
                         txtPartRev.Text = reader.Item("PartRev").ToString()
-                        ' For the cmbStatus, find the correct status in the items and set it as selected
+
                         Dim statusIndex As Integer = cmbStatus.FindStringExact(reader.Item("Status").ToString())
                         If statusIndex >= 0 Then
                             cmbStatus.SelectedIndex = statusIndex
                         Else
-                            cmbStatus.SelectedIndex = -1 ' No matching status found
+                            cmbStatus.SelectedIndex = -1 'No matching status found
                         End If
                         txtDescription.Text = reader.Item("Description").ToString()
                         txtDepartment.Text = reader.Item("Department").ToString()
@@ -104,7 +103,7 @@ Public Class AdminMenu
                         txtOwner.Text = reader.Item("Owner").ToString()
                         TxtNistNumber.Text = reader.Item("Nist Number").ToString()
 
-                        ' Measurements
+                        'Measurements
                         txtaN1.Text = reader.Item("aN1").ToString()
                         txtaN2.Text = reader.Item("aN2").ToString()
                         txtaN3.Text = reader.Item("aN3").ToString()
@@ -154,7 +153,7 @@ Public Class AdminMenu
                 If count = 0 Then
                     Dim intervalMonths As Integer = 0
                     If Not Integer.TryParse(TxtInterval.Text, intervalMonths) Then
-                        intervalMonths = 0 ' Default to 0 if not a valid integer
+                        intervalMonths = 0 'Default to 0 if not a valid integer
                     End If
 
                     Dim inspectedDate As DateTime = DtInspectedDate.Value
@@ -217,19 +216,16 @@ Public Class AdminMenu
         Using conn As New OleDbConnection(connectionString)
             conn.Open()
 
-            ' Determine the value for Last User
             Dim lastUser As String
             If String.IsNullOrEmpty(My.Settings.LoggedUser) Then
-                lastUser = Environment.UserName ' Use the current logged-in computer user
+                lastUser = Environment.UserName 'Use the current logged-in computer user
             Else
                 lastUser = My.Settings.LoggedUser
             End If
 
-            ' Prepare your UPDATE SQL command with parameters to prevent SQL injection
             Dim updateCmd As New OleDbCommand("UPDATE [CalibrationTracker] SET PartNumber = ?, PartRev = ?, Status = ?, Description = ?, Department = ?, [Gage Type] = ?, Customer = ?, [Calibrated By] = ?, [Interval (Months)] = ?, [Inspected Date] = ?, [Due Date] = ?, Comments = ?, aN1 = ?, aN2 = ?, aN3 = ?, aN4 = ?, aN5 = ?, aA1 = ?, aA2 = ?, aA3 = ?, aA4 = ?, aA5 = ?, [Serial Number] = ?, Owner = ?, [Nist Number] = ? WHERE GageID = ?", conn)
             Dim lastEdited As DateTime = Now
 
-            ' Add parameters with the values from your form controls
             updateCmd.Parameters.Add(New OleDbParameter("@PartNumber", txtPartNumber.Text))
             updateCmd.Parameters.Add(New OleDbParameter("@PartRev", txtPartRev.Text))
             updateCmd.Parameters.Add(New OleDbParameter("@Status", cmbStatus.Text))
@@ -257,7 +253,7 @@ Public Class AdminMenu
             updateCmd.Parameters.Add(New OleDbParameter("@NistNumber", TxtNistNumber.Text))
             updateCmd.Parameters.Add(New OleDbParameter("@GageID", TxtGageID.Text))
 
-            ' Execute the UPDATE command
+            'Execute the UPDATE command
             Dim rowsAffected As Integer = updateCmd.ExecuteNonQuery()
             If rowsAffected > 0 Then
                 TxtStatus.Text = "Record updated successfully"
@@ -283,7 +279,6 @@ Public Class AdminMenu
     End Sub
 
     Private Sub DeleteConfirmed()
-        ' Check if the GageID text box is empty
         If String.IsNullOrWhiteSpace(TxtGageID.Text) Then
             MessageBox.Show("GageID cannot be blank. Please enter a valid GageID.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return
@@ -300,7 +295,8 @@ Public Class AdminMenu
             Try
                 Using conn As New OleDbConnection(connectionString)
                     conn.Open()
-                    ' Execute the DELETE query
+
+                    'Execute the DELETE query
                     Dim deleteCmd As New OleDbCommand("DELETE FROM [CalibrationTracker] WHERE GageID = ?", conn)
                     deleteCmd.Parameters.AddWithValue("@GageID", TxtGageID.Text)
                     Dim rowsAffected As Integer = deleteCmd.ExecuteNonQuery()
@@ -308,7 +304,6 @@ Public Class AdminMenu
                         TxtStatus.Text = "Gage deleted successfully."
                         Timer1.Enabled = True
                         SearchCheck = False
-                        ' Clear the form fields after deletion
                         ClearForms()
                         ReloadData()
                         GlobalVars.LastActivity = TxtGageID.Text + " deleted."
@@ -330,30 +325,30 @@ Public Class AdminMenu
     End Sub
 
     Private Sub ClearForms()
-        TxtGageID.SelectedIndex = -1 ' Reset the ComboBox selection
+        TxtGageID.SelectedIndex = -1
         TxtGageID.Text = ""
         txtPartNumber.Clear()
         txtPartRev.Clear()
-        cmbStatus.SelectedIndex = -1 ' Reset the ComboBox selection
+        cmbStatus.SelectedIndex = -1
         cmbStatus.Text = ""
         txtDescription.Clear()
-        txtDepartment.SelectedIndex = -1 ' Reset the ComboBox selection
+        txtDepartment.SelectedIndex = -1
         txtDepartment.Text = ""
-        txtGageType.SelectedIndex = -1 ' Reset the ComboBox selection
+        txtGageType.SelectedIndex = -1
         txtGageType.Text = ""
-        txtCustomer.SelectedIndex = -1 ' Reset the ComboBox selection
+        txtCustomer.SelectedIndex = -1
         txtCustomer.Text = ""
-        txtCalibratedBy.SelectedIndex = -1 ' Reset the ComboBox selection
+        txtCalibratedBy.SelectedIndex = -1
         txtCalibratedBy.Text = ""
         TxtInterval.Clear()
         txtComments.Clear()
         TxtSerialNumber.Clear()
         txtOwner.Clear()
         TxtNistNumber.Clear()
-        DtInspectedDate.Value = DateTime.Now ' Reset to current date or some default
-        dtDueDate.Value = DateTime.Now ' Reset to current date or some default
+        DtInspectedDate.Value = DateTime.Now
+        dtDueDate.Value = DateTime.Now
 
-        ' Clear Measurements
+        'Clear Measurements
         txtaN1.Clear()
         txtaN2.Clear()
         txtaN3.Clear()
@@ -365,7 +360,7 @@ Public Class AdminMenu
         txtaA4.Clear()
         txtaA5.Clear()
 
-        ' Audit Log
+        'Audit Log
         LblDateAdded.Clear()
         LblLastEdited.Clear()
         LblEditBy.Clear()
@@ -474,10 +469,10 @@ Public Class AdminMenu
                     items.Add(reader("GageID").ToString())
                 End While
 
-                ' Close the reader and connection
+                'Close the reader and connection
                 reader.Close()
 
-                ' Now invoke the UI thread to update the ComboBox
+                'Now invoke the UI thread to update the ComboBox
                 Me.Invoke(Sub()
                               TxtGageID.Items.Clear()
                               TxtGageID.AutoCompleteMode = AutoCompleteMode.SuggestAppend
@@ -491,7 +486,7 @@ Public Class AdminMenu
             Catch ex As Exception
                 MessageBox.Show("An error occurred while loading GageID options: " & ex.Message)
             Finally
-                ' Ensure connection is closed if exception occurs
+                'Use connection is closed if exception occurs
                 If conn.State = ConnectionState.Open Then
                     conn.Close()
                 End If
@@ -503,15 +498,15 @@ Public Class AdminMenu
         Using conn As New OleDbConnection(connectionString)
             Try
                 conn.Open()
-                Dim cmd As New OleDbCommand("SELECT Status FROM [Status]", conn) ' Ensure the table name and column name are correct
+                Dim cmd As New OleDbCommand("SELECT Status FROM [Status]", conn)
                 Dim reader As OleDbDataReader = cmd.ExecuteReader()
-                Dim items As New List(Of String)() ' Temporary list to hold status data
+                Dim items As New List(Of String)()
 
                 While reader.Read()
                     items.Add(reader("Status").ToString())
                 End While
 
-                ' Now invoke the UI thread to update the ComboBox
+                'Use invoke the UI thread to update the ComboBox
                 Me.Invoke(Sub()
                               cmbStatus.Items.Clear()
                               For Each item As String In items
@@ -522,7 +517,7 @@ Public Class AdminMenu
             Catch ex As Exception
                 MessageBox.Show("An error occurred while loading status options: " & ex.Message)
             Finally
-                ' Ensure connection is closed if exception occurs
+                'Ensure connection is closed if exception occurs
                 If conn.State = ConnectionState.Open Then
                     conn.Close()
                 End If
@@ -542,7 +537,7 @@ Public Class AdminMenu
                     items.Add(reader("Departments").ToString())
                 End While
 
-                ' Use Invoke to update the ComboBox on the UI thread
+                'Use Invoke to update the ComboBox on the UI thread
                 Me.Invoke(Sub()
                               txtDepartment.Items.Clear()
                               For Each item As String In items
@@ -553,7 +548,7 @@ Public Class AdminMenu
             Catch ex As Exception
                 MessageBox.Show("An error occurred while loading Departments options: " & ex.Message)
             Finally
-                ' Ensure connection is closed if exception occurs
+                'Ensure connection is closed if exception occurs
                 If conn.State = ConnectionState.Open Then
                     conn.Close()
                 End If
@@ -573,7 +568,7 @@ Public Class AdminMenu
                     items.Add(reader("GageType").ToString())
                 End While
 
-                ' Use Invoke to update the ComboBox on the UI thread
+                'Use Invoke to update the ComboBox on the UI thread
                 Me.Invoke(Sub()
                               txtGageType.Items.Clear()
                               For Each item As String In items
@@ -584,7 +579,7 @@ Public Class AdminMenu
             Catch ex As Exception
                 MessageBox.Show("An error occurred while loading Gage Type options: " & ex.Message)
             Finally
-                ' Ensure connection is closed if exception occurs
+                'Ensure connection is closed if exception occurs
                 If conn.State = ConnectionState.Open Then
                     conn.Close()
                 End If
@@ -604,7 +599,7 @@ Public Class AdminMenu
                     items.Add(reader("CustomerName").ToString())
                 End While
 
-                ' Use Invoke to update the ComboBox on the UI thread
+                'Use Invoke to update the ComboBox on the UI thread
                 Me.Invoke(Sub()
                               txtCustomer.Items.Clear()
                               For Each item As String In items
@@ -615,7 +610,7 @@ Public Class AdminMenu
             Catch ex As Exception
                 MessageBox.Show("An error occurred while loading Customer options: " & ex.Message)
             Finally
-                ' Ensure connection is closed if exception occurs
+                'Ensure connection is closed if exception occurs
                 If conn.State = ConnectionState.Open Then
                     conn.Close()
                 End If
@@ -624,8 +619,8 @@ Public Class AdminMenu
     End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-        TxtStatus.Text = ""  ' Clear the text
-        Timer1.Enabled = False  ' Stop the timer
+        TxtStatus.Text = ""  'Clear the text
+        Timer1.Enabled = False  'Stop the timer
     End Sub
 
     Public Sub LoadUser()
@@ -640,7 +635,7 @@ Public Class AdminMenu
                     items.Add(reader("Username").ToString())
                 End While
 
-                ' Use Invoke to update the ComboBox on the UI thread
+                'Use Invoke to update the ComboBox on the UI thread
                 Me.Invoke(Sub()
                               txtCalibratedBy.Items.Clear()
                               For Each item As String In items
@@ -651,11 +646,45 @@ Public Class AdminMenu
             Catch ex As Exception
                 MessageBox.Show("An error occurred while loading Gage Type options: " & ex.Message)
             Finally
-                ' Ensure connection is closed if exception occurs
+                'Ensure connection is closed if exception occurs
                 If conn.State = ConnectionState.Open Then
                     conn.Close()
                 End If
             End Try
         End Using
+    End Sub
+
+    Private Sub BtnDatabasePath_Click(sender As Object, e As EventArgs) Handles BtnDatabasePath.Click
+        Dim fullPath As String = My.Settings.DatabaseLocation
+
+        If Not String.IsNullOrEmpty(fullPath) Then
+            Dim directoryPath As String = IO.Path.GetDirectoryName(fullPath)
+
+            If IO.Directory.Exists(directoryPath) Then
+                Process.Start("explorer.exe", directoryPath)
+            Else
+                MessageBox.Show("Directory does not exist: " & directoryPath, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
+        Else
+            MessageBox.Show("Database location is not set.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End If
+    End Sub
+
+    Private Sub BtnOpenDatabase_Click(sender As Object, e As EventArgs) Handles BtnOpenDatabase.Click
+        Dim fullPath As String = My.Settings.DatabaseLocation
+
+        If Not String.IsNullOrEmpty(fullPath) Then
+            If IO.File.Exists(fullPath) Then
+                Try
+                    Process.Start("msaccess.exe", """" & fullPath & """")
+                Catch ex As Exception
+                    MessageBox.Show("Failed to open the database in Access: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End Try
+            Else
+                MessageBox.Show("Database file does not exist: " & fullPath, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
+        Else
+            MessageBox.Show("Database location is not set.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End If
     End Sub
 End Class

@@ -1,3 +1,12 @@
+v5.11.4.46
+Updated CustomerEntry, Now reloads tables after deleting & misc corrections.
+Updated About, Fixed form centering issue.
+Updated LoginForm. Now will remain at the top.
+Database Maintenance.
+Updated AdminMenu, Added Database Path Button.
+Updated AdminMenu, Added Database Open Button.
+Updated AdminMenu, Organization.
+
 v5.11.3.45
 Updated GageList Tab order (Now starts on search bar).
 Updated GageList code (Organization).

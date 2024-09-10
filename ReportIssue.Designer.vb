@@ -130,7 +130,7 @@ Partial Class ReportIssue
         Me.Panel1.Controls.Add(Me.txtComment)
         Me.Panel1.Location = New System.Drawing.Point(12, 27)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(277, 295)
+        Me.Panel1.Size = New System.Drawing.Size(277, 289)
         Me.Panel1.TabIndex = 11
         '
         'MenuStrip1
@@ -161,7 +161,7 @@ Partial Class ReportIssue
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.btnBack
-        Me.ClientSize = New System.Drawing.Size(301, 334)
+        Me.ClientSize = New System.Drawing.Size(301, 321)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.MenuStrip1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)

@@ -114,6 +114,7 @@ Partial Class AdminMenu
         Me.txtaN3 = New System.Windows.Forms.TextBox()
         Me.Label34 = New System.Windows.Forms.Label()
         Me.TabPage6 = New System.Windows.Forms.TabPage()
+        Me.BtnDatabasePath = New System.Windows.Forms.Button()
         Me.btnStatus = New System.Windows.Forms.Button()
         Me.btnAccount = New System.Windows.Forms.Button()
         Me.btnRemoveGage = New System.Windows.Forms.Button()
@@ -124,6 +125,7 @@ Partial Class AdminMenu
         Me.BtnAdd = New System.Windows.Forms.Button()
         Me.BtnUpdate = New System.Windows.Forms.Button()
         Me.TxtStatus = New System.Windows.Forms.Label()
+        Me.BtnOpenDatabase = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.TabControl2.SuspendLayout()
@@ -966,6 +968,8 @@ Partial Class AdminMenu
         '
         'TabPage6
         '
+        Me.TabPage6.Controls.Add(Me.BtnOpenDatabase)
+        Me.TabPage6.Controls.Add(Me.BtnDatabasePath)
         Me.TabPage6.Controls.Add(Me.btnStatus)
         Me.TabPage6.Controls.Add(Me.btnAccount)
         Me.TabPage6.Controls.Add(Me.btnRemoveGage)
@@ -977,6 +981,15 @@ Partial Class AdminMenu
         Me.TabPage6.TabIndex = 3
         Me.TabPage6.Text = "Admin Menu"
         Me.TabPage6.UseVisualStyleBackColor = True
+        '
+        'BtnDatabasePath
+        '
+        Me.BtnDatabasePath.Location = New System.Drawing.Point(6, 58)
+        Me.BtnDatabasePath.Name = "BtnDatabasePath"
+        Me.BtnDatabasePath.Size = New System.Drawing.Size(82, 46)
+        Me.BtnDatabasePath.TabIndex = 4
+        Me.BtnDatabasePath.Text = "Database Path"
+        Me.BtnDatabasePath.UseVisualStyleBackColor = True
         '
         'btnStatus
         '
@@ -1078,6 +1091,15 @@ Partial Class AdminMenu
         Me.TxtStatus.Size = New System.Drawing.Size(35, 13)
         Me.TxtStatus.TabIndex = 36
         Me.TxtStatus.Text = "NULL"
+        '
+        'BtnOpenDatabase
+        '
+        Me.BtnOpenDatabase.Location = New System.Drawing.Point(94, 58)
+        Me.BtnOpenDatabase.Name = "BtnOpenDatabase"
+        Me.BtnOpenDatabase.Size = New System.Drawing.Size(82, 46)
+        Me.BtnOpenDatabase.TabIndex = 5
+        Me.BtnOpenDatabase.Text = "Open Database"
+        Me.BtnOpenDatabase.UseVisualStyleBackColor = True
         '
         'AdminMenu
         '
@@ -1220,4 +1242,6 @@ Partial Class AdminMenu
     Friend WithEvents BtnAdd As Button
     Friend WithEvents BtnUpdate As Button
     Friend WithEvents TxtStatus As Label
+    Friend WithEvents BtnDatabasePath As Button
+    Friend WithEvents BtnOpenDatabase As Button
 End Class

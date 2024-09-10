@@ -50,7 +50,7 @@ Public Class CustomerEntry
                 Try
                     connection.Open()
                     command.ExecuteNonQuery()
-                    MessageBox.Show("Data saved successfully.")
+                    MessageBox.Show("Customer added successfully.")
                     LoadCustomers() ' Reload customer list to include new data
                 Catch ex As Exception
                     MessageBox.Show("An error occurred while adding new customer: " & ex.Message)

@@ -15,8 +15,5 @@
 
         'Aduit
         GlobalVars.LastActivity = My.Settings.LastActivity
-        My.Settings.isAdmin = False
-        My.Settings.LoggedUser = ""
-        My.Settings.Save()
     End Sub
 End Class

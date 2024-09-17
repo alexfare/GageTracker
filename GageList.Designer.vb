@@ -80,7 +80,7 @@ Partial Class GageList
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
         Me.DataGridView1.Size = New System.Drawing.Size(1277, 549)
-        Me.DataGridView1.TabIndex = 3
+        Me.DataGridView1.TabIndex = 5
         '
         'GageIDDataGridViewTextBoxColumn
         '
@@ -162,7 +162,7 @@ Partial Class GageList
         Me.BtnMenu.Location = New System.Drawing.Point(12, 627)
         Me.BtnMenu.Name = "BtnMenu"
         Me.BtnMenu.Size = New System.Drawing.Size(293, 23)
-        Me.BtnMenu.TabIndex = 2
+        Me.BtnMenu.TabIndex = 4
         Me.BtnMenu.Text = "Menu"
         Me.BtnMenu.UseVisualStyleBackColor = True
         '
@@ -224,19 +224,19 @@ Partial Class GageList
         'PastDueToolStripMenuItem
         '
         Me.PastDueToolStripMenuItem.Name = "PastDueToolStripMenuItem"
-        Me.PastDueToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.PastDueToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.PastDueToolStripMenuItem.Text = "Past Due"
         '
         'DueWithin30DaysToolStripMenuItem
         '
         Me.DueWithin30DaysToolStripMenuItem.Name = "DueWithin30DaysToolStripMenuItem"
-        Me.DueWithin30DaysToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.DueWithin30DaysToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.DueWithin30DaysToolStripMenuItem.Text = "Due within 30 days"
         '
         'DueWithin60DaysToolStripMenuItem
         '
         Me.DueWithin60DaysToolStripMenuItem.Name = "DueWithin60DaysToolStripMenuItem"
-        Me.DueWithin60DaysToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.DueWithin60DaysToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.DueWithin60DaysToolStripMenuItem.Text = "Due within 60 days"
         '
         'AdminToolStripMenuItem
@@ -285,17 +285,20 @@ Partial Class GageList
         '
         'TextContains
         '
-        Me.TextContains.Location = New System.Drawing.Point(532, 44)
+        Me.TextContains.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TextContains.Location = New System.Drawing.Point(508, 45)
         Me.TextContains.Name = "TextContains"
-        Me.TextContains.Size = New System.Drawing.Size(339, 20)
+        Me.TextContains.Size = New System.Drawing.Size(664, 20)
         Me.TextContains.TabIndex = 0
         '
         'CmbFilterType
         '
         Me.CmbFilterType.FormattingEnabled = True
-        Me.CmbFilterType.Location = New System.Drawing.Point(405, 43)
+        Me.CmbFilterType.Location = New System.Drawing.Point(393, 43)
         Me.CmbFilterType.Name = "CmbFilterType"
-        Me.CmbFilterType.Size = New System.Drawing.Size(121, 21)
+        Me.CmbFilterType.Size = New System.Drawing.Size(109, 21)
         Me.CmbFilterType.TabIndex = 2
         '
         'CmbContains
@@ -303,7 +306,7 @@ Partial Class GageList
         Me.CmbContains.FormattingEnabled = True
         Me.CmbContains.Location = New System.Drawing.Point(278, 43)
         Me.CmbContains.Name = "CmbContains"
-        Me.CmbContains.Size = New System.Drawing.Size(121, 21)
+        Me.CmbContains.Size = New System.Drawing.Size(109, 21)
         Me.CmbContains.TabIndex = 1
         '
         'CheckBoxShowAll
@@ -314,7 +317,7 @@ Partial Class GageList
         Me.CheckBoxShowAll.Location = New System.Drawing.Point(1178, 47)
         Me.CheckBoxShowAll.Name = "CheckBoxShowAll"
         Me.CheckBoxShowAll.Size = New System.Drawing.Size(111, 17)
-        Me.CheckBoxShowAll.TabIndex = 12
+        Me.CheckBoxShowAll.TabIndex = 3
         Me.CheckBoxShowAll.Text = "Show All Statuses"
         Me.CheckBoxShowAll.UseVisualStyleBackColor = True
         '

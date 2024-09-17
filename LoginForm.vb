@@ -17,6 +17,11 @@ Public Class LoginForm1
         Dim username As String = txtUsername.Text
         Dim password As String = txtPassword.Text
 
+        If String.IsNullOrWhiteSpace(txtUsername.Text) Then
+            MessageBox.Show("Username cannot be blank.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            txtUsername.Focus()
+        End If
+
         Using conn As New OleDbConnection(ConnectionString)
             Try
                 conn.Open()

@@ -1,3 +1,12 @@
+v5.11.5.47
+Updated DueDateCategorizer dataset to fill data.
+Updated DueDateCategorizer size.
+Updated AccountManagement form.
+Updated GageList Tab Order and slight UI adjustments.
+Updated AdminMenu buttons.
+Updated ApplicationEvents.
+Updated LoadingScreen code.
+
 v5.11.4.46
 Updated CustomerEntry, Now reloads tables after deleting & misc corrections.
 Updated About, Fixed form centering issue.

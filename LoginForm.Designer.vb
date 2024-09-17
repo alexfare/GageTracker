@@ -74,7 +74,7 @@ Partial Class LoginForm1
         Me.txtUsername.Location = New System.Drawing.Point(174, 44)
         Me.txtUsername.Name = "txtUsername"
         Me.txtUsername.Size = New System.Drawing.Size(220, 20)
-        Me.txtUsername.TabIndex = 1
+        Me.txtUsername.TabIndex = 0
         '
         'txtPassword
         '
@@ -82,14 +82,14 @@ Partial Class LoginForm1
         Me.txtPassword.Name = "txtPassword"
         Me.txtPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.txtPassword.Size = New System.Drawing.Size(220, 20)
-        Me.txtPassword.TabIndex = 3
+        Me.txtPassword.TabIndex = 1
         '
         'btnLogin
         '
         Me.btnLogin.Location = New System.Drawing.Point(300, 138)
         Me.btnLogin.Name = "btnLogin"
         Me.btnLogin.Size = New System.Drawing.Size(94, 30)
-        Me.btnLogin.TabIndex = 4
+        Me.btnLogin.TabIndex = 2
         Me.btnLogin.Text = "&Login"
         '
         'Cancel
@@ -98,7 +98,7 @@ Partial Class LoginForm1
         Me.Cancel.Location = New System.Drawing.Point(174, 138)
         Me.Cancel.Name = "Cancel"
         Me.Cancel.Size = New System.Drawing.Size(94, 30)
-        Me.Cancel.TabIndex = 5
+        Me.Cancel.TabIndex = 3
         Me.Cancel.Text = "&Cancel"
         '
         'LoginForm1

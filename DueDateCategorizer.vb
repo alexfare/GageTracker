@@ -65,9 +65,9 @@ Public Class DueDateCategorizer
                 DataGridViewWithin60Days.DataSource = within60Days
 
                 ' Set auto size mode for columns
-                DataGridViewPastDue.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
-                DataGridViewWithin30Days.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
-                DataGridViewWithin60Days.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
+                DataGridViewPastDue.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+                DataGridViewWithin30Days.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+                DataGridViewWithin60Days.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
 
             Catch ex As OleDbException
                 MessageBox.Show("OleDb error: " & ex.Message)
@@ -126,12 +126,10 @@ Public Class DueDateCategorizer
     End Sub
 
     Private Sub BtnGageList_Click(sender As Object, e As EventArgs) Handles BtnGageList.Click
-        ' Show the GTMenu form regardless of whether GageID was set
         Me.Close()
     End Sub
 
     Private Sub MenuToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MenuToolStripMenuItem.Click
-        ' Show the GTMenu form regardless of whether GageID was set
         GTMenu.Show()
         GTMenu.LoadGageID()
     End Sub

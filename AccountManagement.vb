@@ -74,7 +74,7 @@ Public Class AccountManagement
             cmd.Parameters.Add(New OleDbParameter("@Username", username))
             cmd.Parameters.Add(New OleDbParameter("@Password", hashedPassword))
             cmd.ExecuteNonQuery()
-            MessageBox.Show("User account created successfully.")
+            MessageBox.Show("User created successfully.")
             txtUsername.SelectedIndex = -1 ' Reset the ComboBox selection
             LoadUsers()
             ClearInputs()
@@ -129,10 +129,8 @@ Public Class AccountManagement
                 deleteCmd.Parameters.Add(New OleDbParameter("@Username", username))
                 deleteCmd.ExecuteNonQuery()
                 MessageBox.Show("User deleted successfully.")
-                txtUsername.SelectedIndex = -1 ' Reset the ComboBox selection
+                txtUsername.SelectedIndex = -1 'Reset the ComboBox selection
                 LoadUsers()
-            Else
-                MessageBox.Show("Deletion canceled.")
             End If
         End Using
     End Sub

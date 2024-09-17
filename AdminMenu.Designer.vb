@@ -114,6 +114,7 @@ Partial Class AdminMenu
         Me.txtaN3 = New System.Windows.Forms.TextBox()
         Me.Label34 = New System.Windows.Forms.Label()
         Me.TabPage6 = New System.Windows.Forms.TabPage()
+        Me.BtnOpenDatabase = New System.Windows.Forms.Button()
         Me.BtnDatabasePath = New System.Windows.Forms.Button()
         Me.btnStatus = New System.Windows.Forms.Button()
         Me.btnAccount = New System.Windows.Forms.Button()
@@ -125,7 +126,6 @@ Partial Class AdminMenu
         Me.BtnAdd = New System.Windows.Forms.Button()
         Me.BtnUpdate = New System.Windows.Forms.Button()
         Me.TxtStatus = New System.Windows.Forms.Label()
-        Me.BtnOpenDatabase = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.TabControl2.SuspendLayout()
@@ -142,6 +142,7 @@ Partial Class AdminMenu
         '
         'BtnBack
         '
+        Me.BtnBack.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.BtnBack.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.BtnBack.Location = New System.Drawing.Point(0, 49)
         Me.BtnBack.Name = "BtnBack"
@@ -982,6 +983,15 @@ Partial Class AdminMenu
         Me.TabPage6.Text = "Admin Menu"
         Me.TabPage6.UseVisualStyleBackColor = True
         '
+        'BtnOpenDatabase
+        '
+        Me.BtnOpenDatabase.Location = New System.Drawing.Point(94, 58)
+        Me.BtnOpenDatabase.Name = "BtnOpenDatabase"
+        Me.BtnOpenDatabase.Size = New System.Drawing.Size(82, 46)
+        Me.BtnOpenDatabase.TabIndex = 5
+        Me.BtnOpenDatabase.Text = "Open Database"
+        Me.BtnOpenDatabase.UseVisualStyleBackColor = True
+        '
         'BtnDatabasePath
         '
         Me.BtnDatabasePath.Location = New System.Drawing.Point(6, 58)
@@ -1092,19 +1102,12 @@ Partial Class AdminMenu
         Me.TxtStatus.TabIndex = 36
         Me.TxtStatus.Text = "NULL"
         '
-        'BtnOpenDatabase
-        '
-        Me.BtnOpenDatabase.Location = New System.Drawing.Point(94, 58)
-        Me.BtnOpenDatabase.Name = "BtnOpenDatabase"
-        Me.BtnOpenDatabase.Size = New System.Drawing.Size(82, 46)
-        Me.BtnOpenDatabase.TabIndex = 5
-        Me.BtnOpenDatabase.Text = "Open Database"
-        Me.BtnOpenDatabase.UseVisualStyleBackColor = True
-        '
         'AdminMenu
         '
+        Me.AcceptButton = Me.BtnAdminSearch
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.CancelButton = Me.BtnBack
         Me.ClientSize = New System.Drawing.Size(514, 523)
         Me.Controls.Add(Me.TxtStatus)
         Me.Controls.Add(Me.Panel1)

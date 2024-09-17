@@ -48,9 +48,9 @@ Partial Class DueDateCategorizer
         'BtnGageList
         '
         Me.BtnGageList.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BtnGageList.Location = New System.Drawing.Point(0, 612)
+        Me.BtnGageList.Location = New System.Drawing.Point(0, 634)
         Me.BtnGageList.Name = "BtnGageList"
-        Me.BtnGageList.Size = New System.Drawing.Size(978, 23)
+        Me.BtnGageList.Size = New System.Drawing.Size(1091, 23)
         Me.BtnGageList.TabIndex = 3
         Me.BtnGageList.Text = "GageList"
         Me.BtnGageList.UseVisualStyleBackColor = True
@@ -64,7 +64,7 @@ Partial Class DueDateCategorizer
         Me.TabControl1.Location = New System.Drawing.Point(0, 24)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(978, 611)
+        Me.TabControl1.Size = New System.Drawing.Size(1091, 633)
         Me.TabControl1.TabIndex = 4
         '
         'TabPage1
@@ -73,7 +73,7 @@ Partial Class DueDateCategorizer
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(970, 585)
+        Me.TabPage1.Size = New System.Drawing.Size(1083, 607)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Past Due"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -85,7 +85,7 @@ Partial Class DueDateCategorizer
         Me.DataGridViewPastDue.Location = New System.Drawing.Point(3, 3)
         Me.DataGridViewPastDue.Name = "DataGridViewPastDue"
         Me.DataGridViewPastDue.ReadOnly = True
-        Me.DataGridViewPastDue.Size = New System.Drawing.Size(964, 579)
+        Me.DataGridViewPastDue.Size = New System.Drawing.Size(1077, 601)
         Me.DataGridViewPastDue.TabIndex = 0
         '
         'TabPage2
@@ -135,7 +135,7 @@ Partial Class DueDateCategorizer
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(978, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(1091, 24)
         Me.MenuStrip1.TabIndex = 5
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -162,7 +162,7 @@ Partial Class DueDateCategorizer
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(978, 635)
+        Me.ClientSize = New System.Drawing.Size(1091, 657)
         Me.Controls.Add(Me.BtnGageList)
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.MenuStrip1)

@@ -42,7 +42,7 @@ Partial Class AccountManagement
         Me.txtUsername.FormattingEnabled = True
         Me.txtUsername.Location = New System.Drawing.Point(60, 23)
         Me.txtUsername.Name = "txtUsername"
-        Me.txtUsername.Size = New System.Drawing.Size(189, 21)
+        Me.txtUsername.Size = New System.Drawing.Size(237, 21)
         Me.txtUsername.TabIndex = 0
         '
         'Label2
@@ -67,7 +67,7 @@ Partial Class AccountManagement
         '
         Me.txtConfirmPassword.Location = New System.Drawing.Point(60, 129)
         Me.txtConfirmPassword.Name = "txtConfirmPassword"
-        Me.txtConfirmPassword.Size = New System.Drawing.Size(189, 20)
+        Me.txtConfirmPassword.Size = New System.Drawing.Size(237, 20)
         Me.txtConfirmPassword.TabIndex = 2
         Me.txtConfirmPassword.UseSystemPasswordChar = True
         '
@@ -75,13 +75,13 @@ Partial Class AccountManagement
         '
         Me.txtPassword.Location = New System.Drawing.Point(60, 90)
         Me.txtPassword.Name = "txtPassword"
-        Me.txtPassword.Size = New System.Drawing.Size(189, 20)
+        Me.txtPassword.Size = New System.Drawing.Size(237, 20)
         Me.txtPassword.TabIndex = 1
         Me.txtPassword.UseSystemPasswordChar = True
         '
         'btnSubmit
         '
-        Me.btnSubmit.Location = New System.Drawing.Point(174, 155)
+        Me.btnSubmit.Location = New System.Drawing.Point(222, 155)
         Me.btnSubmit.Name = "btnSubmit"
         Me.btnSubmit.Size = New System.Drawing.Size(75, 23)
         Me.btnSubmit.TabIndex = 3
@@ -91,7 +91,7 @@ Partial Class AccountManagement
         'BtnBack
         '
         Me.BtnBack.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.BtnBack.Location = New System.Drawing.Point(12, 155)
+        Me.BtnBack.Location = New System.Drawing.Point(60, 155)
         Me.BtnBack.Name = "BtnBack"
         Me.BtnBack.Size = New System.Drawing.Size(75, 23)
         Me.BtnBack.TabIndex = 4
@@ -101,7 +101,7 @@ Partial Class AccountManagement
         'btnDelete
         '
         Me.btnDelete.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btnDelete.Location = New System.Drawing.Point(93, 155)
+        Me.btnDelete.Location = New System.Drawing.Point(141, 155)
         Me.btnDelete.Name = "btnDelete"
         Me.btnDelete.Size = New System.Drawing.Size(75, 23)
         Me.btnDelete.TabIndex = 5
@@ -130,7 +130,7 @@ Partial Class AccountManagement
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(263, 188)
+        Me.ClientSize = New System.Drawing.Size(317, 188)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.txtPassword)
         Me.Controls.Add(Me.btnDelete)

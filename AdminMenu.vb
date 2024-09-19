@@ -6,10 +6,14 @@ Imports System.Threading.Tasks
 Public Class AdminMenu
     Dim connectionString As String
     Dim SearchCheck As Boolean
+    Dim ChangeDetected As Boolean
+    Private isClosing As Boolean = False
+    Dim originalTitle As String = "GageTracker - Menu"
     Public WithEvents Timer1 As New Timer With {.Interval = 3000, .Enabled = False}
 
     Private Async Sub AdminMenu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
+        Me.Text = originalTitle
 
         SearchCheck = False
         TxtStatus.Text = ""
@@ -55,8 +59,9 @@ Public Class AdminMenu
             'Prevent the ding sound on pressing Enter
             e.SuppressKeyPress = True
 
-            'Call the BtnSearch click event handler
-            BtnAdminSearch_Click(Me, EventArgs.Empty)
+            If ChangeDetected = False Then
+                BtnAdminSearch_Click(Me, EventArgs.Empty)
+            End If
         End If
     End Sub
 
@@ -116,6 +121,7 @@ Public Class AdminMenu
                         txtaA5.Text = reader.Item("aA5").ToString()
 
                         SearchCheck = True
+                        UpdateChangeStatus()
                     Else
                         MessageBox.Show("GageID does not exist", "Search Result", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     End If
@@ -260,6 +266,7 @@ Public Class AdminMenu
                 Timer1.Enabled = True
                 ReloadData()
                 SearchCheck = False
+                UpdateChangeStatus()
 
                 'Display until restart
                 LblLastEdited.Text = lastEdited
@@ -366,6 +373,7 @@ Public Class AdminMenu
         LblEditBy.Clear()
 
         SearchCheck = False
+        UpdateChangeStatus()
     End Sub
 
     Private Sub BtnClearNom_Click(sender As Object, e As EventArgs) Handles BtnClearNom.Click
@@ -387,10 +395,10 @@ Public Class AdminMenu
     Private Sub BtnBack_Click(sender As Object, e As EventArgs) Handles BtnBack.Click
         If My.Settings.FromList = True Then
             My.Settings.FromList = False
-            Me.Hide()
+            Me.Close()
         Else
             GTMenu.Show()
-            Me.Hide()
+            Me.Close()
         End If
     End Sub
 
@@ -434,12 +442,12 @@ Public Class AdminMenu
 
     Private Sub MenuToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MenuToolStripMenuItem.Click
         GTMenu.Show()
-        Me.Hide()
+        Me.Close()
     End Sub
 
     Private Sub GageListToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GageListToolStripMenuItem.Click
         My.Settings.FromList = False
-        Me.Hide()
+        Me.Close()
     End Sub
 
     Private Sub ChangeDatabaseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ChangeDatabaseToolStripMenuItem.Click
@@ -685,6 +693,35 @@ Public Class AdminMenu
             End If
         Else
             MessageBox.Show("Database location is not set.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End If
+    End Sub
+
+    Private Sub TextContains_TextChanged(sender As Object, e As EventArgs) Handles txtPartNumber.TextChanged, txtDescription.TextChanged, TxtInterval.TextChanged, txtComments.TextChanged, cmbStatus.SelectedIndexChanged, txtDepartment.SelectedIndexChanged, txtGageType.SelectedIndexChanged, txtCustomer.SelectedIndexChanged, txtCalibratedBy.SelectedIndexChanged, DtInspectedDate.ValueChanged, dtDueDate.ValueChanged
+        If SearchCheck = True Then
+            ChangeDetected = True
+            Me.Text = "*" & originalTitle
+        Else
+            UpdateChangeStatus()
+        End If
+    End Sub
+
+    Private Sub UpdateChangeStatus()
+        ChangeDetected = False
+        Me.Text = originalTitle
+    End Sub
+
+    Private Sub GTMenu_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        If ChangeDetected = True Then
+            If isClosing Then
+                Return
+            End If
+
+            If MessageBox.Show("Changes have not been saved. Any unsaved changes will be lost. Do you want to exit without saving?", "Exit", MessageBoxButtons.YesNo) = DialogResult.Yes Then
+                isClosing = True
+                Me.Close()
+            Else
+                e.Cancel = True
+            End If
         End If
     End Sub
 End Class

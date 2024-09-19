@@ -1,16 +1,17 @@
 ﻿Imports System.Data.OleDb
-Imports System.Threading.Tasks
-Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 
 Public Class GTMenu
     Dim connectionString As String
     Dim SearchCheck As Boolean
     Dim activeUser As String
+    Dim ChangeDetected As Boolean
     Private isClosing As Boolean = False
+    Dim originalTitle As String = "GageTracker - Menu"
     Public WithEvents Timer1 As New Timer With {.Interval = 3000, .Enabled = False}
 
     Private Async Sub Menu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
+        Me.Text = originalTitle
 
         SearchCheck = False
         TxtStatus.Text = ""
@@ -50,8 +51,9 @@ Public Class GTMenu
             'Prevent the ding sound on pressing Enter
             e.SuppressKeyPress = True
 
-            'Call the BtnSearch click event handler
-            BtnSearch_Click(Me, EventArgs.Empty)
+            If ChangeDetected = False Then
+                BtnSearch_Click(Me, EventArgs.Empty)
+            End If
         End If
     End Sub
 
@@ -180,6 +182,7 @@ Public Class GTMenu
 
                         'Audit Log
                         SearchAuditLog()
+                        UpdateChangeStatus()
                         GlobalVars.LastActivity = TxtGageID.Text + " Searched."
 
                         SearchCheck = True
@@ -255,6 +258,7 @@ Public Class GTMenu
                 TxtStatus.Text = "Record updated successfully"
                 Timer1.Enabled = True
                 SearchCheck = False
+                UpdateChangeStatus()
                 ReloadData()
                 GlobalVars.LastActivity = TxtGageID.Text + " updated."
 
@@ -490,28 +494,25 @@ Public Class GTMenu
     End Sub
 
     Private Sub BtnGageList_Click(sender As Object, e As EventArgs) Handles BtnGageList.Click
-        ' Check if GageList is already open
+        'Check if GageList is already open
         Dim isOpen As Boolean = False
-        Dim openForm As Form = Nothing ' To hold the already open GageList form
+        Dim openForm As Form = Nothing
         For Each frm As Form In Application.OpenForms
             If TypeOf frm Is GageList Then
                 isOpen = True
-                openForm = frm ' Store the reference to the open GageList form
+                openForm = frm
                 Exit For
             End If
         Next
 
         If isOpen AndAlso openForm IsNot Nothing Then
-            ' Bring the already open GageList form to the front
             openForm.Activate()
         Else
-            ' Only open a new instance if it is not already open
             Dim gagelist As New GageList()
             gagelist.Show()
         End If
 
-        ' Hide the current GTMenu form in both cases
-        Me.Hide()
+        Me.Close()
         GageList.LoadData()
     End Sub
 
@@ -529,7 +530,6 @@ Public Class GTMenu
     End Sub
 
     Private Sub DeleteConfirmed()
-        ' Check if the GageID text box is empty
         If String.IsNullOrWhiteSpace(TxtGageID.Text) Then
             MessageBox.Show("GageID cannot be blank. Please enter a valid GageID.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return
@@ -540,13 +540,11 @@ Public Class GTMenu
             Return
         End If
 
-        ' Confirm with the user before deleting the record
         Dim result As DialogResult = MessageBox.Show("Are you sure you want to delete this gage?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If result = DialogResult.Yes Then
             Try
                 Using conn As New OleDbConnection(connectionString)
                     conn.Open()
-                    ' Execute the DELETE query
                     Dim deleteCmd As New OleDbCommand("DELETE FROM [CalibrationTracker] WHERE GageID = ?", conn)
                     deleteCmd.Parameters.AddWithValue("@GageID", TxtGageID.Text)
                     Dim rowsAffected As Integer = deleteCmd.ExecuteNonQuery()
@@ -554,7 +552,6 @@ Public Class GTMenu
                         TxtStatus.Text = "Gage deleted successfully."
                         Timer1.Enabled = True
                         SearchCheck = False
-                        ' Clear the form fields after deletion
                         ClearForms()
                         ReloadData()
                         GlobalVars.LastActivity = TxtGageID.Text + " deleted."
@@ -591,8 +588,8 @@ Public Class GTMenu
         TxtSerialNumber.Clear()
         txtOwner.Clear()
         TxtNistNumber.Clear()
-        DtInspectedDate.Value = DateTime.Now ' Reset to current date or some default
-        dtDueDate.Value = DateTime.Now ' Reset to current date or some default
+        DtInspectedDate.Value = DateTime.Now
+        dtDueDate.Value = DateTime.Now
 
         ' Clear Measurements
         txtaN1.Clear()
@@ -612,6 +609,7 @@ Public Class GTMenu
         LblEditBy.Clear()
 
         SearchCheck = False
+        UpdateChangeStatus()
     End Sub
 
     Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
@@ -689,14 +687,16 @@ Public Class GTMenu
     End Sub
 
     Private Sub StartLogin()
+        UpdateChangeStatus()
         LoginForm1.Show()
-        Me.Hide()
+        Me.Close()
         My.Settings.FromList = False
     End Sub
 
     Private Sub StartAdmin()
+        UpdateChangeStatus()
         AdminMenu.Show()
-        Me.Hide()
+        Me.Close()
         My.Settings.FromList = False
     End Sub
 
@@ -705,13 +705,12 @@ Public Class GTMenu
     End Sub
 
     Private Sub GageListToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles GageListToolStripMenuItem1.Click
-        ' Check if GageList is already open
         Dim isOpen As Boolean = False
-        Dim openForm As Form = Nothing ' To hold the already open GageList form
+        Dim openForm As Form = Nothing
         For Each frm As Form In Application.OpenForms
             If TypeOf frm Is GageList Then
                 isOpen = True
-                openForm = frm ' Store the reference to the open GageList form
+                openForm = frm
                 Exit For
             End If
         Next
@@ -722,13 +721,13 @@ Public Class GTMenu
             GageList.Show()
         End If
 
-        Me.Hide()
+        Me.Close()
         GageList.LoadData()
     End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-        TxtStatus.Text = ""  ' Clear the text
-        Timer1.Enabled = False  ' Stop the timer
+        TxtStatus.Text = ""  'Clear the text
+        Timer1.Enabled = False  'Stop the timer
     End Sub
 
     Private Sub ReportIssueToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ReportIssueToolStripMenuItem.Click
@@ -746,5 +745,34 @@ Public Class GTMenu
         Catch ex As Exception
             MessageBox.Show("An error occurred while trying to open the URL: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
+    End Sub
+
+    Private Sub TextContains_TextChanged(sender As Object, e As EventArgs) Handles txtPartNumber.TextChanged, txtDescription.TextChanged, TxtInterval.TextChanged, txtComments.TextChanged, cmbStatus.SelectedIndexChanged, txtDepartment.SelectedIndexChanged, txtGageType.SelectedIndexChanged, txtCustomer.SelectedIndexChanged, txtCalibratedBy.SelectedIndexChanged, DtInspectedDate.ValueChanged, dtDueDate.ValueChanged
+        If SearchCheck = True Then
+            ChangeDetected = True
+            Me.Text = "*" & originalTitle
+        Else
+            UpdateChangeStatus()
+        End If
+    End Sub
+
+    Private Sub UpdateChangeStatus()
+        ChangeDetected = False
+        Me.Text = originalTitle
+    End Sub
+
+    Private Sub GTMenu_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        If ChangeDetected = True Then
+            If isClosing Then
+                Return
+            End If
+
+            If MessageBox.Show("Changes have not been saved. Any unsaved changes will be lost. Do you want to exit without saving?", "Exit", MessageBoxButtons.YesNo) = DialogResult.Yes Then
+                isClosing = True
+                Me.Close()
+            Else
+                e.Cancel = True
+            End If
+        End If
     End Sub
 End Class

@@ -64,7 +64,7 @@ Public Class DueDateCategorizer
                 DataGridViewWithin30Days.DataSource = within30Days
                 DataGridViewWithin60Days.DataSource = within60Days
 
-                ' Set auto size mode for columns
+                'Column Aut size
                 DataGridViewPastDue.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
                 DataGridViewWithin30Days.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
                 DataGridViewWithin60Days.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
@@ -91,7 +91,7 @@ Public Class DueDateCategorizer
         End If
     End Sub
 
-    ' Set Zebra striping
+    'Set Zebra striping
     Private Sub DataGridViewPastDue_RowPostPaint(sender As Object, e As DataGridViewRowPostPaintEventArgs) Handles DataGridViewPastDue.RowPostPaint
         Dim grid As DataGridView = CType(sender, DataGridView)
         If e.RowIndex >= 0 Then
@@ -147,6 +147,7 @@ Public Class DueDateCategorizer
                 selectedGage = selectedRow.Cells(0).Value.ToString()
                 My.Settings.SelectedGage = selectedGage
             End If
+
             ' Open the GTMenu form
             GTMenu.Show()
             GTMenu.LoadGageID()
@@ -162,6 +163,7 @@ Public Class DueDateCategorizer
                 selectedGage = selectedRow.Cells(0).Value.ToString()
                 My.Settings.SelectedGage = selectedGage
             End If
+
             ' Open the GTMenu form
             GTMenu.Show()
             GTMenu.LoadGageID()
@@ -177,6 +179,7 @@ Public Class DueDateCategorizer
                 selectedGage = selectedRow.Cells(0).Value.ToString()
                 My.Settings.SelectedGage = selectedGage
             End If
+
             ' Open the GTMenu form
             GTMenu.Show()
             GTMenu.LoadGageID()

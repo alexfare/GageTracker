@@ -1,3 +1,12 @@
+v5.12.0.48
+Added check when closing GTMenu to prevent losing unsaved changes.
+Updated LoginForm. (Added handling for blank username & password).
+Updated GageList, If a database cannot be located you can now select to download a blank database.
+Updated GTMenu, Pressing Enter will no longer search for a gage once change has been detected.
+Updated GageList, Changed how it handles selected gage.
+Updated GageList, Updated how it handles Filter setup.
+Updated how GTMenu & AdminMenu handle closing.
+
 v5.11.5.47
 Updated DueDateCategorizer dataset to fill data.
 Updated DueDateCategorizer size.

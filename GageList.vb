@@ -1,15 +1,14 @@
 ﻿Imports System.Data.OleDb
+Imports System.Net
 
 Public Class GageList
     Private isClosing As Boolean = False
-    Private selectedGage As String ' Variable to hold the selected GageID
+    Private selectedGage As String
 
     Private Sub GageList_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ' Handlers for Datagrid selection.
         AddHandler DataGridView1.SelectionChanged, AddressOf DataGridView1_SelectionChanged
         AddHandler DataGridView1.CellDoubleClick, AddressOf DataGridView1_CellDoubleClick
 
-        ' Check if database exists
         Try
             GlobalVars.LoadDatabaseLocation()
             LoadData()
@@ -19,18 +18,9 @@ Public Class GageList
             MessageBox.Show("General error: " & ex.Message)
         End Try
 
-        'Status Filter setup
-        CmbFilterType.Items.Add("Contains")
-        CmbFilterType.Items.Add("Exact")
-        CmbFilterType.SelectedIndex = 0 ' Default to Exact
-        CmbContains.Items.AddRange(New String() {"GageID", "Status", "PartNumber", "Description", "Department", "Gage Type", "Customer", "Inspected Date", "Due Date", "Comments"})
-        CmbContains.SelectedIndex = 0 ' Default to Status
-        CheckBoxShowAll.Checked = My.Settings.ShowAll
-        ApplyStatusFilter()
-
         'Misc
-        TextContains.Text = "" ' Set default text for TextContains
-        My.Settings.SelectedGage = ""
+        TextContains.Text = ""
+        FilterSetup()
         Me.StartPosition = FormStartPosition.CenterScreen
     End Sub
 
@@ -57,7 +47,6 @@ Public Class GageList
     End Sub
 
     Private Sub BtnMenu_Click(sender As Object, e As EventArgs) Handles BtnMenu.Click
-        ' Show the GTMenu form regardless of whether GageID was set
         GTMenu.Show()
         GTMenu.LoadGageID()
     End Sub
@@ -66,17 +55,16 @@ Public Class GageList
     Public Sub LoadData(Optional filterQuery As String = "")
         If Not System.IO.File.Exists(GlobalVars.DatabaseLocation) Then
             If PromptForDatabaseLocation() Then
-                ' Try loading the data again with the new location
                 LoadData()
                 Return
             Else
-                MessageBox.Show("No valid database selected. Application will exit.")
+                MessageBox.Show("No valid database selected. The application will exit.",
+                            "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly)
                 Application.Exit()
             End If
         End If
 
-        Dim connectionString As String
-        connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
+        Dim connectionString As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
         Dim query As String = "SELECT GageID, [Status], [PartNumber], [Description], Department, [Gage Type], [Customer], [Inspected Date], [Due Date] FROM CalibrationTracker"
 
         If Not String.IsNullOrEmpty(filterQuery) Then
@@ -86,13 +74,19 @@ Public Class GageList
         Using connection As New OleDbConnection(connectionString)
             Try
                 connection.Open()
+
                 Dim command As New OleDbCommand(query, connection)
                 Dim adapter As New OleDbDataAdapter(command)
                 Dim table As New DataTable()
                 adapter.Fill(table)
+
                 DataGridView1.DataSource = table
             Catch ex As OleDbException
-                MessageBox.Show("OleDb error: " & ex.Message)
+                MessageBox.Show("OleDb error: " & ex.Message,
+                            "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly)
+            Catch ex As Exception
+                MessageBox.Show("An error occurred: " & ex.Message,
+                            "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly)
             Finally
                 If connection.State = ConnectionState.Open Then
                     connection.Close()
@@ -102,7 +96,8 @@ Public Class GageList
     End Sub
 
     Private Function PromptForDatabaseLocation() As Boolean
-        Dim result As DialogResult = MessageBox.Show("No database found. Would you like to select a new database location?", "Database Not Found", MessageBoxButtons.YesNo)
+        Dim result As DialogResult = MessageBox.Show("No database found. Would you like to select a new database location?",
+                                                 "Database Not Found", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly)
         If result = DialogResult.Yes Then
             Using openFileDialog As New OpenFileDialog()
                 openFileDialog.InitialDirectory = "C:\"
@@ -116,9 +111,40 @@ Public Class GageList
                     Return True
                 End If
             End Using
+        Else
+            Dim downloadResult As DialogResult = MessageBox.Show("Would you like to download the database instead?",
+                                                             "Download Option", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly)
+            If downloadResult = DialogResult.Yes Then
+                Dim saveDialog As New SaveFileDialog()
+                saveDialog.Filter = "Access Database Files (*.accdb)|*.accdb"
+                saveDialog.Title = "Save Database File"
+                saveDialog.FileName = "GTDatabase.accdb"
+
+                If saveDialog.ShowDialog() = DialogResult.OK Then
+                    DownloadDatabase(saveDialog.FileName)
+                    Return True
+                End If
+            End If
         End If
         Return False
     End Function
+
+    Private Sub DownloadDatabase(savePath As String)
+        Dim webClient As New WebClient()
+
+        Try
+            Dim downloadUrl As String = "https://alexfare.com/programs/gtdatabase/latest/GTDatabase.accdb"
+            webClient.DownloadFile(downloadUrl, savePath)
+            MessageBox.Show("Database downloaded complete.", "Download Complete", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+            GlobalVars.DatabaseLocation = savePath
+            GlobalVars.SaveDatabaseLocation(savePath)
+        Catch ex As Exception
+            MessageBox.Show("An error occurred while downloading the database: " & ex.Message, "Download Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            webClient.Dispose()
+        End Try
+    End Sub
 
     Private Sub ChangeDatabaseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ChangeDatabaseToolStripMenuItem.Click
         Using openFileDialog As New OpenFileDialog()
@@ -139,7 +165,6 @@ Public Class GageList
         Dim grid As DataGridView = CType(sender, DataGridView)
         If e.RowIndex >= 0 Then
             If e.RowIndex Mod 2 = 0 Then
-                'grid.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.Cyan
                 grid.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.LightGray
             Else
                 grid.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.White
@@ -151,11 +176,9 @@ Public Class GageList
         If DataGridView1.SelectedRows.Count > 0 Then
             Dim selectedRow As DataGridViewRow = DataGridView1.SelectedRows(0)
 
-            ' Ensure the selected row is not a new row and has the required columns
             If Not selectedRow.IsNewRow AndAlso selectedRow.Cells.Count > 0 AndAlso selectedRow.Cells(0) IsNot Nothing AndAlso Not IsDBNull(selectedRow.Cells(0).Value) Then
                 selectedGage = selectedRow.Cells(0).Value.ToString()
                 My.Settings.SelectedGage = selectedGage
-                My.Settings.Save()
             End If
         End If
     End Sub
@@ -164,13 +187,10 @@ Public Class GageList
         If DataGridView1.SelectedRows.Count > 0 Then
             Dim selectedRow As DataGridViewRow = DataGridView1.SelectedRows(0)
 
-            ' Ensure the selected row is not a new row and has the required columns
             If Not selectedRow.IsNewRow AndAlso selectedRow.Cells.Count > 0 AndAlso selectedRow.Cells(0) IsNot Nothing AndAlso Not IsDBNull(selectedRow.Cells(0).Value) Then
                 selectedGage = selectedRow.Cells(0).Value.ToString()
                 My.Settings.SelectedGage = selectedGage
-                My.Settings.Save()
             End If
-            ' Open the GTMenu form
             GTMenu.Show()
             GTMenu.LoadGageID()
         End If
@@ -178,14 +198,12 @@ Public Class GageList
 
     '/---- Settings & Misc ----/
     Private Sub CheckBoxShowAll_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxShowAll.CheckedChanged
-        ' Save the setting and apply the filter
         My.Settings.ShowAll = CheckBoxShowAll.Checked
         My.Settings.Save()
         ApplyStatusFilter()
     End Sub
 
     Public Sub ApplyStatusFilter()
-        ' Apply filter based on the CheckBox state
         Dim filterQuery As String = ""
         If Not My.Settings.ShowAll Then
             filterQuery = "[Status] = 'Active'"
@@ -263,6 +281,16 @@ Public Class GageList
         End If
     End Sub
 
+    Private Sub FilterSetup()
+        CmbFilterType.Items.Add("Contains")
+        CmbFilterType.Items.Add("Exact")
+        CmbFilterType.SelectedIndex = 0
+        CmbContains.Items.AddRange(New String() {"GageID", "Status", "PartNumber", "Description", "Department", "Gage Type", "Customer", "Inspected Date", "Due Date", "Comments"})
+        CmbContains.SelectedIndex = 0
+        CheckBoxShowAll.Checked = My.Settings.ShowAll
+        ApplyStatusFilter()
+    End Sub
+
     '/---- Closing Actions ----/
     Private Sub MainForm_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         If isClosing Then
@@ -270,9 +298,9 @@ Public Class GageList
         End If
 
         If MessageBox.Show("Are you sure you want to exit?", "Exit", MessageBoxButtons.YesNo) = DialogResult.Yes Then
-            isClosing = True ' Set the flag to true to indicate the application is closing
+            isClosing = True
 
-            ' Ensure all forms are closed
+            'Ensure all forms are closed
             Dim openForms As New List(Of Form)(Application.OpenForms.Cast(Of Form)())
             For Each frm As Form In openForms
                 frm.Close()
@@ -285,7 +313,7 @@ Public Class GageList
 
             Application.Exit()
         Else
-            e.Cancel = True ' Cancel the close event if the user decides not to close
+            e.Cancel = True
         End If
     End Sub
 End Class

@@ -20,6 +20,13 @@ Public Class LoginForm1
         If String.IsNullOrWhiteSpace(txtUsername.Text) Then
             MessageBox.Show("Username cannot be blank.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             txtUsername.Focus()
+            Return
+        End If
+
+        If String.IsNullOrWhiteSpace(txtPassword.Text) Then
+            MessageBox.Show("Password cannot be blank.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            txtPassword.Focus()
+            Return
         End If
 
         Using conn As New OleDbConnection(ConnectionString)

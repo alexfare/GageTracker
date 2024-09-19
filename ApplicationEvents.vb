@@ -5,6 +5,7 @@
             My.Settings.isAdmin = False
             My.Settings.LoggedUser = ""
             My.Settings.LastOpened = Now
+            My.Settings.SelectedGage = ""
             My.Settings.Save()
         End Sub
 

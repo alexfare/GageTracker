@@ -127,7 +127,7 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("v5.12.0.48")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("v5.12.1.49")>  _
         Public ReadOnly Property VersionString() As String
             Get
                 Return CType(Me("VersionString"),String)
@@ -191,6 +191,33 @@ Namespace My
             Set
                 Me("ShowAll") = value
             End Set
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("ninsosoft@gmail.com")>  _
+        Public ReadOnly Property ReportSendFrom() As String
+            Get
+                Return CType(Me("ReportSendFrom"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Alexfare94@gmail.com")>  _
+        Public ReadOnly Property ReportSendTo() As String
+            Get
+                Return CType(Me("ReportSendTo"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("587")>  _
+        Public ReadOnly Property ReportAuth() As String
+            Get
+                Return CType(Me("ReportAuth"),String)
+            End Get
         End Property
     End Class
 End Namespace

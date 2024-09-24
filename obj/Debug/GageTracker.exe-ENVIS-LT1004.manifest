@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="GageTracker.exe" size="2207200">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="GageTracker.exe" size="2206176">
       <assemblyIdentity name="GageTracker" version="5.12.1.49" publicKeyToken="6A5AC9CFDA4273AE" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>vp1gZTZ9Jweo3mU6vUoc/Fg7SFOuHS7riqEgNQbr6bo=</dsig:DigestValue>
+        <dsig:DigestValue>OPNaWfI0/uxdYg3vPqR2OcfJwhigTOsdZEbf8LTHJnc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

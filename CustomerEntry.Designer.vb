@@ -60,7 +60,7 @@ Partial Class CustomerEntry
         '
         Me.txtCustomerAddress.Location = New System.Drawing.Point(15, 73)
         Me.txtCustomerAddress.Name = "txtCustomerAddress"
-        Me.txtCustomerAddress.Size = New System.Drawing.Size(288, 20)
+        Me.txtCustomerAddress.Size = New System.Drawing.Size(318, 20)
         Me.txtCustomerAddress.TabIndex = 1
         '
         'Label3
@@ -76,7 +76,7 @@ Partial Class CustomerEntry
         '
         Me.txtCustomerWebsite.Location = New System.Drawing.Point(15, 172)
         Me.txtCustomerWebsite.Name = "txtCustomerWebsite"
-        Me.txtCustomerWebsite.Size = New System.Drawing.Size(288, 20)
+        Me.txtCustomerWebsite.Size = New System.Drawing.Size(318, 20)
         Me.txtCustomerWebsite.TabIndex = 3
         '
         'Label4
@@ -92,12 +92,12 @@ Partial Class CustomerEntry
         '
         Me.txtCustomerPhone.Location = New System.Drawing.Point(15, 124)
         Me.txtCustomerPhone.Name = "txtCustomerPhone"
-        Me.txtCustomerPhone.Size = New System.Drawing.Size(288, 20)
+        Me.txtCustomerPhone.Size = New System.Drawing.Size(318, 20)
         Me.txtCustomerPhone.TabIndex = 2
         '
         'BtnAdd
         '
-        Me.BtnAdd.Location = New System.Drawing.Point(337, 23)
+        Me.BtnAdd.Location = New System.Drawing.Point(15, 198)
         Me.BtnAdd.Name = "BtnAdd"
         Me.BtnAdd.Size = New System.Drawing.Size(75, 23)
         Me.BtnAdd.TabIndex = 4
@@ -107,7 +107,7 @@ Partial Class CustomerEntry
         'btnBack
         '
         Me.btnBack.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btnBack.Location = New System.Drawing.Point(337, 172)
+        Me.btnBack.Location = New System.Drawing.Point(339, 25)
         Me.btnBack.Name = "btnBack"
         Me.btnBack.Size = New System.Drawing.Size(75, 23)
         Me.btnBack.TabIndex = 8
@@ -121,12 +121,12 @@ Partial Class CustomerEntry
         Me.txtCustomerName.FormattingEnabled = True
         Me.txtCustomerName.Location = New System.Drawing.Point(15, 25)
         Me.txtCustomerName.Name = "txtCustomerName"
-        Me.txtCustomerName.Size = New System.Drawing.Size(288, 21)
+        Me.txtCustomerName.Size = New System.Drawing.Size(318, 21)
         Me.txtCustomerName.TabIndex = 0
         '
         'btnUpdate
         '
-        Me.btnUpdate.Location = New System.Drawing.Point(337, 52)
+        Me.btnUpdate.Location = New System.Drawing.Point(96, 198)
         Me.btnUpdate.Name = "btnUpdate"
         Me.btnUpdate.Size = New System.Drawing.Size(75, 23)
         Me.btnUpdate.TabIndex = 5
@@ -135,7 +135,7 @@ Partial Class CustomerEntry
         '
         'btnClear
         '
-        Me.btnClear.Location = New System.Drawing.Point(337, 81)
+        Me.btnClear.Location = New System.Drawing.Point(177, 198)
         Me.btnClear.Name = "btnClear"
         Me.btnClear.Size = New System.Drawing.Size(75, 23)
         Me.btnClear.TabIndex = 6
@@ -144,7 +144,7 @@ Partial Class CustomerEntry
         '
         'btnRemove
         '
-        Me.btnRemove.Location = New System.Drawing.Point(337, 110)
+        Me.btnRemove.Location = New System.Drawing.Point(258, 198)
         Me.btnRemove.Name = "btnRemove"
         Me.btnRemove.Size = New System.Drawing.Size(75, 23)
         Me.btnRemove.TabIndex = 7
@@ -156,7 +156,7 @@ Partial Class CustomerEntry
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.btnBack
-        Me.ClientSize = New System.Drawing.Size(435, 209)
+        Me.ClientSize = New System.Drawing.Size(422, 230)
         Me.Controls.Add(Me.btnRemove)
         Me.Controls.Add(Me.btnClear)
         Me.Controls.Add(Me.btnUpdate)

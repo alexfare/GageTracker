@@ -7,6 +7,7 @@ Public Class AdminMenu
     Dim connectionString As String
     Dim SearchCheck As Boolean
     Dim ChangeDetected As Boolean
+    Dim GageIDUpdate As String
     Private isClosing As Boolean = False
     Dim originalTitle As String = "GageTracker - Menu"
     Public WithEvents Timer1 As New Timer With {.Interval = 3000, .Enabled = False}
@@ -14,6 +15,7 @@ Public Class AdminMenu
     Private Async Sub AdminMenu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
         Me.Text = originalTitle
+        MenuStrip1.BackColor = Color.IndianRed
 
         SearchCheck = False
         TxtStatus.Text = ""
@@ -30,7 +32,6 @@ Public Class AdminMenu
         TxtGageID.Focus()
 
         If Not String.IsNullOrEmpty(My.Settings.SelectedGage) Then
-            'Set the ComboBox to the saved value
             TxtGageID.SelectedItem = My.Settings.SelectedGage
             BtnAdminSearch_Click(Me, EventArgs.Empty)
         End If
@@ -56,8 +57,7 @@ Public Class AdminMenu
 
     Private Sub TxtAdminGageID_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtGageID.KeyDown
         If e.KeyCode = Keys.Enter Then
-            'Prevent the ding sound on pressing Enter
-            e.SuppressKeyPress = True
+            e.SuppressKeyPress = True 'Prevent the ding sound on pressing Enter
 
             If ChangeDetected = False Then
                 BtnAdminSearch_Click(Me, EventArgs.Empty)
@@ -262,11 +262,18 @@ Public Class AdminMenu
             'Execute the UPDATE command
             Dim rowsAffected As Integer = updateCmd.ExecuteNonQuery()
             If rowsAffected > 0 Then
+                'Settings
+                SearchCheck = False
+                GageIDUpdate = TxtGageID.Text
+
+                'Subs
+                UpdateChangeStatus()
+                ReloadData()
+                ClearReset()
+
+                'Status
                 TxtStatus.Text = "Record updated successfully"
                 Timer1.Enabled = True
-                ReloadData()
-                SearchCheck = False
-                UpdateChangeStatus()
 
                 'Display until restart
                 LblLastEdited.Text = lastEdited
@@ -275,6 +282,12 @@ Public Class AdminMenu
                 MessageBox.Show("No record updated. Please check the GageID.")
             End If
         End Using
+    End Sub
+
+    Private Sub ClearReset()
+        ClearForms()
+        TxtGageID.Text = GageIDUpdate
+        'BtnAdminSearch.PerformClick() 'Need to fix
     End Sub
 
     Private Sub BtnDelete_Click(sender As Object, e As EventArgs) Handles BtnDelete.Click

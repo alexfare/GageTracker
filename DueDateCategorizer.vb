@@ -23,6 +23,7 @@ Public Class DueDateCategorizer
 
         Me.StartPosition = FormStartPosition.CenterScreen
         TabSelect()
+        MenuStrip1.BackColor = SystemColors.AppWorkspace
     End Sub
 
     Protected Overrides Sub OnLoad(e As EventArgs)

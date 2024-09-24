@@ -15,13 +15,11 @@ Public Class CustomerEntry
     End Sub
 
     Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
-        ' Check for blank customer name
         If String.IsNullOrWhiteSpace(txtCustomerName.Text) Then
             MessageBox.Show("Customer Name cannot be blank.")
             Return
         End If
 
-        ' Check for duplicate customer name
         Using checkConn As New OleDbConnection(connectionString)
             Dim checkCmd As New OleDbCommand("SELECT COUNT(*) FROM Customers WHERE CustomerName = @Name", checkConn)
             checkCmd.Parameters.AddWithValue("@Name", txtCustomerName.Text)
@@ -39,7 +37,6 @@ Public Class CustomerEntry
             End Try
         End Using
 
-        ' Proceed with adding new customer
         Using connection As New OleDbConnection(connectionString)
             Using command As New OleDbCommand(insertQuery, connection)
                 command.Parameters.AddWithValue("@Name", txtCustomerName.Text)
@@ -51,7 +48,7 @@ Public Class CustomerEntry
                     connection.Open()
                     command.ExecuteNonQuery()
                     MessageBox.Show("Customer added successfully.")
-                    LoadCustomers() ' Reload customer list to include new data
+                    LoadCustomers()
                 Catch ex As Exception
                     MessageBox.Show("An error occurred while adding new customer: " & ex.Message)
                 End Try
@@ -144,11 +141,10 @@ Public Class CustomerEntry
                 End Try
             End Using
         End Using
-        LoadCustomers()  ' Reload customer list to reflect updated data
+        LoadCustomers()
     End Sub
 
     Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
-        ' Clear all input fields
         txtCustomerName.SelectedIndex = -1
         txtCustomerAddress.Clear()
         txtCustomerPhone.Clear()
@@ -156,20 +152,17 @@ Public Class CustomerEntry
     End Sub
 
     Private Sub btnRemove_Click(sender As Object, e As EventArgs) Handles btnRemove.Click
-        ' Ensure that a customer is selected before attempting deletion
         If txtCustomerName.SelectedIndex = -1 OrElse String.IsNullOrEmpty(txtCustomerName.Text) Then
             MessageBox.Show("Please select a customer to remove.")
             Return
         End If
 
-        ' Confirm deletion
         If MessageBox.Show("Are you sure you want to delete this customer?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then
             Return
         End If
 
         Dim selectedCustomer As String = txtCustomerName.SelectedItem.ToString()
 
-        ' Query to delete the selected customer
         Dim query As String = "DELETE FROM Customers WHERE CustomerName = @Name"
         Using connection As New OleDbConnection(connectionString)
             Using command As New OleDbCommand(query, connection)
@@ -180,7 +173,7 @@ Public Class CustomerEntry
                     Dim result As Integer = command.ExecuteNonQuery()
                     If result > 0 Then
                         MessageBox.Show("Customer deleted successfully.")
-                        LoadCustomers() ' Reload customer list to reflect the changes
+                        LoadCustomers()
                     Else
                         MessageBox.Show("No records were deleted.")
                     End If

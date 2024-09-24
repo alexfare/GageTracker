@@ -5,16 +5,14 @@ Public Class GTMenu
     Dim SearchCheck As Boolean
     Dim activeUser As String
     Dim ChangeDetected As Boolean
+    Dim GageIDUpdate As String
     Private isClosing As Boolean = False
     Dim originalTitle As String = "GageTracker - Menu"
     Public WithEvents Timer1 As New Timer With {.Interval = 3000, .Enabled = False}
 
     Private Async Sub Menu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
-        Me.Text = originalTitle
-
-        SearchCheck = False
-        TxtStatus.Text = ""
+        SetupConnectionString()
+        SetupUI()
 
         DisableSearchControls() 'Disable search controls
         Await Task.WhenAll(Task.Run(Sub() LoadGageID()),
@@ -28,7 +26,6 @@ Public Class GTMenu
         TxtGageID.Focus()
 
         If Not String.IsNullOrEmpty(My.Settings.SelectedGage) Then
-            ' Set the ComboBox to the saved value
             TxtGageID.SelectedItem = My.Settings.SelectedGage
             BtnSearch_Click(Me, EventArgs.Empty)
         End If
@@ -37,6 +34,17 @@ Public Class GTMenu
     Protected Overrides Sub OnLoad(e As EventArgs)
         MyBase.OnLoad(e)
         CenterToScreen()
+    End Sub
+
+    Private Sub SetupConnectionString()
+        connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
+    End Sub
+
+    Private Sub SetupUI()
+        Me.Text = originalTitle
+        MenuStrip1.BackColor = SystemColors.AppWorkspace
+        SearchCheck = False
+        TxtStatus.Text = ""
     End Sub
 
     Private Sub ReloadData()
@@ -48,7 +56,6 @@ Public Class GTMenu
 
     Private Sub TxtGageID_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtGageID.KeyDown
         If e.KeyCode = Keys.Enter Then
-            'Prevent the ding sound on pressing Enter
             e.SuppressKeyPress = True
 
             If ChangeDetected = False Then
@@ -113,6 +120,7 @@ Public Class GTMenu
                     ReloadData()
                     BtnClear.PerformClick()
                     GlobalVars.LastActivity = TxtGageID.Text + " Added."
+                    Logger.SaveLogEntry()
                 Else
                     MessageBox.Show("This GageID already exists", "Duplicate Entry", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 End If
@@ -184,6 +192,7 @@ Public Class GTMenu
                         SearchAuditLog()
                         UpdateChangeStatus()
                         GlobalVars.LastActivity = TxtGageID.Text + " Searched."
+                        Logger.SaveLogEntry()
 
                         SearchCheck = True
                     Else
@@ -255,12 +264,22 @@ Public Class GTMenu
             ' Execute the UPDATE command
             Dim rowsAffected As Integer = updateCmd.ExecuteNonQuery()
             If rowsAffected > 0 Then
-                TxtStatus.Text = "Record updated successfully"
-                Timer1.Enabled = True
+                'Settings
                 SearchCheck = False
+                GageIDUpdate = TxtGageID.Text
+
+                'Subs
                 UpdateChangeStatus()
                 ReloadData()
+                ClearReset()
+
+                'Logs
                 GlobalVars.LastActivity = TxtGageID.Text + " updated."
+                Logger.SaveLogEntry()
+
+                'Status
+                TxtStatus.Text = "Record updated successfully"
+                Timer1.Enabled = True
 
                 'Display until restart
                 LblLastEdited.Text = lastEdited
@@ -271,6 +290,11 @@ Public Class GTMenu
         End Using
     End Sub
 
+    Private Sub ClearReset()
+        ClearForms()
+        TxtGageID.Text = GageIDUpdate
+        'BtnSearch.PerformClick() 'Need to fix
+    End Sub
     Private Sub BtnClear_Click(sender As Object, e As EventArgs) Handles BtnClear.Click
         ClearForms()
     End Sub
@@ -555,6 +579,7 @@ Public Class GTMenu
                         ClearForms()
                         ReloadData()
                         GlobalVars.LastActivity = TxtGageID.Text + " deleted."
+                        Logger.SaveLogEntry()
                     Else
                         MessageBox.Show("No gage deleted. Please check the GageID.")
                     End If

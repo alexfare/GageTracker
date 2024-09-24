@@ -22,6 +22,7 @@ Public Class GageList
         TextContains.Text = ""
         FilterSetup()
         Me.StartPosition = FormStartPosition.CenterScreen
+        MenuStrip1.BackColor = SystemColors.AppWorkspace
     End Sub
 
     Protected Overrides Sub OnLoad(e As EventArgs)

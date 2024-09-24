@@ -1,3 +1,14 @@
+v5.12.1.49
+Updated CustomerEntry, (Slight UI update & Code).
+Updated ReportIssue.
+Added Logger to log information to Logs/AuditLog.
+Updated AdminMenu, Added Red color to menustrip to easily differentiate between normal and admin.
+Updated GageList & GTMenu, Added color to menustrip
+Updated GTMenu AuditLog.
+Updated GTMenu & AdminMenu code, Working on improvements & Organization.
+Updated GTMenu & AdminMenu, Working on autosearch, GageID auto populates after updating.
+Database maintenance.
+
 v5.12.0.48
 Added check when closing GTMenu to prevent losing unsaved changes.
 Updated LoginForm. (Added handling for blank username & password).

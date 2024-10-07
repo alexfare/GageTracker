@@ -723,6 +723,11 @@ Public Class AdminMenu
         Me.Text = originalTitle
     End Sub
 
+    Private Sub DueDateCalenderToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DueDateCalenderToolStripMenuItem.Click
+        Me.Close()
+        DueDateCategorizer.Show()
+    End Sub
+
     Private Sub GTMenu_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         If ChangeDetected = True Then
             If isClosing Then

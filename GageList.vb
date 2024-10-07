@@ -5,6 +5,7 @@ Public Class GageList
     Private isClosing As Boolean = False
     Private selectedGage As String
 
+#Region "GageList Load"
     Private Sub GageList_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         AddHandler DataGridView1.SelectionChanged, AddressOf DataGridView1_SelectionChanged
         AddHandler DataGridView1.CellDoubleClick, AddressOf DataGridView1_CellDoubleClick
@@ -29,7 +30,8 @@ Public Class GageList
         MyBase.OnLoad(e)
         CenterToScreen()
     End Sub
-
+#End Region
+#Region "Misc"
     Private Sub TextContains_TextChanged(sender As Object, e As EventArgs) Handles TextContains.TextChanged
         Dim selectedColumn As String = CmbContains.SelectedItem.ToString()
         Dim filterText As String = TextContains.Text.Trim()
@@ -52,7 +54,17 @@ Public Class GageList
         GTMenu.LoadGageID()
     End Sub
 
-    '/---- Database ----/
+    Private Sub FilterSetup()
+        CmbFilterType.Items.Add("Contains")
+        CmbFilterType.Items.Add("Exact")
+        CmbFilterType.SelectedIndex = 0
+        CmbContains.Items.AddRange(New String() {"GageID", "Status", "PartNumber", "Description", "Department", "Gage Type", "Customer", "Inspected Date", "Due Date", "Comments"})
+        CmbContains.SelectedIndex = 0
+        CheckBoxShowAll.Checked = My.Settings.ShowAll
+        ApplyStatusFilter()
+    End Sub
+#End Region
+#Region "Database"
     Public Sub LoadData(Optional filterQuery As String = "")
         If Not System.IO.File.Exists(GlobalVars.DatabaseLocation) Then
             If PromptForDatabaseLocation() Then
@@ -160,8 +172,8 @@ Public Class GageList
             End If
         End Using
     End Sub
-
-    '/---- DataGrid ----/
+#End Region
+#Region "DataGrid"
     Private Sub DataGridView1_RowPostPaint(sender As Object, e As DataGridViewRowPostPaintEventArgs) Handles DataGridView1.RowPostPaint ' Set Zebra striping
         Dim grid As DataGridView = CType(sender, DataGridView)
         If e.RowIndex >= 0 Then
@@ -196,7 +208,8 @@ Public Class GageList
             GTMenu.LoadGageID()
         End If
     End Sub
-
+#End Region
+#Region "Settings & Misc"
     '/---- Settings & Misc ----/
     Private Sub CheckBoxShowAll_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxShowAll.CheckedChanged
         My.Settings.ShowAll = CheckBoxShowAll.Checked
@@ -221,7 +234,8 @@ Public Class GageList
         AdminMenu.Show()
         My.Settings.FromList = True
     End Sub
-
+#End Region
+#Region "Menu Toolbar Strip"
     '/----- Menu Toolbar Strip -----/
     Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
         About.Show()
@@ -281,18 +295,8 @@ Public Class GageList
             StartLogin()
         End If
     End Sub
-
-    Private Sub FilterSetup()
-        CmbFilterType.Items.Add("Contains")
-        CmbFilterType.Items.Add("Exact")
-        CmbFilterType.SelectedIndex = 0
-        CmbContains.Items.AddRange(New String() {"GageID", "Status", "PartNumber", "Description", "Department", "Gage Type", "Customer", "Inspected Date", "Due Date", "Comments"})
-        CmbContains.SelectedIndex = 0
-        CheckBoxShowAll.Checked = My.Settings.ShowAll
-        ApplyStatusFilter()
-    End Sub
-
-    '/---- Closing Actions ----/
+#End Region
+#Region "Closing Actions"
     Private Sub MainForm_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         If isClosing Then
             Return
@@ -317,4 +321,5 @@ Public Class GageList
             e.Cancel = True
         End If
     End Sub
+#End Region
 End Class

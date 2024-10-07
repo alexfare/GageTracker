@@ -1,3 +1,12 @@
+v5.12.2.50
+Adjusted GageList UI size.
+Updated framework to v4.8.1.
+Updated GTMenu, Code improvements.
+Updated GageList, Added Regions.
+Updated GTMenu, Closes when opening DueDateCategorizer. (Prevents issues when selecting gage).
+Updated DueDateCategorizer, DueDateCategorizer now closes when selecting gage.
+Updated AdminMenu, Added DueDateCategorizer in View Menu.
+
 v5.12.1.49
 Updated CustomerEntry, (Slight UI update & Code).
 Updated ReportIssue.

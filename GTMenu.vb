@@ -1,15 +1,16 @@
 ﻿Imports System.Data.OleDb
 
 Public Class GTMenu
-    Dim connectionString As String
-    Dim SearchCheck As Boolean
-    Dim activeUser As String
-    Dim ChangeDetected As Boolean
-    Dim GageIDUpdate As String
+    Private connectionString As String
+    Private SearchCheck As Boolean
+    Private activeUser As String
+    Private ChangeDetected As Boolean
+    Private GageIDUpdate As String
     Private isClosing As Boolean = False
     Dim originalTitle As String = "GageTracker - Menu"
     Public WithEvents Timer1 As New Timer With {.Interval = 3000, .Enabled = False}
 
+#Region "GTMenu Load"
     Private Async Sub Menu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         SetupConnectionString()
         SetupUI()
@@ -54,16 +55,199 @@ Public Class GTMenu
         GageList.ApplyStatusFilter()
     End Sub
 
-    Private Sub TxtGageID_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtGageID.KeyDown
-        If e.KeyCode = Keys.Enter Then
-            e.SuppressKeyPress = True
+    Public Sub LoadGageID()
+        Using conn As New OleDbConnection(connectionString)
+            Try
+                conn.Open()
+                Dim cmd As New OleDbCommand("SELECT GageID FROM [CalibrationTracker]", conn)
+                Dim reader As OleDbDataReader = cmd.ExecuteReader()
+                Dim items As New List(Of String)() ' Temporary list to hold GageID data
 
-            If ChangeDetected = False Then
-                BtnSearch_Click(Me, EventArgs.Empty)
-            End If
-        End If
+                While reader.Read()
+                    items.Add(reader("GageID").ToString())
+                End While
+
+                ' Close the reader and connection
+                reader.Close()
+
+                ' Now invoke the UI thread to update the ComboBox
+                Me.Invoke(Sub()
+                              TxtGageID.Items.Clear()
+                              TxtGageID.AutoCompleteMode = AutoCompleteMode.SuggestAppend
+                              TxtGageID.AutoCompleteSource = AutoCompleteSource.ListItems
+
+                              For Each item As String In items
+                                  TxtGageID.Items.Add(item)
+                              Next
+                          End Sub)
+
+            Catch ex As Exception
+                MessageBox.Show("An error occurred while loading GageID options: " & ex.Message)
+            Finally
+                ' Ensure connection is closed if exception occurs
+                If conn.State = ConnectionState.Open Then
+                    conn.Close()
+                End If
+            End Try
+        End Using
     End Sub
 
+    Public Sub LoadStatus()
+        Using conn As New OleDbConnection(connectionString)
+            Try
+                conn.Open()
+                Dim cmd As New OleDbCommand("SELECT Status FROM [Status]", conn) ' Ensure the table name and column name are correct
+                Dim reader As OleDbDataReader = cmd.ExecuteReader()
+                Dim items As New List(Of String)() ' Temporary list to hold status data
+
+                While reader.Read()
+                    items.Add(reader("Status").ToString())
+                End While
+
+                ' Now invoke the UI thread to update the ComboBox
+                Me.Invoke(Sub()
+                              cmbStatus.Items.Clear()
+                              For Each item As String In items
+                                  cmbStatus.Items.Add(item)
+                              Next
+                          End Sub)
+
+            Catch ex As Exception
+                MessageBox.Show("An error occurred while loading status options: " & ex.Message)
+            Finally
+                ' Ensure connection is closed if exception occurs
+                If conn.State = ConnectionState.Open Then
+                    conn.Close()
+                End If
+            End Try
+        End Using
+    End Sub
+
+    Public Sub LoadDepartment()
+        Using conn As New OleDbConnection(connectionString)
+            Try
+                conn.Open()
+                Dim cmd As New OleDbCommand("SELECT Departments FROM [Departments]", conn) ' Adjust table and column names as necessary
+                Dim reader As OleDbDataReader = cmd.ExecuteReader()
+                Dim items As New List(Of String)() ' Temporary list to hold Department data
+
+                While reader.Read()
+                    items.Add(reader("Departments").ToString())
+                End While
+
+                ' Use Invoke to update the ComboBox on the UI thread
+                Me.Invoke(Sub()
+                              txtDepartment.Items.Clear()
+                              For Each item As String In items
+                                  txtDepartment.Items.Add(item)
+                              Next
+                          End Sub)
+
+            Catch ex As Exception
+                MessageBox.Show("An error occurred while loading Departments options: " & ex.Message)
+            Finally
+                ' Ensure connection is closed if exception occurs
+                If conn.State = ConnectionState.Open Then
+                    conn.Close()
+                End If
+            End Try
+        End Using
+    End Sub
+
+    Public Sub LoadGageType()
+        Using conn As New OleDbConnection(connectionString)
+            Try
+                conn.Open()
+                Dim cmd As New OleDbCommand("SELECT GageType FROM [GageType]", conn) ' Adjust table and column names as necessary
+                Dim reader As OleDbDataReader = cmd.ExecuteReader()
+                Dim items As New List(Of String)() ' Temporary list to hold Gage Type data
+
+                While reader.Read()
+                    items.Add(reader("GageType").ToString())
+                End While
+
+                ' Use Invoke to update the ComboBox on the UI thread
+                Me.Invoke(Sub()
+                              txtGageType.Items.Clear()
+                              For Each item As String In items
+                                  txtGageType.Items.Add(item)
+                              Next
+                          End Sub)
+
+            Catch ex As Exception
+                MessageBox.Show("An error occurred while loading Gage Type options: " & ex.Message)
+            Finally
+                ' Ensure connection is closed if exception occurs
+                If conn.State = ConnectionState.Open Then
+                    conn.Close()
+                End If
+            End Try
+        End Using
+    End Sub
+
+    Public Sub LoadCustomers()
+        Using conn As New OleDbConnection(connectionString)
+            Try
+                conn.Open()
+                Dim cmd As New OleDbCommand("SELECT CustomerName FROM Customers", conn) ' Make sure the table name is correct
+                Dim reader As OleDbDataReader = cmd.ExecuteReader()
+                Dim items As New List(Of String)() ' Temporary list to hold Customer data
+
+                While reader.Read()
+                    items.Add(reader("CustomerName").ToString())
+                End While
+
+                ' Use Invoke to update the ComboBox on the UI thread
+                Me.Invoke(Sub()
+                              txtCustomer.Items.Clear()
+                              For Each item As String In items
+                                  txtCustomer.Items.Add(item)
+                              Next
+                          End Sub)
+
+            Catch ex As Exception
+                MessageBox.Show("An error occurred while loading Customer options: " & ex.Message)
+            Finally
+                ' Ensure connection is closed if exception occurs
+                If conn.State = ConnectionState.Open Then
+                    conn.Close()
+                End If
+            End Try
+        End Using
+    End Sub
+
+    Public Sub LoadUser()
+        Using conn As New OleDbConnection(connectionString)
+            Try
+                conn.Open()
+                Dim cmd As New OleDbCommand("SELECT Username FROM [Credentials]", conn) ' Adjust table and column names as necessary
+                Dim reader As OleDbDataReader = cmd.ExecuteReader()
+                Dim items As New List(Of String)() ' Temporary list to hold Gage Type data
+
+                While reader.Read()
+                    items.Add(reader("Username").ToString())
+                End While
+
+                ' Use Invoke to update the ComboBox on the UI thread
+                Me.Invoke(Sub()
+                              txtCalibratedBy.Items.Clear()
+                              For Each item As String In items
+                                  txtCalibratedBy.Items.Add(item)
+                              Next
+                          End Sub)
+
+            Catch ex As Exception
+                MessageBox.Show("An error occurred while loading Gage Type options: " & ex.Message)
+            Finally
+                ' Ensure connection is closed if exception occurs
+                If conn.State = ConnectionState.Open Then
+                    conn.Close()
+                End If
+            End Try
+        End Using
+    End Sub
+#End Region
+#Region "GTMenu Buttons"
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
         If String.IsNullOrWhiteSpace(TxtGageID.Text) Then
             MessageBox.Show("GageID cannot be blank. Please enter a valid GageID.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -290,223 +474,8 @@ Public Class GTMenu
         End Using
     End Sub
 
-    Private Sub ClearReset()
-        ClearForms()
-        TxtGageID.Text = GageIDUpdate
-        'BtnSearch.PerformClick() 'Need to fix
-    End Sub
     Private Sub BtnClear_Click(sender As Object, e As EventArgs) Handles BtnClear.Click
         ClearForms()
-    End Sub
-
-    Private Sub TxtInterval_TextChanged(sender As Object, e As EventArgs) Handles TxtInterval.TextChanged
-        UpdateDueDate()
-    End Sub
-
-    Private Sub DtInspectedDate_ValueChanged(sender As Object, e As EventArgs) Handles DtInspectedDate.ValueChanged
-        UpdateDueDate()
-    End Sub
-
-    Private Sub UpdateDueDate()
-        Dim intervalMonths As Integer
-        If Integer.TryParse(TxtInterval.Text, intervalMonths) Then
-            ' If the interval is a valid integer, calculate and update the due date
-            Dim inspectedDate As DateTime = DtInspectedDate.Value
-            Dim dueDate As DateTime = inspectedDate.AddMonths(intervalMonths)
-            dtDueDate.Value = dueDate
-        End If
-    End Sub
-
-    Public Sub LoadGageID()
-        Using conn As New OleDbConnection(connectionString)
-            Try
-                conn.Open()
-                Dim cmd As New OleDbCommand("SELECT GageID FROM [CalibrationTracker]", conn)
-                Dim reader As OleDbDataReader = cmd.ExecuteReader()
-                Dim items As New List(Of String)() ' Temporary list to hold GageID data
-
-                While reader.Read()
-                    items.Add(reader("GageID").ToString())
-                End While
-
-                ' Close the reader and connection
-                reader.Close()
-
-                ' Now invoke the UI thread to update the ComboBox
-                Me.Invoke(Sub()
-                              TxtGageID.Items.Clear()
-                              TxtGageID.AutoCompleteMode = AutoCompleteMode.SuggestAppend
-                              TxtGageID.AutoCompleteSource = AutoCompleteSource.ListItems
-
-                              For Each item As String In items
-                                  TxtGageID.Items.Add(item)
-                              Next
-                          End Sub)
-
-            Catch ex As Exception
-                MessageBox.Show("An error occurred while loading GageID options: " & ex.Message)
-            Finally
-                ' Ensure connection is closed if exception occurs
-                If conn.State = ConnectionState.Open Then
-                    conn.Close()
-                End If
-            End Try
-        End Using
-    End Sub
-
-    Public Sub LoadStatus()
-        Using conn As New OleDbConnection(connectionString)
-            Try
-                conn.Open()
-                Dim cmd As New OleDbCommand("SELECT Status FROM [Status]", conn) ' Ensure the table name and column name are correct
-                Dim reader As OleDbDataReader = cmd.ExecuteReader()
-                Dim items As New List(Of String)() ' Temporary list to hold status data
-
-                While reader.Read()
-                    items.Add(reader("Status").ToString())
-                End While
-
-                ' Now invoke the UI thread to update the ComboBox
-                Me.Invoke(Sub()
-                              cmbStatus.Items.Clear()
-                              For Each item As String In items
-                                  cmbStatus.Items.Add(item)
-                              Next
-                          End Sub)
-
-            Catch ex As Exception
-                MessageBox.Show("An error occurred while loading status options: " & ex.Message)
-            Finally
-                ' Ensure connection is closed if exception occurs
-                If conn.State = ConnectionState.Open Then
-                    conn.Close()
-                End If
-            End Try
-        End Using
-    End Sub
-
-    Public Sub LoadDepartment()
-        Using conn As New OleDbConnection(connectionString)
-            Try
-                conn.Open()
-                Dim cmd As New OleDbCommand("SELECT Departments FROM [Departments]", conn) ' Adjust table and column names as necessary
-                Dim reader As OleDbDataReader = cmd.ExecuteReader()
-                Dim items As New List(Of String)() ' Temporary list to hold Department data
-
-                While reader.Read()
-                    items.Add(reader("Departments").ToString())
-                End While
-
-                ' Use Invoke to update the ComboBox on the UI thread
-                Me.Invoke(Sub()
-                              txtDepartment.Items.Clear()
-                              For Each item As String In items
-                                  txtDepartment.Items.Add(item)
-                              Next
-                          End Sub)
-
-            Catch ex As Exception
-                MessageBox.Show("An error occurred while loading Departments options: " & ex.Message)
-            Finally
-                ' Ensure connection is closed if exception occurs
-                If conn.State = ConnectionState.Open Then
-                    conn.Close()
-                End If
-            End Try
-        End Using
-    End Sub
-
-    Public Sub LoadGageType()
-        Using conn As New OleDbConnection(connectionString)
-            Try
-                conn.Open()
-                Dim cmd As New OleDbCommand("SELECT GageType FROM [GageType]", conn) ' Adjust table and column names as necessary
-                Dim reader As OleDbDataReader = cmd.ExecuteReader()
-                Dim items As New List(Of String)() ' Temporary list to hold Gage Type data
-
-                While reader.Read()
-                    items.Add(reader("GageType").ToString())
-                End While
-
-                ' Use Invoke to update the ComboBox on the UI thread
-                Me.Invoke(Sub()
-                              txtGageType.Items.Clear()
-                              For Each item As String In items
-                                  txtGageType.Items.Add(item)
-                              Next
-                          End Sub)
-
-            Catch ex As Exception
-                MessageBox.Show("An error occurred while loading Gage Type options: " & ex.Message)
-            Finally
-                ' Ensure connection is closed if exception occurs
-                If conn.State = ConnectionState.Open Then
-                    conn.Close()
-                End If
-            End Try
-        End Using
-    End Sub
-
-    Public Sub LoadCustomers()
-        Using conn As New OleDbConnection(connectionString)
-            Try
-                conn.Open()
-                Dim cmd As New OleDbCommand("SELECT CustomerName FROM Customers", conn) ' Make sure the table name is correct
-                Dim reader As OleDbDataReader = cmd.ExecuteReader()
-                Dim items As New List(Of String)() ' Temporary list to hold Customer data
-
-                While reader.Read()
-                    items.Add(reader("CustomerName").ToString())
-                End While
-
-                ' Use Invoke to update the ComboBox on the UI thread
-                Me.Invoke(Sub()
-                              txtCustomer.Items.Clear()
-                              For Each item As String In items
-                                  txtCustomer.Items.Add(item)
-                              Next
-                          End Sub)
-
-            Catch ex As Exception
-                MessageBox.Show("An error occurred while loading Customer options: " & ex.Message)
-            Finally
-                ' Ensure connection is closed if exception occurs
-                If conn.State = ConnectionState.Open Then
-                    conn.Close()
-                End If
-            End Try
-        End Using
-    End Sub
-
-    Public Sub LoadUser()
-        Using conn As New OleDbConnection(connectionString)
-            Try
-                conn.Open()
-                Dim cmd As New OleDbCommand("SELECT Username FROM [Credentials]", conn) ' Adjust table and column names as necessary
-                Dim reader As OleDbDataReader = cmd.ExecuteReader()
-                Dim items As New List(Of String)() ' Temporary list to hold Gage Type data
-
-                While reader.Read()
-                    items.Add(reader("Username").ToString())
-                End While
-
-                ' Use Invoke to update the ComboBox on the UI thread
-                Me.Invoke(Sub()
-                              txtCalibratedBy.Items.Clear()
-                              For Each item As String In items
-                                  txtCalibratedBy.Items.Add(item)
-                              Next
-                          End Sub)
-
-            Catch ex As Exception
-                MessageBox.Show("An error occurred while loading Gage Type options: " & ex.Message)
-            Finally
-                ' Ensure connection is closed if exception occurs
-                If conn.State = ConnectionState.Open Then
-                    conn.Close()
-                End If
-            End Try
-        End Using
     End Sub
 
     Private Sub BtnAdmin_Click(sender As Object, e As EventArgs) Handles BtnAdmin.Click
@@ -553,43 +522,96 @@ Public Class GTMenu
         End If
     End Sub
 
-    Private Sub DeleteConfirmed()
-        If String.IsNullOrWhiteSpace(TxtGageID.Text) Then
-            MessageBox.Show("GageID cannot be blank. Please enter a valid GageID.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Return
+    Private Sub BtnClearNom_Click(sender As Object, e As EventArgs) Handles BtnClearNom.Click
+        txtaN1.Clear()
+        txtaN2.Clear()
+        txtaN3.Clear()
+        txtaN4.Clear()
+        txtaN5.Clear()
+    End Sub
+
+    Private Sub BtnClearActual_Click(sender As Object, e As EventArgs) Handles BtnClearActual.Click
+        txtaA1.Clear()
+        txtaA2.Clear()
+        txtaA3.Clear()
+        txtaA4.Clear()
+        txtaA5.Clear()
+    End Sub
+#End Region
+#Region "MenuStrip"
+    Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
+        'Application.Exit()
+        Me.Close()
+    End Sub
+
+    Private Sub AddGageToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddGageToolStripMenuItem.Click
+        BtnAdd.PerformClick()
+    End Sub
+
+    Private Sub UpdateGageToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UpdateGageToolStripMenuItem.Click
+        BtnUpdate.PerformClick()
+    End Sub
+
+    Private Sub DeleteGageToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteGageToolStripMenuItem.Click
+        BtnDelete.PerformClick()
+    End Sub
+
+    Private Sub AdminMenuToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AdminMenuToolStripMenuItem.Click
+        If My.Settings.isAdmin = True Then
+            StartAdmin()
+        Else
+            StartLogin()
+        End If
+    End Sub
+
+    Private Sub DueToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DueToolStripMenuItem.Click
+        Me.Close()
+        DueDateCategorizer.Show()
+    End Sub
+
+    Private Sub GageListToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles GageListToolStripMenuItem1.Click
+        Dim isOpen As Boolean = False
+        Dim openForm As Form = Nothing
+        For Each frm As Form In Application.OpenForms
+            If TypeOf frm Is GageList Then
+                isOpen = True
+                openForm = frm
+                Exit For
+            End If
+        Next
+
+        If isOpen AndAlso openForm IsNot Nothing Then
+            openForm.Activate()
+        Else
+            GageList.Show()
         End If
 
-        If My.Settings.isAdmin = False Then
-            MessageBox.Show("Must be logged in to delete gage.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Return
-        End If
+        Me.Close()
+        GageList.LoadData()
+    End Sub
 
-        Dim result As DialogResult = MessageBox.Show("Are you sure you want to delete this gage?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-        If result = DialogResult.Yes Then
-            Try
-                Using conn As New OleDbConnection(connectionString)
-                    conn.Open()
-                    Dim deleteCmd As New OleDbCommand("DELETE FROM [CalibrationTracker] WHERE GageID = ?", conn)
-                    deleteCmd.Parameters.AddWithValue("@GageID", TxtGageID.Text)
-                    Dim rowsAffected As Integer = deleteCmd.ExecuteNonQuery()
-                    If rowsAffected > 0 Then
-                        TxtStatus.Text = "Gage deleted successfully."
-                        Timer1.Enabled = True
-                        SearchCheck = False
-                        ClearForms()
-                        ReloadData()
-                        GlobalVars.LastActivity = TxtGageID.Text + " deleted."
-                        Logger.SaveLogEntry()
-                    Else
-                        MessageBox.Show("No gage deleted. Please check the GageID.")
-                    End If
-                End Using
-            Catch ex As OleDbException
-                MessageBox.Show($"Database error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Catch ex As Exception
-                MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            End Try
-        End If
+    Private Sub ReportIssueToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ReportIssueToolStripMenuItem.Click
+        ReportIssue.Show()
+    End Sub
+
+    Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
+        About.Show()
+    End Sub
+
+    Private Sub WebsiteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles WebsiteToolStripMenuItem.Click
+        Dim url As String = "https://alexfare.com/programs/gagetracker/latest/"
+        Try
+            Process.Start(url)
+        Catch ex As Exception
+            MessageBox.Show("An error occurred while trying to open the URL: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+#End Region
+#Region "Clear"
+    Private Sub ClearReset()
+        ClearForms()
+        TxtGageID.Text = GageIDUpdate
+        'BtnSearch.PerformClick() 'Need to fix
     End Sub
 
     Private Sub ClearForms()
@@ -636,45 +658,64 @@ Public Class GTMenu
         SearchCheck = False
         UpdateChangeStatus()
     End Sub
+#End Region
+#Region "Misc"
+    Private Sub TxtGageID_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtGageID.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            e.SuppressKeyPress = True
 
-    Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
-        'Application.Exit()
-        Me.Close()
+            If ChangeDetected = False Then
+                BtnSearch_Click(Me, EventArgs.Empty)
+            End If
+        End If
     End Sub
 
-    Private Sub AddGageToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddGageToolStripMenuItem.Click
-        BtnAdd.PerformClick()
+    Private Sub UpdateDueDate()
+        Dim intervalMonths As Integer
+        If Integer.TryParse(TxtInterval.Text, intervalMonths) Then
+            ' If the interval is a valid integer, calculate and update the due date
+            Dim inspectedDate As DateTime = DtInspectedDate.Value
+            Dim dueDate As DateTime = inspectedDate.AddMonths(intervalMonths)
+            dtDueDate.Value = dueDate
+        End If
     End Sub
 
-    Private Sub UpdateGageToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UpdateGageToolStripMenuItem.Click
-        BtnUpdate.PerformClick()
-    End Sub
+    Private Sub DeleteConfirmed()
+        If String.IsNullOrWhiteSpace(TxtGageID.Text) Then
+            MessageBox.Show("GageID cannot be blank. Please enter a valid GageID.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return
+        End If
 
-    Private Sub DeleteGageToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteGageToolStripMenuItem.Click
-        BtnDelete.PerformClick()
-    End Sub
+        If My.Settings.isAdmin = False Then
+            MessageBox.Show("Must be logged in to delete gage.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return
+        End If
 
-    Private Sub BtnClearNom_Click(sender As Object, e As EventArgs) Handles BtnClearNom.Click
-        txtaN1.Clear()
-        txtaN2.Clear()
-        txtaN3.Clear()
-        txtaN4.Clear()
-        txtaN5.Clear()
-    End Sub
-
-    Private Sub BtnClearActual_Click(sender As Object, e As EventArgs) Handles BtnClearActual.Click
-        txtaA1.Clear()
-        txtaA2.Clear()
-        txtaA3.Clear()
-        txtaA4.Clear()
-        txtaA5.Clear()
-    End Sub
-
-    Private Sub AdminMenuToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AdminMenuToolStripMenuItem.Click
-        If My.Settings.isAdmin = True Then
-            StartAdmin()
-        Else
-            StartLogin()
+        Dim result As DialogResult = MessageBox.Show("Are you sure you want to delete this gage?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        If result = DialogResult.Yes Then
+            Try
+                Using conn As New OleDbConnection(connectionString)
+                    conn.Open()
+                    Dim deleteCmd As New OleDbCommand("DELETE FROM [CalibrationTracker] WHERE GageID = ?", conn)
+                    deleteCmd.Parameters.AddWithValue("@GageID", TxtGageID.Text)
+                    Dim rowsAffected As Integer = deleteCmd.ExecuteNonQuery()
+                    If rowsAffected > 0 Then
+                        TxtStatus.Text = "Gage deleted successfully."
+                        Timer1.Enabled = True
+                        SearchCheck = False
+                        ClearForms()
+                        ReloadData()
+                        GlobalVars.LastActivity = TxtGageID.Text + " deleted."
+                        Logger.SaveLogEntry()
+                    Else
+                        MessageBox.Show("No gage deleted. Please check the GageID.")
+                    End If
+                End Using
+            Catch ex As OleDbException
+                MessageBox.Show($"Database error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Catch ex As Exception
+                MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
         End If
     End Sub
 
@@ -725,51 +766,23 @@ Public Class GTMenu
         My.Settings.FromList = False
     End Sub
 
-    Private Sub DueToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DueToolStripMenuItem.Click
-        DueDateCategorizer.Show()
-    End Sub
-
-    Private Sub GageListToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles GageListToolStripMenuItem1.Click
-        Dim isOpen As Boolean = False
-        Dim openForm As Form = Nothing
-        For Each frm As Form In Application.OpenForms
-            If TypeOf frm Is GageList Then
-                isOpen = True
-                openForm = frm
-                Exit For
-            End If
-        Next
-
-        If isOpen AndAlso openForm IsNot Nothing Then
-            openForm.Activate()
-        Else
-            GageList.Show()
-        End If
-
-        Me.Close()
-        GageList.LoadData()
-    End Sub
-
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         TxtStatus.Text = ""  'Clear the text
         Timer1.Enabled = False  'Stop the timer
     End Sub
 
-    Private Sub ReportIssueToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ReportIssueToolStripMenuItem.Click
-        ReportIssue.Show()
+    Private Sub UpdateChangeStatus()
+        ChangeDetected = False
+        Me.Text = originalTitle
+    End Sub
+#End Region
+#Region "TextChanged"
+    Private Sub TxtInterval_TextChanged(sender As Object, e As EventArgs) Handles TxtInterval.TextChanged
+        UpdateDueDate()
     End Sub
 
-    Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
-        About.Show()
-    End Sub
-
-    Private Sub WebsiteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles WebsiteToolStripMenuItem.Click
-        Dim url As String = "https://alexfare.com/programs/gagetracker/latest/"
-        Try
-            Process.Start(url)
-        Catch ex As Exception
-            MessageBox.Show("An error occurred while trying to open the URL: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
+    Private Sub DtInspectedDate_ValueChanged(sender As Object, e As EventArgs) Handles DtInspectedDate.ValueChanged
+        UpdateDueDate()
     End Sub
 
     Private Sub TextContains_TextChanged(sender As Object, e As EventArgs) Handles txtPartNumber.TextChanged, txtDescription.TextChanged, TxtInterval.TextChanged, txtComments.TextChanged, cmbStatus.SelectedIndexChanged, txtDepartment.SelectedIndexChanged, txtGageType.SelectedIndexChanged, txtCustomer.SelectedIndexChanged, txtCalibratedBy.SelectedIndexChanged, DtInspectedDate.ValueChanged, dtDueDate.ValueChanged
@@ -781,11 +794,8 @@ Public Class GTMenu
         End If
     End Sub
 
-    Private Sub UpdateChangeStatus()
-        ChangeDetected = False
-        Me.Text = originalTitle
-    End Sub
-
+#End Region
+#Region "Closing Form"
     Private Sub GTMenu_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         If ChangeDetected = True Then
             If isClosing Then
@@ -800,4 +810,5 @@ Public Class GTMenu
             End If
         End If
     End Sub
+#End Region
 End Class

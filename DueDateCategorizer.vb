@@ -152,6 +152,7 @@ Public Class DueDateCategorizer
             ' Open the GTMenu form
             GTMenu.Show()
             GTMenu.LoadGageID()
+            Me.Close()
         End If
     End Sub
 
@@ -168,6 +169,7 @@ Public Class DueDateCategorizer
             ' Open the GTMenu form
             GTMenu.Show()
             GTMenu.LoadGageID()
+            Me.Close()
         End If
     End Sub
 
@@ -184,6 +186,7 @@ Public Class DueDateCategorizer
             ' Open the GTMenu form
             GTMenu.Show()
             GTMenu.LoadGageID()
+            Me.Close()
         End If
     End Sub
 

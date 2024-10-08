@@ -1,5 +1,5 @@
 # GageTracker
-Introducing GageTracker, a simple yet sophisticated gage calibration management software solution designed to simplify the task of maintaining tool calibration records. ISO 9001:2015 compliant, this user-friendly software offers advanced features and intuitive functionality to ensure accurate and efficient calibration management. <br>
+Introducing GageTracker, a simple yet sophisticated gage calibration management software solution designed to simplify the task of maintaining tool calibration records. ISO 9001:2015 compliant, this user friendly software offers advanced features and intuitive functionality to ensure accurate and efficient calibration management. <br>
 <br>
 Default Admin credentials:<br>
 Username: "Admin"<br>
@@ -14,7 +14,7 @@ See upcoming due dates on gages within 30-60 days including past due:<br>
 <br>
 <br>
 Gage Menu:<br>
-![image](https://github.com/alexfare/GageTracker/assets/40654995/338c9a59-aaac-4704-9a69-87de86947607)
+![image](https://github.com/user-attachments/assets/6f2335d4-ac09-469a-9372-884d0c5a9ac1)
 <br>
 <br>
 Login Menu:<br>
@@ -22,7 +22,7 @@ Login Menu:<br>
 <br>
 <br>
 Admin Menu:<br>
-![image](https://github.com/user-attachments/assets/8e5589c0-862c-471b-8f38-519656b1451a)
+![image](https://github.com/user-attachments/assets/c826eb5a-49ea-4eef-ba94-c5b1b9a2ccb5)
 <br>
 <br>
 Customer Entry:<br>

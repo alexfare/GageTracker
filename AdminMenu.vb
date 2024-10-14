@@ -1,7 +1,4 @@
 ﻿Imports System.Data.OleDb
-Imports System.Text
-Imports System.Windows.Forms
-Imports System.Threading.Tasks
 
 Public Class AdminMenu
     Dim connectionString As String
@@ -741,5 +738,9 @@ Public Class AdminMenu
                 e.Cancel = True
             End If
         End If
+    End Sub
+
+    Private Sub BtnGageType_Click(sender As Object, e As EventArgs) Handles BtnGageType.Click
+        GageType.Show()
     End Sub
 End Class

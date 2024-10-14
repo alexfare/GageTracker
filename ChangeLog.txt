@@ -1,3 +1,8 @@
+v5.13.0.51
+Added ability to edit GageTypes from AdminMenu.
+Added Refresh button under View on GageList.
+Database Maintenance.
+
 v5.12.2.50
 Adjusted GageList UI size.
 Updated framework to v4.8.1.

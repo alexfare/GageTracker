@@ -30,6 +30,7 @@ Partial Class AdminMenu
         Me.ViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GageListToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DueDateCalenderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SettingsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ChangeDatabaseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LogoutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -126,7 +127,7 @@ Partial Class AdminMenu
         Me.BtnAdd = New System.Windows.Forms.Button()
         Me.BtnUpdate = New System.Windows.Forms.Button()
         Me.TxtStatus = New System.Windows.Forms.Label()
-        Me.DueDateCalenderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BtnGageType = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.TabControl2.SuspendLayout()
@@ -171,7 +172,7 @@ Partial Class AdminMenu
         'CloseToolStripMenuItem
         '
         Me.CloseToolStripMenuItem.Name = "CloseToolStripMenuItem"
-        Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(103, 22)
         Me.CloseToolStripMenuItem.Text = "Close"
         '
         'ViewToolStripMenuItem
@@ -184,14 +185,20 @@ Partial Class AdminMenu
         'MenuToolStripMenuItem
         '
         Me.MenuToolStripMenuItem.Name = "MenuToolStripMenuItem"
-        Me.MenuToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.MenuToolStripMenuItem.Size = New System.Drawing.Size(172, 22)
         Me.MenuToolStripMenuItem.Text = "Menu"
         '
         'GageListToolStripMenuItem
         '
         Me.GageListToolStripMenuItem.Name = "GageListToolStripMenuItem"
-        Me.GageListToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.GageListToolStripMenuItem.Size = New System.Drawing.Size(172, 22)
         Me.GageListToolStripMenuItem.Text = "GageList"
+        '
+        'DueDateCalenderToolStripMenuItem
+        '
+        Me.DueDateCalenderToolStripMenuItem.Name = "DueDateCalenderToolStripMenuItem"
+        Me.DueDateCalenderToolStripMenuItem.Size = New System.Drawing.Size(172, 22)
+        Me.DueDateCalenderToolStripMenuItem.Text = "Due Date Calender"
         '
         'SettingsToolStripMenuItem
         '
@@ -203,7 +210,7 @@ Partial Class AdminMenu
         'ChangeDatabaseToolStripMenuItem
         '
         Me.ChangeDatabaseToolStripMenuItem.Name = "ChangeDatabaseToolStripMenuItem"
-        Me.ChangeDatabaseToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ChangeDatabaseToolStripMenuItem.Size = New System.Drawing.Size(166, 22)
         Me.ChangeDatabaseToolStripMenuItem.Text = "Change Database"
         '
         'LogoutToolStripMenuItem
@@ -970,6 +977,7 @@ Partial Class AdminMenu
         '
         'TabPage6
         '
+        Me.TabPage6.Controls.Add(Me.BtnGageType)
         Me.TabPage6.Controls.Add(Me.BtnOpenDatabase)
         Me.TabPage6.Controls.Add(Me.BtnDatabasePath)
         Me.TabPage6.Controls.Add(Me.btnStatus)
@@ -1103,11 +1111,14 @@ Partial Class AdminMenu
         Me.TxtStatus.TabIndex = 36
         Me.TxtStatus.Text = "NULL"
         '
-        'DueDateCalenderToolStripMenuItem
+        'BtnGageType
         '
-        Me.DueDateCalenderToolStripMenuItem.Name = "DueDateCalenderToolStripMenuItem"
-        Me.DueDateCalenderToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.DueDateCalenderToolStripMenuItem.Text = "Due Date Calender"
+        Me.BtnGageType.Location = New System.Drawing.Point(182, 58)
+        Me.BtnGageType.Name = "BtnGageType"
+        Me.BtnGageType.Size = New System.Drawing.Size(82, 46)
+        Me.BtnGageType.TabIndex = 6
+        Me.BtnGageType.Text = "Gage Type Menu"
+        Me.BtnGageType.UseVisualStyleBackColor = True
         '
         'AdminMenu
         '
@@ -1254,4 +1265,5 @@ Partial Class AdminMenu
     Friend WithEvents BtnDatabasePath As Button
     Friend WithEvents BtnOpenDatabase As Button
     Friend WithEvents DueDateCalenderToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents BtnGageType As Button
 End Class

@@ -33,8 +33,8 @@
     <ProductName>GageTracker</ProductName>
     <PublisherName>Alex Fare</PublisherName>
     <MinimumRequiredVersion>5.5.1.29</MinimumRequiredVersion>
-    <ApplicationRevision>50</ApplicationRevision>
-    <ApplicationVersion>5.12.2.%2a</ApplicationVersion>
+    <ApplicationRevision>52</ApplicationRevision>
+    <ApplicationVersion>5.13.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -49,6 +49,7 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DocumentationFile>GageTracker.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -178,6 +179,12 @@
     <Compile Include="GageList.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="GageType.Designer.vb">
+      <DependentUpon>GageType.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GageType.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="GlobalVars.vb" />
     <Compile Include="GTDatabaseDataSet.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -261,6 +268,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GageList.resx">
       <DependentUpon>GageList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GageType.resx">
+      <DependentUpon>GageType.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoadingScreen.resx">
       <DependentUpon>LoadingScreen.vb</DependentUpon>

@@ -25,7 +25,17 @@ Partial Class GageList
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(GageList))
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.GageIDDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.StatusDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PartNumberDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DescriptionDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DepartmentDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GageTypeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Customer = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.InspectedDateDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DueDateDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CalibrationTrackerBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.GTDatabaseDataSet = New GageCalibrationTracker.GTDatabaseDataSet()
         Me.BtnMenu = New System.Windows.Forms.Button()
         Me.ColorDialog1 = New System.Windows.Forms.ColorDialog()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -49,21 +59,12 @@ Partial Class GageList
         Me.CmbFilterType = New System.Windows.Forms.ComboBox()
         Me.CmbContains = New System.Windows.Forms.ComboBox()
         Me.CheckBoxShowAll = New System.Windows.Forms.CheckBox()
-        Me.GageIDDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.StatusDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PartNumberDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DescriptionDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DepartmentDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GageTypeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.InspectedDateDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DueDateDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CalibrationTrackerBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.GTDatabaseDataSet = New GageCalibrationTracker.GTDatabaseDataSet()
         Me.CalibrationTrackerTableAdapter = New GageCalibrationTracker.GTDatabaseDataSetTableAdapters.CalibrationTrackerTableAdapter()
+        Me.RefreshToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.MenuStrip1.SuspendLayout()
         CType(Me.CalibrationTrackerBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GTDatabaseDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'DataGridView1
@@ -82,12 +83,78 @@ Partial Class GageList
         Me.DataGridView1.Size = New System.Drawing.Size(1366, 639)
         Me.DataGridView1.TabIndex = 5
         '
+        'GageIDDataGridViewTextBoxColumn
+        '
+        Me.GageIDDataGridViewTextBoxColumn.DataPropertyName = "GageID"
+        Me.GageIDDataGridViewTextBoxColumn.HeaderText = "GageID"
+        Me.GageIDDataGridViewTextBoxColumn.Name = "GageIDDataGridViewTextBoxColumn"
+        Me.GageIDDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'StatusDataGridViewTextBoxColumn
+        '
+        Me.StatusDataGridViewTextBoxColumn.DataPropertyName = "Status"
+        Me.StatusDataGridViewTextBoxColumn.HeaderText = "Status"
+        Me.StatusDataGridViewTextBoxColumn.Name = "StatusDataGridViewTextBoxColumn"
+        Me.StatusDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'PartNumberDataGridViewTextBoxColumn
+        '
+        Me.PartNumberDataGridViewTextBoxColumn.DataPropertyName = "PartNumber"
+        Me.PartNumberDataGridViewTextBoxColumn.HeaderText = "PartNumber"
+        Me.PartNumberDataGridViewTextBoxColumn.Name = "PartNumberDataGridViewTextBoxColumn"
+        Me.PartNumberDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'DescriptionDataGridViewTextBoxColumn
+        '
+        Me.DescriptionDataGridViewTextBoxColumn.DataPropertyName = "Description"
+        Me.DescriptionDataGridViewTextBoxColumn.HeaderText = "Description"
+        Me.DescriptionDataGridViewTextBoxColumn.Name = "DescriptionDataGridViewTextBoxColumn"
+        Me.DescriptionDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'DepartmentDataGridViewTextBoxColumn
+        '
+        Me.DepartmentDataGridViewTextBoxColumn.DataPropertyName = "Department"
+        Me.DepartmentDataGridViewTextBoxColumn.HeaderText = "Department"
+        Me.DepartmentDataGridViewTextBoxColumn.Name = "DepartmentDataGridViewTextBoxColumn"
+        Me.DepartmentDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'GageTypeDataGridViewTextBoxColumn
+        '
+        Me.GageTypeDataGridViewTextBoxColumn.DataPropertyName = "Gage Type"
+        Me.GageTypeDataGridViewTextBoxColumn.HeaderText = "Gage Type"
+        Me.GageTypeDataGridViewTextBoxColumn.Name = "GageTypeDataGridViewTextBoxColumn"
+        Me.GageTypeDataGridViewTextBoxColumn.ReadOnly = True
+        '
         'Customer
         '
         Me.Customer.DataPropertyName = "Customer"
         Me.Customer.HeaderText = "Customer"
         Me.Customer.Name = "Customer"
         Me.Customer.ReadOnly = True
+        '
+        'InspectedDateDataGridViewTextBoxColumn
+        '
+        Me.InspectedDateDataGridViewTextBoxColumn.DataPropertyName = "Inspected Date"
+        Me.InspectedDateDataGridViewTextBoxColumn.HeaderText = "Inspected Date"
+        Me.InspectedDateDataGridViewTextBoxColumn.Name = "InspectedDateDataGridViewTextBoxColumn"
+        Me.InspectedDateDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'DueDateDataGridViewTextBoxColumn
+        '
+        Me.DueDateDataGridViewTextBoxColumn.DataPropertyName = "Due Date"
+        Me.DueDateDataGridViewTextBoxColumn.HeaderText = "Due Date"
+        Me.DueDateDataGridViewTextBoxColumn.Name = "DueDateDataGridViewTextBoxColumn"
+        Me.DueDateDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'CalibrationTrackerBindingSource
+        '
+        Me.CalibrationTrackerBindingSource.DataMember = "CalibrationTracker"
+        Me.CalibrationTrackerBindingSource.DataSource = Me.GTDatabaseDataSet
+        '
+        'GTDatabaseDataSet
+        '
+        Me.GTDatabaseDataSet.DataSetName = "GTDatabaseDataSet"
+        Me.GTDatabaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'BtnMenu
         '
@@ -129,24 +196,24 @@ Partial Class GageList
         'MenuToolStripMenuItem
         '
         Me.MenuToolStripMenuItem.Name = "MenuToolStripMenuItem"
-        Me.MenuToolStripMenuItem.Size = New System.Drawing.Size(166, 22)
+        Me.MenuToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.MenuToolStripMenuItem.Text = "Menu"
         '
         'ChangeDatabaseToolStripMenuItem
         '
         Me.ChangeDatabaseToolStripMenuItem.Name = "ChangeDatabaseToolStripMenuItem"
-        Me.ChangeDatabaseToolStripMenuItem.Size = New System.Drawing.Size(166, 22)
+        Me.ChangeDatabaseToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ChangeDatabaseToolStripMenuItem.Text = "Change Database"
         '
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(166, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ExitToolStripMenuItem.Text = "Exit"
         '
         'ViewToolStripMenuItem
         '
-        Me.ViewToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PastDueToolStripMenuItem, Me.DueWithin30DaysToolStripMenuItem, Me.DueWithin60DaysToolStripMenuItem})
+        Me.ViewToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PastDueToolStripMenuItem, Me.DueWithin30DaysToolStripMenuItem, Me.DueWithin60DaysToolStripMenuItem, Me.RefreshToolStripMenuItem})
         Me.ViewToolStripMenuItem.Name = "ViewToolStripMenuItem"
         Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
         Me.ViewToolStripMenuItem.Text = "View"
@@ -154,19 +221,19 @@ Partial Class GageList
         'PastDueToolStripMenuItem
         '
         Me.PastDueToolStripMenuItem.Name = "PastDueToolStripMenuItem"
-        Me.PastDueToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.PastDueToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.PastDueToolStripMenuItem.Text = "Past Due"
         '
         'DueWithin30DaysToolStripMenuItem
         '
         Me.DueWithin30DaysToolStripMenuItem.Name = "DueWithin30DaysToolStripMenuItem"
-        Me.DueWithin30DaysToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.DueWithin30DaysToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.DueWithin30DaysToolStripMenuItem.Text = "Due within 30 days"
         '
         'DueWithin60DaysToolStripMenuItem
         '
         Me.DueWithin60DaysToolStripMenuItem.Name = "DueWithin60DaysToolStripMenuItem"
-        Me.DueWithin60DaysToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.DueWithin60DaysToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.DueWithin60DaysToolStripMenuItem.Text = "Due within 60 days"
         '
         'AdminToolStripMenuItem
@@ -251,75 +318,15 @@ Partial Class GageList
         Me.CheckBoxShowAll.Text = "Show All Statuses"
         Me.CheckBoxShowAll.UseVisualStyleBackColor = True
         '
-        'GageIDDataGridViewTextBoxColumn
-        '
-        Me.GageIDDataGridViewTextBoxColumn.DataPropertyName = "GageID"
-        Me.GageIDDataGridViewTextBoxColumn.HeaderText = "GageID"
-        Me.GageIDDataGridViewTextBoxColumn.Name = "GageIDDataGridViewTextBoxColumn"
-        Me.GageIDDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'StatusDataGridViewTextBoxColumn
-        '
-        Me.StatusDataGridViewTextBoxColumn.DataPropertyName = "Status"
-        Me.StatusDataGridViewTextBoxColumn.HeaderText = "Status"
-        Me.StatusDataGridViewTextBoxColumn.Name = "StatusDataGridViewTextBoxColumn"
-        Me.StatusDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'PartNumberDataGridViewTextBoxColumn
-        '
-        Me.PartNumberDataGridViewTextBoxColumn.DataPropertyName = "PartNumber"
-        Me.PartNumberDataGridViewTextBoxColumn.HeaderText = "PartNumber"
-        Me.PartNumberDataGridViewTextBoxColumn.Name = "PartNumberDataGridViewTextBoxColumn"
-        Me.PartNumberDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'DescriptionDataGridViewTextBoxColumn
-        '
-        Me.DescriptionDataGridViewTextBoxColumn.DataPropertyName = "Description"
-        Me.DescriptionDataGridViewTextBoxColumn.HeaderText = "Description"
-        Me.DescriptionDataGridViewTextBoxColumn.Name = "DescriptionDataGridViewTextBoxColumn"
-        Me.DescriptionDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'DepartmentDataGridViewTextBoxColumn
-        '
-        Me.DepartmentDataGridViewTextBoxColumn.DataPropertyName = "Department"
-        Me.DepartmentDataGridViewTextBoxColumn.HeaderText = "Department"
-        Me.DepartmentDataGridViewTextBoxColumn.Name = "DepartmentDataGridViewTextBoxColumn"
-        Me.DepartmentDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'GageTypeDataGridViewTextBoxColumn
-        '
-        Me.GageTypeDataGridViewTextBoxColumn.DataPropertyName = "Gage Type"
-        Me.GageTypeDataGridViewTextBoxColumn.HeaderText = "Gage Type"
-        Me.GageTypeDataGridViewTextBoxColumn.Name = "GageTypeDataGridViewTextBoxColumn"
-        Me.GageTypeDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'InspectedDateDataGridViewTextBoxColumn
-        '
-        Me.InspectedDateDataGridViewTextBoxColumn.DataPropertyName = "Inspected Date"
-        Me.InspectedDateDataGridViewTextBoxColumn.HeaderText = "Inspected Date"
-        Me.InspectedDateDataGridViewTextBoxColumn.Name = "InspectedDateDataGridViewTextBoxColumn"
-        Me.InspectedDateDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'DueDateDataGridViewTextBoxColumn
-        '
-        Me.DueDateDataGridViewTextBoxColumn.DataPropertyName = "Due Date"
-        Me.DueDateDataGridViewTextBoxColumn.HeaderText = "Due Date"
-        Me.DueDateDataGridViewTextBoxColumn.Name = "DueDateDataGridViewTextBoxColumn"
-        Me.DueDateDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'CalibrationTrackerBindingSource
-        '
-        Me.CalibrationTrackerBindingSource.DataMember = "CalibrationTracker"
-        Me.CalibrationTrackerBindingSource.DataSource = Me.GTDatabaseDataSet
-        '
-        'GTDatabaseDataSet
-        '
-        Me.GTDatabaseDataSet.DataSetName = "GTDatabaseDataSet"
-        Me.GTDatabaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
         'CalibrationTrackerTableAdapter
         '
         Me.CalibrationTrackerTableAdapter.ClearBeforeFill = True
+        '
+        'RefreshToolStripMenuItem
+        '
+        Me.RefreshToolStripMenuItem.Name = "RefreshToolStripMenuItem"
+        Me.RefreshToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.RefreshToolStripMenuItem.Text = "Refresh"
         '
         'GageList
         '
@@ -340,10 +347,10 @@ Partial Class GageList
         Me.Name = "GageList"
         Me.Text = "GageTracker - GageList"
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.MenuStrip1.ResumeLayout(False)
-        Me.MenuStrip1.PerformLayout()
         CType(Me.CalibrationTrackerBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GTDatabaseDataSet, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.MenuStrip1.ResumeLayout(False)
+        Me.MenuStrip1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -385,4 +392,5 @@ Partial Class GageList
     Friend WithEvents PastDueToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents DueWithin30DaysToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents DueWithin60DaysToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents RefreshToolStripMenuItem As ToolStripMenuItem
 End Class

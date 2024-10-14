@@ -321,5 +321,9 @@ Public Class GageList
             e.Cancel = True
         End If
     End Sub
+
+    Private Sub RefreshToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RefreshToolStripMenuItem.Click
+        LoadData()
+    End Sub
 #End Region
 End Class

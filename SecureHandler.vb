@@ -1,6 +1,5 @@
-﻿Imports System.Security.Cryptography
-Imports System.IO
-Imports System.Text
+﻿Imports System.IO
+Imports System.Security.Cryptography
 
 Public Class SecureHandler
     Public Shared Function EncryptString(input As String, key As Byte(), iv As Byte()) As String 'Method to encrypt a string

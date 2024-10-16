@@ -21,9 +21,10 @@ Public Class GageList
 
         'Misc
         TextContains.Text = ""
-        FilterSetup()
         Me.StartPosition = FormStartPosition.CenterScreen
-        MenuStrip1.BackColor = SystemColors.AppWorkspace
+
+        FilterSetup()
+        MenuColor()
     End Sub
 
     Protected Overrides Sub OnLoad(e As EventArgs)
@@ -233,6 +234,14 @@ Public Class GageList
     Private Sub StartAdmin()
         AdminMenu.Show()
         My.Settings.FromList = True
+    End Sub
+
+    Public Sub MenuColor()
+        If My.Settings.isAdmin = True Then
+            MenuStrip1.BackColor = Color.IndianRed
+        Else
+            MenuStrip1.BackColor = SystemColors.AppWorkspace
+        End If
     End Sub
 #End Region
 #Region "Menu Toolbar Strip"

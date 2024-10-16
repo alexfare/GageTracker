@@ -47,6 +47,7 @@ Public Class LoginForm1
                         My.Settings.LoggedUser = username
                         My.Settings.isAdmin = True
                         My.Settings.Save()
+                        GageList.MenuColor()
                         AdminMenu.Show()
                         Me.Close()
                     Else

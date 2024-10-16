@@ -1,4 +1,5 @@
-﻿Imports System.Data.OleDb
+﻿
+Imports System.Data.OleDb
 
 Public Class CustomerEntry
     Dim connectionString As String
@@ -145,6 +146,10 @@ Public Class CustomerEntry
     End Sub
 
     Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
+        ClearText()
+    End Sub
+
+    Private Sub ClearText()
         txtCustomerName.SelectedIndex = -1
         txtCustomerAddress.Clear()
         txtCustomerPhone.Clear()
@@ -173,6 +178,7 @@ Public Class CustomerEntry
                     Dim result As Integer = command.ExecuteNonQuery()
                     If result > 0 Then
                         MessageBox.Show("Customer deleted successfully.")
+                        ClearText()
                         LoadCustomers()
                     Else
                         MessageBox.Show("No records were deleted.")

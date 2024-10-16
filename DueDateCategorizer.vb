@@ -1,6 +1,7 @@
 ﻿Imports System.Data.OleDb
 
 Public Class DueDateCategorizer
+#Region "Loading"
     Private selectedGage As String
     Private Sub DueDateCategorizer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Double Click
@@ -22,10 +23,12 @@ Public Class DueDateCategorizer
         End Try
 
         Me.StartPosition = FormStartPosition.CenterScreen
-        TabSelect()
-        MenuStrip1.BackColor = SystemColors.AppWorkspace
-    End Sub
 
+        TabSelect()
+        MenuColor()
+    End Sub
+#End Region
+#Region "Settings"
     Protected Overrides Sub OnLoad(e As EventArgs)
         MyBase.OnLoad(e)
         CenterToScreen()
@@ -80,6 +83,15 @@ Public Class DueDateCategorizer
         End Using
     End Sub
 
+    Public Sub MenuColor()
+        If My.Settings.isAdmin = True Then
+            MenuStrip1.BackColor = Color.IndianRed
+        Else
+            MenuStrip1.BackColor = SystemColors.AppWorkspace
+        End If
+    End Sub
+#End Region
+#Region "ZebraStripingDataGrids"
     ' Set Zebra striping for DataGridViews
     Private Sub DataGridView_RowPostPaint(sender As Object, e As DataGridViewRowPostPaintEventArgs)
         Dim grid As DataGridView = CType(sender, DataGridView)
@@ -125,11 +137,8 @@ Public Class DueDateCategorizer
             End If
         End If
     End Sub
-
-    Private Sub BtnGageList_Click(sender As Object, e As EventArgs) Handles BtnGageList.Click
-        Me.Close()
-    End Sub
-
+#End Region
+#Region "MenuStrip"
     Private Sub MenuToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MenuToolStripMenuItem.Click
         GTMenu.Show()
         GTMenu.LoadGageID()
@@ -138,7 +147,8 @@ Public Class DueDateCategorizer
     Private Sub CloseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CloseToolStripMenuItem.Click
         Me.Close()
     End Sub
-
+#End Region
+#Region "Datagrid"
     Private Sub DataGridViewPastDue_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs)
         If DataGridViewPastDue.SelectedRows.Count > 0 Then
             Dim selectedRow As DataGridViewRow = DataGridViewPastDue.SelectedRows(0)
@@ -225,6 +235,11 @@ Public Class DueDateCategorizer
             End If
         End If
     End Sub
+#End Region
+#Region "Misc"
+    Private Sub BtnGageList_Click(sender As Object, e As EventArgs) Handles BtnGageList.Click
+        Me.Close()
+    End Sub
 
     Private Sub TabSelect()
         If GlobalVars.DueDateMenuSelect = "Past" Then
@@ -238,4 +253,5 @@ Public Class DueDateCategorizer
         End If
         GlobalVars.DueDateMenuSelect = ""
     End Sub
+#End Region
 End Class

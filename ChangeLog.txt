@@ -1,3 +1,9 @@
+v5.13.1.52
+Updated GageList, Menustrip will change color if Admin is logged in.
+Updated AccountManagement, Updated hotkeys.
+Updated CustomerEntry, Clears text when deleting entry.
+Updated DueDateCategorizer, Added regions to code for better organization.
+
 v5.13.0.51
 Added ability to edit GageTypes from AdminMenu.
 Added Refresh button under View on GageList.

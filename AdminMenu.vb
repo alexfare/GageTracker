@@ -15,7 +15,6 @@ Public Class AdminMenu
         MenuStrip1.BackColor = Color.IndianRed
 
         SearchCheck = False
-        TxtStatus.Text = ""
 
         DisableSearchControls() 'Disable search controls
         Await Task.WhenAll(Task.Run(Sub() LoadGageID()),
@@ -27,6 +26,7 @@ Public Class AdminMenu
         EnableSearchControls() 'Enable search controls
 
         TxtGageID.Focus()
+        StatusLabel.Text = ""
 
         If Not String.IsNullOrEmpty(My.Settings.SelectedGage) Then
             TxtGageID.SelectedItem = My.Settings.SelectedGage
@@ -192,7 +192,7 @@ Public Class AdminMenu
                     addCmd.Parameters.AddWithValue("@NistNumber", TxtNistNumber.Text)
                     addCmd.Parameters.Add(New OleDbParameter("@DateAdded", OleDbType.Date)).Value = dateAdded
                     addCmd.ExecuteNonQuery()
-                    TxtStatus.Text = "Gage added successfully"
+                    StatusLabel.Text = "Gage added successfully"
                     Timer1.Enabled = True
                     ReloadData()
                     BtnClear.PerformClick()
@@ -269,7 +269,7 @@ Public Class AdminMenu
                 ClearReset()
 
                 'Status
-                TxtStatus.Text = "Record updated successfully"
+                StatusLabel.Text = "Record updated successfully"
                 Timer1.Enabled = True
 
                 'Display until restart
@@ -318,7 +318,7 @@ Public Class AdminMenu
                     deleteCmd.Parameters.AddWithValue("@GageID", TxtGageID.Text)
                     Dim rowsAffected As Integer = deleteCmd.ExecuteNonQuery()
                     If rowsAffected > 0 Then
-                        TxtStatus.Text = "Gage deleted successfully."
+                        StatusLabel.Text = "Gage deleted successfully."
                         Timer1.Enabled = True
                         SearchCheck = False
                         ClearForms()
@@ -638,7 +638,7 @@ Public Class AdminMenu
     End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-        TxtStatus.Text = ""  'Clear the text
+        StatusLabel.Text = ""  'Clear the text
         Timer1.Enabled = False  'Stop the timer
     End Sub
 

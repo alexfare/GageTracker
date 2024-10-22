@@ -22,6 +22,7 @@ Partial Class GageType
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(GageType))
         Me.btnRemove = New System.Windows.Forms.Button()
         Me.txtGageType = New System.Windows.Forms.ComboBox()
         Me.btnBack = New System.Windows.Forms.Button()
@@ -34,7 +35,7 @@ Partial Class GageType
         Me.btnRemove.Location = New System.Drawing.Point(121, 52)
         Me.btnRemove.Name = "btnRemove"
         Me.btnRemove.Size = New System.Drawing.Size(75, 23)
-        Me.btnRemove.TabIndex = 26
+        Me.btnRemove.TabIndex = 2
         Me.btnRemove.Text = "Remove"
         Me.btnRemove.UseVisualStyleBackColor = True
         '
@@ -46,7 +47,7 @@ Partial Class GageType
         Me.txtGageType.Location = New System.Drawing.Point(15, 25)
         Me.txtGageType.Name = "txtGageType"
         Me.txtGageType.Size = New System.Drawing.Size(288, 21)
-        Me.txtGageType.TabIndex = 23
+        Me.txtGageType.TabIndex = 0
         '
         'btnBack
         '
@@ -54,7 +55,7 @@ Partial Class GageType
         Me.btnBack.Location = New System.Drawing.Point(15, 52)
         Me.btnBack.Name = "btnBack"
         Me.btnBack.Size = New System.Drawing.Size(75, 23)
-        Me.btnBack.TabIndex = 27
+        Me.btnBack.TabIndex = 1
         Me.btnBack.Text = "Back"
         Me.btnBack.UseVisualStyleBackColor = True
         '
@@ -63,7 +64,7 @@ Partial Class GageType
         Me.BtnAdd.Location = New System.Drawing.Point(228, 52)
         Me.BtnAdd.Name = "BtnAdd"
         Me.BtnAdd.Size = New System.Drawing.Size(75, 23)
-        Me.BtnAdd.TabIndex = 24
+        Me.BtnAdd.TabIndex = 3
         Me.BtnAdd.Text = "Add"
         Me.BtnAdd.UseVisualStyleBackColor = True
         '
@@ -80,12 +81,14 @@ Partial Class GageType
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.CancelButton = Me.btnBack
         Me.ClientSize = New System.Drawing.Size(314, 87)
         Me.Controls.Add(Me.btnRemove)
         Me.Controls.Add(Me.txtGageType)
         Me.Controls.Add(Me.btnBack)
         Me.Controls.Add(Me.BtnAdd)
         Me.Controls.Add(Me.Label2)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "GageType"
         Me.Text = "GageTracker - GageType"
         Me.ResumeLayout(False)

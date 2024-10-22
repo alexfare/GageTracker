@@ -37,7 +37,7 @@ Partial Class RemoveGage
         Me.txtGageID.Location = New System.Drawing.Point(15, 25)
         Me.txtGageID.Name = "txtGageID"
         Me.txtGageID.Size = New System.Drawing.Size(255, 21)
-        Me.txtGageID.TabIndex = 4
+        Me.txtGageID.TabIndex = 0
         '
         'Label1
         '
@@ -50,10 +50,11 @@ Partial Class RemoveGage
         '
         'btnBack
         '
+        Me.btnBack.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.btnBack.Location = New System.Drawing.Point(15, 52)
         Me.btnBack.Name = "btnBack"
         Me.btnBack.Size = New System.Drawing.Size(75, 23)
-        Me.btnBack.TabIndex = 6
+        Me.btnBack.TabIndex = 1
         Me.btnBack.Text = "Back"
         Me.btnBack.UseVisualStyleBackColor = True
         '
@@ -62,14 +63,16 @@ Partial Class RemoveGage
         Me.BtnDelete.Location = New System.Drawing.Point(195, 52)
         Me.BtnDelete.Name = "BtnDelete"
         Me.BtnDelete.Size = New System.Drawing.Size(75, 23)
-        Me.BtnDelete.TabIndex = 7
+        Me.BtnDelete.TabIndex = 2
         Me.BtnDelete.Text = "Delete Gage"
         Me.BtnDelete.UseVisualStyleBackColor = True
         '
         'RemoveGage
         '
+        Me.AcceptButton = Me.BtnDelete
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.CancelButton = Me.btnBack
         Me.ClientSize = New System.Drawing.Size(283, 98)
         Me.Controls.Add(Me.BtnDelete)
         Me.Controls.Add(Me.btnBack)

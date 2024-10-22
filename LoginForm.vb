@@ -35,14 +35,11 @@ Public Class LoginForm1
                 Dim cmd As New OleDbCommand("SELECT Password FROM [Credentials] WHERE Username = ?", conn)
                 cmd.Parameters.AddWithValue("@Username", username)
 
-                ' Retrieve the stored password hash from the database
                 Dim storedPasswordHash As Object = cmd.ExecuteScalar()
 
                 If storedPasswordHash IsNot Nothing Then
-                    ' Hash the entered password
                     Dim enteredPasswordHash As String = HashPassword(password)
 
-                    ' Compare the entered password hash with the stored hash
                     If enteredPasswordHash.Equals(storedPasswordHash.ToString(), StringComparison.OrdinalIgnoreCase) Then
                         My.Settings.LoggedUser = username
                         My.Settings.isAdmin = True
@@ -76,10 +73,8 @@ Public Class LoginForm1
 
     Private Function HashPassword(password As String) As String
         Using sha512Hash As SHA512 = SHA512.Create()
-            ' ComputeHash - returns byte array
             Dim bytes As Byte() = sha512Hash.ComputeHash(Encoding.UTF8.GetBytes(password))
 
-            ' Convert byte array to a string
             Dim builder As New StringBuilder()
             For i As Integer = 0 To bytes.Length - 1
                 builder.Append(bytes(i).ToString("x2"))

@@ -117,7 +117,8 @@ Partial Class GTMenu
         Me.ReportIssueToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.WebsiteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.TxtStatus = New System.Windows.Forms.Label()
+        Me.StatusStrip = New System.Windows.Forms.StatusStrip()
+        Me.StatusLabel = New System.Windows.Forms.ToolStripStatusLabel()
         Me.GroupBox1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -128,6 +129,7 @@ Partial Class GTMenu
         Me.GroupBox2.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
+        Me.StatusStrip.SuspendLayout()
         Me.SuspendLayout()
         '
         'BtnSearch
@@ -978,22 +980,28 @@ Partial Class GTMenu
         Me.WebsiteToolStripMenuItem.Size = New System.Drawing.Size(138, 22)
         Me.WebsiteToolStripMenuItem.Text = "Website"
         '
-        'TxtStatus
+        'StatusStrip
         '
-        Me.TxtStatus.AutoSize = True
-        Me.TxtStatus.Location = New System.Drawing.Point(13, 477)
-        Me.TxtStatus.Name = "TxtStatus"
-        Me.TxtStatus.Size = New System.Drawing.Size(35, 13)
-        Me.TxtStatus.TabIndex = 35
-        Me.TxtStatus.Text = "NULL"
+        Me.StatusStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.StatusLabel})
+        Me.StatusStrip.Location = New System.Drawing.Point(0, 478)
+        Me.StatusStrip.Name = "StatusStrip"
+        Me.StatusStrip.Size = New System.Drawing.Size(509, 22)
+        Me.StatusStrip.TabIndex = 35
+        Me.StatusStrip.Text = "StatusStrip1"
+        '
+        'StatusLabel
+        '
+        Me.StatusLabel.Name = "StatusLabel"
+        Me.StatusLabel.Size = New System.Drawing.Size(36, 17)
+        Me.StatusLabel.Text = "NULL"
         '
         'GTMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.BtnGageList
-        Me.ClientSize = New System.Drawing.Size(509, 493)
-        Me.Controls.Add(Me.TxtStatus)
+        Me.ClientSize = New System.Drawing.Size(509, 500)
+        Me.Controls.Add(Me.StatusStrip)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.GroupBox1)
@@ -1020,6 +1028,8 @@ Partial Class GTMenu
         Me.Panel1.ResumeLayout(False)
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
+        Me.StatusStrip.ResumeLayout(False)
+        Me.StatusStrip.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1115,9 +1125,10 @@ Partial Class GTMenu
     Friend WithEvents ViewToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GageListToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents DueToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents TxtStatus As Label
     Friend WithEvents SettingsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ReportIssueToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AboutToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents WebsiteToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents StatusStrip As StatusStrip
+    Friend WithEvents StatusLabel As ToolStripStatusLabel
 End Class

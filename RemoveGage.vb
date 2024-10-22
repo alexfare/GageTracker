@@ -22,19 +22,16 @@ Public Class RemoveGage
             Return
         End If
 
-        ' Confirm with the user before deleting the record
         Dim result As DialogResult = MessageBox.Show("Are you sure you want to delete this record?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If result = DialogResult.Yes Then
             Try
                 Using conn As New OleDbConnection(ConnectionString)
                     conn.Open()
-                    ' Execute the DELETE query
                     Dim deleteCmd As New OleDbCommand("DELETE FROM [CalibrationTracker] WHERE GageID = ?", conn)
                     deleteCmd.Parameters.AddWithValue("@GageID", txtGageID.Text)
                     Dim rowsAffected As Integer = deleteCmd.ExecuteNonQuery()
                     If rowsAffected > 0 Then
                         MessageBox.Show("Record deleted successfully")
-                        ' Clear the form fields after deletion
                         ClearFormFields()
                         LoadGageIDOptions()
                         txtGageID.Focus()
@@ -51,7 +48,6 @@ Public Class RemoveGage
     End Sub
 
     Private Sub ClearFormFields()
-        ' Clear all input fields
         txtGageID.SelectedIndex = -1 ' Reset the ComboBox selection
     End Sub
 

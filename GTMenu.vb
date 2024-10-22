@@ -45,7 +45,7 @@ Public Class GTMenu
         Me.Text = originalTitle
         MenuStrip1.BackColor = SystemColors.AppWorkspace
         SearchCheck = False
-        TxtStatus.Text = ""
+        StatusLabel.Text = ""
     End Sub
 
     Private Sub ReloadData()
@@ -299,7 +299,7 @@ Public Class GTMenu
                     addCmd.Parameters.AddWithValue("@NistNumber", TxtNistNumber.Text)
                     addCmd.Parameters.Add(New OleDbParameter("@DateAdded", OleDbType.Date)).Value = dateAdded
                     addCmd.ExecuteNonQuery()
-                    TxtStatus.Text = "Gage added successfully"
+                    StatusLabel.Text = "Gage added successfully"
                     Timer1.Enabled = True
                     ReloadData()
                     BtnClear.PerformClick()
@@ -462,7 +462,7 @@ Public Class GTMenu
                 Logger.SaveLogEntry()
 
                 'Status
-                TxtStatus.Text = "Record updated successfully"
+                StatusLabel.Text = "Record updated successfully"
                 Timer1.Enabled = True
 
                 'Display until restart
@@ -700,7 +700,7 @@ Public Class GTMenu
                     deleteCmd.Parameters.AddWithValue("@GageID", TxtGageID.Text)
                     Dim rowsAffected As Integer = deleteCmd.ExecuteNonQuery()
                     If rowsAffected > 0 Then
-                        TxtStatus.Text = "Gage deleted successfully."
+                        StatusLabel.Text = "Gage deleted successfully."
                         Timer1.Enabled = True
                         SearchCheck = False
                         ClearForms()
@@ -767,7 +767,7 @@ Public Class GTMenu
     End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-        TxtStatus.Text = ""  'Clear the text
+        StatusLabel.Text = ""  'Clear the text
         Timer1.Enabled = False  'Stop the timer
     End Sub
 

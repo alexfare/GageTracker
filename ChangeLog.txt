@@ -1,3 +1,11 @@
+v5.13.2.53
+Updated GTMenu Status.
+Updated AdminMenu Status.
+Updated RemoveGage form hot keys and tab order.
+Updated StatusMenu form hot keys and tab order.
+Updated GageType form hot keys, tab order, and Icon.
+Updated ReportIssue form, Removed File Menu & Fixed formatting.
+
 v5.13.1.52
 Updated GageList, Menustrip will change color if Admin is logged in.
 Updated AccountManagement, Updated hotkeys.

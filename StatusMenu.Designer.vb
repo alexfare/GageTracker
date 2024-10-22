@@ -35,7 +35,7 @@ Partial Class StatusMenu
         Me.btnRemove.Location = New System.Drawing.Point(121, 52)
         Me.btnRemove.Name = "btnRemove"
         Me.btnRemove.Size = New System.Drawing.Size(75, 23)
-        Me.btnRemove.TabIndex = 21
+        Me.btnRemove.TabIndex = 2
         Me.btnRemove.Text = "Remove"
         Me.btnRemove.UseVisualStyleBackColor = True
         '
@@ -47,7 +47,7 @@ Partial Class StatusMenu
         Me.txtStatus.Location = New System.Drawing.Point(15, 25)
         Me.txtStatus.Name = "txtStatus"
         Me.txtStatus.Size = New System.Drawing.Size(288, 21)
-        Me.txtStatus.TabIndex = 13
+        Me.txtStatus.TabIndex = 0
         '
         'btnBack
         '
@@ -55,7 +55,7 @@ Partial Class StatusMenu
         Me.btnBack.Location = New System.Drawing.Point(15, 52)
         Me.btnBack.Name = "btnBack"
         Me.btnBack.Size = New System.Drawing.Size(75, 23)
-        Me.btnBack.TabIndex = 22
+        Me.btnBack.TabIndex = 1
         Me.btnBack.Text = "Back"
         Me.btnBack.UseVisualStyleBackColor = True
         '
@@ -64,7 +64,7 @@ Partial Class StatusMenu
         Me.BtnAdd.Location = New System.Drawing.Point(228, 52)
         Me.BtnAdd.Name = "BtnAdd"
         Me.BtnAdd.Size = New System.Drawing.Size(75, 23)
-        Me.BtnAdd.TabIndex = 17
+        Me.BtnAdd.TabIndex = 3
         Me.BtnAdd.Text = "Add"
         Me.BtnAdd.UseVisualStyleBackColor = True
         '
@@ -81,6 +81,7 @@ Partial Class StatusMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.CancelButton = Me.btnBack
         Me.ClientSize = New System.Drawing.Size(320, 88)
         Me.Controls.Add(Me.btnRemove)
         Me.Controls.Add(Me.txtStatus)

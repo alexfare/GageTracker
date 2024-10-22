@@ -115,6 +115,7 @@ Partial Class AdminMenu
         Me.txtaN3 = New System.Windows.Forms.TextBox()
         Me.Label34 = New System.Windows.Forms.Label()
         Me.TabPage6 = New System.Windows.Forms.TabPage()
+        Me.BtnGageType = New System.Windows.Forms.Button()
         Me.BtnOpenDatabase = New System.Windows.Forms.Button()
         Me.BtnDatabasePath = New System.Windows.Forms.Button()
         Me.btnStatus = New System.Windows.Forms.Button()
@@ -126,8 +127,8 @@ Partial Class AdminMenu
         Me.BtnDelete = New System.Windows.Forms.Button()
         Me.BtnAdd = New System.Windows.Forms.Button()
         Me.BtnUpdate = New System.Windows.Forms.Button()
-        Me.TxtStatus = New System.Windows.Forms.Label()
-        Me.BtnGageType = New System.Windows.Forms.Button()
+        Me.StatusStrip = New System.Windows.Forms.StatusStrip()
+        Me.StatusLabel = New System.Windows.Forms.ToolStripStatusLabel()
         Me.MenuStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.TabControl2.SuspendLayout()
@@ -140,6 +141,7 @@ Partial Class AdminMenu
         Me.TabPage6.SuspendLayout()
         Me.TabPage7.SuspendLayout()
         Me.Panel1.SuspendLayout()
+        Me.StatusStrip.SuspendLayout()
         Me.SuspendLayout()
         '
         'BtnBack
@@ -992,6 +994,15 @@ Partial Class AdminMenu
         Me.TabPage6.Text = "Admin Menu"
         Me.TabPage6.UseVisualStyleBackColor = True
         '
+        'BtnGageType
+        '
+        Me.BtnGageType.Location = New System.Drawing.Point(182, 58)
+        Me.BtnGageType.Name = "BtnGageType"
+        Me.BtnGageType.Size = New System.Drawing.Size(82, 46)
+        Me.BtnGageType.TabIndex = 6
+        Me.BtnGageType.Text = "Gage Type Menu"
+        Me.BtnGageType.UseVisualStyleBackColor = True
+        '
         'BtnOpenDatabase
         '
         Me.BtnOpenDatabase.Location = New System.Drawing.Point(94, 58)
@@ -1102,31 +1113,28 @@ Partial Class AdminMenu
         Me.BtnUpdate.Text = "Update Gage"
         Me.BtnUpdate.UseVisualStyleBackColor = True
         '
-        'TxtStatus
+        'StatusStrip
         '
-        Me.TxtStatus.AutoSize = True
-        Me.TxtStatus.Location = New System.Drawing.Point(13, 503)
-        Me.TxtStatus.Name = "TxtStatus"
-        Me.TxtStatus.Size = New System.Drawing.Size(35, 13)
-        Me.TxtStatus.TabIndex = 36
-        Me.TxtStatus.Text = "NULL"
+        Me.StatusStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.StatusLabel})
+        Me.StatusStrip.Location = New System.Drawing.Point(0, 506)
+        Me.StatusStrip.Name = "StatusStrip"
+        Me.StatusStrip.Size = New System.Drawing.Size(514, 22)
+        Me.StatusStrip.TabIndex = 35
+        Me.StatusStrip.Text = "StatusStrip1"
         '
-        'BtnGageType
+        'StatusLabel
         '
-        Me.BtnGageType.Location = New System.Drawing.Point(182, 58)
-        Me.BtnGageType.Name = "BtnGageType"
-        Me.BtnGageType.Size = New System.Drawing.Size(82, 46)
-        Me.BtnGageType.TabIndex = 6
-        Me.BtnGageType.Text = "Gage Type Menu"
-        Me.BtnGageType.UseVisualStyleBackColor = True
+        Me.StatusLabel.Name = "StatusLabel"
+        Me.StatusLabel.Size = New System.Drawing.Size(70, 17)
+        Me.StatusLabel.Text = "Status Label"
         '
         'AdminMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.BtnBack
-        Me.ClientSize = New System.Drawing.Size(514, 523)
-        Me.Controls.Add(Me.TxtStatus)
+        Me.ClientSize = New System.Drawing.Size(514, 528)
+        Me.Controls.Add(Me.StatusStrip)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.TabControl2)
         Me.Controls.Add(Me.GroupBox1)
@@ -1156,6 +1164,8 @@ Partial Class AdminMenu
         Me.TabPage7.ResumeLayout(False)
         Me.TabPage7.PerformLayout()
         Me.Panel1.ResumeLayout(False)
+        Me.StatusStrip.ResumeLayout(False)
+        Me.StatusStrip.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1261,9 +1271,10 @@ Partial Class AdminMenu
     Friend WithEvents BtnDelete As Button
     Friend WithEvents BtnAdd As Button
     Friend WithEvents BtnUpdate As Button
-    Friend WithEvents TxtStatus As Label
     Friend WithEvents BtnDatabasePath As Button
     Friend WithEvents BtnOpenDatabase As Button
     Friend WithEvents DueDateCalenderToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents BtnGageType As Button
+    Friend WithEvents StatusStrip As StatusStrip
+    Friend WithEvents StatusLabel As ToolStripStatusLabel
 End Class

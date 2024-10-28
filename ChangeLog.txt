@@ -1,3 +1,14 @@
+v5.13.3.54
+Updated ApplicationEvents, Changed how it handles open count.
+Updated GageType form, Added Status label.
+Fixed resizing issues with GageType, AccountManagement, StatusMenu, RemoveGage, CustomerEntry.
+Updated Database.
+Updated LoginForm error messaging.
+Updated how CustomerEntry form displays status.
+Updated how AccountManagement form displays status.
+Deleted RemoveGage form since this is handled in the Menu.
+Fixed GageType form status not clearing.
+
 v5.13.2.53
 Updated GTMenu Status.
 Updated AdminMenu Status.

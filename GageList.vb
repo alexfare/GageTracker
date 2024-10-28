@@ -25,6 +25,7 @@ Public Class GageList
 
         FilterSetup()
         MenuColor()
+        AddOpenCount()
     End Sub
 
     Protected Overrides Sub OnLoad(e As EventArgs)
@@ -171,6 +172,28 @@ Public Class GageList
                 GlobalVars.DatabaseLocation = openFileDialog.FileName
                 GlobalVars.SaveDatabaseLocation(GlobalVars.DatabaseLocation)
             End If
+        End Using
+    End Sub
+
+    Sub AddOpenCount()
+        Dim connectionString As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
+        Dim query As String = "UPDATE Settings SET [Number] = @OpenCount WHERE SettingName = 'OpenCount'"
+
+        Using connection As New OleDbConnection(connectionString)
+            Using command As New OleDbCommand(query, connection)
+                command.Parameters.AddWithValue("@OpenCount", My.Settings.ProgramOpenCount)
+
+                Try
+                    connection.Open()
+
+                Catch ex As Exception
+                    MessageBox.Show("An error occurred: " & ex.Message)
+                Finally
+                    If connection.State = ConnectionState.Open Then
+                        connection.Close()
+                    End If
+                End Try
+            End Using
         End Using
     End Sub
 #End Region

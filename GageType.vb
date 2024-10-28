@@ -5,6 +5,7 @@ Public Class GageType
     Dim insertQuery As String = "INSERT INTO GageType (GageType) VALUES (@GageType)"
 
     Private Sub GageType_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        StatusLabel.Text = ""
         connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
         LoadGageType()
     End Sub
@@ -32,7 +33,8 @@ Public Class GageType
 
     Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
         If String.IsNullOrWhiteSpace(txtGageType.Text) Then
-            MessageBox.Show("GageType Name cannot be blank.")
+            StatusLabel.Text = "GageType Name cannot be blank."
+            Timer1.Enabled = True
             Return
         End If
 
@@ -44,7 +46,8 @@ Public Class GageType
                 checkConn.Open()
                 Dim count As Integer = Convert.ToInt32(checkCmd.ExecuteScalar())
                 If count > 0 Then
-                    MessageBox.Show("This GageType already exists. Please enter a unique GageType.")
+                    StatusLabel.Text = "This GageType already exists. Please enter a unique GageType."
+                    Timer1.Enabled = True
                     Return
                 End If
             Catch ex As Exception
@@ -60,7 +63,8 @@ Public Class GageType
                 Try
                     connection.Open()
                     command.ExecuteNonQuery()
-                    MessageBox.Show("GageType saved successfully.")
+                    StatusLabel.Text = "GageType saved successfully."
+                    Timer1.Enabled = True
                     LoadGageType() 'Reload GageType list to include new data
                 Catch ex As Exception
                     MessageBox.Show("An error occurred while adding new GageType: " & ex.Message)
@@ -91,7 +95,8 @@ Public Class GageType
                     connection.Open()
                     Dim result As Integer = command.ExecuteNonQuery()
                     If result > 0 Then
-                        MessageBox.Show("GageType deleted successfully.")
+                        StatusLabel.Text = "GageType deleted successfully."
+                        Timer1.Enabled = True
                         txtGageType.SelectedIndex = -1 'Reset the ComboBox selection
                         LoadGageType() 'Reload GageType list to reflect the changes
                     Else
@@ -106,5 +111,10 @@ Public Class GageType
 
     Private Sub btnBack_Click(sender As Object, e As EventArgs) Handles btnBack.Click
         Me.Close()
+    End Sub
+
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        StatusLabel.Text = ""  'Clear the text
+        Timer1.Enabled = False  'Stop the timer
     End Sub
 End Class

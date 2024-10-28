@@ -6,6 +6,7 @@ Public Class AccountManagement
     Dim connectionString As String
 
     Private Sub CreateAccount_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        StatusLabel.Text = ""
         connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
         LoadUsers()
     End Sub
@@ -18,12 +19,14 @@ Public Class AccountManagement
     Private Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
         ' Validate inputs
         If txtUsername.Text = "" OrElse txtPassword.Text = "" OrElse txtConfirmPassword.Text = "" Then
-            MessageBox.Show("Please fill in all fields.")
+            StatusLabel.Text = "Please fill in all fields."
+            Timer1.Enabled = True
             Return
         End If
 
         If txtPassword.Text <> txtConfirmPassword.Text Then
-            MessageBox.Show("Passwords do not match.")
+            StatusLabel.Text = "Passwords do not match."
+            Timer1.Enabled = True
             Return
         End If
 
@@ -64,7 +67,9 @@ Public Class AccountManagement
                     updateCmd.Parameters.Add(New OleDbParameter("@Password", hashedPassword))
                     updateCmd.Parameters.Add(New OleDbParameter("@Username", username))
                     updateCmd.ExecuteNonQuery()
-                    MessageBox.Show("Password updated successfully.")
+                    StatusLabel.Text = "Password updated successfully."
+                    Timer1.Enabled = True
+                    ClearInputs()
                 End If
                 Return
             End If
@@ -74,7 +79,8 @@ Public Class AccountManagement
             cmd.Parameters.Add(New OleDbParameter("@Username", username))
             cmd.Parameters.Add(New OleDbParameter("@Password", hashedPassword))
             cmd.ExecuteNonQuery()
-            MessageBox.Show("User created successfully.")
+            StatusLabel.Text = "User created successfully."
+            Timer1.Enabled = True
             txtUsername.SelectedIndex = -1 ' Reset the ComboBox selection
             LoadUsers()
             ClearInputs()
@@ -104,7 +110,8 @@ Public Class AccountManagement
     Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
         Dim username As String = txtUsername.Text
         If String.IsNullOrEmpty(username) Then
-            MessageBox.Show("Please enter a username to delete.")
+            StatusLabel.Text = "Please enter a username to delete."
+            Timer1.Enabled = True
             Return
         End If
 
@@ -117,7 +124,8 @@ Public Class AccountManagement
             Dim count As Integer = Convert.ToInt32(checkCmd.ExecuteScalar())
 
             If count = 0 Then
-                MessageBox.Show("Username does not exist.")
+                StatusLabel.Text = "Username does not exist."
+                Timer1.Enabled = True
                 Return
             End If
 
@@ -128,15 +136,23 @@ Public Class AccountManagement
                 Dim deleteCmd As New OleDbCommand("DELETE FROM Credentials WHERE [Username] = ?", conn)
                 deleteCmd.Parameters.Add(New OleDbParameter("@Username", username))
                 deleteCmd.ExecuteNonQuery()
-                MessageBox.Show("User deleted successfully.")
-                txtUsername.SelectedIndex = -1 'Reset the ComboBox selection
+                StatusLabel.Text = "User deleted successfully."
+                Timer1.Enabled = True
+                ClearInputs()
                 LoadUsers()
             End If
         End Using
     End Sub
 
     Private Sub ClearInputs()
+        txtUsername.SelectedIndex = -1 'Reset the ComboBox selection
         txtPassword.Clear()
         txtConfirmPassword.Clear()
+    End Sub
+
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        StatusLabel.Text = ""  'Clear the text
+        Timer1.Enabled = False  'Stop the timer
+        LoadUsers()
     End Sub
 End Class

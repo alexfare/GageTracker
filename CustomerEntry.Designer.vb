@@ -22,6 +22,7 @@ Partial Class CustomerEntry
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(CustomerEntry))
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -36,6 +37,10 @@ Partial Class CustomerEntry
         Me.btnUpdate = New System.Windows.Forms.Button()
         Me.btnClear = New System.Windows.Forms.Button()
         Me.btnRemove = New System.Windows.Forms.Button()
+        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
+        Me.StatusLbl = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label2
@@ -151,12 +156,32 @@ Partial Class CustomerEntry
         Me.btnRemove.Text = "Remove"
         Me.btnRemove.UseVisualStyleBackColor = True
         '
+        'StatusStrip1
+        '
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.StatusLbl})
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 234)
+        Me.StatusStrip1.Name = "StatusStrip1"
+        Me.StatusStrip1.Size = New System.Drawing.Size(422, 22)
+        Me.StatusStrip1.TabIndex = 13
+        Me.StatusStrip1.Text = "StatusStrip1"
+        '
+        'StatusLbl
+        '
+        Me.StatusLbl.Name = "StatusLbl"
+        Me.StatusLbl.Size = New System.Drawing.Size(67, 17)
+        Me.StatusLbl.Text = "StatusLabel"
+        '
+        'Timer1
+        '
+        Me.Timer1.Interval = 3000
+        '
         'CustomerEntry
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.btnBack
-        Me.ClientSize = New System.Drawing.Size(422, 232)
+        Me.ClientSize = New System.Drawing.Size(422, 256)
+        Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.btnRemove)
         Me.Controls.Add(Me.btnClear)
         Me.Controls.Add(Me.btnUpdate)
@@ -170,10 +195,13 @@ Partial Class CustomerEntry
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.txtCustomerAddress)
         Me.Controls.Add(Me.Label2)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.Name = "CustomerEntry"
         Me.Text = "GageTracker - CustomerEntry"
+        Me.StatusStrip1.ResumeLayout(False)
+        Me.StatusStrip1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -192,4 +220,7 @@ Partial Class CustomerEntry
     Friend WithEvents btnUpdate As Button
     Friend WithEvents btnClear As Button
     Friend WithEvents btnRemove As Button
+    Friend WithEvents StatusStrip1 As StatusStrip
+    Friend WithEvents StatusLbl As ToolStripStatusLabel
+    Friend WithEvents Timer1 As Timer
 End Class

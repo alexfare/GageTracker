@@ -983,7 +983,7 @@ Partial Class GTMenu
         'StatusStrip
         '
         Me.StatusStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.StatusLabel})
-        Me.StatusStrip.Location = New System.Drawing.Point(0, 478)
+        Me.StatusStrip.Location = New System.Drawing.Point(0, 477)
         Me.StatusStrip.Name = "StatusStrip"
         Me.StatusStrip.Size = New System.Drawing.Size(509, 22)
         Me.StatusStrip.TabIndex = 35
@@ -1000,7 +1000,7 @@ Partial Class GTMenu
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.BtnGageList
-        Me.ClientSize = New System.Drawing.Size(509, 500)
+        Me.ClientSize = New System.Drawing.Size(509, 499)
         Me.Controls.Add(Me.StatusStrip)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.TabControl1)

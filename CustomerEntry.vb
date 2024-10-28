@@ -6,6 +6,7 @@ Public Class CustomerEntry
     Dim insertQuery As String = "INSERT INTO Customers (CustomerName, CustomerAddress, CustomerPhone, CustomerWebsite) VALUES (@Name, @Address, @Phone, @Website)"
 
     Private Sub Menu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        StatusLbl.Text = ""
         connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
         LoadCustomers()
     End Sub
@@ -17,7 +18,8 @@ Public Class CustomerEntry
 
     Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
         If String.IsNullOrWhiteSpace(txtCustomerName.Text) Then
-            MessageBox.Show("Customer Name cannot be blank.")
+            StatusLbl.Text = "Customer Name cannot be blank."
+            Timer1.Enabled = True
             Return
         End If
 
@@ -29,7 +31,8 @@ Public Class CustomerEntry
                 checkConn.Open()
                 Dim count As Integer = Convert.ToInt32(checkCmd.ExecuteScalar())
                 If count > 0 Then
-                    MessageBox.Show("This Customer Name already exists. Please enter a unique name.")
+                    StatusLbl.Text = "This Customer Name already exists. Please enter a unique name."
+                    Timer1.Enabled = True
                     Return
                 End If
             Catch ex As Exception
@@ -48,7 +51,8 @@ Public Class CustomerEntry
                 Try
                     connection.Open()
                     command.ExecuteNonQuery()
-                    MessageBox.Show("Customer added successfully.")
+                    StatusLbl.Text = "Customer added successfully."
+                    Timer1.Enabled = True
                     LoadCustomers()
                 Catch ex As Exception
                     MessageBox.Show("An error occurred while adding new customer: " & ex.Message)
@@ -133,9 +137,11 @@ Public Class CustomerEntry
                     Dim rowsAffected As Integer = command.ExecuteNonQuery()
 
                     If rowsAffected > 0 Then
-                        MessageBox.Show("Customer details updated successfully.")
+                        StatusLbl.Text = "Customer details updated successfully."
+                        Timer1.Enabled = True
                     Else
-                        MessageBox.Show("No records updated.")
+                        StatusLbl.Text = "No records updated."
+                        Timer1.Enabled = True
                     End If
                 Catch ex As Exception
                     MessageBox.Show("An error occurred while updating customer details: " & ex.Message)
@@ -177,11 +183,13 @@ Public Class CustomerEntry
                     connection.Open()
                     Dim result As Integer = command.ExecuteNonQuery()
                     If result > 0 Then
-                        MessageBox.Show("Customer deleted successfully.")
+                        StatusLbl.Text = "Customer deleted successfully."
+                        Timer1.Enabled = True
                         ClearText()
                         LoadCustomers()
                     Else
-                        MessageBox.Show("No records were deleted.")
+                        StatusLbl.Text = "No records were deleted."
+                        Timer1.Enabled = True
                     End If
                 Catch ex As Exception
                     MessageBox.Show("An error occurred while deleting the customer: " & ex.Message)
@@ -190,4 +198,9 @@ Public Class CustomerEntry
         End Using
     End Sub
 
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        StatusLbl.Text = ""  'Clear the text
+        Timer1.Enabled = False  'Stop the timer
+        LoadCustomers()
+    End Sub
 End Class

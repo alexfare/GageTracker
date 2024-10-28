@@ -120,7 +120,6 @@ Partial Class AdminMenu
         Me.BtnDatabasePath = New System.Windows.Forms.Button()
         Me.btnStatus = New System.Windows.Forms.Button()
         Me.btnAccount = New System.Windows.Forms.Button()
-        Me.btnRemoveGage = New System.Windows.Forms.Button()
         Me.btnCustomer = New System.Windows.Forms.Button()
         Me.TabPage7 = New System.Windows.Forms.TabPage()
         Me.Panel1 = New System.Windows.Forms.Panel()
@@ -984,7 +983,6 @@ Partial Class AdminMenu
         Me.TabPage6.Controls.Add(Me.BtnDatabasePath)
         Me.TabPage6.Controls.Add(Me.btnStatus)
         Me.TabPage6.Controls.Add(Me.btnAccount)
-        Me.TabPage6.Controls.Add(Me.btnRemoveGage)
         Me.TabPage6.Controls.Add(Me.btnCustomer)
         Me.TabPage6.Location = New System.Drawing.Point(4, 22)
         Me.TabPage6.Name = "TabPage6"
@@ -1023,7 +1021,7 @@ Partial Class AdminMenu
         '
         'btnStatus
         '
-        Me.btnStatus.Location = New System.Drawing.Point(182, 6)
+        Me.btnStatus.Location = New System.Drawing.Point(94, 6)
         Me.btnStatus.Name = "btnStatus"
         Me.btnStatus.Size = New System.Drawing.Size(82, 46)
         Me.btnStatus.TabIndex = 2
@@ -1032,21 +1030,12 @@ Partial Class AdminMenu
         '
         'btnAccount
         '
-        Me.btnAccount.Location = New System.Drawing.Point(270, 6)
+        Me.btnAccount.Location = New System.Drawing.Point(182, 6)
         Me.btnAccount.Name = "btnAccount"
         Me.btnAccount.Size = New System.Drawing.Size(82, 46)
         Me.btnAccount.TabIndex = 3
         Me.btnAccount.Text = "Account Management"
         Me.btnAccount.UseVisualStyleBackColor = True
-        '
-        'btnRemoveGage
-        '
-        Me.btnRemoveGage.Location = New System.Drawing.Point(94, 6)
-        Me.btnRemoveGage.Name = "btnRemoveGage"
-        Me.btnRemoveGage.Size = New System.Drawing.Size(82, 46)
-        Me.btnRemoveGage.TabIndex = 1
-        Me.btnRemoveGage.Text = "Remove Gage"
-        Me.btnRemoveGage.UseVisualStyleBackColor = True
         '
         'btnCustomer
         '
@@ -1264,7 +1253,6 @@ Partial Class AdminMenu
     Friend WithEvents TabPage6 As TabPage
     Friend WithEvents btnStatus As Button
     Friend WithEvents btnAccount As Button
-    Friend WithEvents btnRemoveGage As Button
     Friend WithEvents btnCustomer As Button
     Friend WithEvents TabPage7 As TabPage
     Friend WithEvents Panel1 As Panel

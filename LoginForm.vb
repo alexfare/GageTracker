@@ -5,6 +5,7 @@ Public Class LoginForm1
     Dim ConnectionString As String
 
     Private Sub LoginForm1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        StatusLabel.Text = ""
         ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
     End Sub
 
@@ -16,15 +17,16 @@ Public Class LoginForm1
     Private Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
         Dim username As String = txtUsername.Text
         Dim password As String = txtPassword.Text
+        StatusLabel.Text = ""
 
         If String.IsNullOrWhiteSpace(txtUsername.Text) Then
-            MessageBox.Show("Username cannot be blank.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            StatusLabel.Text = "Username cannot be blank."
             txtUsername.Focus()
             Return
         End If
 
         If String.IsNullOrWhiteSpace(txtPassword.Text) Then
-            MessageBox.Show("Password cannot be blank.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            StatusLabel.Text = "Password cannot be blank."
             txtPassword.Focus()
             Return
         End If
@@ -48,10 +50,10 @@ Public Class LoginForm1
                         AdminMenu.Show()
                         Me.Close()
                     Else
-                        MessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        InvalidLogin()
                     End If
                 Else
-                    MessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    InvalidLogin()
                 End If
             Catch ex As OleDbException
                 MessageBox.Show("Database error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -59,6 +61,10 @@ Public Class LoginForm1
                 MessageBox.Show("An unexpected error occurred: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
         End Using
+    End Sub
+
+    Private Sub InvalidLogin()
+        StatusLabel.Text = "Invalid username or password."
     End Sub
 
     Private Sub Cancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Cancel.Click

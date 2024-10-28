@@ -22,12 +22,17 @@ Partial Class GageType
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(GageType))
         Me.btnRemove = New System.Windows.Forms.Button()
         Me.txtGageType = New System.Windows.Forms.ComboBox()
         Me.btnBack = New System.Windows.Forms.Button()
         Me.BtnAdd = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
+        Me.StatusLabel = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'btnRemove
@@ -77,20 +82,44 @@ Partial Class GageType
         Me.Label2.TabIndex = 25
         Me.Label2.Text = "GageType:"
         '
+        'StatusStrip1
+        '
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.StatusLabel})
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 78)
+        Me.StatusStrip1.Name = "StatusStrip1"
+        Me.StatusStrip1.Size = New System.Drawing.Size(314, 22)
+        Me.StatusStrip1.TabIndex = 26
+        Me.StatusStrip1.Text = "StatusStrip1"
+        '
+        'StatusLabel
+        '
+        Me.StatusLabel.Name = "StatusLabel"
+        Me.StatusLabel.Size = New System.Drawing.Size(67, 17)
+        Me.StatusLabel.Text = "StatusLabel"
+        '
+        'Timer1
+        '
+        Me.Timer1.Interval = 3000
+        '
         'GageType
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.btnBack
-        Me.ClientSize = New System.Drawing.Size(314, 87)
+        Me.ClientSize = New System.Drawing.Size(314, 100)
+        Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.btnRemove)
         Me.Controls.Add(Me.txtGageType)
         Me.Controls.Add(Me.btnBack)
         Me.Controls.Add(Me.BtnAdd)
         Me.Controls.Add(Me.Label2)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.MaximizeBox = False
         Me.Name = "GageType"
         Me.Text = "GageTracker - GageType"
+        Me.StatusStrip1.ResumeLayout(False)
+        Me.StatusStrip1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -101,4 +130,7 @@ Partial Class GageType
     Friend WithEvents btnBack As Button
     Friend WithEvents BtnAdd As Button
     Friend WithEvents Label2 As Label
+    Friend WithEvents StatusStrip1 As StatusStrip
+    Friend WithEvents StatusLabel As ToolStripStatusLabel
+    Friend WithEvents Timer1 As Timer
 End Class

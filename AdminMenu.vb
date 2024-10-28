@@ -429,10 +429,6 @@ Public Class AdminMenu
         CustomerEntry.Show()
     End Sub
 
-    Private Sub btnRemoveGage_Click(sender As Object, e As EventArgs) Handles btnRemoveGage.Click
-        RemoveGage.Show()
-    End Sub
-
     Private Sub btnStatus_Click(sender As Object, e As EventArgs) Handles btnStatus.Click
         StatusMenu.Show()
     End Sub

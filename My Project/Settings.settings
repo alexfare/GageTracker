@@ -26,7 +26,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="VersionString" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">v5.13.2.53</Value>
+      <Value Profile="(Default)">v5.13.3.54</Value>
     </Setting>
     <Setting Name="LastOpened" Type="System.DateTime" Scope="User">
       <Value Profile="(Default)" />
@@ -38,7 +38,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="ProgramOpenCount" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="ShowAll" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>

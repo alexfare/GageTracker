@@ -16,7 +16,6 @@ C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\obj\Deb
 C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\obj\Debug\GageCalibrationTracker.LoginForm1.resources
 C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\obj\Debug\GageCalibrationTracker.GTMenu.resources
 C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\obj\Debug\GageCalibrationTracker.Resources.resources
-C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\obj\Debug\GageCalibrationTracker.RemoveGage.resources
 C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\obj\Debug\GageCalibrationTracker.ReportIssue.resources
 C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\obj\Debug\GageCalibrationTracker.StatusMenu.resources
 C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\obj\Debug\GageCalibrationTracker.vbproj.GenerateResource.cache

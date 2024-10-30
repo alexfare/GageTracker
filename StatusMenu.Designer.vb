@@ -22,12 +22,17 @@ Partial Class StatusMenu
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(StatusMenu))
         Me.btnRemove = New System.Windows.Forms.Button()
         Me.txtStatus = New System.Windows.Forms.ComboBox()
         Me.btnBack = New System.Windows.Forms.Button()
         Me.BtnAdd = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
+        Me.StatusLabel = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'btnRemove
@@ -77,12 +82,32 @@ Partial Class StatusMenu
         Me.Label2.TabIndex = 20
         Me.Label2.Text = "Status:"
         '
+        'StatusStrip1
+        '
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.StatusLabel})
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 86)
+        Me.StatusStrip1.Name = "StatusStrip1"
+        Me.StatusStrip1.Size = New System.Drawing.Size(320, 22)
+        Me.StatusStrip1.TabIndex = 21
+        Me.StatusStrip1.Text = "StatusStrip1"
+        '
+        'StatusLabel
+        '
+        Me.StatusLabel.Name = "StatusLabel"
+        Me.StatusLabel.Size = New System.Drawing.Size(67, 17)
+        Me.StatusLabel.Text = "StatusLabel"
+        '
+        'Timer1
+        '
+        Me.Timer1.Interval = 3000
+        '
         'StatusMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.btnBack
-        Me.ClientSize = New System.Drawing.Size(320, 88)
+        Me.ClientSize = New System.Drawing.Size(320, 108)
+        Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.btnRemove)
         Me.Controls.Add(Me.txtStatus)
         Me.Controls.Add(Me.btnBack)
@@ -93,6 +118,8 @@ Partial Class StatusMenu
         Me.MaximizeBox = False
         Me.Name = "StatusMenu"
         Me.Text = "GageTracker - StatusMenu"
+        Me.StatusStrip1.ResumeLayout(False)
+        Me.StatusStrip1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -103,4 +130,7 @@ Partial Class StatusMenu
     Friend WithEvents btnBack As Button
     Friend WithEvents BtnAdd As Button
     Friend WithEvents Label2 As Label
+    Friend WithEvents StatusStrip1 As StatusStrip
+    Friend WithEvents StatusLabel As ToolStripStatusLabel
+    Friend WithEvents Timer1 As Timer
 End Class

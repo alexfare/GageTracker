@@ -58,35 +58,36 @@ Public Class GageType
 
         Using connection As New OleDbConnection(connectionString)
             Using command As New OleDbCommand(insertQuery, connection)
-                command.Parameters.AddWithValue("@Name", txtGageType.Text)
+                command.Parameters.AddWithValue("@GageType", txtGageType.Text)  ' Updated parameter name to match the query
 
                 Try
                     connection.Open()
                     command.ExecuteNonQuery()
                     StatusLabel.Text = "GageType saved successfully."
                     Timer1.Enabled = True
-                    LoadGageType() 'Reload GageType list to include new data
+                    txtGageType.Items.Add(txtGageType.Text)
+
+                    txtGageType.Text = String.Empty
                 Catch ex As Exception
                     MessageBox.Show("An error occurred while adding new GageType: " & ex.Message)
                 End Try
             End Using
         End Using
     End Sub
-
     Private Sub btnRemove_Click(sender As Object, e As EventArgs) Handles btnRemove.Click
         If txtGageType.SelectedIndex = -1 OrElse String.IsNullOrEmpty(txtGageType.Text) Then
             MessageBox.Show("Please select a GageType to remove.")
             Return
         End If
 
-        'Confirm deletion
+        ' Confirm deletion
         If MessageBox.Show("Are you sure you want to delete this GageType?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then
             Return
         End If
 
         Dim selectedGageType As String = txtGageType.SelectedItem.ToString()
-
         Dim query As String = "DELETE FROM GageType WHERE GageType = @Name"
+
         Using connection As New OleDbConnection(connectionString)
             Using command As New OleDbCommand(query, connection)
                 command.Parameters.AddWithValue("@Name", selectedGageType)
@@ -97,8 +98,11 @@ Public Class GageType
                     If result > 0 Then
                         StatusLabel.Text = "GageType deleted successfully."
                         Timer1.Enabled = True
-                        txtGageType.SelectedIndex = -1 'Reset the ComboBox selection
-                        LoadGageType() 'Reload GageType list to reflect the changes
+
+                        txtGageType.Items.Remove(selectedGageType)
+
+                        txtGageType.Text = String.Empty
+                        txtGageType.SelectedIndex = -1
                     Else
                         MessageBox.Show("No records were deleted.")
                     End If

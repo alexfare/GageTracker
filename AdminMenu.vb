@@ -4,12 +4,13 @@ Public Class AdminMenu
     Dim connectionString As String
     Dim SearchCheck As Boolean
     Dim ChangeDetected As Boolean
-    Dim GageIDUpdate As String
+    Dim GageSearch As String
     Private isClosing As Boolean = False
     Dim originalTitle As String = "GageTracker - Menu"
     Public WithEvents Timer1 As New Timer With {.Interval = 3000, .Enabled = False}
 
     Private Async Sub AdminMenu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        StatusLabel.Text = ""
         connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
         Me.Text = originalTitle
         MenuStrip1.BackColor = Color.IndianRed
@@ -26,7 +27,6 @@ Public Class AdminMenu
         EnableSearchControls() 'Enable search controls
 
         TxtGageID.Focus()
-        StatusLabel.Text = ""
 
         If Not String.IsNullOrEmpty(My.Settings.SelectedGage) Then
             TxtGageID.SelectedItem = My.Settings.SelectedGage
@@ -261,16 +261,16 @@ Public Class AdminMenu
             If rowsAffected > 0 Then
                 'Settings
                 SearchCheck = False
-                GageIDUpdate = TxtGageID.Text
+                GageSearch = TxtGageID.Text
+
+                'Status
+                StatusLabel.Text = "Record updated successfully"
+                Timer1.Enabled = True
 
                 'Subs
                 UpdateChangeStatus()
                 ReloadData()
                 ClearReset()
-
-                'Status
-                StatusLabel.Text = "Record updated successfully"
-                Timer1.Enabled = True
 
                 'Display until restart
                 LblLastEdited.Text = lastEdited
@@ -283,8 +283,9 @@ Public Class AdminMenu
 
     Private Sub ClearReset()
         ClearForms()
-        TxtGageID.Text = GageIDUpdate
-        'BtnAdminSearch.PerformClick() 'Need to fix
+        TxtGageID.SelectedIndex = -1 ' Reset the ComboBox selection
+        TxtGageID.Text = GageSearch
+        BtnAdminSearch.PerformClick()
     End Sub
 
     Private Sub BtnDelete_Click(sender As Object, e As EventArgs) Handles BtnDelete.Click

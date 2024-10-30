@@ -5,7 +5,7 @@ Public Class GTMenu
     Private SearchCheck As Boolean
     Private activeUser As String
     Private ChangeDetected As Boolean
-    Private GageIDUpdate As String
+    Private GageSearch As String
     Private isClosing As Boolean = False
     Dim originalTitle As String = "GageTracker - Menu"
     Public WithEvents Timer1 As New Timer With {.Interval = 3000, .Enabled = False}
@@ -450,20 +450,20 @@ Public Class GTMenu
             If rowsAffected > 0 Then
                 'Settings
                 SearchCheck = False
-                GageIDUpdate = TxtGageID.Text
-
-                'Subs
-                UpdateChangeStatus()
-                ReloadData()
-                ClearReset()
+                GageSearch = TxtGageID.Text
 
                 'Logs
-                GlobalVars.LastActivity = TxtGageID.Text + " updated."
+                GlobalVars.LastActivity = TxtGageID.Text + " Updated."
                 Logger.SaveLogEntry()
 
                 'Status
                 StatusLabel.Text = "Record updated successfully"
                 Timer1.Enabled = True
+
+                'Subs
+                UpdateChangeStatus()
+                ReloadData()
+                ClearReset()
 
                 'Display until restart
                 LblLastEdited.Text = lastEdited
@@ -610,8 +610,9 @@ Public Class GTMenu
 #Region "Clear"
     Private Sub ClearReset()
         ClearForms()
-        TxtGageID.Text = GageIDUpdate
-        'BtnSearch.PerformClick() 'Need to fix
+        TxtGageID.SelectedIndex = -1 ' Reset the ComboBox selection
+        TxtGageID.Text = GageSearch
+        BtnSearch.PerformClick()
     End Sub
 
     Private Sub ClearForms()

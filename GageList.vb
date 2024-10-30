@@ -320,7 +320,7 @@ Public Class GageList
         ReportIssue.Show()
     End Sub
 
-    Private Sub AdminMenuToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AdminMenuToolStripMenuItem.Click
+    Private Sub AdminToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AdminToolStripMenuItem.Click
         If My.Settings.isAdmin = True Then
             StartAdmin()
         Else

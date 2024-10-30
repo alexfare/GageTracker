@@ -1,3 +1,11 @@
+v5.13.4.55
+Updated AdminMenu form load order to fix a UI glitch.
+Updated GageList Admin button.
+Fixed Search issue after updating gage. (GTMenu & AdminMenu).
+Updated GTMenu & AdminMenu operation order.
+Updated StatusMenu status display.
+Updated GageType form not updating when adding or removing GageType.
+
 v5.13.3.54
 Updated ApplicationEvents, Changed how it handles open count.
 Updated GageType form, Added Status label.

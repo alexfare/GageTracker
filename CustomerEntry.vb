@@ -187,6 +187,8 @@ Public Class CustomerEntry
                         Timer1.Enabled = True
                         ClearText()
                         LoadCustomers()
+                        txtCustomerName.SelectedIndex = -1
+                        txtCustomerName.Text = ""
                     Else
                         StatusLbl.Text = "No records were deleted."
                         Timer1.Enabled = True

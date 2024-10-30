@@ -48,8 +48,8 @@ Partial Class GageList
         Me.PastDueToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DueWithin30DaysToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DueWithin60DaysToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.RefreshToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AdminToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AdminMenuToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SettingsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReportIssueToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -60,7 +60,6 @@ Partial Class GageList
         Me.CmbContains = New System.Windows.Forms.ComboBox()
         Me.CheckBoxShowAll = New System.Windows.Forms.CheckBox()
         Me.CalibrationTrackerTableAdapter = New GageCalibrationTracker.GTDatabaseDataSetTableAdapters.CalibrationTrackerTableAdapter()
-        Me.RefreshToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CalibrationTrackerBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GTDatabaseDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -196,19 +195,19 @@ Partial Class GageList
         'MenuToolStripMenuItem
         '
         Me.MenuToolStripMenuItem.Name = "MenuToolStripMenuItem"
-        Me.MenuToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.MenuToolStripMenuItem.Size = New System.Drawing.Size(166, 22)
         Me.MenuToolStripMenuItem.Text = "Menu"
         '
         'ChangeDatabaseToolStripMenuItem
         '
         Me.ChangeDatabaseToolStripMenuItem.Name = "ChangeDatabaseToolStripMenuItem"
-        Me.ChangeDatabaseToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ChangeDatabaseToolStripMenuItem.Size = New System.Drawing.Size(166, 22)
         Me.ChangeDatabaseToolStripMenuItem.Text = "Change Database"
         '
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(166, 22)
         Me.ExitToolStripMenuItem.Text = "Exit"
         '
         'ViewToolStripMenuItem
@@ -221,33 +220,32 @@ Partial Class GageList
         'PastDueToolStripMenuItem
         '
         Me.PastDueToolStripMenuItem.Name = "PastDueToolStripMenuItem"
-        Me.PastDueToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.PastDueToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
         Me.PastDueToolStripMenuItem.Text = "Past Due"
         '
         'DueWithin30DaysToolStripMenuItem
         '
         Me.DueWithin30DaysToolStripMenuItem.Name = "DueWithin30DaysToolStripMenuItem"
-        Me.DueWithin30DaysToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.DueWithin30DaysToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
         Me.DueWithin30DaysToolStripMenuItem.Text = "Due within 30 days"
         '
         'DueWithin60DaysToolStripMenuItem
         '
         Me.DueWithin60DaysToolStripMenuItem.Name = "DueWithin60DaysToolStripMenuItem"
-        Me.DueWithin60DaysToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.DueWithin60DaysToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
         Me.DueWithin60DaysToolStripMenuItem.Text = "Due within 60 days"
+        '
+        'RefreshToolStripMenuItem
+        '
+        Me.RefreshToolStripMenuItem.Name = "RefreshToolStripMenuItem"
+        Me.RefreshToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.RefreshToolStripMenuItem.Text = "Refresh"
         '
         'AdminToolStripMenuItem
         '
-        Me.AdminToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AdminMenuToolStripMenuItem})
         Me.AdminToolStripMenuItem.Name = "AdminToolStripMenuItem"
         Me.AdminToolStripMenuItem.Size = New System.Drawing.Size(55, 20)
         Me.AdminToolStripMenuItem.Text = "Admin"
-        '
-        'AdminMenuToolStripMenuItem
-        '
-        Me.AdminMenuToolStripMenuItem.Name = "AdminMenuToolStripMenuItem"
-        Me.AdminMenuToolStripMenuItem.Size = New System.Drawing.Size(144, 22)
-        Me.AdminMenuToolStripMenuItem.Text = "Admin Menu"
         '
         'SettingsToolStripMenuItem
         '
@@ -322,12 +320,6 @@ Partial Class GageList
         '
         Me.CalibrationTrackerTableAdapter.ClearBeforeFill = True
         '
-        'RefreshToolStripMenuItem
-        '
-        Me.RefreshToolStripMenuItem.Name = "RefreshToolStripMenuItem"
-        Me.RefreshToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.RefreshToolStripMenuItem.Text = "Refresh"
-        '
         'GageList
         '
         Me.AcceptButton = Me.BtnMenu
@@ -381,7 +373,6 @@ Partial Class GageList
     Friend WithEvents AboutToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents MenuToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ReportIssueToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents AdminMenuToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ViewToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents TextContains As TextBox
     Friend WithEvents CmbFilterType As ComboBox

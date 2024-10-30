@@ -13,7 +13,7 @@
         'Copyright info
         Copyright.Text = My.Application.Info.Copyright
 
-        'Aduit
+        'Audit
         GlobalVars.LastActivity = My.Settings.LastActivity
     End Sub
 End Class

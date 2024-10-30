@@ -5,6 +5,7 @@ Public Class StatusMenu
     Dim insertQuery As String = "INSERT INTO Status (Status) VALUES (@Status)"
 
     Private Sub Menu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        StatusLabel.Text = ""
         connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
         LoadStatus()
     End Sub
@@ -33,7 +34,8 @@ Public Class StatusMenu
     Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
         'Check for blank Status name
         If String.IsNullOrWhiteSpace(txtStatus.Text) Then
-            MessageBox.Show("Status Name cannot be blank.")
+            StatusLabel.Text = "Status Name cannot be blank."
+            Timer1.Enabled = True
             Return
         End If
 
@@ -46,7 +48,8 @@ Public Class StatusMenu
                 checkConn.Open()
                 Dim count As Integer = Convert.ToInt32(checkCmd.ExecuteScalar())
                 If count > 0 Then
-                    MessageBox.Show("This Status already exists. Please enter a unique Status.")
+                    StatusLabel.Text = "This Status already exists. Please enter a unique Status."
+                    Timer1.Enabled = True
                     Return
                 End If
             Catch ex As Exception
@@ -63,7 +66,8 @@ Public Class StatusMenu
                 Try
                     connection.Open()
                     command.ExecuteNonQuery()
-                    MessageBox.Show("Data saved successfully.")
+                    StatusLabel.Text = "Status added successfully."
+                    Timer1.Enabled = True
                     LoadStatus() 'Reload status list to include new data
                 Catch ex As Exception
                     MessageBox.Show("An error occurred while adding new status: " & ex.Message)
@@ -73,20 +77,18 @@ Public Class StatusMenu
     End Sub
 
     Private Sub btnRemove_Click(sender As Object, e As EventArgs) Handles btnRemove.Click
-        'Ensure that a status is selected before attempting deletion
         If txtStatus.SelectedIndex = -1 OrElse String.IsNullOrEmpty(txtStatus.Text) Then
-            MessageBox.Show("Please select a Status to remove.")
+            StatusLabel.Text = "Please select a Status to remove."
+            Timer1.Enabled = True
             Return
         End If
 
-        'Confirm deletion
         If MessageBox.Show("Are you sure you want to delete this Status?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then
             Return
         End If
 
         Dim selectedStatus As String = txtStatus.SelectedItem.ToString()
 
-        'Query to delete the selected status
         Dim query As String = "DELETE FROM Status WHERE Status = @Name"
         Using connection As New OleDbConnection(connectionString)
             Using command As New OleDbCommand(query, connection)
@@ -96,11 +98,14 @@ Public Class StatusMenu
                     connection.Open()
                     Dim result As Integer = command.ExecuteNonQuery()
                     If result > 0 Then
-                        MessageBox.Show("Status deleted successfully.")
+                        StatusLabel.Text = "Status deleted successfully."
+                        Timer1.Enabled = True
                         txtStatus.SelectedIndex = -1 'Reset the ComboBox selection
+                        txtStatus.Text = ""
                         LoadStatus() 'Reload status list to reflect the changes
                     Else
-                        MessageBox.Show("No records were deleted.")
+                        StatusLabel.Text = "No records were deleted."
+                        Timer1.Enabled = True
                     End If
                 Catch ex As Exception
                     MessageBox.Show("An error occurred while deleting the Status: " & ex.Message)
@@ -111,5 +116,11 @@ Public Class StatusMenu
 
     Private Sub btnBack_Click(sender As Object, e As EventArgs) Handles btnBack.Click
         Me.Close()
+    End Sub
+
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        StatusLabel.Text = ""  'Clear the text
+        Timer1.Enabled = False  'Stop the timer
+        LoadStatus()
     End Sub
 End Class

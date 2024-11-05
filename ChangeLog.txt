@@ -1,3 +1,12 @@
+v5.14.0.56
+GageList defaults to full screen & how it handles centering.
+Updated ApplicationEvents.
+Updated Logger, Added System Logs & Error Logs.
+Updated Log save path.
+Updated GageList error logs.
+Updated GTMenu error logs.
+Updated Application Prerequisites.
+
 v5.13.4.55
 Updated AdminMenu form load order to fix a UI glitch.
 Updated GageList Admin button.

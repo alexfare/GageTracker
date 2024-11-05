@@ -15,22 +15,20 @@ Public Class GageList
             LoadData()
         Catch ex As OleDbException
             MessageBox.Show("Database error: " & ex.Message)
+            GlobalVars.ErrorLog = "Database error: " & ex.Message
+            Logger.LogErrors()
         Catch ex As Exception
             MessageBox.Show("General error: " & ex.Message)
+            GlobalVars.ErrorLog = "General error: " & ex.Message
+            Logger.LogErrors()
         End Try
 
         'Misc
         TextContains.Text = ""
-        Me.StartPosition = FormStartPosition.CenterScreen
 
         FilterSetup()
         MenuColor()
         AddOpenCount()
-    End Sub
-
-    Protected Overrides Sub OnLoad(e As EventArgs)
-        MyBase.OnLoad(e)
-        CenterToScreen()
     End Sub
 #End Region
 #Region "Misc"
@@ -75,6 +73,8 @@ Public Class GageList
             Else
                 MessageBox.Show("No valid database selected. The application will exit.",
                             "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly)
+                GlobalVars.ErrorLog = "No valid database selected."
+                Logger.LogErrors()
                 Application.Exit()
             End If
         End If
@@ -99,9 +99,13 @@ Public Class GageList
             Catch ex As OleDbException
                 MessageBox.Show("OleDb error: " & ex.Message,
                             "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly)
+                GlobalVars.ErrorLog = "OleDb error: " & ex.Message
+                Logger.LogErrors()
             Catch ex As Exception
                 MessageBox.Show("An error occurred: " & ex.Message,
                             "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly)
+                GlobalVars.ErrorLog = "An error occurred: " & ex.Message
+                Logger.LogErrors()
             Finally
                 If connection.State = ConnectionState.Open Then
                     connection.Close()
@@ -156,6 +160,8 @@ Public Class GageList
             GlobalVars.SaveDatabaseLocation(savePath)
         Catch ex As Exception
             MessageBox.Show("An error occurred while downloading the database: " & ex.Message, "Download Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            GlobalVars.ErrorLog = "An error occurred while downloading the database: " & ex.Message
+            Logger.LogErrors()
         Finally
             webClient.Dispose()
         End Try
@@ -188,6 +194,8 @@ Public Class GageList
 
                 Catch ex As Exception
                     MessageBox.Show("An error occurred: " & ex.Message)
+                    GlobalVars.ErrorLog = "An error occurred: " & ex.Message
+                    Logger.LogErrors()
                 Finally
                     If connection.State = ConnectionState.Open Then
                         connection.Close()
@@ -298,6 +306,8 @@ Public Class GageList
             Process.Start(url)
         Catch ex As Exception
             MessageBox.Show("An error occurred while trying to open the URL: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            GlobalVars.ErrorLog = "An error occurred while trying to open the URL: " & ex.Message
+            Logger.LogErrors()
         End Try
     End Sub
 
@@ -307,6 +317,8 @@ Public Class GageList
             Process.Start(url)
         Catch ex As Exception
             MessageBox.Show("An error occurred while trying to open the URL: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            GlobalVars.ErrorLog = "An error occurred while trying to open the URL: " & ex.Message
+            Logger.LogErrors()
         End Try
     End Sub
 

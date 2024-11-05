@@ -5,11 +5,8 @@ Namespace My
         Private Sub MyApplication_Startup(sender As Object, e As EventArgs) Handles Me.Startup
             GetOpenCount()
             PlusOne()
-            My.Settings.isAdmin = False
-            My.Settings.LoggedUser = ""
-            My.Settings.LastOpened = Now
-            My.Settings.SelectedGage = ""
-            My.Settings.Save()
+            SystemLog()
+            UpdateMySettings()
         End Sub
 
         Sub GetOpenCount()
@@ -39,11 +36,24 @@ Namespace My
             End Using
         End Sub
 
+        Sub SystemLog()
+            GlobalVars.SystemLog = "GageTracker started."
+            Logger.LogSystem()
+        End Sub
+
         Sub PlusOne()
             Dim AddOne As Integer
 
             AddOne = My.Settings.ProgramOpenCount
             My.Settings.ProgramOpenCount = AddOne + 1
+        End Sub
+
+        Sub UpdateMySettings()
+            My.Settings.isAdmin = False
+            My.Settings.LoggedUser = ""
+            My.Settings.LastOpened = Now
+            My.Settings.SelectedGage = ""
+            My.Settings.Save()
         End Sub
 
         Private Sub MyApplication_UnhandledException(sender As Object, e As Microsoft.VisualBasic.ApplicationServices.UnhandledExceptionEventArgs) Handles Me.UnhandledException

@@ -32,11 +32,6 @@ Public Class GTMenu
         End If
     End Sub
 
-    Protected Overrides Sub OnLoad(e As EventArgs)
-        MyBase.OnLoad(e)
-        CenterToScreen()
-    End Sub
-
     Private Sub SetupConnectionString()
         connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
     End Sub
@@ -54,7 +49,9 @@ Public Class GTMenu
         DueDateCategorizer.LoadData()
         GageList.ApplyStatusFilter()
     End Sub
+#End Region
 
+#Region "Load"
     Public Sub LoadGageID()
         Using conn As New OleDbConnection(connectionString)
             Try
@@ -262,7 +259,7 @@ Public Class GTMenu
                 If count = 0 Then
                     Dim intervalMonths As Integer = 0
                     If Not Integer.TryParse(TxtInterval.Text, intervalMonths) Then
-                        intervalMonths = 0 ' Default to 0 if not a valid integer
+                        intervalMonths = 0
                     End If
 
                     Dim inspectedDate As DateTime = DtInspectedDate.Value
@@ -320,7 +317,6 @@ Public Class GTMenu
     End Sub
 
     Private Sub BtnSearch_Click(sender As Object, e As EventArgs) Handles BtnSearch.Click
-        ' Check if the GageID text box is empty
         If String.IsNullOrWhiteSpace(TxtGageID.Text) Then
             MessageBox.Show("GageID cannot be blank. Please enter a valid GageID.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return
@@ -330,19 +326,17 @@ Public Class GTMenu
             Try
                 conn.Open()
                 Dim cmd As New OleDbCommand("SELECT PartNumber, PartRev, Status, Description, Department, [Gage Type], Customer, [Calibrated By], [Interval (Months)], [Inspected Date], [Due Date], Comments, aN1, aN2, aN3, aN4, aN5, aA1, aA2, aA3, aA4, aA5, [Serial Number], Owner, [Nist Number] FROM [CalibrationTracker] WHERE GageID = ?", conn)
-                ' Use parameterized queries to prevent SQL Injection
                 cmd.Parameters.AddWithValue("@GageID", TxtGageID.Text)
 
                 Using reader As OleDbDataReader = cmd.ExecuteReader()
                     If reader.Read() Then
                         txtPartNumber.Text = reader.Item("PartNumber").ToString()
                         txtPartRev.Text = reader.Item("PartRev").ToString()
-                        ' For the cmbStatus, find the correct status in the items and set it as selected
                         Dim statusIndex As Integer = cmbStatus.FindStringExact(reader.Item("Status").ToString())
                         If statusIndex >= 0 Then
                             cmbStatus.SelectedIndex = statusIndex
                         Else
-                            cmbStatus.SelectedIndex = -1 ' No matching status found
+                            cmbStatus.SelectedIndex = -1
                         End If
                         txtDescription.Text = reader.Item("Description").ToString()
                         txtDepartment.Text = reader.Item("Department").ToString()
@@ -363,7 +357,7 @@ Public Class GTMenu
                         txtOwner.Text = reader.Item("Owner").ToString()
                         TxtNistNumber.Text = reader.Item("Nist Number").ToString()
 
-                        ' Measurements
+                        'Measurements
                         txtaN1.Text = reader.Item("aN1").ToString()
                         txtaN2.Text = reader.Item("aN2").ToString()
                         txtaN3.Text = reader.Item("aN3").ToString()
@@ -406,23 +400,20 @@ Public Class GTMenu
         End If
     End Sub
 
-    Private Sub BtnUpdateConfirmed() 'Handles BtnUpdate.Click
+    Private Sub BtnUpdateConfirmed()
         Using conn As New OleDbConnection(connectionString)
             conn.Open()
 
-            ' Determine the value for Last User
             Dim lastUser As String
             If String.IsNullOrEmpty(My.Settings.LoggedUser) Then
-                lastUser = Environment.UserName ' Use the current logged-in computer user
+                lastUser = Environment.UserName
             Else
                 lastUser = My.Settings.LoggedUser
             End If
 
-            ' Prepare your UPDATE SQL command with parameters to prevent SQL injection
             Dim updateCmd As New OleDbCommand("UPDATE [CalibrationTracker] SET PartNumber = ?, PartRev = ?, Status = ?, Description = ?, Department = ?, [Gage Type] = ?, Customer = ?, [Calibrated By] = ?, [Interval (Months)] = ?, [Inspected Date] = ?, [Due Date] = ?, Comments = ?, aN1 = ?, aN2 = ?, aN3 = ?, aN4 = ?, aN5 = ?, aA1 = ?, aA2 = ?, aA3 = ?, aA4 = ?, aA5 = ?, [Serial Number] = ?, Owner = ?, [Nist Number] = ?, [Last User] = ?, [Last Edited] = ? WHERE GageID = ?", conn)
             Dim lastEdited As DateTime = Now
 
-            ' Add parameters with the values from your form controls
             updateCmd.Parameters.Add(New OleDbParameter("@PartNumber", txtPartNumber.Text))
             updateCmd.Parameters.Add(New OleDbParameter("@PartRev", txtPartRev.Text))
             updateCmd.Parameters.Add(New OleDbParameter("@Status", cmbStatus.Text))
@@ -452,7 +443,6 @@ Public Class GTMenu
             updateCmd.Parameters.Add(New OleDbParameter("@LastEdited", OleDbType.Date)).Value = lastEdited
             updateCmd.Parameters.Add(New OleDbParameter("@GageID", TxtGageID.Text))
 
-            ' Execute the UPDATE command
             Dim rowsAffected As Integer = updateCmd.ExecuteNonQuery()
             If rowsAffected > 0 Then
                 'Settings
@@ -647,7 +637,7 @@ Public Class GTMenu
         DtInspectedDate.Value = DateTime.Now
         dtDueDate.Value = DateTime.Now
 
-        ' Clear Measurements
+        'Clear Measurements
         txtaN1.Clear()
         txtaN2.Clear()
         txtaN3.Clear()
@@ -659,7 +649,7 @@ Public Class GTMenu
         txtaA4.Clear()
         txtaA5.Clear()
 
-        ' Audit Log
+        'Audit Log
         LblDateAdded.Clear()
         LblLastEdited.Clear()
         LblEditBy.Clear()
@@ -781,8 +771,8 @@ Public Class GTMenu
     End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-        StatusLabel.Text = ""  'Clear the text
-        Timer1.Enabled = False  'Stop the timer
+        StatusLabel.Text = ""
+        Timer1.Enabled = False
     End Sub
 
     Private Sub UpdateChangeStatus()

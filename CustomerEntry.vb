@@ -1,5 +1,6 @@
 ﻿
 Imports System.Data.OleDb
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel
 
 Public Class CustomerEntry
     Dim connectionString As String
@@ -9,11 +10,6 @@ Public Class CustomerEntry
         StatusLbl.Text = ""
         connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
         LoadCustomers()
-    End Sub
-
-    Protected Overrides Sub OnLoad(e As EventArgs)
-        MyBase.OnLoad(e)
-        CenterToScreen()
     End Sub
 
     Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
@@ -37,6 +33,8 @@ Public Class CustomerEntry
                 End If
             Catch ex As Exception
                 MessageBox.Show("An error occurred while checking for duplicate names: " & ex.Message)
+                GlobalVars.ErrorLog = "An error occurred while checking for duplicate names: " & ex.Message
+                Logger.LogErrors()
                 Return
             End Try
         End Using
@@ -52,10 +50,14 @@ Public Class CustomerEntry
                     connection.Open()
                     command.ExecuteNonQuery()
                     StatusLbl.Text = "Customer added successfully."
+                    GlobalVars.SystemLog = txtCustomerName.Text + " added successfully to customer entry."
+                    Logger.LogSystem()
                     Timer1.Enabled = True
                     LoadCustomers()
                 Catch ex As Exception
                     MessageBox.Show("An error occurred while adding new customer: " & ex.Message)
+                    GlobalVars.ErrorLog = "An error occurred while adding new customer: " & ex.Message
+                    Logger.LogErrors()
                 End Try
             End Using
         End Using
@@ -78,6 +80,8 @@ Public Class CustomerEntry
                 End While
             Catch ex As Exception
                 MessageBox.Show("An error occurred while loading Customers: " & ex.Message)
+                GlobalVars.ErrorLog = "An error occurred while loading Customers: " & ex.Message
+                Logger.LogErrors()
             End Try
         End Using
     End Sub
@@ -111,6 +115,8 @@ Public Class CustomerEntry
                     End If
                 Catch ex As Exception
                     MessageBox.Show("An error occurred while fetching customer details: " & ex.Message)
+                    GlobalVars.ErrorLog = "An error occurred while fetching customer details: " & ex.Message
+                    Logger.LogErrors()
                 End Try
             End Using
         End Using
@@ -138,6 +144,8 @@ Public Class CustomerEntry
 
                     If rowsAffected > 0 Then
                         StatusLbl.Text = "Customer details updated successfully."
+                        GlobalVars.SystemLog = txtCustomerName.Text + " Customer details updated successfully."
+                        Logger.LogSystem()
                         Timer1.Enabled = True
                     Else
                         StatusLbl.Text = "No records updated."
@@ -145,6 +153,8 @@ Public Class CustomerEntry
                     End If
                 Catch ex As Exception
                     MessageBox.Show("An error occurred while updating customer details: " & ex.Message)
+                    GlobalVars.ErrorLog = "An error occurred while updating customer details: " & ex.Message
+                    Logger.LogErrors()
                 End Try
             End Using
         End Using
@@ -184,6 +194,8 @@ Public Class CustomerEntry
                     Dim result As Integer = command.ExecuteNonQuery()
                     If result > 0 Then
                         StatusLbl.Text = "Customer deleted successfully."
+                        GlobalVars.SystemLog = txtCustomerName.Text + " customer details deleted successfully."
+                        Logger.LogSystem()
                         Timer1.Enabled = True
                         ClearText()
                         LoadCustomers()
@@ -195,14 +207,16 @@ Public Class CustomerEntry
                     End If
                 Catch ex As Exception
                     MessageBox.Show("An error occurred while deleting the customer: " & ex.Message)
+                    GlobalVars.ErrorLog = "An error occurred while deleting the customer: " & ex.Message
+                    Logger.LogErrors()
                 End Try
             End Using
         End Using
     End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-        StatusLbl.Text = ""  'Clear the text
-        Timer1.Enabled = False  'Stop the timer
+        StatusLbl.Text = ""
+        Timer1.Enabled = False
         LoadCustomers()
     End Sub
 End Class

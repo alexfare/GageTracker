@@ -49,7 +49,7 @@ Partial Class ReportIssue
         '
         Me.txtName.Location = New System.Drawing.Point(17, 28)
         Me.txtName.Name = "txtName"
-        Me.txtName.Size = New System.Drawing.Size(239, 20)
+        Me.txtName.Size = New System.Drawing.Size(300, 20)
         Me.txtName.TabIndex = 0
         '
         'Label1
@@ -65,14 +65,14 @@ Partial Class ReportIssue
         '
         Me.txtEmail.Location = New System.Drawing.Point(17, 80)
         Me.txtEmail.Name = "txtEmail"
-        Me.txtEmail.Size = New System.Drawing.Size(239, 20)
+        Me.txtEmail.Size = New System.Drawing.Size(300, 20)
         Me.txtEmail.TabIndex = 1
         '
         'txtComment
         '
         Me.txtComment.Location = New System.Drawing.Point(17, 132)
         Me.txtComment.Name = "txtComment"
-        Me.txtComment.Size = New System.Drawing.Size(239, 114)
+        Me.txtComment.Size = New System.Drawing.Size(300, 150)
         Me.txtComment.TabIndex = 2
         Me.txtComment.Text = ""
         '
@@ -87,7 +87,7 @@ Partial Class ReportIssue
         '
         'btnSend
         '
-        Me.btnSend.Location = New System.Drawing.Point(181, 252)
+        Me.btnSend.Location = New System.Drawing.Point(242, 288)
         Me.btnSend.Name = "btnSend"
         Me.btnSend.Size = New System.Drawing.Size(75, 23)
         Me.btnSend.TabIndex = 3
@@ -97,7 +97,7 @@ Partial Class ReportIssue
         'btnBack
         '
         Me.btnBack.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btnBack.Location = New System.Drawing.Point(17, 252)
+        Me.btnBack.Location = New System.Drawing.Point(17, 288)
         Me.btnBack.Name = "btnBack"
         Me.btnBack.Size = New System.Drawing.Size(75, 23)
         Me.btnBack.TabIndex = 4
@@ -127,7 +127,7 @@ Partial Class ReportIssue
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(276, 292)
+        Me.Panel1.Size = New System.Drawing.Size(329, 325)
         Me.Panel1.TabIndex = 11
         '
         'ReportIssue
@@ -136,11 +136,12 @@ Partial Class ReportIssue
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.btnBack
-        Me.ClientSize = New System.Drawing.Size(276, 292)
+        Me.ClientSize = New System.Drawing.Size(329, 325)
         Me.Controls.Add(Me.Panel1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.Name = "ReportIssue"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "GageTracker - ReportIssue"
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()

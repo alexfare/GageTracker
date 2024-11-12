@@ -1,4 +1,5 @@
 ﻿Imports System.Data.OleDb
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel
 
 Public Class GageType
     Dim connectionString As String
@@ -8,11 +9,6 @@ Public Class GageType
         StatusLabel.Text = ""
         connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
         LoadGageType()
-    End Sub
-
-    Protected Overrides Sub OnLoad(e As EventArgs)
-        MyBase.OnLoad(e)
-        CenterToScreen()
     End Sub
 
     Private Sub LoadGageType()
@@ -27,6 +23,8 @@ Public Class GageType
                 End While
             Catch ex As Exception
                 MessageBox.Show("An error occurred while loading GageType: " & ex.Message)
+                GlobalVars.ErrorLog = "An error occurred while loading GageType: " & ex.Message
+                Logger.LogErrors()
             End Try
         End Using
     End Sub
@@ -52,6 +50,8 @@ Public Class GageType
                 End If
             Catch ex As Exception
                 MessageBox.Show("An error occurred while checking for duplicate names: " & ex.Message)
+                GlobalVars.ErrorLog = "An error occurred while checking for duplicate names: " & ex.Message
+                Logger.LogErrors()
                 Return
             End Try
         End Using
@@ -63,13 +63,17 @@ Public Class GageType
                 Try
                     connection.Open()
                     command.ExecuteNonQuery()
-                    StatusLabel.Text = "GageType saved successfully."
+                    StatusLabel.Text = "GageType added successfully."
+                    GlobalVars.SystemLog = txtGageType.Text + " gage type added successfully."
+                    Logger.LogSystem()
                     Timer1.Enabled = True
                     txtGageType.Items.Add(txtGageType.Text)
 
                     txtGageType.Text = String.Empty
                 Catch ex As Exception
                     MessageBox.Show("An error occurred while adding new GageType: " & ex.Message)
+                    GlobalVars.ErrorLog = "An error occurred while adding new GageType: " & ex.Message
+                    Logger.LogErrors()
                 End Try
             End Using
         End Using
@@ -80,7 +84,6 @@ Public Class GageType
             Return
         End If
 
-        ' Confirm deletion
         If MessageBox.Show("Are you sure you want to delete this GageType?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then
             Return
         End If
@@ -97,10 +100,10 @@ Public Class GageType
                     Dim result As Integer = command.ExecuteNonQuery()
                     If result > 0 Then
                         StatusLabel.Text = "GageType deleted successfully."
+                        GlobalVars.SystemLog = selectedGageType + " gage type deleted successfully."
+                        Logger.LogSystem()
                         Timer1.Enabled = True
-
                         txtGageType.Items.Remove(selectedGageType)
-
                         txtGageType.Text = String.Empty
                         txtGageType.SelectedIndex = -1
                     Else
@@ -108,6 +111,8 @@ Public Class GageType
                     End If
                 Catch ex As Exception
                     MessageBox.Show("An error occurred while deleting the GageType: " & ex.Message)
+                    GlobalVars.ErrorLog = "An error occurred while deleting the GageType: " & ex.Message
+                    Logger.LogErrors()
                 End Try
             End Using
         End Using
@@ -118,7 +123,7 @@ Public Class GageType
     End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-        StatusLabel.Text = ""  'Clear the text
-        Timer1.Enabled = False  'Stop the timer
+        StatusLabel.Text = ""
+        Timer1.Enabled = False
     End Sub
 End Class

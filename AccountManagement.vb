@@ -11,13 +11,7 @@ Public Class AccountManagement
         LoadUsers()
     End Sub
 
-    Protected Overrides Sub OnLoad(e As EventArgs)
-        MyBase.OnLoad(e)
-        CenterToScreen()
-    End Sub
-
     Private Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
-        ' Validate inputs
         If txtUsername.Text = "" OrElse txtPassword.Text = "" OrElse txtConfirmPassword.Text = "" Then
             StatusLabel.Text = "Please fill in all fields."
             Timer1.Enabled = True
@@ -30,10 +24,8 @@ Public Class AccountManagement
             Return
         End If
 
-        ' Hash password
         Dim hashedPassword As String = HashPassword(txtPassword.Text)
 
-        ' Save to database
         SaveCredentials(txtUsername.Text, hashedPassword)
     End Sub
 
@@ -43,7 +35,7 @@ Public Class AccountManagement
             Dim hash As Byte() = sha512.ComputeHash(bytes)
             Dim sb As New StringBuilder()
             For Each b As Byte In hash
-                sb.Append(b.ToString("x2"))  ' Converts byte to hexadecimal
+                sb.Append(b.ToString("x2"))
             Next
             Return sb.ToString()
         End Using
@@ -53,13 +45,11 @@ Public Class AccountManagement
         Using conn As New OleDbConnection(connectionString)
             conn.Open()
 
-            ' Check if username already exists
             Dim checkCmd As New OleDbCommand("SELECT COUNT(*) FROM Credentials WHERE [Username] = ?", conn)
             checkCmd.Parameters.Add(New OleDbParameter("@Username", username))
             Dim count As Integer = Convert.ToInt32(checkCmd.ExecuteScalar())
 
             If count > 0 Then
-                ' Ask user if they want to update the password
                 Dim result As DialogResult = MessageBox.Show("Username already exists. Do you want to update the password?", "Update Confirmation", MessageBoxButtons.YesNo)
                 If result = DialogResult.Yes Then
                     ' Update password
@@ -68,20 +58,23 @@ Public Class AccountManagement
                     updateCmd.Parameters.Add(New OleDbParameter("@Username", username))
                     updateCmd.ExecuteNonQuery()
                     StatusLabel.Text = "Password updated successfully."
+                    GlobalVars.SystemLog = username + " password updated."
+                    Logger.LogSystem()
                     Timer1.Enabled = True
                     ClearInputs()
                 End If
                 Return
             End If
 
-            ' If username is unique, proceed to save the new credentials
             Dim cmd As New OleDbCommand("INSERT INTO Credentials ([Username], [Password]) VALUES (?, ?)", conn)
             cmd.Parameters.Add(New OleDbParameter("@Username", username))
             cmd.Parameters.Add(New OleDbParameter("@Password", hashedPassword))
             cmd.ExecuteNonQuery()
             StatusLabel.Text = "User created successfully."
+            GlobalVars.SystemLog = "User " + username + " created."
+            Logger.LogSystem()
             Timer1.Enabled = True
-            txtUsername.SelectedIndex = -1 ' Reset the ComboBox selection
+            txtUsername.SelectedIndex = -1
             LoadUsers()
             ClearInputs()
         End Using
@@ -91,7 +84,7 @@ Public Class AccountManagement
         Using conn As New OleDbConnection(connectionString)
             Try
                 conn.Open()
-                Dim cmd As New OleDbCommand("SELECT [Username] FROM [Credentials]", conn) ' Adjust table and column names as necessary
+                Dim cmd As New OleDbCommand("SELECT [Username] FROM [Credentials]", conn)
                 Dim reader As OleDbDataReader = cmd.ExecuteReader()
                 txtUsername.Items.Clear()
                 While reader.Read()
@@ -99,6 +92,8 @@ Public Class AccountManagement
                 End While
             Catch ex As Exception
                 MessageBox.Show("An error occurred while loading Usernames: " & ex.Message)
+                GlobalVars.ErrorLog = "An error occurred while loading Usernames: " & ex.Message
+                Logger.LogErrors()
             End Try
         End Using
     End Sub
@@ -118,7 +113,6 @@ Public Class AccountManagement
         Using conn As New OleDbConnection(connectionString)
             conn.Open()
 
-            ' Check if username exists
             Dim checkCmd As New OleDbCommand("SELECT COUNT(*) FROM Credentials WHERE [Username] = ?", conn)
             checkCmd.Parameters.Add(New OleDbParameter("@Username", username))
             Dim count As Integer = Convert.ToInt32(checkCmd.ExecuteScalar())
@@ -129,14 +123,14 @@ Public Class AccountManagement
                 Return
             End If
 
-            ' Confirm deletion
             Dim result As DialogResult = MessageBox.Show("Are you sure you want to delete this user?", "Delete Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
             If result = DialogResult.Yes Then
-                ' Execute delete operation
                 Dim deleteCmd As New OleDbCommand("DELETE FROM Credentials WHERE [Username] = ?", conn)
                 deleteCmd.Parameters.Add(New OleDbParameter("@Username", username))
                 deleteCmd.ExecuteNonQuery()
                 StatusLabel.Text = "User deleted successfully."
+                GlobalVars.SystemLog = "User " + username + " deleted."
+                Logger.LogSystem()
                 Timer1.Enabled = True
                 ClearInputs()
                 LoadUsers()
@@ -145,14 +139,14 @@ Public Class AccountManagement
     End Sub
 
     Private Sub ClearInputs()
-        txtUsername.SelectedIndex = -1 'Reset the ComboBox selection
+        txtUsername.SelectedIndex = -1
         txtPassword.Clear()
         txtConfirmPassword.Clear()
     End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-        StatusLabel.Text = ""  'Clear the text
-        Timer1.Enabled = False  'Stop the timer
+        StatusLabel.Text = ""
+        Timer1.Enabled = False
         LoadUsers()
     End Sub
 End Class

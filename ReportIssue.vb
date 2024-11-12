@@ -1,11 +1,6 @@
 ﻿Imports System.Net.Mail
 
 Public Class ReportIssue
-    Protected Overrides Sub OnLoad(e As EventArgs)
-        MyBase.OnLoad(e)
-        CenterToScreen()
-    End Sub
-
     Private Sub btnSend_Click(sender As Object, e As EventArgs) Handles btnSend.Click
         If String.IsNullOrWhiteSpace(txtName.Text) Then
             MessageBox.Show("Name is required.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -27,7 +22,7 @@ Public Class ReportIssue
             $"Comment: {txtComment.Text}" + Environment.NewLine +
             $"Version: {My.Settings.VersionString}"
 
-        Dim ZGVjcnlwdGVkUGFzc3dvcmQ = CredentialsManager.R2V0RGVjcnlwdGVkUGFzc3dvcmQ
+        Dim ZGVjcnlwdGVkUGFzc3dvcmQ = CredentialsManager.GetDecryptedPassword
         Dim ReportAuth As String = ZGVjcnlwdGVkUGFzc3dvcmQ
         Dim smtp As New SmtpClient("smtp.gmail.com")
         smtp.Port = My.Settings.ReportAuth
@@ -41,6 +36,8 @@ Public Class ReportIssue
             Me.Close()
         Catch ex As Exception
             MessageBox.Show("Failed to send report. Error: " + ex.Message)
+            GlobalVars.ErrorLog = "Failed to send report. Error: " + ex.Message
+            Logger.LogErrors()
         End Try
     End Sub
 

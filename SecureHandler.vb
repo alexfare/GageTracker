@@ -2,10 +2,21 @@
 Imports System.Security.Cryptography
 
 Public Class SecureHandler
-    Public Shared Function EncryptString(input As String, key As Byte(), iv As Byte()) As String 'Method to encrypt a string
+    Private Const KeySize As Integer = 16
+    Private Const BlockSize As Integer = 16
+
+    Public Shared Function EncryptString(input As String, key As Byte(), iv As Byte()) As String
+        ' Validate parameters
+        If String.IsNullOrEmpty(input) Then Throw New ArgumentException("Input string cannot be null or empty.")
+        If key Is Nothing OrElse key.Length <> KeySize Then Throw New ArgumentException($"Key must be {KeySize} bytes.")
+        If iv Is Nothing OrElse iv.Length <> BlockSize Then Throw New ArgumentException($"IV must be {BlockSize} bytes.")
+
         Using aes As Aes = Aes.Create()
             aes.Key = key
             aes.IV = iv
+            aes.Mode = CipherMode.CBC
+            aes.Padding = PaddingMode.PKCS7
+
             Dim encryptor As ICryptoTransform = aes.CreateEncryptor(aes.Key, aes.IV)
 
             Using ms As New MemoryStream()
@@ -19,11 +30,20 @@ Public Class SecureHandler
         End Using
     End Function
 
-    Public Shared Function DecryptString(input As String, key As Byte(), iv As Byte()) As String 'Method to decrypt a string
+    Public Shared Function DecryptString(input As String, key As Byte(), iv As Byte()) As String
+        ' Validate parameters
+        If String.IsNullOrEmpty(input) Then Throw New ArgumentException("Input string cannot be null or empty.")
+        If key Is Nothing OrElse key.Length <> KeySize Then Throw New ArgumentException($"Key must be {KeySize} bytes.")
+        If iv Is Nothing OrElse iv.Length <> BlockSize Then Throw New ArgumentException($"IV must be {BlockSize} bytes.")
+
         Dim buffer As Byte() = Convert.FromBase64String(input)
+
         Using aes As Aes = Aes.Create()
             aes.Key = key
             aes.IV = iv
+            aes.Mode = CipherMode.CBC
+            aes.Padding = PaddingMode.PKCS7
+
             Dim decryptor As ICryptoTransform = aes.CreateDecryptor(aes.Key, aes.IV)
 
             Using ms As New MemoryStream(buffer)

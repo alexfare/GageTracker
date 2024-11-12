@@ -40,11 +40,6 @@ Public Class AdminMenu
         TxtOpenCount.Text = My.Settings.ProgramOpenCount
     End Sub
 
-    Protected Overrides Sub OnLoad(e As EventArgs)
-        MyBase.OnLoad(e)
-        CenterToScreen()
-    End Sub
-
     Private Sub ReloadData()
         LoadGageID()
         GageList.LoadData()
@@ -125,8 +120,12 @@ Public Class AdminMenu
                 End Using
             Catch ex As OleDbException
                 MessageBox.Show("Database error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                GlobalVars.ErrorLog = "Database error: " & ex.Message
+                Logger.LogErrors()
             Catch ex As Exception
                 MessageBox.Show("An unexpected error occurred: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                GlobalVars.ErrorLog = "An unexpected error occurred: " & ex.Message
+                Logger.LogErrors()
             End Try
         End Using
     End Sub
@@ -202,8 +201,12 @@ Public Class AdminMenu
             End Using
         Catch ex As OleDbException
             MessageBox.Show($"Database error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            GlobalVars.ErrorLog = "Database error: " & ex.Message
+            Logger.LogErrors()
         Catch ex As Exception
             MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            GlobalVars.ErrorLog = "An unexpected error occurred: {ex.Message}"
+            Logger.LogErrors()
         End Try
     End Sub
 
@@ -331,8 +334,12 @@ Public Class AdminMenu
                 End Using
             Catch ex As OleDbException
                 MessageBox.Show($"Database error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                GlobalVars.ErrorLog = "Database error: " & ex.Message
+                Logger.LogErrors()
             Catch ex As Exception
                 MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                GlobalVars.ErrorLog = "An unexpected error occurred: {ex.Message}"
+                Logger.LogErrors()
             End Try
         End If
     End Sub
@@ -532,6 +539,8 @@ Public Class AdminMenu
 
             Catch ex As Exception
                 MessageBox.Show("An error occurred while loading status options: " & ex.Message)
+                GlobalVars.ErrorLog = "An error occurred while loading status options: " & ex.Message
+                Logger.LogErrors()
             Finally
                 'Ensure connection is closed if exception occurs
                 If conn.State = ConnectionState.Open Then
@@ -563,6 +572,8 @@ Public Class AdminMenu
 
             Catch ex As Exception
                 MessageBox.Show("An error occurred while loading Departments options: " & ex.Message)
+                GlobalVars.ErrorLog = "An error occurred while loading Departments options: " & ex.Message
+                Logger.LogErrors()
             Finally
                 'Ensure connection is closed if exception occurs
                 If conn.State = ConnectionState.Open Then
@@ -594,6 +605,8 @@ Public Class AdminMenu
 
             Catch ex As Exception
                 MessageBox.Show("An error occurred while loading Gage Type options: " & ex.Message)
+                GlobalVars.ErrorLog = "An error occurred while loading Gage Type options: " & ex.Message
+                Logger.LogErrors()
             Finally
                 'Ensure connection is closed if exception occurs
                 If conn.State = ConnectionState.Open Then
@@ -625,6 +638,8 @@ Public Class AdminMenu
 
             Catch ex As Exception
                 MessageBox.Show("An error occurred while loading Customer options: " & ex.Message)
+                GlobalVars.ErrorLog = "An error occurred while loading Customer options: " & ex.Message
+                Logger.LogErrors()
             Finally
                 'Ensure connection is closed if exception occurs
                 If conn.State = ConnectionState.Open Then
@@ -661,6 +676,8 @@ Public Class AdminMenu
 
             Catch ex As Exception
                 MessageBox.Show("An error occurred while loading Gage Type options: " & ex.Message)
+                GlobalVars.ErrorLog = "An error occurred while loading Gage Type options: " & ex.Message
+                Logger.LogErrors()
             Finally
                 'Ensure connection is closed if exception occurs
                 If conn.State = ConnectionState.Open Then
@@ -680,9 +697,13 @@ Public Class AdminMenu
                 Process.Start("explorer.exe", directoryPath)
             Else
                 MessageBox.Show("Directory does not exist: " & directoryPath, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                GlobalVars.ErrorLog = "Directory does not exist: " & directoryPath
+                Logger.LogErrors()
             End If
         Else
             MessageBox.Show("Database location is not set.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            GlobalVars.ErrorLog = "Database location is not set."
+            Logger.LogErrors()
         End If
     End Sub
 
@@ -695,12 +716,18 @@ Public Class AdminMenu
                     Process.Start("msaccess.exe", """" & fullPath & """")
                 Catch ex As Exception
                     MessageBox.Show("Failed to open the database in Access: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    GlobalVars.ErrorLog = "Failed to open the database in Access: " & ex.Message
+                    Logger.LogErrors()
                 End Try
             Else
                 MessageBox.Show("Database file does not exist: " & fullPath, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                GlobalVars.ErrorLog = "Database file does not exist: " & fullPath
+                Logger.LogErrors()
             End If
         Else
             MessageBox.Show("Database location is not set.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            GlobalVars.ErrorLog = "Database location is not set."
+            Logger.LogErrors()
         End If
     End Sub
 

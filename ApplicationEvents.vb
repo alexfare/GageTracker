@@ -27,6 +27,8 @@ Namespace My
 
                     Catch ex As Exception
                         MessageBox.Show("An error occurred: " & ex.Message)
+                        GlobalVars.ErrorLog = "An error occurred: " & ex.Message
+                        Logger.LogErrors()
                     Finally
                         If connection.State = ConnectionState.Open Then
                             connection.Close()
@@ -58,6 +60,8 @@ Namespace My
 
         Private Sub MyApplication_UnhandledException(sender As Object, e As Microsoft.VisualBasic.ApplicationServices.UnhandledExceptionEventArgs) Handles Me.UnhandledException
             MessageBox.Show("An unhandled exception occurred: " & e.Exception.Message)
+            GlobalVars.ErrorLog = "An unhandled exception occurred: " & e.Exception.Message
+            Logger.LogErrors()
             e.ExitApplication = False
         End Sub
 

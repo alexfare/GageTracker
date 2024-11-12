@@ -1,3 +1,18 @@
+v5.14.1.57
+Updated About form (Centering).
+Updated ReportIssue form (Centering, UI & added error logging).
+Updated SecureHandler, Fixed issue that could cause a runtime error.
+Updated CredentialsManager, Readability and how it handles the keys.
+Updated LoginForm, Centering and added Log events.
+Updated ApplicationEvents, Adding Error logging.
+Updated DueDateCategorizer, Centerings and added Error logging.
+Updated GTMenu centering.
+Updated AccountManagement centering and Error/System logging.
+Updated AdminMenu centering and Error logging.
+Updated GageType centering and Error/System logging.
+Updated CustomerEntry centering and Error/System logging.
+Updated StatusMenu centering and Error/System logging.
+
 v5.14.0.56
 GageList defaults to full screen & how it handles centering.
 Updated ApplicationEvents.

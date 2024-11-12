@@ -94,7 +94,7 @@ Partial Class DueDateCategorizer
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(970, 585)
+        Me.TabPage2.Size = New System.Drawing.Size(1083, 607)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "30 days"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -106,7 +106,7 @@ Partial Class DueDateCategorizer
         Me.DataGridViewWithin30Days.Location = New System.Drawing.Point(3, 3)
         Me.DataGridViewWithin30Days.Name = "DataGridViewWithin30Days"
         Me.DataGridViewWithin30Days.ReadOnly = True
-        Me.DataGridViewWithin30Days.Size = New System.Drawing.Size(964, 579)
+        Me.DataGridViewWithin30Days.Size = New System.Drawing.Size(1077, 601)
         Me.DataGridViewWithin30Days.TabIndex = 1
         '
         'TabPage3
@@ -115,7 +115,7 @@ Partial Class DueDateCategorizer
         Me.TabPage3.Location = New System.Drawing.Point(4, 22)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(970, 585)
+        Me.TabPage3.Size = New System.Drawing.Size(1083, 607)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "60 Days"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -127,7 +127,7 @@ Partial Class DueDateCategorizer
         Me.DataGridViewWithin60Days.Location = New System.Drawing.Point(3, 3)
         Me.DataGridViewWithin60Days.Name = "DataGridViewWithin60Days"
         Me.DataGridViewWithin60Days.ReadOnly = True
-        Me.DataGridViewWithin60Days.Size = New System.Drawing.Size(964, 579)
+        Me.DataGridViewWithin60Days.Size = New System.Drawing.Size(1077, 601)
         Me.DataGridViewWithin60Days.TabIndex = 2
         '
         'MenuStrip1
@@ -170,6 +170,7 @@ Partial Class DueDateCategorizer
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.Name = "DueDateCategorizer"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "GageTracker - DueDateCategorizer"
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)

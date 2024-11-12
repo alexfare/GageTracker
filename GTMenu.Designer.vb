@@ -1011,6 +1011,7 @@ Partial Class GTMenu
         Me.MainMenuStrip = Me.MenuStrip1
         Me.MaximizeBox = False
         Me.Name = "GTMenu"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "GageTracker - Menu"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()

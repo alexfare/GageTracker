@@ -18,8 +18,12 @@ Public Class DueDateCategorizer
             LoadData()
         Catch ex As OleDbException
             MessageBox.Show("Database error: " & ex.Message)
+            GlobalVars.ErrorLog = "Database error: " & ex.Message
+            Logger.LogErrors()
         Catch ex As Exception
             MessageBox.Show("General error: " & ex.Message)
+            GlobalVars.ErrorLog = "General error: " & ex.Message
+            Logger.LogErrors()
         End Try
 
         Me.StartPosition = FormStartPosition.CenterScreen
@@ -29,10 +33,6 @@ Public Class DueDateCategorizer
     End Sub
 #End Region
 #Region "Settings"
-    Protected Overrides Sub OnLoad(e As EventArgs)
-        MyBase.OnLoad(e)
-        CenterToScreen()
-    End Sub
 
     Public Sub LoadData()
         Dim connectionString As String
@@ -75,6 +75,8 @@ Public Class DueDateCategorizer
 
             Catch ex As OleDbException
                 MessageBox.Show("OleDb error: " & ex.Message)
+                GlobalVars.ErrorLog = "OleDb error: " & ex.Message
+                Logger.LogErrors()
             Finally
                 If connection.State = ConnectionState.Open Then
                     connection.Close()

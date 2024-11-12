@@ -9,11 +9,6 @@ Public Class LoginForm1
         ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
     End Sub
 
-    Protected Overrides Sub OnLoad(e As EventArgs)
-        MyBase.OnLoad(e)
-        CenterToScreen()
-    End Sub
-
     Private Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
         Dim username As String = txtUsername.Text
         Dim password As String = txtPassword.Text
@@ -49,6 +44,9 @@ Public Class LoginForm1
                         GageList.MenuColor()
                         AdminMenu.Show()
                         Me.Close()
+
+                        GlobalVars.SystemLog = "Successful Login Recorded"
+                        Logger.LogSystem()
                     Else
                         InvalidLogin()
                     End If
@@ -57,14 +55,22 @@ Public Class LoginForm1
                 End If
             Catch ex As OleDbException
                 MessageBox.Show("Database error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                GlobalVars.ErrorLog = "Database error: " & ex.Message
+                Logger.LogErrors()
             Catch ex As Exception
                 MessageBox.Show("An unexpected error occurred: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                GlobalVars.ErrorLog = "An unexpected error occurred: " & ex.Message
+                Logger.LogErrors()
             End Try
         End Using
     End Sub
 
     Private Sub InvalidLogin()
+        txtPassword.Text = ""
+        txtPassword.Focus()
         StatusLabel.Text = "Invalid username or password."
+        GlobalVars.SystemLog = "Invalid Login Attempt"
+        Logger.LogSystem()
     End Sub
 
     Private Sub Cancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Cancel.Click

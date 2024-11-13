@@ -111,7 +111,7 @@ Public Class DueDateCategorizer
         Dim grid As DataGridView = CType(sender, DataGridView)
         If e.RowIndex >= 0 Then
             If e.RowIndex Mod 2 = 0 Then
-                grid.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.LightGray
+                grid.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.IndianRed
             Else
                 grid.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.White
             End If
@@ -122,7 +122,7 @@ Public Class DueDateCategorizer
         Dim grid As DataGridView = CType(sender, DataGridView)
         If e.RowIndex >= 0 Then
             If e.RowIndex Mod 2 = 0 Then
-                grid.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.LightGray
+                grid.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.Yellow
             Else
                 grid.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.White
             End If
@@ -133,7 +133,7 @@ Public Class DueDateCategorizer
         Dim grid As DataGridView = CType(sender, DataGridView)
         If e.RowIndex >= 0 Then
             If e.RowIndex Mod 2 = 0 Then
-                grid.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.LightGray
+                grid.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.LightBlue
             Else
                 grid.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.White
             End If

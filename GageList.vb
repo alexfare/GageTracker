@@ -339,6 +339,10 @@ Public Class GageList
             StartLogin()
         End If
     End Sub
+
+    Private Sub RefreshToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RefreshToolStripMenuItem.Click
+        LoadData()
+    End Sub
 #End Region
 #Region "Closing Actions"
     Private Sub MainForm_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
@@ -364,10 +368,6 @@ Public Class GageList
         Else
             e.Cancel = True
         End If
-    End Sub
-
-    Private Sub RefreshToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RefreshToolStripMenuItem.Click
-        LoadData()
     End Sub
 #End Region
 End Class

@@ -1,3 +1,9 @@
+v5.14.2.58
+Updated GTMenu, Wording to Status & Log Entry.
+Fixed issue on GTMenu causing inputs to display previous data after update.
+Updated DueDateCategorizer coloring.
+Updated AdminMenu sub forms (CustomerEntry, StatusMenu, AccountManagement, & GageType), changed forms to tool menu and will now remain at top most.
+
 v5.14.1.57
 Updated About form (Centering).
 Updated ReportIssue form (Centering, UI & added error logging).

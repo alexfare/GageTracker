@@ -50,7 +50,6 @@ Public Class GTMenu
         GageList.ApplyStatusFilter()
     End Sub
 #End Region
-
 #Region "Load"
     Public Sub LoadGageID()
         Using conn As New OleDbConnection(connectionString)
@@ -299,7 +298,7 @@ Public Class GTMenu
                     Timer1.Enabled = True
                     ReloadData()
                     BtnClear.PerformClick()
-                    GlobalVars.LastActivity = TxtGageID.Text + " Added."
+                    GlobalVars.LastActivity = TxtGageID.Text + " added successfully"
                     Logger.SaveLogEntry()
                 Else
                     MessageBox.Show("This GageID already exists", "Duplicate Entry", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -450,11 +449,11 @@ Public Class GTMenu
                 GageSearch = TxtGageID.Text
 
                 'Logs
-                GlobalVars.LastActivity = TxtGageID.Text + " Updated."
+                GlobalVars.LastActivity = TxtGageID.Text + " updated successfully."
                 Logger.SaveLogEntry()
 
                 'Status
-                StatusLabel.Text = "Record updated successfully"
+                StatusLabel.Text = "Gage updated successfully"
                 Timer1.Enabled = True
 
                 'Subs
@@ -607,27 +606,67 @@ Public Class GTMenu
 #End Region
 #Region "Clear"
     Private Sub ClearReset()
-        ClearForms()
-        TxtGageID.SelectedIndex = -1 ' Reset the ComboBox selection
+        TxtGageID.SelectedIndex = -1
+        TxtGageID.Text = ""
+        txtPartNumber.Clear()
+        txtPartRev.Clear()
+        cmbStatus.SelectedIndex = -1
+        cmbStatus.Text = ""
+        txtDescription.Clear()
+        txtDepartment.SelectedIndex = -1
+        txtDepartment.Text = ""
+        txtGageType.SelectedIndex = -1
+        txtGageType.Text = ""
+        txtCustomer.SelectedIndex = -1
+        txtCustomer.Text = ""
+        txtCalibratedBy.SelectedIndex = -1
+        txtCalibratedBy.Text = ""
+        TxtInterval.Clear()
+        txtComments.Clear()
+        TxtSerialNumber.Clear()
+        txtOwner.Clear()
+        TxtNistNumber.Clear()
+        DtInspectedDate.Value = DateTime.Now
+        dtDueDate.Value = DateTime.Now
+
+        'Clear Measurements
+        txtaN1.Clear()
+        txtaN2.Clear()
+        txtaN3.Clear()
+        txtaN4.Clear()
+        txtaN5.Clear()
+        txtaA1.Clear()
+        txtaA2.Clear()
+        txtaA3.Clear()
+        txtaA4.Clear()
+        txtaA5.Clear()
+
+        'Audit Log
+        LblDateAdded.Clear()
+        LblLastEdited.Clear()
+        LblEditBy.Clear()
+
+        SearchCheck = False
+        UpdateChangeStatus()
         TxtGageID.Text = GageSearch
         BtnSearch.PerformClick()
     End Sub
 
     Private Sub ClearForms()
-        TxtGageID.SelectedIndex = -1 ' Reset the ComboBox selection
+        TxtGageID.SelectedIndex = -1
         TxtGageID.Text = ""
         txtPartNumber.Clear()
         txtPartRev.Clear()
-        cmbStatus.SelectedIndex = -1 ' Reset the ComboBox selection
+        cmbStatus.SelectedIndex = -1
         cmbStatus.Text = ""
         txtDescription.Clear()
-        txtDepartment.SelectedIndex = -1 ' Reset the ComboBox selection
+        txtDepartment.SelectedIndex = -1
         txtDepartment.Text = ""
-        txtGageType.SelectedIndex = -1 ' Reset the ComboBox selection
+        txtGageType.SelectedIndex = -1
         txtGageType.Text = ""
-        txtCustomer.SelectedIndex = -1 ' Reset the ComboBox selection
+        txtCustomer.SelectedIndex = -1
         txtCustomer.Text = ""
-        txtCalibratedBy.SelectedIndex = -1 ' Reset the ComboBox selection
+        txtCalibratedBy.SelectedIndex = -1
         txtCalibratedBy.Text = ""
         TxtInterval.Clear()
         txtComments.Clear()

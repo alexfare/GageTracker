@@ -127,7 +127,7 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("v5.14.2.58")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("v5.14.3.59")>  _
         Public ReadOnly Property VersionString() As String
             Get
                 Return CType(Me("VersionString"),String)
@@ -221,13 +221,13 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
-        Public Property ClosingConfirmation() As Boolean
+         Global.System.Configuration.DefaultSettingValueAttribute("5")>  _
+        Public Property DatabaseVersion() As Integer
             Get
-                Return CType(Me("ClosingConfirmation"),Boolean)
+                Return CType(Me("DatabaseVersion"),Integer)
             End Get
             Set
-                Me("ClosingConfirmation") = value
+                Me("DatabaseVersion") = value
             End Set
         End Property
     End Class

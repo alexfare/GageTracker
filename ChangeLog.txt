@@ -1,3 +1,11 @@
+v5.14.3.59
+Fixed Program Open Count under ApplicationEvents (Likely broke since around v5.13.3.54).
+Added minimum database version check. (As of right now, It only warns the user. Can still use but may run into issues.)
+Updates to Login form logging.
+Updated AdminMenu to fix GTMenu issue that was corrected in v5.14.2.58.
+Fixed AdminMenu not displaying gage audit information.
+Database maintenance.
+
 v5.14.2.58
 Updated GTMenu, Wording to Status & Log Entry.
 Fixed issue on GTMenu causing inputs to display previous data after update.

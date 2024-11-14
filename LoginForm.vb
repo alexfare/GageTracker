@@ -45,7 +45,7 @@ Public Class LoginForm1
                         AdminMenu.Show()
                         Me.Close()
 
-                        GlobalVars.SystemLog = "Successful Login Recorded"
+                        GlobalVars.SystemLog = username + " has successfully logged in."
                         Logger.LogSystem()
                     Else
                         InvalidLogin()
@@ -69,7 +69,7 @@ Public Class LoginForm1
         txtPassword.Text = ""
         txtPassword.Focus()
         StatusLabel.Text = "Invalid username or password."
-        GlobalVars.SystemLog = "Invalid Login Attempt"
+        GlobalVars.SystemLog = "Invalid login attempt on user: " + txtUsername.Text
         Logger.LogSystem()
     End Sub
 

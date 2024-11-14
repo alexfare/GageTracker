@@ -114,6 +114,7 @@ Public Class AdminMenu
 
                         SearchCheck = True
                         UpdateChangeStatus()
+                        SearchAuditLog()
                     Else
                         MessageBox.Show("GageID does not exist", "Search Result", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     End If
@@ -285,8 +286,48 @@ Public Class AdminMenu
     End Sub
 
     Private Sub ClearReset()
-        ClearForms()
-        TxtGageID.SelectedIndex = -1 ' Reset the ComboBox selection
+        TxtGageID.SelectedIndex = -1
+        TxtGageID.Text = ""
+        txtPartNumber.Clear()
+        txtPartRev.Clear()
+        cmbStatus.SelectedIndex = -1
+        cmbStatus.Text = ""
+        txtDescription.Clear()
+        txtDepartment.SelectedIndex = -1
+        txtDepartment.Text = ""
+        txtGageType.SelectedIndex = -1
+        txtGageType.Text = ""
+        txtCustomer.SelectedIndex = -1
+        txtCustomer.Text = ""
+        txtCalibratedBy.SelectedIndex = -1
+        txtCalibratedBy.Text = ""
+        TxtInterval.Clear()
+        txtComments.Clear()
+        TxtSerialNumber.Clear()
+        txtOwner.Clear()
+        TxtNistNumber.Clear()
+        DtInspectedDate.Value = DateTime.Now
+        dtDueDate.Value = DateTime.Now
+
+        'Clear Measurements
+        txtaN1.Clear()
+        txtaN2.Clear()
+        txtaN3.Clear()
+        txtaN4.Clear()
+        txtaN5.Clear()
+        txtaA1.Clear()
+        txtaA2.Clear()
+        txtaA3.Clear()
+        txtaA4.Clear()
+        txtaA5.Clear()
+
+        'Audit Log
+        LblDateAdded.Clear()
+        LblLastEdited.Clear()
+        LblEditBy.Clear()
+
+        SearchCheck = False
+        UpdateChangeStatus()
         TxtGageID.Text = GageSearch
         BtnAdminSearch.PerformClick()
     End Sub
@@ -305,12 +346,6 @@ Public Class AdminMenu
             Return
         End If
 
-        If My.Settings.isAdmin = False Then
-            MessageBox.Show("Must be logged in to delete gage.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Return
-        End If
-
-        ' Confirm with the user before deleting the record
         Dim result As DialogResult = MessageBox.Show("Are you sure you want to delete this gage?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If result = DialogResult.Yes Then
             Try
@@ -748,6 +783,29 @@ Public Class AdminMenu
     Private Sub DueDateCalenderToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DueDateCalenderToolStripMenuItem.Click
         Me.Close()
         DueDateCategorizer.Show()
+    End Sub
+
+    Private Sub SearchAuditLog()
+        Try
+            Using conn As New OleDbConnection(connectionString)
+                conn.Open()
+                Dim searchCmd As New OleDbCommand("SELECT [Date Added], [Last Edited], [Last User] FROM [CalibrationTracker] WHERE GageID = ?", conn)
+                searchCmd.Parameters.AddWithValue("@GageID", TxtGageID.Text)
+
+                Using reader As OleDbDataReader = searchCmd.ExecuteReader()
+                    If reader.HasRows Then
+                        reader.Read()
+                        LblDateAdded.Text = If(IsDBNull(reader("Date Added")), String.Empty, reader("Date Added").ToString())
+                        LblLastEdited.Text = If(IsDBNull(reader("Last Edited")), String.Empty, reader("Last Edited").ToString())
+                        LblEditBy.Text = If(IsDBNull(reader("Last User")), String.Empty, reader("Last User").ToString())
+                    End If
+                End Using
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("An error occurred: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            GlobalVars.ErrorLog = "An error occurred: " & ex.Message
+            Logger.LogErrors()
+        End Try
     End Sub
 
     Private Sub GTMenu_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing

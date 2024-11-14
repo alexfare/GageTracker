@@ -551,7 +551,7 @@ Public Class GTMenu
         BtnDelete.PerformClick()
     End Sub
 
-    Private Sub AdminMenuToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AdminMenuToolStripMenuItem.Click
+    Private Sub AdminToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AdminToolStripMenuItem.Click
         If My.Settings.isAdmin = True Then
             StartAdmin()
         Else
@@ -783,8 +783,6 @@ Public Class GTMenu
                         LblDateAdded.Text = If(IsDBNull(reader("Date Added")), String.Empty, reader("Date Added").ToString())
                         LblLastEdited.Text = If(IsDBNull(reader("Last Edited")), String.Empty, reader("Last Edited").ToString())
                         LblEditBy.Text = If(IsDBNull(reader("Last User")), String.Empty, reader("Last User").ToString())
-                    Else
-                        MessageBox.Show("No records found for the given GageID.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     End If
                 End Using
             End Using
@@ -853,5 +851,7 @@ Public Class GTMenu
             End If
         End If
     End Sub
+
+
 #End Region
 End Class

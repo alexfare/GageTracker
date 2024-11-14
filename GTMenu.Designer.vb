@@ -112,7 +112,6 @@ Partial Class GTMenu
         Me.UpdateGageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeleteGageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AdminToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AdminMenuToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SettingsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReportIssueToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -944,16 +943,9 @@ Partial Class GTMenu
         '
         'AdminToolStripMenuItem
         '
-        Me.AdminToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AdminMenuToolStripMenuItem})
         Me.AdminToolStripMenuItem.Name = "AdminToolStripMenuItem"
         Me.AdminToolStripMenuItem.Size = New System.Drawing.Size(55, 20)
         Me.AdminToolStripMenuItem.Text = "Admin"
-        '
-        'AdminMenuToolStripMenuItem
-        '
-        Me.AdminMenuToolStripMenuItem.Name = "AdminMenuToolStripMenuItem"
-        Me.AdminMenuToolStripMenuItem.Size = New System.Drawing.Size(144, 22)
-        Me.AdminMenuToolStripMenuItem.Text = "Admin Menu"
         '
         'SettingsToolStripMenuItem
         '
@@ -1120,7 +1112,6 @@ Partial Class GTMenu
     Friend WithEvents LblDateAdded As TextBox
     Friend WithEvents Label31 As Label
     Friend WithEvents Label30 As Label
-    Friend WithEvents AdminMenuToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents Panel4 As Panel
     Friend WithEvents Panel3 As Panel
     Friend WithEvents ViewToolStripMenuItem As ToolStripMenuItem

@@ -118,7 +118,7 @@ Partial Class StatusMenu
         Me.MaximizeBox = False
         Me.Name = "StatusMenu"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "GageTracker - StatusMenu"
+        Me.Text = "GageTracker - Status Menu"
         Me.TopMost = True
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()

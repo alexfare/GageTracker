@@ -25,6 +25,8 @@ Namespace My
                             Dim RequestedVersion = My.Settings.DatabaseVersion
 
                             If RequestedVersion < minVersion Then
+                                GlobalVars.ErrorLog = "Database out of date. Minimum Version"
+                                Logger.LogErrors()
                                 MessageBox.Show("Database out of date. Minimum Version: " & minVersion.ToString())
                             End If
                         End If
@@ -48,7 +50,6 @@ Namespace My
         End Sub
 
         Sub UpdateOpenCount()
-            ' Define the connection string for the database
             Dim connectionString As String = $"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={My.Settings.DatabaseLocation};Persist Security Info=False;"
             Dim getQuery As String = "SELECT [Number] FROM Settings WHERE SettingName = 'OpenCount'"
             Dim updateQuery As String = "UPDATE Settings SET [Number] = @NewCount WHERE SettingName = 'OpenCount'"

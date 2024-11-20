@@ -1,3 +1,11 @@
+v5.14.4.60
+Updated AdminMenu UI.
+Updated database controls on AdminMenu.
+Updated GageList, removing duplicate code.
+Updated GTMenu load menu.
+Updated StatusMenu error logging & title.
+ReportIssue system log updated.
+
 v5.14.3.59
 Fixed Program Open Count under ApplicationEvents (Likely broke since around v5.13.3.54).
 Added minimum database version check. (As of right now, It only warns the user. Can still use but may run into issues.)

@@ -52,6 +52,8 @@ Public Class StatusMenu
                 End If
             Catch ex As Exception
                 MessageBox.Show("An error occurred while checking for duplicate names: " & ex.Message)
+                GlobalVars.ErrorLog = "An error occurred while checking for duplicate names: " & ex.Message
+                Logger.LogErrors()
                 Return
             End Try
         End Using
@@ -68,7 +70,7 @@ Public Class StatusMenu
                     GlobalVars.SystemLog = txtStatus.Text + " status added successfully."
                     Logger.LogSystem()
                     Timer1.Enabled = True
-                    LoadStatus() 'Reload status list to include new data
+                    LoadStatus()
                 Catch ex As Exception
                     MessageBox.Show("An error occurred while adding new status: " & ex.Message)
                     GlobalVars.ErrorLog = "An error occurred while adding new status: " & ex.Message
@@ -104,9 +106,9 @@ Public Class StatusMenu
                         GlobalVars.SystemLog = txtStatus.Text + " status deleted successfully."
                         Logger.LogSystem()
                         Timer1.Enabled = True
-                        txtStatus.SelectedIndex = -1 'Reset the ComboBox selection
+                        txtStatus.SelectedIndex = -1
                         txtStatus.Text = ""
-                        LoadStatus() 'Reload status list to reflect the changes
+                        LoadStatus()
                     Else
                         StatusLabel.Text = "No records were deleted."
                         Timer1.Enabled = True

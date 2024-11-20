@@ -1,4 +1,5 @@
 ﻿Imports System.Data.OleDb
+Imports System.Net
 
 Public Class AdminMenu
     Dim connectionString As String
@@ -722,50 +723,6 @@ Public Class AdminMenu
         End Using
     End Sub
 
-    Private Sub BtnDatabasePath_Click(sender As Object, e As EventArgs) Handles BtnDatabasePath.Click
-        Dim fullPath As String = My.Settings.DatabaseLocation
-
-        If Not String.IsNullOrEmpty(fullPath) Then
-            Dim directoryPath As String = IO.Path.GetDirectoryName(fullPath)
-
-            If IO.Directory.Exists(directoryPath) Then
-                Process.Start("explorer.exe", directoryPath)
-            Else
-                MessageBox.Show("Directory does not exist: " & directoryPath, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                GlobalVars.ErrorLog = "Directory does not exist: " & directoryPath
-                Logger.LogErrors()
-            End If
-        Else
-            MessageBox.Show("Database location is not set.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            GlobalVars.ErrorLog = "Database location is not set."
-            Logger.LogErrors()
-        End If
-    End Sub
-
-    Private Sub BtnOpenDatabase_Click(sender As Object, e As EventArgs) Handles BtnOpenDatabase.Click
-        Dim fullPath As String = My.Settings.DatabaseLocation
-
-        If Not String.IsNullOrEmpty(fullPath) Then
-            If IO.File.Exists(fullPath) Then
-                Try
-                    Process.Start("msaccess.exe", """" & fullPath & """")
-                Catch ex As Exception
-                    MessageBox.Show("Failed to open the database in Access: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    GlobalVars.ErrorLog = "Failed to open the database in Access: " & ex.Message
-                    Logger.LogErrors()
-                End Try
-            Else
-                MessageBox.Show("Database file does not exist: " & fullPath, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                GlobalVars.ErrorLog = "Database file does not exist: " & fullPath
-                Logger.LogErrors()
-            End If
-        Else
-            MessageBox.Show("Database location is not set.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            GlobalVars.ErrorLog = "Database location is not set."
-            Logger.LogErrors()
-        End If
-    End Sub
-
     Private Sub TextContains_TextChanged(sender As Object, e As EventArgs) Handles txtPartNumber.TextChanged, txtDescription.TextChanged, TxtInterval.TextChanged, txtComments.TextChanged, cmbStatus.SelectedIndexChanged, txtDepartment.SelectedIndexChanged, txtGageType.SelectedIndexChanged, txtCustomer.SelectedIndexChanged, txtCalibratedBy.SelectedIndexChanged, DtInspectedDate.ValueChanged, dtDueDate.ValueChanged
         If SearchCheck = True Then
             ChangeDetected = True
@@ -825,5 +782,81 @@ Public Class AdminMenu
 
     Private Sub BtnGageType_Click(sender As Object, e As EventArgs) Handles BtnGageType.Click
         GageType.Show()
+    End Sub
+
+    Private Sub OpenDatabaseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenDatabaseToolStripMenuItem.Click
+        Dim fullPath As String = My.Settings.DatabaseLocation
+
+        If Not String.IsNullOrEmpty(fullPath) Then
+            If IO.File.Exists(fullPath) Then
+                Try
+                    Process.Start("msaccess.exe", """" & fullPath & """")
+                Catch ex As Exception
+                    MessageBox.Show("Failed to open the database in Access: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    GlobalVars.ErrorLog = "Failed to open the database in Access: " & ex.Message
+                    Logger.LogErrors()
+                End Try
+            Else
+                MessageBox.Show("Database file does not exist: " & fullPath, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                GlobalVars.ErrorLog = "Database file does not exist: " & fullPath
+                Logger.LogErrors()
+            End If
+        Else
+            MessageBox.Show("Database location is not set.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            GlobalVars.ErrorLog = "Database location is not set."
+            Logger.LogErrors()
+        End If
+    End Sub
+
+    Private Sub DatabasePathToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DatabasePathToolStripMenuItem.Click
+        Dim fullPath As String = My.Settings.DatabaseLocation
+
+        If Not String.IsNullOrEmpty(fullPath) Then
+            Dim directoryPath As String = IO.Path.GetDirectoryName(fullPath)
+
+            If IO.Directory.Exists(directoryPath) Then
+                Process.Start("explorer.exe", directoryPath)
+            Else
+                MessageBox.Show("Directory does not exist: " & directoryPath, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                GlobalVars.ErrorLog = "Directory does not exist: " & directoryPath
+                Logger.LogErrors()
+            End If
+        Else
+            MessageBox.Show("Database location is not set.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            GlobalVars.ErrorLog = "Database location is not set."
+            Logger.LogErrors()
+        End If
+    End Sub
+
+    Private Sub NewDatabaseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NewDatabaseToolStripMenuItem.Click
+        Dim saveDialog As New SaveFileDialog()
+        saveDialog.Filter = "Access Database Files (*.accdb)|*.accdb"
+        saveDialog.Title = "Save Database File"
+        saveDialog.FileName = "GTDatabase.accdb"
+
+        If saveDialog.ShowDialog() = DialogResult.OK Then
+            DownloadDatabase(saveDialog.FileName)
+        End If
+    End Sub
+
+    Private Sub DownloadDatabase(savePath As String)
+        Dim webClient As New WebClient()
+
+        Try
+            Dim downloadUrl As String = "https://alexfare.com/programs/gtdatabase/latest/GTDatabase.accdb"
+            webClient.DownloadFile(downloadUrl, savePath)
+            MessageBox.Show("Database downloaded complete.", "Download Complete", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            GlobalVars.SystemLog = "New database downloaded."
+            Logger.LogSystem()
+
+            GlobalVars.DatabaseLocation = savePath
+            GlobalVars.SaveDatabaseLocation(savePath)
+        Catch ex As Exception
+            MessageBox.Show("An error occurred while downloading the database: " & ex.Message, "Download Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            GlobalVars.ErrorLog = "An error occurred while downloading the database: " & ex.Message
+            Logger.LogErrors()
+        Finally
+            webClient.Dispose()
+        End Try
     End Sub
 End Class

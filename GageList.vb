@@ -28,7 +28,6 @@ Public Class GageList
 
         FilterSetup()
         MenuColor()
-        AddOpenCount()
     End Sub
 #End Region
 #Region "Misc"
@@ -64,6 +63,7 @@ Public Class GageList
         ApplyStatusFilter()
     End Sub
 #End Region
+
 #Region "Database"
     Public Sub LoadData(Optional filterQuery As String = "")
         If Not System.IO.File.Exists(GlobalVars.DatabaseLocation) Then
@@ -180,31 +180,8 @@ Public Class GageList
             End If
         End Using
     End Sub
-
-    Sub AddOpenCount()
-        Dim connectionString As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
-        Dim query As String = "UPDATE Settings SET [Number] = @OpenCount WHERE SettingName = 'OpenCount'"
-
-        Using connection As New OleDbConnection(connectionString)
-            Using command As New OleDbCommand(query, connection)
-                command.Parameters.AddWithValue("@OpenCount", My.Settings.ProgramOpenCount)
-
-                Try
-                    connection.Open()
-
-                Catch ex As Exception
-                    MessageBox.Show("An error occurred: " & ex.Message)
-                    GlobalVars.ErrorLog = "An error occurred: " & ex.Message
-                    Logger.LogErrors()
-                Finally
-                    If connection.State = ConnectionState.Open Then
-                        connection.Close()
-                    End If
-                End Try
-            End Using
-        End Using
-    End Sub
 #End Region
+
 #Region "DataGrid"
     Private Sub DataGridView1_RowPostPaint(sender As Object, e As DataGridViewRowPostPaintEventArgs) Handles DataGridView1.RowPostPaint ' Set Zebra striping
         Dim grid As DataGridView = CType(sender, DataGridView)
@@ -241,8 +218,8 @@ Public Class GageList
         End If
     End Sub
 #End Region
+
 #Region "Settings & Misc"
-    '/---- Settings & Misc ----/
     Private Sub CheckBoxShowAll_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxShowAll.CheckedChanged
         My.Settings.ShowAll = CheckBoxShowAll.Checked
         My.Settings.Save()
@@ -275,8 +252,8 @@ Public Class GageList
         End If
     End Sub
 #End Region
+
 #Region "Menu Toolbar Strip"
-    '/----- Menu Toolbar Strip -----/
     Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
         About.Show()
     End Sub
@@ -339,11 +316,11 @@ Public Class GageList
             StartLogin()
         End If
     End Sub
-
     Private Sub RefreshToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RefreshToolStripMenuItem.Click
         LoadData()
     End Sub
 #End Region
+
 #Region "Closing Actions"
     Private Sub MainForm_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         If isClosing Then

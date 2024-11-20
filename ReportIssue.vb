@@ -33,6 +33,8 @@ Public Class ReportIssue
         Try
             smtp.Send(mail)
             MessageBox.Show("Report sent successfully.")
+            GlobalVars.SystemLog = "Issue report has been sent."
+            Logger.LogSystem()
             Me.Close()
         Catch ex As Exception
             MessageBox.Show("Failed to send report. Error: " + ex.Message)

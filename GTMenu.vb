@@ -50,6 +50,7 @@ Public Class GTMenu
         GageList.ApplyStatusFilter()
     End Sub
 #End Region
+
 #Region "Load"
     Public Sub LoadGageID()
         Using conn As New OleDbConnection(connectionString)
@@ -242,6 +243,7 @@ Public Class GTMenu
         End Using
     End Sub
 #End Region
+
 #Region "GTMenu Buttons"
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
         If String.IsNullOrWhiteSpace(TxtGageID.Text) Then
@@ -483,7 +485,6 @@ Public Class GTMenu
     End Sub
 
     Private Sub BtnGageList_Click(sender As Object, e As EventArgs) Handles BtnGageList.Click
-        'Check if GageList is already open
         Dim isOpen As Boolean = False
         Dim openForm As Form = Nothing
         For Each frm As Form In Application.OpenForms
@@ -534,6 +535,7 @@ Public Class GTMenu
         txtaA5.Clear()
     End Sub
 #End Region
+
 #Region "MenuStrip"
     Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
         Me.Close()
@@ -604,6 +606,7 @@ Public Class GTMenu
         End Try
     End Sub
 #End Region
+
 #Region "Clear"
     Private Sub ClearReset()
         TxtGageID.SelectedIndex = -1
@@ -697,6 +700,7 @@ Public Class GTMenu
         UpdateChangeStatus()
     End Sub
 #End Region
+
 #Region "Misc"
     Private Sub TxtGageID_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtGageID.KeyDown
         If e.KeyCode = Keys.Enter Then
@@ -817,12 +821,9 @@ Public Class GTMenu
         Me.Text = originalTitle
     End Sub
 #End Region
-#Region "TextChanged"
-    Private Sub TxtInterval_TextChanged(sender As Object, e As EventArgs) Handles TxtInterval.TextChanged
-        UpdateDueDate()
-    End Sub
 
-    Private Sub DtInspectedDate_ValueChanged(sender As Object, e As EventArgs) Handles DtInspectedDate.ValueChanged
+#Region "TextChanged"
+    Private Sub UpdateDueDate_TextChanged(sender As Object, e As EventArgs) Handles TxtInterval.TextChanged, DtInspectedDate.ValueChanged
         UpdateDueDate()
     End Sub
 
@@ -836,6 +837,7 @@ Public Class GTMenu
     End Sub
 
 #End Region
+
 #Region "Closing Form"
     Private Sub GTMenu_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         If ChangeDetected = True Then
@@ -851,7 +853,5 @@ Public Class GTMenu
             End If
         End If
     End Sub
-
-
 #End Region
 End Class

@@ -7,9 +7,10 @@ Public Class AdminMenu
     Dim ChangeDetected As Boolean
     Dim GageSearch As String
     Private isClosing As Boolean = False
-    Dim originalTitle As String = "GageTracker - Menu"
+    Dim originalTitle As String = "GageTracker - Admin Menu"
     Public WithEvents Timer1 As New Timer With {.Interval = 3000, .Enabled = False}
 
+#Region "Admin Load"
     Private Async Sub AdminMenu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         StatusLabel.Text = ""
         connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
@@ -57,7 +58,9 @@ Public Class AdminMenu
             End If
         End If
     End Sub
+#End Region
 
+#Region "Buttons"
     Private Sub BtnAdminSearch_Click(sender As Object, e As EventArgs) Handles BtnAdminSearch.Click
         If String.IsNullOrWhiteSpace(TxtGageID.Text) Then
             MessageBox.Show("GageID cannot be blank. Please enter a valid GageID.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -130,16 +133,6 @@ Public Class AdminMenu
                 Logger.LogErrors()
             End Try
         End Using
-    End Sub
-
-    Private Sub DisableSearchControls()
-        TxtGageID.Enabled = False
-        BtnAdminSearch.Enabled = False
-    End Sub
-
-    Private Sub EnableSearchControls()
-        TxtGageID.Enabled = True
-        BtnAdminSearch.Enabled = True
     End Sub
 
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
@@ -286,59 +279,50 @@ Public Class AdminMenu
         End Using
     End Sub
 
-    Private Sub ClearReset()
-        TxtGageID.SelectedIndex = -1
-        TxtGageID.Text = ""
-        txtPartNumber.Clear()
-        txtPartRev.Clear()
-        cmbStatus.SelectedIndex = -1
-        cmbStatus.Text = ""
-        txtDescription.Clear()
-        txtDepartment.SelectedIndex = -1
-        txtDepartment.Text = ""
-        txtGageType.SelectedIndex = -1
-        txtGageType.Text = ""
-        txtCustomer.SelectedIndex = -1
-        txtCustomer.Text = ""
-        txtCalibratedBy.SelectedIndex = -1
-        txtCalibratedBy.Text = ""
-        TxtInterval.Clear()
-        txtComments.Clear()
-        TxtSerialNumber.Clear()
-        txtOwner.Clear()
-        TxtNistNumber.Clear()
-        DtInspectedDate.Value = DateTime.Now
-        dtDueDate.Value = DateTime.Now
-
-        'Clear Measurements
-        txtaN1.Clear()
-        txtaN2.Clear()
-        txtaN3.Clear()
-        txtaN4.Clear()
-        txtaN5.Clear()
-        txtaA1.Clear()
-        txtaA2.Clear()
-        txtaA3.Clear()
-        txtaA4.Clear()
-        txtaA5.Clear()
-
-        'Audit Log
-        LblDateAdded.Clear()
-        LblLastEdited.Clear()
-        LblEditBy.Clear()
-
-        SearchCheck = False
-        UpdateChangeStatus()
-        TxtGageID.Text = GageSearch
-        BtnAdminSearch.PerformClick()
-    End Sub
-
     Private Sub BtnDelete_Click(sender As Object, e As EventArgs) Handles BtnDelete.Click
         If SearchCheck = True Then
             DeleteConfirmed()
         Else
             MessageBox.Show("Please search for Gage record.")
         End If
+    End Sub
+
+    Private Sub BtnBack_Click(sender As Object, e As EventArgs) Handles BtnBack.Click
+        If My.Settings.FromList = True Then
+            My.Settings.FromList = False
+            Me.Close()
+        Else
+            GTMenu.Show()
+            Me.Close()
+        End If
+    End Sub
+
+    Private Sub btnCustomer_Click(sender As Object, e As EventArgs) Handles btnCustomer.Click
+        CustomerEntry.Show()
+    End Sub
+
+    Private Sub btnStatus_Click(sender As Object, e As EventArgs) Handles btnStatus.Click
+        StatusMenu.Show()
+    End Sub
+
+    Private Sub btnAccount_Click(sender As Object, e As EventArgs) Handles btnAccount.Click
+        AccountManagement.Show()
+    End Sub
+
+    Private Sub BtnGageType_Click(sender As Object, e As EventArgs) Handles BtnGageType.Click
+        GageType.Show()
+    End Sub
+#End Region
+
+#Region "Controls"
+    Private Sub DisableSearchControls()
+        TxtGageID.Enabled = False
+        BtnAdminSearch.Enabled = False
+    End Sub
+
+    Private Sub EnableSearchControls()
+        TxtGageID.Enabled = True
+        BtnAdminSearch.Enabled = True
     End Sub
 
     Private Sub DeleteConfirmed()
@@ -380,9 +364,60 @@ Public Class AdminMenu
         End If
     End Sub
 
-    '/---- CLEAR ----/'
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        StatusLabel.Text = ""  'Clear the text
+        Timer1.Enabled = False  'Stop the timer
+    End Sub
+
+    Private Sub TextContains_TextChanged(sender As Object, e As EventArgs) Handles txtPartNumber.TextChanged, txtDescription.TextChanged, TxtInterval.TextChanged, txtComments.TextChanged, cmbStatus.SelectedIndexChanged, txtDepartment.SelectedIndexChanged, txtGageType.SelectedIndexChanged, txtCustomer.SelectedIndexChanged, txtCalibratedBy.SelectedIndexChanged, DtInspectedDate.ValueChanged, dtDueDate.ValueChanged
+        If SearchCheck = True Then
+            ChangeDetected = True
+            Me.Text = "*" & originalTitle
+        Else
+            UpdateChangeStatus()
+        End If
+    End Sub
+
+    Private Sub UpdateChangeStatus()
+        ChangeDetected = False
+        Me.Text = originalTitle
+    End Sub
+
+    Private Sub SearchAuditLog()
+        Try
+            Using conn As New OleDbConnection(connectionString)
+                conn.Open()
+                Dim searchCmd As New OleDbCommand("SELECT [Date Added], [Last Edited], [Last User] FROM [CalibrationTracker] WHERE GageID = ?", conn)
+                searchCmd.Parameters.AddWithValue("@GageID", TxtGageID.Text)
+
+                Using reader As OleDbDataReader = searchCmd.ExecuteReader()
+                    If reader.HasRows Then
+                        reader.Read()
+                        LblDateAdded.Text = If(IsDBNull(reader("Date Added")), String.Empty, reader("Date Added").ToString())
+                        LblLastEdited.Text = If(IsDBNull(reader("Last Edited")), String.Empty, reader("Last Edited").ToString())
+                        LblEditBy.Text = If(IsDBNull(reader("Last User")), String.Empty, reader("Last User").ToString())
+                    End If
+                End Using
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("An error occurred: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            GlobalVars.ErrorLog = "An error occurred: " & ex.Message
+            Logger.LogErrors()
+        End Try
+    End Sub
+#End Region
+
+#Region "Clear"
     Private Sub BtnClear_Click(sender As Object, e As EventArgs) Handles BtnClear.Click
         ClearForms()
+    End Sub
+
+    Private Sub ClearReset()
+        GageSearch = TxtGageID.Text
+        ClearForms()
+        TxtGageID.Text = GageSearch
+        ReloadData()
+        BtnAdminSearch.PerformClick()
     End Sub
 
     Private Sub ClearForms()
@@ -445,17 +480,9 @@ Public Class AdminMenu
         txtaA4.Clear()
         txtaA5.Clear()
     End Sub
+#End Region
 
-    Private Sub BtnBack_Click(sender As Object, e As EventArgs) Handles BtnBack.Click
-        If My.Settings.FromList = True Then
-            My.Settings.FromList = False
-            Me.Close()
-        Else
-            GTMenu.Show()
-            Me.Close()
-        End If
-    End Sub
-
+#Region "Menu Strip"
     Private Sub LogoutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LogoutToolStripMenuItem.Click
         My.Settings.isAdmin = False
         GageList.MenuColor()
@@ -467,18 +494,6 @@ Public Class AdminMenu
             GTMenu.Show()
             Me.Close()
         End If
-    End Sub
-
-    Private Sub btnCustomer_Click(sender As Object, e As EventArgs) Handles btnCustomer.Click
-        CustomerEntry.Show()
-    End Sub
-
-    Private Sub btnStatus_Click(sender As Object, e As EventArgs) Handles btnStatus.Click
-        StatusMenu.Show()
-    End Sub
-
-    Private Sub btnAccount_Click(sender As Object, e As EventArgs) Handles btnAccount.Click
-        AccountManagement.Show()
     End Sub
 
     Private Sub CloseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CloseToolStripMenuItem.Click
@@ -501,21 +516,13 @@ Public Class AdminMenu
         Me.Close()
     End Sub
 
-    Private Sub ChangeDatabaseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ChangeDatabaseToolStripMenuItem.Click
-        Using openFileDialog As New OpenFileDialog()
-            openFileDialog.InitialDirectory = "C:\"
-            openFileDialog.Filter = "Access Database Files (*.accdb)|*.accdb"
-            openFileDialog.FilterIndex = 1
-            openFileDialog.RestoreDirectory = True
-
-            If openFileDialog.ShowDialog() = DialogResult.OK Then
-                GlobalVars.DatabaseLocation = openFileDialog.FileName
-                GlobalVars.SaveDatabaseLocation(GlobalVars.DatabaseLocation)
-            End If
-        End Using
+    Private Sub DueDateCalenderToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DueDateCalenderToolStripMenuItem.Click
+        Me.Close()
+        DueDateCategorizer.Show()
     End Sub
+#End Region
 
-    '/----- MENU -----/'
+#Region "Load"
     Public Sub LoadGageID()
         Using conn As New OleDbConnection(connectionString)
             Try
@@ -685,11 +692,6 @@ Public Class AdminMenu
         End Using
     End Sub
 
-    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-        StatusLabel.Text = ""  'Clear the text
-        Timer1.Enabled = False  'Stop the timer
-    End Sub
-
     Public Sub LoadUser()
         Using conn As New OleDbConnection(connectionString)
             Try
@@ -722,68 +724,9 @@ Public Class AdminMenu
             End Try
         End Using
     End Sub
+#End Region
 
-    Private Sub TextContains_TextChanged(sender As Object, e As EventArgs) Handles txtPartNumber.TextChanged, txtDescription.TextChanged, TxtInterval.TextChanged, txtComments.TextChanged, cmbStatus.SelectedIndexChanged, txtDepartment.SelectedIndexChanged, txtGageType.SelectedIndexChanged, txtCustomer.SelectedIndexChanged, txtCalibratedBy.SelectedIndexChanged, DtInspectedDate.ValueChanged, dtDueDate.ValueChanged
-        If SearchCheck = True Then
-            ChangeDetected = True
-            Me.Text = "*" & originalTitle
-        Else
-            UpdateChangeStatus()
-        End If
-    End Sub
-
-    Private Sub UpdateChangeStatus()
-        ChangeDetected = False
-        Me.Text = originalTitle
-    End Sub
-
-    Private Sub DueDateCalenderToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DueDateCalenderToolStripMenuItem.Click
-        Me.Close()
-        DueDateCategorizer.Show()
-    End Sub
-
-    Private Sub SearchAuditLog()
-        Try
-            Using conn As New OleDbConnection(connectionString)
-                conn.Open()
-                Dim searchCmd As New OleDbCommand("SELECT [Date Added], [Last Edited], [Last User] FROM [CalibrationTracker] WHERE GageID = ?", conn)
-                searchCmd.Parameters.AddWithValue("@GageID", TxtGageID.Text)
-
-                Using reader As OleDbDataReader = searchCmd.ExecuteReader()
-                    If reader.HasRows Then
-                        reader.Read()
-                        LblDateAdded.Text = If(IsDBNull(reader("Date Added")), String.Empty, reader("Date Added").ToString())
-                        LblLastEdited.Text = If(IsDBNull(reader("Last Edited")), String.Empty, reader("Last Edited").ToString())
-                        LblEditBy.Text = If(IsDBNull(reader("Last User")), String.Empty, reader("Last User").ToString())
-                    End If
-                End Using
-            End Using
-        Catch ex As Exception
-            MessageBox.Show("An error occurred: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            GlobalVars.ErrorLog = "An error occurred: " & ex.Message
-            Logger.LogErrors()
-        End Try
-    End Sub
-
-    Private Sub GTMenu_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
-        If ChangeDetected = True Then
-            If isClosing Then
-                Return
-            End If
-
-            If MessageBox.Show("Changes have not been saved. Any unsaved changes will be lost. Do you want to exit without saving?", "Exit", MessageBoxButtons.YesNo) = DialogResult.Yes Then
-                isClosing = True
-                Me.Close()
-            Else
-                e.Cancel = True
-            End If
-        End If
-    End Sub
-
-    Private Sub BtnGageType_Click(sender As Object, e As EventArgs) Handles BtnGageType.Click
-        GageType.Show()
-    End Sub
-
+#Region "Database"
     Private Sub OpenDatabaseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenDatabaseToolStripMenuItem.Click
         Dim fullPath As String = My.Settings.DatabaseLocation
 
@@ -859,4 +802,37 @@ Public Class AdminMenu
             webClient.Dispose()
         End Try
     End Sub
+
+    Private Sub ChangeDatabaseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ChangeDatabaseToolStripMenuItem.Click
+        Using openFileDialog As New OpenFileDialog()
+            openFileDialog.InitialDirectory = "C:\"
+            openFileDialog.Filter = "Access Database Files (*.accdb)|*.accdb"
+            openFileDialog.FilterIndex = 1
+            openFileDialog.RestoreDirectory = True
+
+            If openFileDialog.ShowDialog() = DialogResult.OK Then
+                GlobalVars.DatabaseLocation = openFileDialog.FileName
+                GlobalVars.SaveDatabaseLocation(GlobalVars.DatabaseLocation)
+            End If
+        End Using
+    End Sub
+#End Region
+
+#Region "Closing Form"
+    Private Sub GTMenu_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        If ChangeDetected = True Then
+            If isClosing Then
+                Return
+            End If
+
+            If MessageBox.Show("Changes have not been saved. Any unsaved changes will be lost. Do you want to exit without saving?", "Exit", MessageBoxButtons.YesNo) = DialogResult.Yes Then
+                isClosing = True
+                Me.Close()
+            Else
+                e.Cancel = True
+            End If
+        End If
+    End Sub
+#End Region
+
 End Class

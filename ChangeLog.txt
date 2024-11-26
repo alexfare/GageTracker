@@ -1,3 +1,9 @@
+v5.14.5.61
+Updated Exit Confirmation, Added a do not ask.
+Updated how GTMenu handles clearing after updating gage. (Fixed the same issue from v5.14.2.58, This keeps reappearing in various different ways. Please report within GageTracker if you experience this issue still.)
+Updated AdminMenu, Same issue as GTMenu.
+Updated AdminMenu organization.
+
 v5.14.4.60
 Updated AdminMenu UI.
 Updated database controls on AdminMenu.

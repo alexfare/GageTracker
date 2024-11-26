@@ -30,6 +30,7 @@ Public Class GageList
         MenuColor()
     End Sub
 #End Region
+
 #Region "Misc"
     Private Sub TextContains_TextChanged(sender As Object, e As EventArgs) Handles TextContains.TextChanged
         Dim selectedColumn As String = CmbContains.SelectedItem.ToString()
@@ -60,7 +61,6 @@ Public Class GageList
         CmbContains.Items.AddRange(New String() {"GageID", "Status", "PartNumber", "Description", "Department", "Gage Type", "Customer", "Inspected Date", "Due Date", "Comments"})
         CmbContains.SelectedIndex = 0
         CheckBoxShowAll.Checked = My.Settings.ShowAll
-        ApplyStatusFilter()
     End Sub
 #End Region
 
@@ -318,6 +318,7 @@ Public Class GageList
     End Sub
     Private Sub RefreshToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RefreshToolStripMenuItem.Click
         LoadData()
+        FilterSetup()
     End Sub
 #End Region
 
@@ -327,24 +328,34 @@ Public Class GageList
             Return
         End If
 
-        If MessageBox.Show("Are you sure you want to exit?", "Exit", MessageBoxButtons.YesNo) = DialogResult.Yes Then
-            isClosing = True
+        If My.Settings.ExitConfirmation = True Then
+            PerformExitTasks()
+            Return
+        End If
 
-            'Ensure all forms are closed
-            Dim openForms As New List(Of Form)(Application.OpenForms.Cast(Of Form)())
-            For Each frm As Form In openForms
-                frm.Close()
-            Next
-
-            My.Settings.LastActivity = GlobalVars.LastActivity
-            My.Settings.isAdmin = False
-            My.Settings.LoggedUser = ""
-            My.Settings.Save()
-
-            Application.Exit()
+        Dim confirmForm As New ExitConfirmationForm
+        Dim result = confirmForm.ShowDialog()
+        If result = DialogResult.Yes Then
+            PerformExitTasks()
         Else
             e.Cancel = True
         End If
+    End Sub
+
+    Private Sub PerformExitTasks()
+        isClosing = True
+
+        Dim openForms As New List(Of Form)(Application.OpenForms.Cast(Of Form)())
+        For Each frm As Form In openForms
+            frm.Close()
+        Next
+
+        My.Settings.LastActivity = GlobalVars.LastActivity
+        My.Settings.isAdmin = False
+        My.Settings.LoggedUser = ""
+        My.Settings.Save()
+
+        Application.Exit()
     End Sub
 #End Region
 End Class

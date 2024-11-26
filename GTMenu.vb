@@ -609,49 +609,10 @@ Public Class GTMenu
 
 #Region "Clear"
     Private Sub ClearReset()
-        TxtGageID.SelectedIndex = -1
-        TxtGageID.Text = ""
-        txtPartNumber.Clear()
-        txtPartRev.Clear()
-        cmbStatus.SelectedIndex = -1
-        cmbStatus.Text = ""
-        txtDescription.Clear()
-        txtDepartment.SelectedIndex = -1
-        txtDepartment.Text = ""
-        txtGageType.SelectedIndex = -1
-        txtGageType.Text = ""
-        txtCustomer.SelectedIndex = -1
-        txtCustomer.Text = ""
-        txtCalibratedBy.SelectedIndex = -1
-        txtCalibratedBy.Text = ""
-        TxtInterval.Clear()
-        txtComments.Clear()
-        TxtSerialNumber.Clear()
-        txtOwner.Clear()
-        TxtNistNumber.Clear()
-        DtInspectedDate.Value = DateTime.Now
-        dtDueDate.Value = DateTime.Now
-
-        'Clear Measurements
-        txtaN1.Clear()
-        txtaN2.Clear()
-        txtaN3.Clear()
-        txtaN4.Clear()
-        txtaN5.Clear()
-        txtaA1.Clear()
-        txtaA2.Clear()
-        txtaA3.Clear()
-        txtaA4.Clear()
-        txtaA5.Clear()
-
-        'Audit Log
-        LblDateAdded.Clear()
-        LblLastEdited.Clear()
-        LblEditBy.Clear()
-
-        SearchCheck = False
-        UpdateChangeStatus()
+        GageSearch = TxtGageID.Text
+        ClearForms()
         TxtGageID.Text = GageSearch
+        ReloadData()
         BtnSearch.PerformClick()
     End Sub
 

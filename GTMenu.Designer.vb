@@ -497,20 +497,20 @@ Partial Class GTMenu
         'LblSerial
         '
         Me.LblSerial.AutoSize = True
-        Me.LblSerial.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LblSerial.Location = New System.Drawing.Point(8, 6)
+        Me.LblSerial.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LblSerial.Location = New System.Drawing.Point(22, 6)
         Me.LblSerial.Name = "LblSerial"
-        Me.LblSerial.Size = New System.Drawing.Size(90, 13)
+        Me.LblSerial.Size = New System.Drawing.Size(76, 13)
         Me.LblSerial.TabIndex = 6
         Me.LblSerial.Text = "Serial Number:"
         '
         'Label27
         '
         Me.Label27.AutoSize = True
-        Me.Label27.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label27.Location = New System.Drawing.Point(51, 58)
+        Me.Label27.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label27.Location = New System.Drawing.Point(57, 58)
         Me.Label27.Name = "Label27"
-        Me.Label27.Size = New System.Drawing.Size(47, 13)
+        Me.Label27.Size = New System.Drawing.Size(41, 13)
         Me.Label27.TabIndex = 10
         Me.Label27.Text = "Owner:"
         '
@@ -538,10 +538,10 @@ Partial Class GTMenu
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label13.Location = New System.Drawing.Point(11, 32)
+        Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label13.Location = New System.Drawing.Point(23, 32)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(87, 13)
+        Me.Label13.Size = New System.Drawing.Size(75, 13)
         Me.Label13.TabIndex = 8
         Me.Label13.Text = "NIST Number:"
         '
@@ -577,10 +577,10 @@ Partial Class GTMenu
         'Label28
         '
         Me.Label28.AutoSize = True
-        Me.Label28.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label28.Location = New System.Drawing.Point(20, 6)
+        Me.Label28.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label28.Location = New System.Drawing.Point(31, 6)
         Me.Label28.Name = "Label28"
-        Me.Label28.Size = New System.Drawing.Size(78, 13)
+        Me.Label28.Size = New System.Drawing.Size(67, 13)
         Me.Label28.TabIndex = 0
         Me.Label28.Text = "Date Added:"
         '
@@ -595,20 +595,20 @@ Partial Class GTMenu
         'Label30
         '
         Me.Label30.AutoSize = True
-        Me.Label30.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label30.Location = New System.Drawing.Point(23, 32)
+        Me.Label30.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label30.Location = New System.Drawing.Point(35, 32)
         Me.Label30.Name = "Label30"
-        Me.Label30.Size = New System.Drawing.Size(75, 13)
+        Me.Label30.Size = New System.Drawing.Size(63, 13)
         Me.Label30.TabIndex = 2
         Me.Label30.Text = "Last Edited:"
         '
         'Label31
         '
         Me.Label31.AutoSize = True
-        Me.Label31.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label31.Location = New System.Drawing.Point(5, 58)
+        Me.Label31.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label31.Location = New System.Drawing.Point(20, 58)
         Me.Label31.Name = "Label31"
-        Me.Label31.Size = New System.Drawing.Size(93, 13)
+        Me.Label31.Size = New System.Drawing.Size(78, 13)
         Me.Label31.TabIndex = 3
         Me.Label31.Text = "Last Edited By:"
         '
@@ -686,10 +686,10 @@ Partial Class GTMenu
         'Label16
         '
         Me.Label16.AutoSize = True
-        Me.Label16.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label16.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label16.Location = New System.Drawing.Point(109, 13)
         Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(56, 13)
+        Me.Label16.Size = New System.Drawing.Size(48, 13)
         Me.Label16.TabIndex = 3
         Me.Label16.Text = "Nominal:"
         '
@@ -703,10 +703,10 @@ Partial Class GTMenu
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label14.Location = New System.Drawing.Point(9, 32)
+        Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label14.Location = New System.Drawing.Point(22, 32)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(78, 13)
+        Me.Label14.Size = New System.Drawing.Size(65, 13)
         Me.Label14.TabIndex = 0
         Me.Label14.Text = "Attribute #1:"
         '
@@ -727,10 +727,10 @@ Partial Class GTMenu
         'Label25
         '
         Me.Label25.AutoSize = True
-        Me.Label25.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label25.Location = New System.Drawing.Point(9, 136)
+        Me.Label25.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label25.Location = New System.Drawing.Point(22, 136)
         Me.Label25.Name = "Label25"
-        Me.Label25.Size = New System.Drawing.Size(78, 13)
+        Me.Label25.Size = New System.Drawing.Size(65, 13)
         Me.Label25.TabIndex = 19
         Me.Label25.Text = "Attribute #5:"
         '
@@ -769,10 +769,10 @@ Partial Class GTMenu
         'Label18
         '
         Me.Label18.AutoSize = True
-        Me.Label18.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label18.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label18.Location = New System.Drawing.Point(208, 13)
         Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(47, 13)
+        Me.Label18.Size = New System.Drawing.Size(40, 13)
         Me.Label18.TabIndex = 6
         Me.Label18.Text = "Actual:"
         '
@@ -786,20 +786,20 @@ Partial Class GTMenu
         'Label19
         '
         Me.Label19.AutoSize = True
-        Me.Label19.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label19.Location = New System.Drawing.Point(9, 58)
+        Me.Label19.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label19.Location = New System.Drawing.Point(22, 58)
         Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(78, 13)
+        Me.Label19.Size = New System.Drawing.Size(65, 13)
         Me.Label19.TabIndex = 7
         Me.Label19.Text = "Attribute #2:"
         '
         'Label23
         '
         Me.Label23.AutoSize = True
-        Me.Label23.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label23.Location = New System.Drawing.Point(9, 110)
+        Me.Label23.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label23.Location = New System.Drawing.Point(22, 110)
         Me.Label23.Name = "Label23"
-        Me.Label23.Size = New System.Drawing.Size(78, 13)
+        Me.Label23.Size = New System.Drawing.Size(65, 13)
         Me.Label23.TabIndex = 15
         Me.Label23.Text = "Attribute #4:"
         '
@@ -852,10 +852,10 @@ Partial Class GTMenu
         'Label21
         '
         Me.Label21.AutoSize = True
-        Me.Label21.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label21.Location = New System.Drawing.Point(9, 84)
+        Me.Label21.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label21.Location = New System.Drawing.Point(22, 84)
         Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(78, 13)
+        Me.Label21.Size = New System.Drawing.Size(65, 13)
         Me.Label21.TabIndex = 11
         Me.Label21.Text = "Attribute #3:"
         '

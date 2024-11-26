@@ -25,3 +25,4 @@ C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\obj\Deb
 C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\obj\Debug\GageTracker.exe
 C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\obj\Debug\GageTracker.xml
 C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\obj\Debug\GageTracker.pdb
+C:\Users\alex.fare\OneDrive\!Projects\VisualBasic\GageCalibrationTracker\obj\Debug\GageCalibrationTracker.ExitConfirmationForm.resources

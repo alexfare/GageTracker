@@ -127,7 +127,7 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("v5.14.5.61")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("v5.15.0.62")>  _
         Public ReadOnly Property VersionString() As String
             Get
                 Return CType(Me("VersionString"),String)
@@ -240,6 +240,18 @@ Namespace My
             End Get
             Set
                 Me("ExitConfirmation") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property ReportLog() As Boolean
+            Get
+                Return CType(Me("ReportLog"),Boolean)
+            End Get
+            Set
+                Me("ReportLog") = value
             End Set
         End Property
     End Class

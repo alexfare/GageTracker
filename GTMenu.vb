@@ -7,6 +7,7 @@ Public Class GTMenu
     Private ChangeDetected As Boolean
     Private GageSearch As String
     Private isClosing As Boolean = False
+    Private saveString As String
     Dim originalTitle As String = "GageTracker - Menu"
     Public WithEvents Timer1 As New Timer With {.Interval = 3000, .Enabled = False}
 
@@ -296,8 +297,7 @@ Public Class GTMenu
                     addCmd.Parameters.AddWithValue("@NistNumber", TxtNistNumber.Text)
                     addCmd.Parameters.Add(New OleDbParameter("@DateAdded", OleDbType.Date)).Value = dateAdded
                     addCmd.ExecuteNonQuery()
-                    StatusLabel.Text = "Gage added successfully"
-                    Timer1.Enabled = True
+                    ShowStatus("Gage added successfully", False)
                     ReloadData()
                     BtnClear.PerformClick()
                     GlobalVars.LastActivity = TxtGageID.Text + " added successfully"
@@ -323,6 +323,18 @@ Public Class GTMenu
             Return
         End If
 
+        If ChangeDetected = True Then
+            If MessageBox.Show("Changes detected! Any unsaved changes will be lost. Do you want to perform a new search?", "Exit", MessageBoxButtons.YesNo) = DialogResult.Yes Then
+                SearchHandler()
+            Else
+                TxtGageID.Text = saveString
+            End If
+        Else
+            SearchHandler()
+        End If
+    End Sub
+
+    Private Sub SearchHandler()
         Using conn As New OleDbConnection(connectionString)
             Try
                 conn.Open()
@@ -377,6 +389,7 @@ Public Class GTMenu
                         Logger.SaveLogEntry()
 
                         SearchCheck = True
+                        saveString = TxtGageID.Text
                     Else
                         MessageBox.Show("GageID does not exist", "Search Result", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     End If
@@ -395,7 +408,11 @@ Public Class GTMenu
 
     Private Sub BtnUpdate_Click(sender As Object, e As EventArgs) Handles BtnUpdate.Click
         If SearchCheck = True Then
-            BtnUpdateConfirmed()
+            If ChangeDetected = True Then
+                BtnUpdateConfirmed()
+            Else
+                ShowStatus("No updates detected.", False)
+            End If
         Else
             MessageBox.Show("Please search for Gage record.")
         End If
@@ -454,11 +471,8 @@ Public Class GTMenu
                 GlobalVars.LastActivity = TxtGageID.Text + " updated successfully."
                 Logger.SaveLogEntry()
 
-                'Status
-                StatusLabel.Text = "Gage updated successfully"
-                Timer1.Enabled = True
-
                 'Subs
+                ShowStatus("Gage updated successfully", False)
                 UpdateChangeStatus()
                 ReloadData()
                 ClearReset()
@@ -781,6 +795,12 @@ Public Class GTMenu
         ChangeDetected = False
         Me.Text = originalTitle
     End Sub
+
+    Private Sub ShowStatus(message As String, isError As Boolean)
+        StatusLabel.ForeColor = If(isError, Color.Red, Color.Green)
+        StatusLabel.Text = message
+        Timer1.Enabled = True
+    End Sub
 #End Region
 
 #Region "TextChanged"
@@ -788,7 +808,7 @@ Public Class GTMenu
         UpdateDueDate()
     End Sub
 
-    Private Sub TextContains_TextChanged(sender As Object, e As EventArgs) Handles txtPartNumber.TextChanged, txtDescription.TextChanged, TxtInterval.TextChanged, txtComments.TextChanged, cmbStatus.SelectedIndexChanged, txtDepartment.SelectedIndexChanged, txtGageType.SelectedIndexChanged, txtCustomer.SelectedIndexChanged, txtCalibratedBy.SelectedIndexChanged, DtInspectedDate.ValueChanged, dtDueDate.ValueChanged
+    Private Sub TextContains_TextChanged(sender As Object, e As EventArgs) Handles txtPartNumber.TextChanged, txtDescription.TextChanged, TxtInterval.TextChanged, txtComments.TextChanged, cmbStatus.SelectedIndexChanged, txtDepartment.SelectedIndexChanged, txtGageType.SelectedIndexChanged, txtCustomer.SelectedIndexChanged, txtCalibratedBy.SelectedIndexChanged, DtInspectedDate.ValueChanged, dtDueDate.ValueChanged, TxtSerialNumber.TextChanged, TxtNistNumber.TextChanged, txtOwner.TextChanged, txtaN1.TextChanged, txtaN2.TextChanged, txtaN3.TextChanged, txtaN4.TextChanged, txtaN5.TextChanged, txtaA1.TextChanged, txtaA2.TextChanged, txtaA3.TextChanged, txtaA4.TextChanged, txtaA5.TextChanged
         If SearchCheck = True Then
             ChangeDetected = True
             Me.Text = "*" & originalTitle

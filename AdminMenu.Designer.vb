@@ -411,6 +411,7 @@ Partial Class AdminMenu
         '
         Me.TxtCurrentUser.Location = New System.Drawing.Point(12, 19)
         Me.TxtCurrentUser.Name = "TxtCurrentUser"
+        Me.TxtCurrentUser.ReadOnly = True
         Me.TxtCurrentUser.Size = New System.Drawing.Size(126, 20)
         Me.TxtCurrentUser.TabIndex = 9
         '
@@ -418,6 +419,7 @@ Partial Class AdminMenu
         '
         Me.TxtOpenCount.Location = New System.Drawing.Point(9, 136)
         Me.TxtOpenCount.Name = "TxtOpenCount"
+        Me.TxtOpenCount.ReadOnly = True
         Me.TxtOpenCount.Size = New System.Drawing.Size(126, 20)
         Me.TxtOpenCount.TabIndex = 7
         '
@@ -425,6 +427,7 @@ Partial Class AdminMenu
         '
         Me.TxtLastActivity.Location = New System.Drawing.Point(9, 58)
         Me.TxtLastActivity.Name = "TxtLastActivity"
+        Me.TxtLastActivity.ReadOnly = True
         Me.TxtLastActivity.Size = New System.Drawing.Size(126, 20)
         Me.TxtLastActivity.TabIndex = 3
         '
@@ -432,6 +435,7 @@ Partial Class AdminMenu
         '
         Me.TxtLastOpened.Location = New System.Drawing.Point(9, 97)
         Me.TxtLastOpened.Name = "TxtLastOpened"
+        Me.TxtLastOpened.ReadOnly = True
         Me.TxtLastOpened.Size = New System.Drawing.Size(126, 20)
         Me.TxtLastOpened.TabIndex = 5
         '

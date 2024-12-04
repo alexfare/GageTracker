@@ -51,7 +51,6 @@ Public Class GageList
 
     Private Sub BtnMenu_Click(sender As Object, e As EventArgs) Handles BtnMenu.Click
         GTMenu.Show()
-        GTMenu.LoadGageID()
     End Sub
 
     Private Sub FilterSetup()
@@ -302,7 +301,6 @@ Public Class GageList
     Private Sub MenuToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MenuToolStripMenuItem.Click
         My.Settings.SelectedGage = ""
         GTMenu.Show()
-        GTMenu.LoadGageID()
     End Sub
 
     Private Sub ReportIssueToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ReportIssueToolStripMenuItem.Click

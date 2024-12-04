@@ -369,7 +369,7 @@ Public Class AdminMenu
         Timer1.Enabled = False  'Stop the timer
     End Sub
 
-    Private Sub TextContains_TextChanged(sender As Object, e As EventArgs) Handles txtPartNumber.TextChanged, txtDescription.TextChanged, TxtInterval.TextChanged, txtComments.TextChanged, cmbStatus.SelectedIndexChanged, txtDepartment.SelectedIndexChanged, txtGageType.SelectedIndexChanged, txtCustomer.SelectedIndexChanged, txtCalibratedBy.SelectedIndexChanged, DtInspectedDate.ValueChanged, dtDueDate.ValueChanged
+    Private Sub TextContains_TextChanged(sender As Object, e As EventArgs) Handles txtPartNumber.TextChanged, txtDescription.TextChanged, TxtInterval.TextChanged, txtComments.TextChanged, cmbStatus.SelectedIndexChanged, txtDepartment.SelectedIndexChanged, txtGageType.SelectedIndexChanged, txtCustomer.SelectedIndexChanged, txtCalibratedBy.SelectedIndexChanged, DtInspectedDate.ValueChanged, dtDueDate.ValueChanged, TxtSerialNumber.TextChanged, TxtNistNumber.TextChanged, txtOwner.TextChanged, txtaN1.TextChanged, txtaN2.TextChanged, txtaN3.TextChanged, txtaN4.TextChanged, txtaN5.TextChanged, txtaA1.TextChanged, txtaA2.TextChanged, txtaA3.TextChanged, txtaA4.TextChanged, txtaA5.TextChanged
         If SearchCheck = True Then
             ChangeDetected = True
             Me.Text = "*" & originalTitle

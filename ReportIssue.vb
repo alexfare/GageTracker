@@ -13,6 +13,10 @@ Public Class ReportIssue
             Return
         End If
 
+        ManualReportHandler()
+    End Sub
+
+    Private Sub ManualReportHandler()
         Dim mail As New MailMessage()
         mail.From = New MailAddress(My.Settings.ReportSendFrom)
         mail.To.Add(My.Settings.ReportSendTo)
@@ -22,7 +26,7 @@ Public Class ReportIssue
             $"Comment: {txtComment.Text}" + Environment.NewLine +
             $"Version: {My.Settings.VersionString}"
 
-        Dim ZGVjcnlwdGVkUGFzc3dvcmQ = CredentialsManager.GetDecryptedPassword
+        Dim ZGVjcnlwdGVkUGFzc3dvcmQ = SecureHandler.GetDecryptedPassword
         Dim ReportAuth As String = ZGVjcnlwdGVkUGFzc3dvcmQ
         Dim smtp As New SmtpClient("smtp.gmail.com")
         smtp.Port = My.Settings.ReportAuth
@@ -41,6 +45,10 @@ Public Class ReportIssue
             GlobalVars.ErrorLog = "Failed to send report. Error: " + ex.Message
             Logger.LogErrors()
         End Try
+    End Sub
+
+    Public Sub AutoReportHandler()
+        'WIP - Removed until testing is ready.
     End Sub
 
     Private Sub btnBack_Click(sender As Object, e As EventArgs) Handles btnBack.Click

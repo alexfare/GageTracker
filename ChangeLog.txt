@@ -1,3 +1,14 @@
+v5.15.0.62
+Updated how GageList opening forms is handled.
+Updated how GTMenu handles Status display.
+Updated how GageTracker handles data processing.
+Updated GTMenu Change detection.
+Added Safe Search, This will check for changes before performing a new search.
+Added Update check, This will now detect changes rather than updating when no changes were performed.
+Updated AdminMenu Change detection.
+Fixed AdminMenu Audit tab items not being read only.
+Updated ReportIssue form, Adding Manual and Auto Reports. (This is a WIP).
+
 v5.14.5.61
 Updated Exit Confirmation, Added a do not ask.
 Updated how GTMenu handles clearing after updating gage. (Fixed the same issue from v5.14.2.58, This keeps reappearing in various different ways. Please report within GageTracker if you experience this issue still.)

@@ -2,12 +2,11 @@
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel
 
 Public Class StatusMenu
-    Dim connectionString As String
+    Dim connectionString As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
     Dim insertQuery As String = "INSERT INTO Status (Status) VALUES (@Status)"
 
     Private Sub Menu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         StatusLabel.Text = ""
-        connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
         LoadStatus()
     End Sub
 
@@ -30,14 +29,12 @@ Public Class StatusMenu
     End Sub
 
     Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
-        'Check for blank Status name
         If String.IsNullOrWhiteSpace(txtStatus.Text) Then
             StatusLabel.Text = "Status Name cannot be blank."
             Timer1.Enabled = True
             Return
         End If
 
-        'Check for duplicate status name
         Using checkConn As New OleDbConnection(connectionString)
             Dim checkCmd As New OleDbCommand("SELECT COUNT(*) FROM Status WHERE Status = @Name", checkConn)
             checkCmd.Parameters.AddWithValue("@Name", txtStatus.Text)
@@ -58,7 +55,6 @@ Public Class StatusMenu
             End Try
         End Using
 
-        'Proceed with adding new status
         Using connection As New OleDbConnection(connectionString)
             Using command As New OleDbCommand(insertQuery, connection)
                 command.Parameters.AddWithValue("@Name", txtStatus.Text)

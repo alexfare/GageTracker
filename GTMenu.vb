@@ -1,7 +1,7 @@
 ﻿Imports System.Data.OleDb
 
 Public Class GTMenu
-    Private connectionString As String
+    Private connectionString As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
     Private SearchCheck As Boolean
     Private activeUser As String
     Private ChangeDetected As Boolean
@@ -13,7 +13,6 @@ Public Class GTMenu
 
 #Region "GTMenu Load"
     Private Async Sub Menu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        SetupConnectionString()
         SetupUI()
 
         DisableSearchControls() 'Disable search controls
@@ -31,10 +30,6 @@ Public Class GTMenu
             TxtGageID.SelectedItem = My.Settings.SelectedGage
             BtnSearch_Click(Me, EventArgs.Empty)
         End If
-    End Sub
-
-    Private Sub SetupConnectionString()
-        connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
     End Sub
 
     Private Sub SetupUI()
@@ -487,7 +482,15 @@ Public Class GTMenu
     End Sub
 
     Private Sub BtnClear_Click(sender As Object, e As EventArgs) Handles BtnClear.Click
-        ClearForms()
+        If ChangeDetected = True Then
+            If MessageBox.Show("Changes have been detected. Unsaved changes will be lost. Are you sure you want to proceed with clearing?", "Exit", MessageBoxButtons.YesNo) = DialogResult.Yes Then
+                ClearForms()
+            Else
+                TxtGageID.Text = saveString
+            End If
+        Else
+            ClearForms()
+        End If
     End Sub
 
     Private Sub BtnAdmin_Click(sender As Object, e As EventArgs) Handles BtnAdmin.Click

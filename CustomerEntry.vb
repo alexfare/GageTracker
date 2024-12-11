@@ -3,12 +3,11 @@ Imports System.Data.OleDb
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel
 
 Public Class CustomerEntry
-    Dim connectionString As String
+    Dim connectionString As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
     Dim insertQuery As String = "INSERT INTO Customers (CustomerName, CustomerAddress, CustomerPhone, CustomerWebsite) VALUES (@Name, @Address, @Phone, @Website)"
 
     Private Sub Menu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         StatusLbl.Text = ""
-        connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
         LoadCustomers()
     End Sub
 

@@ -2,18 +2,18 @@
 Imports System.Net
 
 Public Class AdminMenu
-    Dim connectionString As String
+    Dim connectionString As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
     Dim SearchCheck As Boolean
     Dim ChangeDetected As Boolean
     Dim GageSearch As String
     Private isClosing As Boolean = False
+    Private saveString As String
     Dim originalTitle As String = "GageTracker - Admin Menu"
     Public WithEvents Timer1 As New Timer With {.Interval = 3000, .Enabled = False}
 
 #Region "Admin Load"
     Private Async Sub AdminMenu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         StatusLabel.Text = ""
-        connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
         Me.Text = originalTitle
         MenuStrip1.BackColor = Color.IndianRed
 
@@ -51,7 +51,7 @@ Public Class AdminMenu
 
     Private Sub TxtAdminGageID_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtGageID.KeyDown
         If e.KeyCode = Keys.Enter Then
-            e.SuppressKeyPress = True 'Prevent the ding sound on pressing Enter
+            e.SuppressKeyPress = True
 
             If ChangeDetected = False Then
                 BtnAdminSearch_Click(Me, EventArgs.Empty)
@@ -67,6 +67,18 @@ Public Class AdminMenu
             Return
         End If
 
+        If ChangeDetected = True Then
+            If MessageBox.Show("Changes detected! Any unsaved changes will be lost. Do you want to perform a new search?", "Exit", MessageBoxButtons.YesNo) = DialogResult.Yes Then
+                SearchHandler()
+            Else
+                TxtGageID.Text = saveString
+            End If
+        Else
+            SearchHandler()
+        End If
+    End Sub
+
+    Private Sub SearchHandler()
         Using conn As New OleDbConnection(connectionString)
             Try
                 conn.Open()
@@ -116,6 +128,7 @@ Public Class AdminMenu
                         txtaA4.Text = reader.Item("aA4").ToString()
                         txtaA5.Text = reader.Item("aA5").ToString()
 
+                        saveString = TxtGageID.Text
                         SearchCheck = True
                         UpdateChangeStatus()
                         SearchAuditLog()
@@ -207,7 +220,12 @@ Public Class AdminMenu
 
     Private Sub BtnUpdate_Click(sender As Object, e As EventArgs) Handles BtnUpdate.Click
         If SearchCheck = True Then
-            BtnUpdateConfirmed()
+            If ChangeDetected = True Then
+                BtnUpdateConfirmed()
+            Else
+                StatusLabel.Text = "No updates detected."
+                Timer1.Enabled = True
+            End If
         Else
             MessageBox.Show("Please search for Gage record.")
         End If
@@ -409,7 +427,15 @@ Public Class AdminMenu
 
 #Region "Clear"
     Private Sub BtnClear_Click(sender As Object, e As EventArgs) Handles BtnClear.Click
-        ClearForms()
+        If ChangeDetected = True Then
+            If MessageBox.Show("Changes have been detected. Unsaved changes will be lost. Are you sure you want to proceed with clearing?", "Exit", MessageBoxButtons.YesNo) = DialogResult.Yes Then
+                ClearForms()
+            Else
+                TxtGageID.Text = saveString
+            End If
+        Else
+            ClearForms()
+        End If
     End Sub
 
     Private Sub ClearReset()

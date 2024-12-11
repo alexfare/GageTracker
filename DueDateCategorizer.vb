@@ -1,6 +1,8 @@
 ﻿Imports System.Data.OleDb
 
 Public Class DueDateCategorizer
+    Dim connectionString As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
+
 #Region "Loading"
     Private selectedGage As String
     Private Sub DueDateCategorizer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -26,17 +28,14 @@ Public Class DueDateCategorizer
             Logger.LogErrors()
         End Try
 
-        Me.StartPosition = FormStartPosition.CenterScreen
-
         TabSelect()
         MenuColor()
     End Sub
 #End Region
+
 #Region "Settings"
 
     Public Sub LoadData()
-        Dim connectionString As String
-        connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
         Dim query As String = "SELECT GageID, [Status], [PartNumber], [Description], Department, [Gage Type], [Customer], [Inspected Date], [Due Date] FROM CalibrationTracker"
 
         Using connection As New OleDbConnection(connectionString)
@@ -47,7 +46,7 @@ Public Class DueDateCategorizer
                 Dim table As New DataTable()
                 adapter.Fill(table)
 
-                ' Filter and categorize the data
+                'Filter and categorize the data
                 Dim pastDue As DataTable = table.Clone()
                 Dim within30Days As DataTable = table.Clone()
                 Dim within60Days As DataTable = table.Clone()
@@ -93,8 +92,8 @@ Public Class DueDateCategorizer
         End If
     End Sub
 #End Region
+
 #Region "ZebraStripingDataGrids"
-    ' Set Zebra striping for DataGridViews
     Private Sub DataGridView_RowPostPaint(sender As Object, e As DataGridViewRowPostPaintEventArgs)
         Dim grid As DataGridView = CType(sender, DataGridView)
         If e.RowIndex >= 0 Then
@@ -106,7 +105,6 @@ Public Class DueDateCategorizer
         End If
     End Sub
 
-    'Set Zebra striping
     Private Sub DataGridViewPastDue_RowPostPaint(sender As Object, e As DataGridViewRowPostPaintEventArgs) Handles DataGridViewPastDue.RowPostPaint
         Dim grid As DataGridView = CType(sender, DataGridView)
         If e.RowIndex >= 0 Then
@@ -140,6 +138,7 @@ Public Class DueDateCategorizer
         End If
     End Sub
 #End Region
+
 #Region "MenuStrip"
     Private Sub MenuToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MenuToolStripMenuItem.Click
         GTMenu.Show()
@@ -150,18 +149,17 @@ Public Class DueDateCategorizer
         Me.Close()
     End Sub
 #End Region
+
 #Region "Datagrid"
     Private Sub DataGridViewPastDue_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs)
         If DataGridViewPastDue.SelectedRows.Count > 0 Then
             Dim selectedRow As DataGridViewRow = DataGridViewPastDue.SelectedRows(0)
 
-            ' Ensure the selected row is not a new row and has the required columns
             If Not selectedRow.IsNewRow AndAlso selectedRow.Cells.Count > 0 AndAlso selectedRow.Cells(0) IsNot Nothing AndAlso Not IsDBNull(selectedRow.Cells(0).Value) Then
                 selectedGage = selectedRow.Cells(0).Value.ToString()
                 My.Settings.SelectedGage = selectedGage
             End If
 
-            ' Open the GTMenu form
             GTMenu.Show()
             GTMenu.LoadGageID()
             Me.Close()
@@ -172,13 +170,11 @@ Public Class DueDateCategorizer
         If DataGridViewWithin30Days.SelectedRows.Count > 0 Then
             Dim selectedRow As DataGridViewRow = DataGridViewWithin30Days.SelectedRows(0)
 
-            ' Ensure the selected row is not a new row and has the required columns
             If Not selectedRow.IsNewRow AndAlso selectedRow.Cells.Count > 0 AndAlso selectedRow.Cells(0) IsNot Nothing AndAlso Not IsDBNull(selectedRow.Cells(0).Value) Then
                 selectedGage = selectedRow.Cells(0).Value.ToString()
                 My.Settings.SelectedGage = selectedGage
             End If
 
-            ' Open the GTMenu form
             GTMenu.Show()
             GTMenu.LoadGageID()
             Me.Close()
@@ -189,13 +185,11 @@ Public Class DueDateCategorizer
         If DataGridViewWithin60Days.SelectedRows.Count > 0 Then
             Dim selectedRow As DataGridViewRow = DataGridViewWithin60Days.SelectedRows(0)
 
-            ' Ensure the selected row is not a new row and has the required columns
             If Not selectedRow.IsNewRow AndAlso selectedRow.Cells.Count > 0 AndAlso selectedRow.Cells(0) IsNot Nothing AndAlso Not IsDBNull(selectedRow.Cells(0).Value) Then
                 selectedGage = selectedRow.Cells(0).Value.ToString()
                 My.Settings.SelectedGage = selectedGage
             End If
 
-            ' Open the GTMenu form
             GTMenu.Show()
             GTMenu.LoadGageID()
             Me.Close()
@@ -206,7 +200,6 @@ Public Class DueDateCategorizer
         If DataGridViewPastDue.SelectedRows.Count > 0 Then
             Dim selectedRow As DataGridViewRow = DataGridViewPastDue.SelectedRows(0)
 
-            ' Ensure the selected row is not a new row and has the required columns
             If Not selectedRow.IsNewRow AndAlso selectedRow.Cells.Count > 0 AndAlso selectedRow.Cells(0) IsNot Nothing AndAlso Not IsDBNull(selectedRow.Cells(0).Value) Then
                 selectedGage = selectedRow.Cells(0).Value.ToString()
                 My.Settings.SelectedGage = selectedGage
@@ -218,7 +211,6 @@ Public Class DueDateCategorizer
         If DataGridViewWithin30Days.SelectedRows.Count > 0 Then
             Dim selectedRow As DataGridViewRow = DataGridViewWithin30Days.SelectedRows(0)
 
-            ' Ensure the selected row is not a new row and has the required columns
             If Not selectedRow.IsNewRow AndAlso selectedRow.Cells.Count > 0 AndAlso selectedRow.Cells(0) IsNot Nothing AndAlso Not IsDBNull(selectedRow.Cells(0).Value) Then
                 selectedGage = selectedRow.Cells(0).Value.ToString()
                 My.Settings.SelectedGage = selectedGage
@@ -230,7 +222,6 @@ Public Class DueDateCategorizer
         If DataGridViewWithin60Days.SelectedRows.Count > 0 Then
             Dim selectedRow As DataGridViewRow = DataGridViewWithin60Days.SelectedRows(0)
 
-            ' Ensure the selected row is not a new row and has the required columns
             If Not selectedRow.IsNewRow AndAlso selectedRow.Cells.Count > 0 AndAlso selectedRow.Cells(0) IsNot Nothing AndAlso Not IsDBNull(selectedRow.Cells(0).Value) Then
                 selectedGage = selectedRow.Cells(0).Value.ToString()
                 My.Settings.SelectedGage = selectedGage
@@ -238,6 +229,7 @@ Public Class DueDateCategorizer
         End If
     End Sub
 #End Region
+
 #Region "Misc"
     Private Sub BtnGageList_Click(sender As Object, e As EventArgs) Handles BtnGageList.Click
         Me.Close()

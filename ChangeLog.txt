@@ -1,3 +1,12 @@
+v5.15.1.63
+Added Update check for AdminMenu, This will now detect changes rather than updating when no changes were performed.
+Updated GageList filtering.
+Updated GTMenu, Added clearing confirmation.
+Updated text within GageType.
+Minor updates to connection string.
+Updated change detection for Clearing on GTMenu & AdminMenu.
+Updated AdminMenu Search detection.
+
 v5.15.0.62
 Updated how GageList opening forms is handled.
 Updated how GTMenu handles Status display.

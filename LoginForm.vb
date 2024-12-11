@@ -2,11 +2,10 @@ Imports System.Data.OleDb
 Imports System.Security.Cryptography
 Imports System.Text
 Public Class LoginForm1
-    Dim ConnectionString As String
+    Dim ConnectionString As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
 
     Private Sub LoginForm1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         StatusLabel.Text = ""
-        ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
     End Sub
 
     Private Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click

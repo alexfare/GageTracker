@@ -3,11 +3,10 @@ Imports System.Security.Cryptography
 Imports System.Text
 
 Public Class AccountManagement
-    Dim connectionString As String
+    Dim connectionString As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
 
     Private Sub CreateAccount_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         StatusLabel.Text = ""
-        connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
         LoadUsers()
     End Sub
 

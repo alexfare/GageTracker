@@ -32,7 +32,11 @@ Public Class GageList
 #End Region
 
 #Region "Misc"
-    Private Sub TextContains_TextChanged(sender As Object, e As EventArgs) Handles TextContains.TextChanged
+    Private Sub TextContains_TextChanged(sender As Object, e As EventArgs) Handles TextContains.TextChanged, CmbContains.SelectedValueChanged, CmbFilterType.SelectedValueChanged
+        If CmbContains.SelectedItem Is Nothing OrElse CmbFilterType.SelectedItem Is Nothing Then
+            Exit Sub
+        End If
+
         Dim selectedColumn As String = CmbContains.SelectedItem.ToString()
         Dim filterText As String = TextContains.Text.Trim()
         Dim filterType As String = CmbFilterType.SelectedItem.ToString()

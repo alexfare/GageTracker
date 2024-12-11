@@ -922,7 +922,7 @@ Partial Class GTMenu
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(93, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ExitToolStripMenuItem.Text = "Exit"
         '
         'ViewToolStripMenuItem
@@ -936,13 +936,13 @@ Partial Class GTMenu
         'GageListToolStripMenuItem1
         '
         Me.GageListToolStripMenuItem1.Name = "GageListToolStripMenuItem1"
-        Me.GageListToolStripMenuItem1.Size = New System.Drawing.Size(173, 22)
+        Me.GageListToolStripMenuItem1.Size = New System.Drawing.Size(180, 22)
         Me.GageListToolStripMenuItem1.Text = "GageList"
         '
         'DueToolStripMenuItem
         '
         Me.DueToolStripMenuItem.Name = "DueToolStripMenuItem"
-        Me.DueToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.DueToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.DueToolStripMenuItem.Text = "Due Date Calender"
         '
         'GageManagementToolStripMenuItem
@@ -956,19 +956,19 @@ Partial Class GTMenu
         'AddGageToolStripMenuItem
         '
         Me.AddGageToolStripMenuItem.Name = "AddGageToolStripMenuItem"
-        Me.AddGageToolStripMenuItem.Size = New System.Drawing.Size(142, 22)
+        Me.AddGageToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.AddGageToolStripMenuItem.Text = "Add Gage"
         '
         'UpdateGageToolStripMenuItem
         '
         Me.UpdateGageToolStripMenuItem.Name = "UpdateGageToolStripMenuItem"
-        Me.UpdateGageToolStripMenuItem.Size = New System.Drawing.Size(142, 22)
+        Me.UpdateGageToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.UpdateGageToolStripMenuItem.Text = "Update Gage"
         '
         'DeleteGageToolStripMenuItem
         '
         Me.DeleteGageToolStripMenuItem.Name = "DeleteGageToolStripMenuItem"
-        Me.DeleteGageToolStripMenuItem.Size = New System.Drawing.Size(142, 22)
+        Me.DeleteGageToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.DeleteGageToolStripMenuItem.Text = "Delete Gage"
         '
         'AdminToolStripMenuItem
@@ -980,7 +980,7 @@ Partial Class GTMenu
         '
         'SettingsToolStripMenuItem
         '
-        Me.SettingsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ReportIssueToolStripMenuItem, Me.AboutToolStripMenuItem, Me.WebsiteToolStripMenuItem})
+        Me.SettingsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ReportIssueToolStripMenuItem, Me.WebsiteToolStripMenuItem, Me.AboutToolStripMenuItem})
         Me.SettingsToolStripMenuItem.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SettingsToolStripMenuItem.Name = "SettingsToolStripMenuItem"
         Me.SettingsToolStripMenuItem.Size = New System.Drawing.Size(62, 20)
@@ -989,19 +989,19 @@ Partial Class GTMenu
         'ReportIssueToolStripMenuItem
         '
         Me.ReportIssueToolStripMenuItem.Name = "ReportIssueToolStripMenuItem"
-        Me.ReportIssueToolStripMenuItem.Size = New System.Drawing.Size(139, 22)
+        Me.ReportIssueToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ReportIssueToolStripMenuItem.Text = "Report Issue"
         '
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(139, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.AboutToolStripMenuItem.Text = "About"
         '
         'WebsiteToolStripMenuItem
         '
         Me.WebsiteToolStripMenuItem.Name = "WebsiteToolStripMenuItem"
-        Me.WebsiteToolStripMenuItem.Size = New System.Drawing.Size(139, 22)
+        Me.WebsiteToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.WebsiteToolStripMenuItem.Text = "Website"
         '
         'StatusStrip

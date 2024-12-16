@@ -1,5 +1,4 @@
 ﻿Imports System.Data.OleDb
-Imports System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel
 
 Public Class StatusMenu
     Dim connectionString As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
@@ -30,7 +29,7 @@ Public Class StatusMenu
 
     Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
         If String.IsNullOrWhiteSpace(txtStatus.Text) Then
-            StatusLabel.Text = "Status Name cannot be blank."
+            ShowStatus("Status name cannot be blank.", False)
             Timer1.Enabled = True
             Return
         End If
@@ -43,8 +42,7 @@ Public Class StatusMenu
                 checkConn.Open()
                 Dim count As Integer = Convert.ToInt32(checkCmd.ExecuteScalar())
                 If count > 0 Then
-                    StatusLabel.Text = "This Status already exists. Please enter a unique Status."
-                    Timer1.Enabled = True
+                    ShowStatus("This Status already exists. Please enter a unique Status.", True)
                     Return
                 End If
             Catch ex As Exception
@@ -62,10 +60,9 @@ Public Class StatusMenu
                 Try
                     connection.Open()
                     command.ExecuteNonQuery()
-                    StatusLabel.Text = "Status added successfully."
+                    ShowStatus("Status added successfully.", False)
                     GlobalVars.SystemLog = txtStatus.Text + " status added successfully."
                     Logger.LogSystem()
-                    Timer1.Enabled = True
                     LoadStatus()
                 Catch ex As Exception
                     MessageBox.Show("An error occurred while adding new status: " & ex.Message)
@@ -77,13 +74,16 @@ Public Class StatusMenu
     End Sub
 
     Private Sub btnRemove_Click(sender As Object, e As EventArgs) Handles btnRemove.Click
+        Dim statusDelete As String
+
         If txtStatus.SelectedIndex = -1 OrElse String.IsNullOrEmpty(txtStatus.Text) Then
-            StatusLabel.Text = "Please select a Status to remove."
-            Timer1.Enabled = True
+            ShowStatus("Please select a Status to remove.", True)
             Return
         End If
 
-        If MessageBox.Show("Are you sure you want to delete this Status?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then
+        statusDelete = txtStatus.Text
+
+        If MessageBox.Show("Are you sure you want to delete " + statusDelete + "?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then
             Return
         End If
 
@@ -98,16 +98,14 @@ Public Class StatusMenu
                     connection.Open()
                     Dim result As Integer = command.ExecuteNonQuery()
                     If result > 0 Then
-                        StatusLabel.Text = "Status deleted successfully."
+                        ShowStatus("Status deleted successfully.", False)
                         GlobalVars.SystemLog = txtStatus.Text + " status deleted successfully."
                         Logger.LogSystem()
-                        Timer1.Enabled = True
                         txtStatus.SelectedIndex = -1
                         txtStatus.Text = ""
                         LoadStatus()
                     Else
-                        StatusLabel.Text = "No records were deleted."
-                        Timer1.Enabled = True
+                        ShowStatus("No records were deleted.", False)
                     End If
                 Catch ex As Exception
                     MessageBox.Show("An error occurred while deleting the Status: " & ex.Message)
@@ -126,5 +124,11 @@ Public Class StatusMenu
         StatusLabel.Text = ""
         Timer1.Enabled = False
         LoadStatus()
+    End Sub
+
+    Private Sub ShowStatus(message As String, isError As Boolean)
+        StatusLabel.ForeColor = If(isError, Color.Red, Color.Green)
+        StatusLabel.Text = message
+        Timer1.Enabled = True
     End Sub
 End Class

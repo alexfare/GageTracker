@@ -61,6 +61,7 @@ Public Class GTMenu
                 End While
 
                 reader.Close()
+                items.Sort()
 
                 Me.Invoke(Sub()
                               TxtGageID.Items.Clear()
@@ -621,6 +622,10 @@ Public Class GTMenu
             GlobalVars.ErrorLog = "An error occurred while trying to open the URL: " & ex.Message
             Logger.LogErrors()
         End Try
+    End Sub
+
+    Private Sub DashboardToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DashboardToolStripMenuItem.Click
+        Dashboard.Show()
     End Sub
 #End Region
 

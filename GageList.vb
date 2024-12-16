@@ -322,6 +322,10 @@ Public Class GageList
         LoadData()
         FilterSetup()
     End Sub
+
+    Private Sub DashboardToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DashboardToolStripMenuItem.Click
+        Dashboard.Show()
+    End Sub
 #End Region
 
 #Region "Closing Actions"

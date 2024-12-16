@@ -3,12 +3,12 @@
 Public Class ReportIssue
     Private Sub btnSend_Click(sender As Object, e As EventArgs) Handles btnSend.Click
         If String.IsNullOrWhiteSpace(txtName.Text) Then
-            MessageBox.Show("Name is required.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Name is required.", "Required Information Missing", MessageBoxButtons.OK, MessageBoxIcon.Error)
             txtName.Focus()
             Return
         End If
         If String.IsNullOrWhiteSpace(txtComment.Text) Then
-            MessageBox.Show("Comment is required.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Comment is required.", "Required Information Missing", MessageBoxButtons.OK, MessageBoxIcon.Error)
             txtComment.Focus()
             Return
         End If

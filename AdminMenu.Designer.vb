@@ -129,6 +129,7 @@ Partial Class AdminMenu
         Me.Label15 = New System.Windows.Forms.Label()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.TabControl2 = New System.Windows.Forms.TabControl()
+        Me.DashboardToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -166,7 +167,7 @@ Partial Class AdminMenu
         '
         'FileToolStripMenuItem
         '
-        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CloseToolStripMenuItem})
+        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DashboardToolStripMenuItem, Me.CloseToolStripMenuItem})
         Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
         Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
         Me.FileToolStripMenuItem.Text = "File"
@@ -174,7 +175,7 @@ Partial Class AdminMenu
         'CloseToolStripMenuItem
         '
         Me.CloseToolStripMenuItem.Name = "CloseToolStripMenuItem"
-        Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(103, 22)
+        Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.CloseToolStripMenuItem.Text = "Close"
         '
         'ViewToolStripMenuItem
@@ -1116,6 +1117,12 @@ Partial Class AdminMenu
         Me.TabControl2.Size = New System.Drawing.Size(492, 346)
         Me.TabControl2.TabIndex = 33
         '
+        'DashboardToolStripMenuItem
+        '
+        Me.DashboardToolStripMenuItem.Name = "DashboardToolStripMenuItem"
+        Me.DashboardToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.DashboardToolStripMenuItem.Text = "Dashboard"
+        '
         'AdminMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1267,4 +1274,5 @@ Partial Class AdminMenu
     Friend WithEvents Label15 As Label
     Friend WithEvents Label16 As Label
     Friend WithEvents TabControl2 As TabControl
+    Friend WithEvents DashboardToolStripMenuItem As ToolStripMenuItem
 End Class

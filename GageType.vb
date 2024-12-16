@@ -1,5 +1,4 @@
 ﻿Imports System.Data.OleDb
-Imports System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel
 
 Public Class GageType
     Dim connectionString As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
@@ -30,8 +29,7 @@ Public Class GageType
 
     Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
         If String.IsNullOrWhiteSpace(txtGageType.Text) Then
-            StatusLabel.Text = "Gage type Name cannot be blank."
-            Timer1.Enabled = True
+            ShowStatus("Gage type name cannot be blank.", False)
             Return
         End If
 
@@ -43,8 +41,7 @@ Public Class GageType
                 checkConn.Open()
                 Dim count As Integer = Convert.ToInt32(checkCmd.ExecuteScalar())
                 If count > 0 Then
-                    StatusLabel.Text = "This Gage type already exists. Please enter a unique Gage type."
-                    Timer1.Enabled = True
+                    ShowStatus("This Gage type already exists. Please enter a unique Gage type.", False)
                     Return
                 End If
             Catch ex As Exception
@@ -62,12 +59,10 @@ Public Class GageType
                 Try
                     connection.Open()
                     command.ExecuteNonQuery()
-                    StatusLabel.Text = "Gage type added successfully."
+                    ShowStatus("Gage type added successfully.", False)
                     GlobalVars.SystemLog = txtGageType.Text + " Gage type added successfully."
                     Logger.LogSystem()
-                    Timer1.Enabled = True
                     txtGageType.Items.Add(txtGageType.Text)
-
                     txtGageType.Text = String.Empty
                 Catch ex As Exception
                     MessageBox.Show("An error occurred while adding new Gage type: " & ex.Message)
@@ -78,12 +73,16 @@ Public Class GageType
         End Using
     End Sub
     Private Sub btnRemove_Click(sender As Object, e As EventArgs) Handles btnRemove.Click
+        Dim gageTypeDelete As String
+
         If txtGageType.SelectedIndex = -1 OrElse String.IsNullOrEmpty(txtGageType.Text) Then
-            MessageBox.Show("Please select a Gage type to remove.")
+            ShowStatus("Please select a Gage type to remove.", True)
             Return
         End If
 
-        If MessageBox.Show("Are you sure you want to delete this Gage type?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then
+        gageTypeDelete = txtGageType.Text
+
+        If MessageBox.Show("Are you sure you want to delete " + gageTypeDelete + "?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then
             Return
         End If
 
@@ -98,10 +97,9 @@ Public Class GageType
                     connection.Open()
                     Dim result As Integer = command.ExecuteNonQuery()
                     If result > 0 Then
-                        StatusLabel.Text = "Gage type deleted successfully."
+                        ShowStatus("Gage type deleted successfully.", False)
                         GlobalVars.SystemLog = selectedGageType + " Gage type deleted successfully."
                         Logger.LogSystem()
-                        Timer1.Enabled = True
                         txtGageType.Items.Remove(selectedGageType)
                         txtGageType.Text = String.Empty
                         txtGageType.SelectedIndex = -1
@@ -119,6 +117,12 @@ Public Class GageType
 
     Private Sub btnBack_Click(sender As Object, e As EventArgs) Handles btnBack.Click
         Me.Close()
+    End Sub
+
+    Private Sub ShowStatus(message As String, isError As Boolean)
+        StatusLabel.ForeColor = If(isError, Color.Red, Color.Green)
+        StatusLabel.Text = message
+        Timer1.Enabled = True
     End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick

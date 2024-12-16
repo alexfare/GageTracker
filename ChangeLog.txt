@@ -1,3 +1,16 @@
+v5.16.0.64
+Added new Dashboard Menu. (WIP, Will eventually become start screen.)
+Fixed AdminMenu Due Date not updating based on Calibration Date and Interval.
+Updated GageID Combobox to display gages alphabetically (GTMenu & AdminMenu).
+Updated ReportIssue.
+Updated AdminMenu status display.
+Updated AdminMenu menu strip.
+Updated GageList menu strip.
+Updated GTMenu menu strip.
+Updated GageType Menu, updated to new Status display, updated minor wording, etc.
+Updated CustomerEntry, updated to new Status display, updated minor wording, etc.
+Updated Status, updated to new Status display, updated minor wording, etc.
+
 v5.15.1.63
 Added Update check for AdminMenu, This will now detect changes rather than updating when no changes were performed.
 Updated GageList filtering.

@@ -114,10 +114,11 @@ Partial Class GTMenu
         Me.AdminToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SettingsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReportIssueToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.WebsiteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip = New System.Windows.Forms.StatusStrip()
         Me.StatusLabel = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.DashboardToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GroupBox1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -913,7 +914,7 @@ Partial Class GTMenu
         '
         'FileToolStripMenuItem
         '
-        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExitToolStripMenuItem})
+        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DashboardToolStripMenuItem, Me.ExitToolStripMenuItem})
         Me.FileToolStripMenuItem.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
         Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
@@ -936,13 +937,13 @@ Partial Class GTMenu
         'GageListToolStripMenuItem1
         '
         Me.GageListToolStripMenuItem1.Name = "GageListToolStripMenuItem1"
-        Me.GageListToolStripMenuItem1.Size = New System.Drawing.Size(180, 22)
+        Me.GageListToolStripMenuItem1.Size = New System.Drawing.Size(173, 22)
         Me.GageListToolStripMenuItem1.Text = "GageList"
         '
         'DueToolStripMenuItem
         '
         Me.DueToolStripMenuItem.Name = "DueToolStripMenuItem"
-        Me.DueToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.DueToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
         Me.DueToolStripMenuItem.Text = "Due Date Calender"
         '
         'GageManagementToolStripMenuItem
@@ -956,19 +957,19 @@ Partial Class GTMenu
         'AddGageToolStripMenuItem
         '
         Me.AddGageToolStripMenuItem.Name = "AddGageToolStripMenuItem"
-        Me.AddGageToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.AddGageToolStripMenuItem.Size = New System.Drawing.Size(142, 22)
         Me.AddGageToolStripMenuItem.Text = "Add Gage"
         '
         'UpdateGageToolStripMenuItem
         '
         Me.UpdateGageToolStripMenuItem.Name = "UpdateGageToolStripMenuItem"
-        Me.UpdateGageToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.UpdateGageToolStripMenuItem.Size = New System.Drawing.Size(142, 22)
         Me.UpdateGageToolStripMenuItem.Text = "Update Gage"
         '
         'DeleteGageToolStripMenuItem
         '
         Me.DeleteGageToolStripMenuItem.Name = "DeleteGageToolStripMenuItem"
-        Me.DeleteGageToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.DeleteGageToolStripMenuItem.Size = New System.Drawing.Size(142, 22)
         Me.DeleteGageToolStripMenuItem.Text = "Delete Gage"
         '
         'AdminToolStripMenuItem
@@ -989,20 +990,20 @@ Partial Class GTMenu
         'ReportIssueToolStripMenuItem
         '
         Me.ReportIssueToolStripMenuItem.Name = "ReportIssueToolStripMenuItem"
-        Me.ReportIssueToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ReportIssueToolStripMenuItem.Size = New System.Drawing.Size(139, 22)
         Me.ReportIssueToolStripMenuItem.Text = "Report Issue"
-        '
-        'AboutToolStripMenuItem
-        '
-        Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.AboutToolStripMenuItem.Text = "About"
         '
         'WebsiteToolStripMenuItem
         '
         Me.WebsiteToolStripMenuItem.Name = "WebsiteToolStripMenuItem"
-        Me.WebsiteToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.WebsiteToolStripMenuItem.Size = New System.Drawing.Size(139, 22)
         Me.WebsiteToolStripMenuItem.Text = "Website"
+        '
+        'AboutToolStripMenuItem
+        '
+        Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(139, 22)
+        Me.AboutToolStripMenuItem.Text = "About"
         '
         'StatusStrip
         '
@@ -1019,6 +1020,12 @@ Partial Class GTMenu
         Me.StatusLabel.Name = "StatusLabel"
         Me.StatusLabel.Size = New System.Drawing.Size(36, 17)
         Me.StatusLabel.Text = "NULL"
+        '
+        'DashboardToolStripMenuItem
+        '
+        Me.DashboardToolStripMenuItem.Name = "DashboardToolStripMenuItem"
+        Me.DashboardToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.DashboardToolStripMenuItem.Text = "Dashboard"
         '
         'GTMenu
         '
@@ -1156,4 +1163,5 @@ Partial Class GTMenu
     Friend WithEvents WebsiteToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents StatusStrip As StatusStrip
     Friend WithEvents StatusLabel As ToolStripStatusLabel
+    Friend WithEvents DashboardToolStripMenuItem As ToolStripMenuItem
 End Class

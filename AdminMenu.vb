@@ -199,8 +199,7 @@ Public Class AdminMenu
                     addCmd.Parameters.AddWithValue("@NistNumber", TxtNistNumber.Text)
                     addCmd.Parameters.Add(New OleDbParameter("@DateAdded", OleDbType.Date)).Value = dateAdded
                     addCmd.ExecuteNonQuery()
-                    StatusLabel.Text = "Gage added successfully"
-                    Timer1.Enabled = True
+                    ShowStatus("Gage added successfully", False)
                     ReloadData()
                     BtnClear.PerformClick()
                 Else
@@ -223,8 +222,7 @@ Public Class AdminMenu
             If ChangeDetected = True Then
                 BtnUpdateConfirmed()
             Else
-                StatusLabel.Text = "No updates detected."
-                Timer1.Enabled = True
+                ShowStatus("No updates detected.", False)
             End If
         Else
             MessageBox.Show("Please search for Gage record.")
@@ -279,11 +277,8 @@ Public Class AdminMenu
                 SearchCheck = False
                 GageSearch = TxtGageID.Text
 
-                'Status
-                StatusLabel.Text = "Record updated successfully"
-                Timer1.Enabled = True
-
                 'Subs
+                ShowStatus("Gage updated successfully", False)
                 UpdateChangeStatus()
                 ReloadData()
                 ClearReset()
@@ -360,8 +355,7 @@ Public Class AdminMenu
                     deleteCmd.Parameters.AddWithValue("@GageID", TxtGageID.Text)
                     Dim rowsAffected As Integer = deleteCmd.ExecuteNonQuery()
                     If rowsAffected > 0 Then
-                        StatusLabel.Text = "Gage deleted successfully."
-                        Timer1.Enabled = True
+                        ShowStatus("Gage deleted successfully", False)
                         SearchCheck = False
                         ClearForms()
                         ReloadData()
@@ -396,9 +390,28 @@ Public Class AdminMenu
         End If
     End Sub
 
+    Private Sub UpdateDueDate_TextChanged(sender As Object, e As EventArgs) Handles TxtInterval.TextChanged, DtInspectedDate.ValueChanged
+        UpdateDueDate()
+    End Sub
+
+    Private Sub UpdateDueDate()
+        Dim intervalMonths As Integer
+        If Integer.TryParse(TxtInterval.Text, intervalMonths) Then
+            Dim inspectedDate As DateTime = DtInspectedDate.Value
+            Dim dueDate As DateTime = inspectedDate.AddMonths(intervalMonths)
+            dtDueDate.Value = dueDate
+        End If
+    End Sub
+
     Private Sub UpdateChangeStatus()
         ChangeDetected = False
         Me.Text = originalTitle
+    End Sub
+
+    Private Sub ShowStatus(message As String, isError As Boolean)
+        StatusLabel.ForeColor = If(isError, Color.Red, Color.Green)
+        StatusLabel.Text = message
+        Timer1.Enabled = True
     End Sub
 
     Private Sub SearchAuditLog()
@@ -546,6 +559,10 @@ Public Class AdminMenu
         Me.Close()
         DueDateCategorizer.Show()
     End Sub
+
+    Private Sub DashboardToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DashboardToolStripMenuItem.Click
+        Dashboard.Show()
+    End Sub
 #End Region
 
 #Region "Load"
@@ -563,6 +580,7 @@ Public Class AdminMenu
 
                 'Close the reader and connection
                 reader.Close()
+                items.Sort()
 
                 'Now invoke the UI thread to update the ComboBox
                 Me.Invoke(Sub()

@@ -42,6 +42,7 @@ Partial Class GageList
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DashboardToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ChangeDatabaseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -187,7 +188,7 @@ Partial Class GageList
         '
         'FileToolStripMenuItem
         '
-        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MenuToolStripMenuItem, Me.ChangeDatabaseToolStripMenuItem, Me.ExitToolStripMenuItem})
+        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DashboardToolStripMenuItem, Me.MenuToolStripMenuItem, Me.ChangeDatabaseToolStripMenuItem, Me.ExitToolStripMenuItem})
         Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
         Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
         Me.FileToolStripMenuItem.Text = "File"
@@ -195,19 +196,25 @@ Partial Class GageList
         'MenuToolStripMenuItem
         '
         Me.MenuToolStripMenuItem.Name = "MenuToolStripMenuItem"
-        Me.MenuToolStripMenuItem.Size = New System.Drawing.Size(166, 22)
+        Me.MenuToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.MenuToolStripMenuItem.Text = "Menu"
+        '
+        'DashboardToolStripMenuItem
+        '
+        Me.DashboardToolStripMenuItem.Name = "DashboardToolStripMenuItem"
+        Me.DashboardToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.DashboardToolStripMenuItem.Text = "Dashboard"
         '
         'ChangeDatabaseToolStripMenuItem
         '
         Me.ChangeDatabaseToolStripMenuItem.Name = "ChangeDatabaseToolStripMenuItem"
-        Me.ChangeDatabaseToolStripMenuItem.Size = New System.Drawing.Size(166, 22)
+        Me.ChangeDatabaseToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ChangeDatabaseToolStripMenuItem.Text = "Change Database"
         '
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(166, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ExitToolStripMenuItem.Text = "Exit"
         '
         'ViewToolStripMenuItem
@@ -221,7 +228,7 @@ Partial Class GageList
         '
         Me.PastDueToolStripMenuItem.Name = "PastDueToolStripMenuItem"
         Me.PastDueToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
-        Me.PastDueToolStripMenuItem.Text = "Past Due"
+        Me.PastDueToolStripMenuItem.Text = "Overdue"
         '
         'DueWithin30DaysToolStripMenuItem
         '
@@ -386,4 +393,5 @@ Partial Class GageList
     Friend WithEvents DueWithin30DaysToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents DueWithin60DaysToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents RefreshToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents DashboardToolStripMenuItem As ToolStripMenuItem
 End Class

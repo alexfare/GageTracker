@@ -1,6 +1,5 @@
 ﻿
 Imports System.Data.OleDb
-Imports System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel
 
 Public Class CustomerEntry
     Dim connectionString As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
@@ -13,8 +12,7 @@ Public Class CustomerEntry
 
     Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
         If String.IsNullOrWhiteSpace(txtCustomerName.Text) Then
-            StatusLbl.Text = "Customer Name cannot be blank."
-            Timer1.Enabled = True
+            ShowStatus("Customer name cannot be blank.", False)
             Return
         End If
 
@@ -26,8 +24,7 @@ Public Class CustomerEntry
                 checkConn.Open()
                 Dim count As Integer = Convert.ToInt32(checkCmd.ExecuteScalar())
                 If count > 0 Then
-                    StatusLbl.Text = "This Customer Name already exists. Please enter a unique name."
-                    Timer1.Enabled = True
+                    ShowStatus("This Customer Name already exists. Please enter a unique name.", False)
                     Return
                 End If
             Catch ex As Exception
@@ -48,10 +45,9 @@ Public Class CustomerEntry
                 Try
                     connection.Open()
                     command.ExecuteNonQuery()
-                    StatusLbl.Text = "Customer added successfully."
+                    ShowStatus("Customer added successfully.", False)
                     GlobalVars.SystemLog = txtCustomerName.Text + " added successfully to customer entry."
                     Logger.LogSystem()
-                    Timer1.Enabled = True
                     LoadCustomers()
                 Catch ex As Exception
                     MessageBox.Show("An error occurred while adding new customer: " & ex.Message)
@@ -123,7 +119,7 @@ Public Class CustomerEntry
 
     Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
         If txtCustomerName.SelectedIndex = -1 Then
-            MessageBox.Show("Please select a customer to update.")
+            ShowStatus("Please select a customer to update.", False)
             Return
         End If
 
@@ -142,13 +138,11 @@ Public Class CustomerEntry
                     Dim rowsAffected As Integer = command.ExecuteNonQuery()
 
                     If rowsAffected > 0 Then
-                        StatusLbl.Text = "Customer details updated successfully."
+                        ShowStatus("Customer details updated successfully.", False)
                         GlobalVars.SystemLog = txtCustomerName.Text + " Customer details updated successfully."
                         Logger.LogSystem()
-                        Timer1.Enabled = True
                     Else
-                        StatusLbl.Text = "No records updated."
-                        Timer1.Enabled = True
+                        ShowStatus("No records were updated.", True)
                     End If
                 Catch ex As Exception
                     MessageBox.Show("An error occurred while updating customer details: " & ex.Message)
@@ -172,12 +166,16 @@ Public Class CustomerEntry
     End Sub
 
     Private Sub btnRemove_Click(sender As Object, e As EventArgs) Handles btnRemove.Click
+        Dim customerNameDelete As String
+
         If txtCustomerName.SelectedIndex = -1 OrElse String.IsNullOrEmpty(txtCustomerName.Text) Then
-            MessageBox.Show("Please select a customer to remove.")
+            ShowStatus("Please select a customer to remove.", False)
             Return
         End If
 
-        If MessageBox.Show("Are you sure you want to delete this customer?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then
+        customerNameDelete = txtCustomerName.Text
+
+        If MessageBox.Show("Are you sure you want to delete " + customerNameDelete + "?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then
             Return
         End If
 
@@ -192,17 +190,15 @@ Public Class CustomerEntry
                     connection.Open()
                     Dim result As Integer = command.ExecuteNonQuery()
                     If result > 0 Then
-                        StatusLbl.Text = "Customer deleted successfully."
+                        ShowStatus("Customer deleted successfully.", False)
                         GlobalVars.SystemLog = txtCustomerName.Text + " customer details deleted successfully."
                         Logger.LogSystem()
-                        Timer1.Enabled = True
                         ClearText()
                         LoadCustomers()
                         txtCustomerName.SelectedIndex = -1
                         txtCustomerName.Text = ""
                     Else
-                        StatusLbl.Text = "No records were deleted."
-                        Timer1.Enabled = True
+                        ShowStatus("No records were deleted.", True)
                     End If
                 Catch ex As Exception
                     MessageBox.Show("An error occurred while deleting the customer: " & ex.Message)
@@ -217,5 +213,11 @@ Public Class CustomerEntry
         StatusLbl.Text = ""
         Timer1.Enabled = False
         LoadCustomers()
+    End Sub
+
+    Private Sub ShowStatus(message As String, isError As Boolean)
+        StatusLbl.ForeColor = If(isError, Color.Red, Color.Green)
+        StatusLbl.Text = message
+        Timer1.Enabled = True
     End Sub
 End Class

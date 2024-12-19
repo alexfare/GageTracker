@@ -381,7 +381,7 @@ Public Class AdminMenu
         Timer1.Enabled = False  'Stop the timer
     End Sub
 
-    Private Sub TextContains_TextChanged(sender As Object, e As EventArgs) Handles txtPartNumber.TextChanged, txtDescription.TextChanged, TxtInterval.TextChanged, txtComments.TextChanged, cmbStatus.SelectedIndexChanged, txtDepartment.SelectedIndexChanged, txtGageType.SelectedIndexChanged, txtCustomer.SelectedIndexChanged, txtCalibratedBy.SelectedIndexChanged, DtInspectedDate.ValueChanged, dtDueDate.ValueChanged, TxtSerialNumber.TextChanged, TxtNistNumber.TextChanged, txtOwner.TextChanged, txtaN1.TextChanged, txtaN2.TextChanged, txtaN3.TextChanged, txtaN4.TextChanged, txtaN5.TextChanged, txtaA1.TextChanged, txtaA2.TextChanged, txtaA3.TextChanged, txtaA4.TextChanged, txtaA5.TextChanged
+    Private Sub TextContains_TextChanged(sender As Object, e As EventArgs) Handles txtPartNumber.TextChanged, txtDescription.TextChanged, TxtInterval.TextChanged, txtComments.TextChanged, cmbStatus.SelectedIndexChanged, txtDepartment.SelectedIndexChanged, txtGageType.SelectedIndexChanged, txtCustomer.SelectedIndexChanged, txtCalibratedBy.SelectedIndexChanged, DtInspectedDate.ValueChanged, dtDueDate.ValueChanged, TxtSerialNumber.TextChanged, TxtNistNumber.TextChanged, txtOwner.TextChanged, txtaN1.TextChanged, txtaN2.TextChanged, txtaN3.TextChanged, txtaN4.TextChanged, txtaN5.TextChanged, txtaA1.TextChanged, txtaA2.TextChanged, txtaA3.TextChanged, txtaA4.TextChanged, txtaA5.TextChanged, txtPartRev.TextChanged
         If SearchCheck = True Then
             ChangeDetected = True
             Me.Text = "*" & originalTitle
@@ -535,6 +535,24 @@ Public Class AdminMenu
         End If
     End Sub
 
+    Private Sub OverdueToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OverdueToolStripMenuItem.Click
+        GlobalVars.DueDateMenuSelect = "Past"
+        DueDateCategorizer.Show()
+        Me.Close()
+    End Sub
+
+    Private Sub DueWithin30DaysToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DueWithin30DaysToolStripMenuItem.Click
+        GlobalVars.DueDateMenuSelect = "30"
+        DueDateCategorizer.Show()
+        Me.Close()
+    End Sub
+
+    Private Sub DueWithin60DaysToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DueWithin60DaysToolStripMenuItem.Click
+        GlobalVars.DueDateMenuSelect = "60"
+        DueDateCategorizer.Show()
+        Me.Close()
+    End Sub
+
     Private Sub CloseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CloseToolStripMenuItem.Click
         If My.Settings.FromList = True Then
             My.Settings.FromList = False
@@ -553,11 +571,6 @@ Public Class AdminMenu
     Private Sub GageListToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GageListToolStripMenuItem.Click
         My.Settings.FromList = False
         Me.Close()
-    End Sub
-
-    Private Sub DueDateCalenderToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DueDateCalenderToolStripMenuItem.Click
-        Me.Close()
-        DueDateCategorizer.Show()
     End Sub
 
     Private Sub DashboardToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DashboardToolStripMenuItem.Click
@@ -877,6 +890,8 @@ Public Class AdminMenu
             End If
         End If
     End Sub
+
+
 #End Region
 
 End Class

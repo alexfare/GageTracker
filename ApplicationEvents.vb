@@ -1,4 +1,5 @@
 ﻿Imports System.Data.OleDb
+Imports System.IO
 
 Namespace My
     Partial Friend Class MyApplication
@@ -7,6 +8,7 @@ Namespace My
             SystemLog()
             UpdateOpenCount()
             UpdateMySettings()
+            BackupDatabase()
         End Sub
 
         Sub DatabaseCheck()
@@ -44,6 +46,29 @@ Namespace My
             End Using
         End Sub
 
+        Public Sub BackupDatabase()
+            Try
+                Dim originalFilePath As String = My.Settings.DatabaseLocation
+
+                If Not File.Exists(originalFilePath) Then
+                    MessageBox.Show("The specified database file does not exist.", "File Not Found", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Return
+                End If
+
+                Dim directory As String = Path.GetDirectoryName(originalFilePath)
+                Dim fileNameWithoutExtension As String = Path.GetFileNameWithoutExtension(originalFilePath)
+                Dim fileExtension As String = Path.GetExtension(originalFilePath)
+                Dim backupFilePath As String = Path.Combine(directory, $"{fileNameWithoutExtension}_BAK{fileExtension}")
+
+                File.Copy(originalFilePath, backupFilePath, True)
+
+            Catch ex As Exception
+                GlobalVars.ErrorLog = "An error occurred while creating the backup: " & ex.Message
+                Logger.LogErrors()
+                MessageBox.Show($"An error occurred while creating the backup: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
+        End Sub
+
         Sub SystemLog()
             GlobalVars.SystemLog = "GageTracker started."
             Logger.LogSystem()
@@ -58,7 +83,6 @@ Namespace My
                 Try
                     connection.Open()
 
-                    'Step 1: Retrieve the current OpenCount value
                     Dim currentCount As Integer = 0
                     Using getCommand As New OleDbCommand(getQuery, connection)
                         Dim result As Object = getCommand.ExecuteScalar()
@@ -67,16 +91,13 @@ Namespace My
                         End If
                     End Using
 
-                    'Step 2: Increment the OpenCount value
                     Dim newCount As Integer = currentCount + 1
 
-                    'Step 3: Update the OpenCount value in the database
                     Using updateCommand As New OleDbCommand(updateQuery, connection)
                         updateCommand.Parameters.AddWithValue("@NewCount", newCount)
                         updateCommand.ExecuteNonQuery()
                     End Using
 
-                    'Step 4: Update the application setting if needed
                     My.Settings.ProgramOpenCount = newCount
                     My.Settings.Save()
 

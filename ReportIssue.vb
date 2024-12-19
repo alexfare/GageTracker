@@ -2,11 +2,6 @@
 
 Public Class ReportIssue
     Private Sub btnSend_Click(sender As Object, e As EventArgs) Handles btnSend.Click
-        If String.IsNullOrWhiteSpace(txtName.Text) Then
-            MessageBox.Show("Name is required.", "Required Information Missing", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            txtName.Focus()
-            Return
-        End If
         If String.IsNullOrWhiteSpace(txtComment.Text) Then
             MessageBox.Show("Comment is required.", "Required Information Missing", MessageBoxButtons.OK, MessageBoxIcon.Error)
             txtComment.Focus()
@@ -21,7 +16,7 @@ Public Class ReportIssue
         mail.From = New MailAddress(My.Settings.ReportSendFrom)
         mail.To.Add(My.Settings.ReportSendTo)
         mail.Subject = "GageTracker-v5 User Feedback"
-        mail.Body = $"Name: {txtName.Text}" + Environment.NewLine +
+        mail.Body = $"Name: {If(String.IsNullOrWhiteSpace(txtName.Text), "Not provided", txtName.Text)}" + Environment.NewLine +
             $"Email: {If(String.IsNullOrWhiteSpace(txtEmail.Text), "Not provided", txtEmail.Text)}" + Environment.NewLine +
             $"Comment: {txtComment.Text}" + Environment.NewLine +
             $"Version: {My.Settings.VersionString}"

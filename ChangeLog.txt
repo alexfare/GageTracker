@@ -1,3 +1,14 @@
+v5.16.1.65 (Last update of 2024)
+Fixed GTMenu Rev detection.
+Fixed AdminMenu Rev detection.
+Updated ReportIssue, Name no longer required.
+Updated Dashboard.
+Updated Admin menu strip.
+Updated GTMenu menu strip.
+Updated Assembly Information.
+Updated ApplicationEvents.
+Added database backup on program launch.
+
 v5.16.0.64
 Added new Dashboard Menu. (WIP, Will eventually become start screen.)
 Fixed AdminMenu Due Date not updating based on Calibration Date and Interval.

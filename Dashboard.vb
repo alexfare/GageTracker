@@ -149,15 +149,18 @@ Public Class Dashboard
     Private Sub BtnOverdue_Click(sender As Object, e As EventArgs) Handles BtnOverdue.Click
         GlobalVars.DueDateMenuSelect = "Past"
         DueDateCategorizer.Show()
+        Me.Close()
     End Sub
 
     Private Sub Btn30_Click(sender As Object, e As EventArgs) Handles Btn30.Click
         GlobalVars.DueDateMenuSelect = "30"
         DueDateCategorizer.Show()
+        Me.Close()
     End Sub
 
     Private Sub Btn60_Click(sender As Object, e As EventArgs) Handles Btn60.Click
         GlobalVars.DueDateMenuSelect = "60"
         DueDateCategorizer.Show()
+        Me.Close()
     End Sub
 End Class

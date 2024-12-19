@@ -579,9 +579,22 @@ Public Class GTMenu
         End If
     End Sub
 
-    Private Sub DueToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DueToolStripMenuItem.Click
-        Me.Close()
+    Private Sub OverdueToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OverdueToolStripMenuItem.Click
+        GlobalVars.DueDateMenuSelect = "Past"
         DueDateCategorizer.Show()
+        Me.Close()
+    End Sub
+
+    Private Sub DueWithin30DaysToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DueWithin30DaysToolStripMenuItem.Click
+        GlobalVars.DueDateMenuSelect = "30"
+        DueDateCategorizer.Show()
+        Me.Close()
+    End Sub
+
+    Private Sub DueWithin60DaysToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DueWithin60DaysToolStripMenuItem.Click
+        GlobalVars.DueDateMenuSelect = "60"
+        DueDateCategorizer.Show()
+        Me.Close()
     End Sub
 
     Private Sub GageListToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles GageListToolStripMenuItem1.Click
@@ -816,7 +829,7 @@ Public Class GTMenu
         UpdateDueDate()
     End Sub
 
-    Private Sub TextContains_TextChanged(sender As Object, e As EventArgs) Handles txtPartNumber.TextChanged, txtDescription.TextChanged, TxtInterval.TextChanged, txtComments.TextChanged, cmbStatus.SelectedIndexChanged, txtDepartment.SelectedIndexChanged, txtGageType.SelectedIndexChanged, txtCustomer.SelectedIndexChanged, txtCalibratedBy.SelectedIndexChanged, DtInspectedDate.ValueChanged, dtDueDate.ValueChanged, TxtSerialNumber.TextChanged, TxtNistNumber.TextChanged, txtOwner.TextChanged, txtaN1.TextChanged, txtaN2.TextChanged, txtaN3.TextChanged, txtaN4.TextChanged, txtaN5.TextChanged, txtaA1.TextChanged, txtaA2.TextChanged, txtaA3.TextChanged, txtaA4.TextChanged, txtaA5.TextChanged
+    Private Sub TextContains_TextChanged(sender As Object, e As EventArgs) Handles txtPartNumber.TextChanged, txtDescription.TextChanged, TxtInterval.TextChanged, txtComments.TextChanged, cmbStatus.SelectedIndexChanged, txtDepartment.SelectedIndexChanged, txtGageType.SelectedIndexChanged, txtCustomer.SelectedIndexChanged, txtCalibratedBy.SelectedIndexChanged, DtInspectedDate.ValueChanged, dtDueDate.ValueChanged, TxtSerialNumber.TextChanged, TxtNistNumber.TextChanged, txtOwner.TextChanged, txtaN1.TextChanged, txtaN2.TextChanged, txtaN3.TextChanged, txtaN4.TextChanged, txtaN5.TextChanged, txtaA1.TextChanged, txtaA2.TextChanged, txtaA3.TextChanged, txtaA4.TextChanged, txtaA5.TextChanged, txtPartRev.TextChanged
         If SearchCheck = True Then
             ChangeDetected = True
             Me.Text = "*" & originalTitle

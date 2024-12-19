@@ -103,10 +103,10 @@ Partial Class GTMenu
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DashboardToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GageListToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.DueToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GageManagementToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AddGageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UpdateGageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -118,7 +118,9 @@ Partial Class GTMenu
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip = New System.Windows.Forms.StatusStrip()
         Me.StatusLabel = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.DashboardToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OverdueToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DueWithin30DaysToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DueWithin60DaysToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GroupBox1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -920,15 +922,21 @@ Partial Class GTMenu
         Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
         Me.FileToolStripMenuItem.Text = "File"
         '
+        'DashboardToolStripMenuItem
+        '
+        Me.DashboardToolStripMenuItem.Name = "DashboardToolStripMenuItem"
+        Me.DashboardToolStripMenuItem.Size = New System.Drawing.Size(132, 22)
+        Me.DashboardToolStripMenuItem.Text = "Dashboard"
+        '
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(132, 22)
         Me.ExitToolStripMenuItem.Text = "Exit"
         '
         'ViewToolStripMenuItem
         '
-        Me.ViewToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GageListToolStripMenuItem1, Me.DueToolStripMenuItem})
+        Me.ViewToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GageListToolStripMenuItem1, Me.OverdueToolStripMenuItem, Me.DueWithin30DaysToolStripMenuItem, Me.DueWithin60DaysToolStripMenuItem})
         Me.ViewToolStripMenuItem.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ViewToolStripMenuItem.Name = "ViewToolStripMenuItem"
         Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(45, 20)
@@ -937,14 +945,8 @@ Partial Class GTMenu
         'GageListToolStripMenuItem1
         '
         Me.GageListToolStripMenuItem1.Name = "GageListToolStripMenuItem1"
-        Me.GageListToolStripMenuItem1.Size = New System.Drawing.Size(173, 22)
+        Me.GageListToolStripMenuItem1.Size = New System.Drawing.Size(180, 22)
         Me.GageListToolStripMenuItem1.Text = "GageList"
-        '
-        'DueToolStripMenuItem
-        '
-        Me.DueToolStripMenuItem.Name = "DueToolStripMenuItem"
-        Me.DueToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
-        Me.DueToolStripMenuItem.Text = "Due Date Calender"
         '
         'GageManagementToolStripMenuItem
         '
@@ -1021,11 +1023,23 @@ Partial Class GTMenu
         Me.StatusLabel.Size = New System.Drawing.Size(36, 17)
         Me.StatusLabel.Text = "NULL"
         '
-        'DashboardToolStripMenuItem
+        'OverdueToolStripMenuItem
         '
-        Me.DashboardToolStripMenuItem.Name = "DashboardToolStripMenuItem"
-        Me.DashboardToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.DashboardToolStripMenuItem.Text = "Dashboard"
+        Me.OverdueToolStripMenuItem.Name = "OverdueToolStripMenuItem"
+        Me.OverdueToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.OverdueToolStripMenuItem.Text = "Overdue"
+        '
+        'DueWithin30DaysToolStripMenuItem
+        '
+        Me.DueWithin30DaysToolStripMenuItem.Name = "DueWithin30DaysToolStripMenuItem"
+        Me.DueWithin30DaysToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.DueWithin30DaysToolStripMenuItem.Text = "Due within 30 days"
+        '
+        'DueWithin60DaysToolStripMenuItem
+        '
+        Me.DueWithin60DaysToolStripMenuItem.Name = "DueWithin60DaysToolStripMenuItem"
+        Me.DueWithin60DaysToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.DueWithin60DaysToolStripMenuItem.Text = "Due within 60 days"
         '
         'GTMenu
         '
@@ -1156,7 +1170,6 @@ Partial Class GTMenu
     Friend WithEvents Panel3 As Panel
     Friend WithEvents ViewToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GageListToolStripMenuItem1 As ToolStripMenuItem
-    Friend WithEvents DueToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SettingsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ReportIssueToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AboutToolStripMenuItem As ToolStripMenuItem
@@ -1164,4 +1177,7 @@ Partial Class GTMenu
     Friend WithEvents StatusStrip As StatusStrip
     Friend WithEvents StatusLabel As ToolStripStatusLabel
     Friend WithEvents DashboardToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents OverdueToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents DueWithin30DaysToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents DueWithin60DaysToolStripMenuItem As ToolStripMenuItem
 End Class

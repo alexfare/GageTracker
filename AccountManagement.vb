@@ -12,14 +12,12 @@ Public Class AccountManagement
 
     Private Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
         If txtUsername.Text = "" OrElse txtPassword.Text = "" OrElse txtConfirmPassword.Text = "" Then
-            StatusLabel.Text = "Please fill in all fields."
-            Timer1.Enabled = True
+            ShowStatus("Please fill in all fields.", True)
             Return
         End If
 
         If txtPassword.Text <> txtConfirmPassword.Text Then
-            StatusLabel.Text = "Passwords do not match."
-            Timer1.Enabled = True
+            ShowStatus("Passwords do not match.", True)
             Return
         End If
 
@@ -51,15 +49,13 @@ Public Class AccountManagement
             If count > 0 Then
                 Dim result As DialogResult = MessageBox.Show("Username already exists. Do you want to update the password?", "Update Confirmation", MessageBoxButtons.YesNo)
                 If result = DialogResult.Yes Then
-                    ' Update password
                     Dim updateCmd As New OleDbCommand("UPDATE Credentials SET [Password] = ? WHERE [Username] = ?", conn)
                     updateCmd.Parameters.Add(New OleDbParameter("@Password", hashedPassword))
                     updateCmd.Parameters.Add(New OleDbParameter("@Username", username))
                     updateCmd.ExecuteNonQuery()
-                    StatusLabel.Text = "Password updated successfully."
+                    ShowStatus("Password updated successfully.", False)
                     GlobalVars.SystemLog = username + " password updated."
                     Logger.LogSystem()
-                    Timer1.Enabled = True
                     ClearInputs()
                 End If
                 Return
@@ -69,10 +65,9 @@ Public Class AccountManagement
             cmd.Parameters.Add(New OleDbParameter("@Username", username))
             cmd.Parameters.Add(New OleDbParameter("@Password", hashedPassword))
             cmd.ExecuteNonQuery()
-            StatusLabel.Text = "User created successfully."
+            ShowStatus("User created successfully.", False)
             GlobalVars.SystemLog = "User " + username + " created."
             Logger.LogSystem()
-            Timer1.Enabled = True
             txtUsername.SelectedIndex = -1
             LoadUsers()
             ClearInputs()
@@ -104,8 +99,7 @@ Public Class AccountManagement
     Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
         Dim username As String = txtUsername.Text
         If String.IsNullOrEmpty(username) Then
-            StatusLabel.Text = "Please enter a username to delete."
-            Timer1.Enabled = True
+            ShowStatus("Please enter a username to delete.", True)
             Return
         End If
 
@@ -117,8 +111,7 @@ Public Class AccountManagement
             Dim count As Integer = Convert.ToInt32(checkCmd.ExecuteScalar())
 
             If count = 0 Then
-                StatusLabel.Text = "Username does not exist."
-                Timer1.Enabled = True
+                ShowStatus("Username does not exist.", True)
                 Return
             End If
 
@@ -127,10 +120,9 @@ Public Class AccountManagement
                 Dim deleteCmd As New OleDbCommand("DELETE FROM Credentials WHERE [Username] = ?", conn)
                 deleteCmd.Parameters.Add(New OleDbParameter("@Username", username))
                 deleteCmd.ExecuteNonQuery()
-                StatusLabel.Text = "User deleted successfully."
+                ShowStatus("User deleted successfully.", False)
                 GlobalVars.SystemLog = "User " + username + " deleted."
                 Logger.LogSystem()
-                Timer1.Enabled = True
                 ClearInputs()
                 LoadUsers()
             End If
@@ -141,6 +133,12 @@ Public Class AccountManagement
         txtUsername.SelectedIndex = -1
         txtPassword.Clear()
         txtConfirmPassword.Clear()
+    End Sub
+
+    Private Sub ShowStatus(message As String, isError As Boolean)
+        StatusLabel.ForeColor = If(isError, Color.Red, Color.Green)
+        StatusLabel.Text = message
+        Timer1.Enabled = True
     End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick

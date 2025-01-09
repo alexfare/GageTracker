@@ -28,6 +28,7 @@ Public Class GageList
 
         FilterSetup()
         MenuColor()
+        StartDashboard()
     End Sub
 #End Region
 
@@ -64,6 +65,10 @@ Public Class GageList
         CmbContains.Items.AddRange(New String() {"GageID", "Status", "PartNumber", "Description", "Department", "Gage Type", "Customer", "Inspected Date", "Due Date", "Comments"})
         CmbContains.SelectedIndex = 0
         CheckBoxShowAll.Checked = My.Settings.ShowAll
+    End Sub
+
+    Private Sub StartDashboard()
+        Dashboard.Show()
     End Sub
 #End Region
 

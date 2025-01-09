@@ -1,3 +1,9 @@
+v5.16.2.66
+Updated Dashboard.
+Updated GageList to add Dashboard view at start.
+Updated ReportIssue resize issue.
+Updated AccountManagement status display.
+
 v5.16.1.65 (Last update of 2024)
 Fixed GTMenu Rev detection.
 Fixed AdminMenu Rev detection.

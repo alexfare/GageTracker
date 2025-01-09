@@ -141,6 +141,7 @@ Partial Class ReportIssue
         Me.CancelButton = Me.btnBack
         Me.ClientSize = New System.Drawing.Size(329, 325)
         Me.Controls.Add(Me.Panel1)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.Name = "ReportIssue"

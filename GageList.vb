@@ -9,7 +9,7 @@ Public Class GageList
     Private Sub GageList_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         AddHandler DataGridView1.SelectionChanged, AddressOf DataGridView1_SelectionChanged
         AddHandler DataGridView1.CellDoubleClick, AddressOf DataGridView1_CellDoubleClick
-
+        TextContains.Text = ""
         Try
             GlobalVars.LoadDatabaseLocation()
             LoadData()
@@ -23,10 +23,8 @@ Public Class GageList
             Logger.LogErrors()
         End Try
 
-        'Misc
-        TextContains.Text = ""
-
         FilterSetup()
+        ApplyStatusFilter()
         MenuColor()
         StartDashboard()
     End Sub
@@ -52,6 +50,12 @@ Public Class GageList
         End If
 
         LoadData(filterQuery)
+
+        If String.IsNullOrWhiteSpace(TextContains.Text) Then
+            ApplyStatusFilter()
+        Else
+
+        End If
     End Sub
 
     Private Sub BtnMenu_Click(sender As Object, e As EventArgs) Handles BtnMenu.Click
@@ -173,20 +177,6 @@ Public Class GageList
         Finally
             webClient.Dispose()
         End Try
-    End Sub
-
-    Private Sub ChangeDatabaseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ChangeDatabaseToolStripMenuItem.Click
-        Using openFileDialog As New OpenFileDialog()
-            openFileDialog.InitialDirectory = "C:\"
-            openFileDialog.Filter = "Access Database Files (*.accdb)|*.accdb"
-            openFileDialog.FilterIndex = 1
-            openFileDialog.RestoreDirectory = True
-
-            If openFileDialog.ShowDialog() = DialogResult.OK Then
-                GlobalVars.DatabaseLocation = openFileDialog.FileName
-                GlobalVars.SaveDatabaseLocation(GlobalVars.DatabaseLocation)
-            End If
-        End Using
     End Sub
 #End Region
 
@@ -326,6 +316,7 @@ Public Class GageList
     Private Sub RefreshToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RefreshToolStripMenuItem.Click
         LoadData()
         FilterSetup()
+        ApplyStatusFilter()
     End Sub
 
     Private Sub DashboardToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DashboardToolStripMenuItem.Click

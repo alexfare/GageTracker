@@ -43,13 +43,12 @@ Partial Class GageList
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DashboardToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ChangeDatabaseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.RefreshToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PastDueToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DueWithin30DaysToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DueWithin60DaysToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.RefreshToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AdminToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SettingsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -188,7 +187,7 @@ Partial Class GageList
         '
         'FileToolStripMenuItem
         '
-        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DashboardToolStripMenuItem, Me.MenuToolStripMenuItem, Me.ChangeDatabaseToolStripMenuItem, Me.ExitToolStripMenuItem})
+        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DashboardToolStripMenuItem, Me.MenuToolStripMenuItem, Me.ExitToolStripMenuItem})
         Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
         Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
         Me.FileToolStripMenuItem.Text = "File"
@@ -205,12 +204,6 @@ Partial Class GageList
         Me.MenuToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.MenuToolStripMenuItem.Text = "Menu"
         '
-        'ChangeDatabaseToolStripMenuItem
-        '
-        Me.ChangeDatabaseToolStripMenuItem.Name = "ChangeDatabaseToolStripMenuItem"
-        Me.ChangeDatabaseToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.ChangeDatabaseToolStripMenuItem.Text = "Change Database"
-        '
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
@@ -224,29 +217,29 @@ Partial Class GageList
         Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
         Me.ViewToolStripMenuItem.Text = "View"
         '
+        'RefreshToolStripMenuItem
+        '
+        Me.RefreshToolStripMenuItem.Name = "RefreshToolStripMenuItem"
+        Me.RefreshToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.RefreshToolStripMenuItem.Text = "Refresh"
+        '
         'PastDueToolStripMenuItem
         '
         Me.PastDueToolStripMenuItem.Name = "PastDueToolStripMenuItem"
-        Me.PastDueToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.PastDueToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
         Me.PastDueToolStripMenuItem.Text = "Overdue"
         '
         'DueWithin30DaysToolStripMenuItem
         '
         Me.DueWithin30DaysToolStripMenuItem.Name = "DueWithin30DaysToolStripMenuItem"
-        Me.DueWithin30DaysToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.DueWithin30DaysToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
         Me.DueWithin30DaysToolStripMenuItem.Text = "Due within 30 days"
         '
         'DueWithin60DaysToolStripMenuItem
         '
         Me.DueWithin60DaysToolStripMenuItem.Name = "DueWithin60DaysToolStripMenuItem"
-        Me.DueWithin60DaysToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.DueWithin60DaysToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
         Me.DueWithin60DaysToolStripMenuItem.Text = "Due within 60 days"
-        '
-        'RefreshToolStripMenuItem
-        '
-        Me.RefreshToolStripMenuItem.Name = "RefreshToolStripMenuItem"
-        Me.RefreshToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.RefreshToolStripMenuItem.Text = "Refresh"
         '
         'AdminToolStripMenuItem
         '
@@ -264,25 +257,25 @@ Partial Class GageList
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(138, 22)
         Me.AboutToolStripMenuItem.Text = "About"
         '
         'ReportIssueToolStripMenuItem
         '
         Me.ReportIssueToolStripMenuItem.Name = "ReportIssueToolStripMenuItem"
-        Me.ReportIssueToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ReportIssueToolStripMenuItem.Size = New System.Drawing.Size(138, 22)
         Me.ReportIssueToolStripMenuItem.Text = "Report Issue"
         '
         'GithubToolStripMenuItem
         '
         Me.GithubToolStripMenuItem.Name = "GithubToolStripMenuItem"
-        Me.GithubToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.GithubToolStripMenuItem.Size = New System.Drawing.Size(138, 22)
         Me.GithubToolStripMenuItem.Text = "Github"
         '
         'WebsiteToolStripMenuItem
         '
         Me.WebsiteToolStripMenuItem.Name = "WebsiteToolStripMenuItem"
-        Me.WebsiteToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.WebsiteToolStripMenuItem.Size = New System.Drawing.Size(138, 22)
         Me.WebsiteToolStripMenuItem.Text = "Website"
         '
         'TextContains
@@ -375,7 +368,6 @@ Partial Class GageList
     Friend WithEvents Label1 As Label
     Friend WithEvents MenuStrip1 As MenuStrip
     Friend WithEvents FileToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ChangeDatabaseToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ExitToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AdminToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SettingsToolStripMenuItem As ToolStripMenuItem

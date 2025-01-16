@@ -296,7 +296,7 @@ Public Class AdminMenu
         If SearchCheck = True Then
             DeleteConfirmed()
         Else
-            MessageBox.Show("Please search for Gage record.")
+            ShowStatus("Please search for Gage record.", True)
         End If
     End Sub
 
@@ -339,11 +339,6 @@ Public Class AdminMenu
     End Sub
 
     Private Sub DeleteConfirmed()
-        If String.IsNullOrWhiteSpace(TxtGageID.Text) Then
-            MessageBox.Show("GageID cannot be blank. Please enter a valid GageID.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Return
-        End If
-
         Dim result As DialogResult = MessageBox.Show("Are you sure you want to delete this gage?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If result = DialogResult.Yes Then
             Try
@@ -361,7 +356,7 @@ Public Class AdminMenu
                         ReloadData()
                         GlobalVars.LastActivity = TxtGageID.Text + " deleted."
                     Else
-                        MessageBox.Show("No gage deleted. Please check the GageID.")
+                        ShowStatus("No gage deleted. Please check the GageID.", True)
                     End If
                 End Using
             Catch ex As OleDbException

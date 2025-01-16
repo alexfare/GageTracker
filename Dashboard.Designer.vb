@@ -99,6 +99,7 @@ Partial Class Dashboard
         '
         'TxtOverdue
         '
+        Me.TxtOverdue.BackColor = System.Drawing.SystemColors.Control
         Me.TxtOverdue.Location = New System.Drawing.Point(17, 119)
         Me.TxtOverdue.Name = "TxtOverdue"
         Me.TxtOverdue.ReadOnly = True

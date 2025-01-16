@@ -407,10 +407,10 @@ Public Class GTMenu
             If ChangeDetected = True Then
                 BtnUpdateConfirmed()
             Else
-                ShowStatus("No updates detected.", False)
+                ShowStatus("No updates detected.", True)
             End If
         Else
-            MessageBox.Show("Please search for Gage record.")
+            ShowStatus("Please search for Gage record.", True)
         End If
     End Sub
 
@@ -533,7 +533,7 @@ Public Class GTMenu
         If SearchCheck = True Then
             DeleteConfirmed()
         Else
-            MessageBox.Show("Please search for Gage record.")
+            ShowStatus("Please search for Gage record.", True)
         End If
     End Sub
 
@@ -718,11 +718,6 @@ Public Class GTMenu
     End Sub
 
     Private Sub DeleteConfirmed()
-        If String.IsNullOrWhiteSpace(TxtGageID.Text) Then
-            MessageBox.Show("GageID cannot be blank. Please enter a valid GageID.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Return
-        End If
-
         If My.Settings.isAdmin = False Then
             MessageBox.Show("Must be logged in to delete gage.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return
@@ -737,15 +732,14 @@ Public Class GTMenu
                     deleteCmd.Parameters.AddWithValue("@GageID", TxtGageID.Text)
                     Dim rowsAffected As Integer = deleteCmd.ExecuteNonQuery()
                     If rowsAffected > 0 Then
-                        StatusLabel.Text = "Gage deleted successfully."
-                        Timer1.Enabled = True
+                        ShowStatus("Gage deleted successfully.", False)
                         SearchCheck = False
                         ClearForms()
                         ReloadData()
                         GlobalVars.LastActivity = TxtGageID.Text + " deleted."
                         Logger.SaveLogEntry()
                     Else
-                        MessageBox.Show("No gage deleted. Please check the GageID.")
+                        ShowStatus("No gage deleted. Please check the GageID.", True)
                     End If
                 End Using
             Catch ex As OleDbException

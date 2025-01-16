@@ -87,6 +87,13 @@ Public Class Dashboard
 
                     totalCount = Convert.ToInt32(command.ExecuteScalar())
                     TxtOverdue.Text = totalCount
+                    TxtOverdue.Enabled = True
+                    If TxtOverdue.Text = 0 Then
+                        TxtOverdue.BackColor = SystemColors.Control
+                    Else
+                        TxtOverdue.BackColor = Color.Red
+                    End If
+
                 End Using
             Catch ex As Exception
                 GlobalVars.ErrorLog = ("Error: " & ex.Message)
@@ -111,6 +118,11 @@ Public Class Dashboard
 
                     totalCount = Convert.ToInt32(command.ExecuteScalar())
                     Txt30.Text = totalCount
+                    If Txt30.Text = 0 Then
+                        Txt30.BackColor = SystemColors.Control
+                    Else
+                        Txt30.BackColor = Color.Yellow
+                    End If
                 End Using
             Catch ex As Exception
                 GlobalVars.ErrorLog = ("Error: " & ex.Message)
@@ -135,6 +147,11 @@ Public Class Dashboard
 
                     totalCount = Convert.ToInt32(command.ExecuteScalar())
                     Txt60.Text = totalCount
+                    If Txt60.Text = 0 Then
+                        Txt60.BackColor = SystemColors.Control
+                    Else
+                        Txt60.BackColor = Color.LightBlue
+                    End If
                 End Using
             Catch ex As Exception
                 GlobalVars.ErrorLog = ("Error: " & ex.Message)

@@ -1,3 +1,10 @@
+v5.16.3.67
+Updated Dashboard.
+Updated GTMenu.
+Updated AdminMenu.
+Updated GageList; Fixed Filter Issue on GageList (Searching will still break this).
+Updated GageList; Removed ability to change database as a normal user. (Unless one cannot be detected.)
+
 v5.16.2.66
 Updated Dashboard.
 Updated GageList to add Dashboard view at start.

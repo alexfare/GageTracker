@@ -1,3 +1,12 @@
+v5.16.4.68
+Updated AdminMenu, Added Welcome user.
+Updated Dashboard UI.
+Updated GageList title.
+Fixed logging issue not displaying deleted gage (GTMenu).
+Fixed logging issue not displaying added gage (GTMenu).
+Fixed logging issue on Admin delete gage.
+Added logging to Admin Add Gage.
+
 v5.16.3.67
 Updated Dashboard.
 Updated GTMenu.
@@ -25,7 +34,7 @@ Added database backup on program launch.
 v5.16.0.64
 Added new Dashboard Menu. (WIP, Will eventually become start screen.)
 Fixed AdminMenu Due Date not updating based on Calibration Date and Interval.
-Updated GageID Combobox to display gages alphabetically (GTMenu & AdminMenu).
+Updated GageID Combo box to display gages alphabetically (GTMenu & AdminMenu).
 Updated ReportIssue.
 Updated AdminMenu status display.
 Updated AdminMenu menu strip.
@@ -90,7 +99,7 @@ Updated SecureHandler, Fixed issue that could cause a runtime error.
 Updated CredentialsManager, Readability and how it handles the keys.
 Updated LoginForm, Centering and added Log events.
 Updated ApplicationEvents, Adding Error logging.
-Updated DueDateCategorizer, Centerings and added Error logging.
+Updated DueDateCategorizer, Centering and added Error logging.
 Updated GTMenu centering.
 Updated AccountManagement centering and Error/System logging.
 Updated AdminMenu centering and Error logging.
@@ -135,7 +144,7 @@ Updated GageType form hot keys, tab order, and Icon.
 Updated ReportIssue form, Removed File Menu & Fixed formatting.
 
 v5.13.1.52
-Updated GageList, Menustrip will change color if Admin is logged in.
+Updated GageList, Menu strip will change color if Admin is logged in.
 Updated AccountManagement, Updated hotkeys.
 Updated CustomerEntry, Clears text when deleting entry.
 Updated DueDateCategorizer, Added regions to code for better organization.
@@ -158,11 +167,11 @@ v5.12.1.49
 Updated CustomerEntry, (Slight UI update & Code).
 Updated ReportIssue.
 Added Logger to log information to Logs/AuditLog.
-Updated AdminMenu, Added Red color to menustrip to easily differentiate between normal and admin.
-Updated GageList & GTMenu, Added color to menustrip
+Updated AdminMenu, Added Red color to menu strip to easily differentiate between normal and admin.
+Updated GageList & GTMenu, Added color to menu strip
 Updated GTMenu AuditLog.
 Updated GTMenu & AdminMenu code, Working on improvements & Organization.
-Updated GTMenu & AdminMenu, Working on autosearch, GageID auto populates after updating.
+Updated GTMenu & AdminMenu, Working on auto search, GageID auto populates after updating.
 Database maintenance.
 
 v5.12.0.48
@@ -221,7 +230,7 @@ Fixed Issue with GageList not selecting gages properly.
 Fixed Issue with Admin NOT being logged out after restart.
 
 v5.9.3.40
-Fixed GageList Filtering reseting after updating gage.
+Fixed GageList Filtering resetting after updating gage.
 Fixed AdminMenu logged in user not updating.
 Fixed AdminMenu last activity.
 Updated GageList, Show / Filter Status anchored when adjusting windows size.
@@ -245,9 +254,9 @@ Updated GageList.
 v5.9.0.37
 Added a filter for filtering out all status options besides "Active" on GageList.
 Added website button under settings on GageList.
-Added Github button under settings on GageList.
-Updated how verison control works. (vMajor.Minor.Patch.Build)
-Misc code improvements/updates.
+Added GitHub button under settings on GageList.
+Updated how version control works. (vMajor.Minor.Patch.Build)
+Misc. code improvements/updates.
 
 v5.8.1.36
 Fixed Program Open Count under AdminMenu Audit.
@@ -272,14 +281,14 @@ Updating, Adding & Deleting no longer displays a message box. Displays at the bo
 
 v5.6.1.33
 Updated DueDateCategorizer, added double clicking and selection.
-Misc code improvements/updates.
+Misc. code improvements/updates.
 
 v5.6.1.32
 Fixed DueDateCategorizer 30 Days & 60 Days dataset being editable still.
-Added the ability to select a gage from gagelist and search.
-Added the ability to double click a gage from gagelist.
-Updated gagelist UI, Removed DueDateCategorizer button (Menu Strip).
-Updated gagelist UI, Removed version display (See About).
+Added the ability to select a gage from GageList and search.
+Added the ability to double click a gage from GageList.
+Updated GageList UI, Removed DueDateCategorizer button (Menu Strip).
+Updated GageList UI, Removed version display (See About).
 
 v5.5.1.31
 Updated AccountManagement to clear password field.
@@ -296,7 +305,7 @@ Updated AdminMenu
 v5.5.1.29
 Updated Menu titles.
 Updated Admin & Login Menu code.
-Updated update url.
+Updated update URL.
 Added Menu to DueDateCategorizer.
 Added Filtering to GageList.
 
@@ -334,21 +343,21 @@ v5.1.1.23
 Slight UI update to Menu.
 Slight UI update to DueDateCategorizer.
 Added File Menu to GageList.
-Added Fule Menu to GTMenu.
+Added File Menu to GTMenu.
 Added Ability to change the database.
 Added About Page.
 
 v5.0.1.22
 Fixed clear error when the user has a custom entry in a combobox.
-Fixed Due Date Calender not updating.
+Fixed Due Date Calendar not updating.
 
 v5.0.1.21
 Fixed database not found error.
 Fixed how the database location is saved.
 
 v5.0.0.20
-Updated Due Date Calender settings.
-Updated Due Date Calender Button format.
+Updated Due Date Calendar settings.
+Updated Due Date Calendar Button format.
 Updated LoadingScreen background.
 
 v5.0.0.19
@@ -356,7 +365,7 @@ Fixed Installer.
 
 v5.0.0.18
 Added Zebra striping to GageList to help with readability.
-Added Due Date Calender (Displays past due, due within 30 days and due within 60 days).
+Added Due Date Calendar (Displays past due, due within 30 days and due within 60 days).
 
 v5.0.0.17
 Updated spelling.
@@ -383,7 +392,7 @@ Adjusted GageList size.
 v5.0.0.14
 Updated GTMenu, Form opens faster by loading SQL data in the background.
 Corrected GTMenu tab order.
-Forms now autocenter. 
+Forms now auto center. 
 Updated "Calibrated By" to dropdown box.
 Added Autocomplete/suggest to GageID.
 
@@ -404,13 +413,13 @@ Updated GTMenu Nominal / Actual recordings.
 Added Loading Screen.
 
 v5.0.0.11
-Added current verison to List Menu.
+Added current version to List Menu.
 Added ReportIssue form. (WIP).
 Added Gage Delete Menu.
 Added Gage Status Menu.
 Added Account Creation Menu.
 Updated code on storing database location.
-Added default Admin credientials to database.
+Added default Admin credentials to database.
 
 v5.0.0.10
 Completed Logout button on Admin Menu.
@@ -438,13 +447,13 @@ Added GageList button on GTMenu.
 
 v5.0.0.6
 Renamed Menu to GTMenu
-Deleted and cleaned Github.
+Deleted and cleaned GitHub.
 
 v5.0.0.5
 Working on selecting gages from the list.
 
 v5.0.0.4
-Updates to gagelist menu & Main Menu renamed to GTMenu
+Updates to GageList menu & Main Menu renamed to GTMenu
 
 v5.0.0.3
 Added GageList

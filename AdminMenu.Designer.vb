@@ -31,6 +31,9 @@ Partial Class AdminMenu
         Me.ViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GageListToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OverdueToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DueWithin30DaysToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DueWithin60DaysToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SettingsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NewDatabaseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ChangeDatabaseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -129,9 +132,8 @@ Partial Class AdminMenu
         Me.Label15 = New System.Windows.Forms.Label()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.TabControl2 = New System.Windows.Forms.TabControl()
-        Me.OverdueToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.DueWithin30DaysToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.DueWithin60DaysToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Panel5 = New System.Windows.Forms.Panel()
+        Me.LblUser = New System.Windows.Forms.Label()
         Me.MenuStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -145,6 +147,7 @@ Partial Class AdminMenu
         Me.Panel3.SuspendLayout()
         Me.TabPage3.SuspendLayout()
         Me.TabControl2.SuspendLayout()
+        Me.Panel5.SuspendLayout()
         Me.SuspendLayout()
         '
         'BtnBack
@@ -163,7 +166,7 @@ Partial Class AdminMenu
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.ViewToolStripMenuItem, Me.SettingsToolStripMenuItem, Me.LogoutToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(606, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(614, 24)
         Me.MenuStrip1.TabIndex = 6
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -196,14 +199,32 @@ Partial Class AdminMenu
         'MenuToolStripMenuItem
         '
         Me.MenuToolStripMenuItem.Name = "MenuToolStripMenuItem"
-        Me.MenuToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.MenuToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
         Me.MenuToolStripMenuItem.Text = "Menu"
         '
         'GageListToolStripMenuItem
         '
         Me.GageListToolStripMenuItem.Name = "GageListToolStripMenuItem"
-        Me.GageListToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.GageListToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
         Me.GageListToolStripMenuItem.Text = "GageList"
+        '
+        'OverdueToolStripMenuItem
+        '
+        Me.OverdueToolStripMenuItem.Name = "OverdueToolStripMenuItem"
+        Me.OverdueToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.OverdueToolStripMenuItem.Text = "Overdue"
+        '
+        'DueWithin30DaysToolStripMenuItem
+        '
+        Me.DueWithin30DaysToolStripMenuItem.Name = "DueWithin30DaysToolStripMenuItem"
+        Me.DueWithin30DaysToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.DueWithin30DaysToolStripMenuItem.Text = "Due within 30 days"
+        '
+        'DueWithin60DaysToolStripMenuItem
+        '
+        Me.DueWithin60DaysToolStripMenuItem.Name = "DueWithin60DaysToolStripMenuItem"
+        Me.DueWithin60DaysToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.DueWithin60DaysToolStripMenuItem.Text = "Due within 60 days"
         '
         'SettingsToolStripMenuItem
         '
@@ -248,7 +269,7 @@ Partial Class AdminMenu
         Me.GroupBox1.Controls.Add(Me.BtnClear)
         Me.GroupBox1.Controls.Add(Me.Label5)
         Me.GroupBox1.Controls.Add(Me.BtnAdminSearch)
-        Me.GroupBox1.Location = New System.Drawing.Point(12, 27)
+        Me.GroupBox1.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(585, 43)
         Me.GroupBox1.TabIndex = 32
@@ -334,7 +355,7 @@ Partial Class AdminMenu
         Me.Panel1.Controls.Add(Me.BtnAdd)
         Me.Panel1.Controls.Add(Me.BtnUpdate)
         Me.Panel1.Controls.Add(Me.BtnBack)
-        Me.Panel1.Location = New System.Drawing.Point(16, 428)
+        Me.Panel1.Location = New System.Drawing.Point(7, 404)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(484, 72)
         Me.Panel1.TabIndex = 34
@@ -369,9 +390,9 @@ Partial Class AdminMenu
         'StatusStrip
         '
         Me.StatusStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.StatusLabel})
-        Me.StatusStrip.Location = New System.Drawing.Point(0, 506)
+        Me.StatusStrip.Location = New System.Drawing.Point(0, 527)
         Me.StatusStrip.Name = "StatusStrip"
-        Me.StatusStrip.Size = New System.Drawing.Size(606, 22)
+        Me.StatusStrip.Size = New System.Drawing.Size(614, 22)
         Me.StatusStrip.TabIndex = 35
         Me.StatusStrip.Text = "StatusStrip1"
         '
@@ -387,7 +408,7 @@ Partial Class AdminMenu
         Me.Panel2.Controls.Add(Me.btnCustomer)
         Me.Panel2.Controls.Add(Me.btnStatus)
         Me.Panel2.Controls.Add(Me.BtnGageType)
-        Me.Panel2.Location = New System.Drawing.Point(506, 98)
+        Me.Panel2.Location = New System.Drawing.Point(497, 74)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(91, 402)
         Me.Panel2.TabIndex = 36
@@ -1113,41 +1134,41 @@ Partial Class AdminMenu
         Me.TabControl2.Controls.Add(Me.TabPage4)
         Me.TabControl2.Controls.Add(Me.TabPage5)
         Me.TabControl2.Controls.Add(Me.TabPage7)
-        Me.TabControl2.Location = New System.Drawing.Point(12, 76)
+        Me.TabControl2.Location = New System.Drawing.Point(3, 52)
         Me.TabControl2.Name = "TabControl2"
         Me.TabControl2.SelectedIndex = 0
         Me.TabControl2.Size = New System.Drawing.Size(492, 346)
         Me.TabControl2.TabIndex = 33
         '
-        'OverdueToolStripMenuItem
+        'Panel5
         '
-        Me.OverdueToolStripMenuItem.Name = "OverdueToolStripMenuItem"
-        Me.OverdueToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.OverdueToolStripMenuItem.Text = "Overdue"
+        Me.Panel5.Controls.Add(Me.GroupBox1)
+        Me.Panel5.Controls.Add(Me.Panel2)
+        Me.Panel5.Controls.Add(Me.TabControl2)
+        Me.Panel5.Controls.Add(Me.Panel1)
+        Me.Panel5.Location = New System.Drawing.Point(12, 40)
+        Me.Panel5.Name = "Panel5"
+        Me.Panel5.Size = New System.Drawing.Size(593, 482)
+        Me.Panel5.TabIndex = 37
         '
-        'DueWithin30DaysToolStripMenuItem
+        'LblUser
         '
-        Me.DueWithin30DaysToolStripMenuItem.Name = "DueWithin30DaysToolStripMenuItem"
-        Me.DueWithin30DaysToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.DueWithin30DaysToolStripMenuItem.Text = "Due within 30 days"
-        '
-        'DueWithin60DaysToolStripMenuItem
-        '
-        Me.DueWithin60DaysToolStripMenuItem.Name = "DueWithin60DaysToolStripMenuItem"
-        Me.DueWithin60DaysToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.DueWithin60DaysToolStripMenuItem.Text = "Due within 60 days"
+        Me.LblUser.AutoSize = True
+        Me.LblUser.Location = New System.Drawing.Point(9, 24)
+        Me.LblUser.Name = "LblUser"
+        Me.LblUser.Size = New System.Drawing.Size(80, 13)
+        Me.LblUser.TabIndex = 38
+        Me.LblUser.Text = "Welcome, User"
         '
         'AdminMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.BtnBack
-        Me.ClientSize = New System.Drawing.Size(606, 528)
-        Me.Controls.Add(Me.Panel2)
+        Me.ClientSize = New System.Drawing.Size(614, 549)
+        Me.Controls.Add(Me.LblUser)
+        Me.Controls.Add(Me.Panel5)
         Me.Controls.Add(Me.StatusStrip)
-        Me.Controls.Add(Me.Panel1)
-        Me.Controls.Add(Me.TabControl2)
-        Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.MenuStrip1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -1177,6 +1198,7 @@ Partial Class AdminMenu
         Me.TabPage3.ResumeLayout(False)
         Me.TabPage3.PerformLayout()
         Me.TabControl2.ResumeLayout(False)
+        Me.Panel5.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1291,4 +1313,6 @@ Partial Class AdminMenu
     Friend WithEvents OverdueToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents DueWithin30DaysToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents DueWithin60DaysToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents Panel5 As Panel
+    Friend WithEvents LblUser As Label
 End Class

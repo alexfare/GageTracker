@@ -9,7 +9,11 @@ Public Class GageList
     Private Sub GageList_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         AddHandler DataGridView1.SelectionChanged, AddressOf DataGridView1_SelectionChanged
         AddHandler DataGridView1.CellDoubleClick, AddressOf DataGridView1_CellDoubleClick
+        Dim getVersion As String = My.Settings.VersionString
+        Me.Text = "GageTracker - GageList - " + getVersion
+
         TextContains.Text = ""
+
         Try
             GlobalVars.LoadDatabaseLocation()
             LoadData()
@@ -360,4 +364,5 @@ Public Class GageList
         Application.Exit()
     End Sub
 #End Region
+
 End Class

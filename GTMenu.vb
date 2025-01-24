@@ -294,10 +294,10 @@ Public Class GTMenu
                     addCmd.Parameters.Add(New OleDbParameter("@DateAdded", OleDbType.Date)).Value = dateAdded
                     addCmd.ExecuteNonQuery()
                     ShowStatus("Gage added successfully", False)
-                    ReloadData()
-                    BtnClear.PerformClick()
                     GlobalVars.LastActivity = TxtGageID.Text + " added successfully"
                     Logger.SaveLogEntry()
+                    ReloadData()
+                    BtnClear.PerformClick()
                 Else
                     MessageBox.Show("This GageID already exists", "Duplicate Entry", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 End If
@@ -733,11 +733,11 @@ Public Class GTMenu
                     Dim rowsAffected As Integer = deleteCmd.ExecuteNonQuery()
                     If rowsAffected > 0 Then
                         ShowStatus("Gage deleted successfully.", False)
+                        GlobalVars.LastActivity = TxtGageID.Text + " deleted."
+                        Logger.SaveLogEntry()
                         SearchCheck = False
                         ClearForms()
                         ReloadData()
-                        GlobalVars.LastActivity = TxtGageID.Text + " deleted."
-                        Logger.SaveLogEntry()
                     Else
                         ShowStatus("No gage deleted. Please check the GageID.", True)
                     End If

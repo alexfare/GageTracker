@@ -14,6 +14,7 @@ Public Class AdminMenu
 #Region "Admin Load"
     Private Async Sub AdminMenu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         StatusLabel.Text = ""
+        LblUser.Text = "Welcome, " + My.Settings.LoggedUser
         Me.Text = originalTitle
         MenuStrip1.BackColor = Color.IndianRed
 
@@ -200,6 +201,8 @@ Public Class AdminMenu
                     addCmd.Parameters.Add(New OleDbParameter("@DateAdded", OleDbType.Date)).Value = dateAdded
                     addCmd.ExecuteNonQuery()
                     ShowStatus("Gage added successfully", False)
+                    GlobalVars.LastActivity = My.Settings.LoggedUser + " added gage: " + TxtGageID.Text
+                    Logger.SaveLogEntry()
                     ReloadData()
                     BtnClear.PerformClick()
                 Else
@@ -351,10 +354,11 @@ Public Class AdminMenu
                     Dim rowsAffected As Integer = deleteCmd.ExecuteNonQuery()
                     If rowsAffected > 0 Then
                         ShowStatus("Gage deleted successfully", False)
+                        GlobalVars.LastActivity = My.Settings.LoggedUser + " deleted gage: " + TxtGageID.Text
+                        Logger.SaveLogEntry()
                         SearchCheck = False
                         ClearForms()
                         ReloadData()
-                        GlobalVars.LastActivity = TxtGageID.Text + " deleted."
                     Else
                         ShowStatus("No gage deleted. Please check the GageID.", True)
                     End If

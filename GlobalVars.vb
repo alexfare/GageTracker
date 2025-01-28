@@ -5,6 +5,7 @@
     Public SystemLog As String
     Public ErrorLog As String
     Public Username As String
+    Public AuthHash As String
 
     Public Sub LoadDatabaseLocation()
         DatabaseLocation = My.Settings.DatabaseLocation

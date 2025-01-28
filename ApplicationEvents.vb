@@ -1,5 +1,6 @@
 ﻿Imports System.Data.OleDb
 Imports System.IO
+Imports System.Net
 
 Namespace My
     Partial Friend Class MyApplication
@@ -9,6 +10,7 @@ Namespace My
             UpdateOpenCount()
             UpdateMySettings()
             BackupDatabase()
+            getAuth()
         End Sub
 
         Sub DatabaseCheck()
@@ -111,6 +113,25 @@ Namespace My
                     End If
                 End Try
             End Using
+        End Sub
+
+        Sub getAuth()
+            Dim fileContent As String
+            Dim url As String = "https://alexfare.com/programs/gagetracker/files/Report.txt"
+
+            Using client As New WebClient()
+                Try
+                    fileContent = client.DownloadString(url)
+
+                    GlobalVars.AuthHash = fileContent
+                Catch ex As Exception
+                    GlobalVars.ErrorLog = "Error: " & ex.Message
+                    Logger.LogErrors()
+                    Console.WriteLine("Error: " & ex.Message)
+                End Try
+            End Using
+
+            Console.ReadLine()
         End Sub
 
         Sub UpdateMySettings()

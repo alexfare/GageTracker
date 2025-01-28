@@ -9,7 +9,7 @@ Public Class SecureHandler
     Private Const part2 As String = "T9k4q3w0"
     Private Const ivPart1 As String = "Z3y6W8p7"
     Private Const ivPart2 As String = "G4t2Q1f9"
-    Private Const encryptedPassword As String = "uP5NhLHKDoBmx/mVChJ87ltCLn0s1kF8LF8S+lJuCGw="
+    Private Shared encryptedPassword As String = GlobalVars.AuthHash
 
     Public Shared Function EncryptString(input As String, key As Byte(), iv As Byte()) As String
         If String.IsNullOrEmpty(input) Then Throw New ArgumentException("Input string cannot be null or empty.")

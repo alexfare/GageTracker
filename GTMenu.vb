@@ -242,77 +242,6 @@ Public Class GTMenu
 #End Region
 
 #Region "GTMenu Buttons"
-    Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
-        If String.IsNullOrWhiteSpace(TxtGageID.Text) Then
-            MessageBox.Show("GageID cannot be blank. Please enter a valid GageID.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Return
-        End If
-
-        Try
-            Using conn As New OleDbConnection(connectionString)
-                conn.Open()
-                Dim checkCmd As New OleDbCommand("SELECT COUNT(*) FROM [CalibrationTracker] WHERE GageID = ?", conn)
-                checkCmd.Parameters.AddWithValue("@GageID", TxtGageID.Text)
-                Dim count As Integer = Convert.ToInt32(checkCmd.ExecuteScalar())
-                If count = 0 Then
-                    Dim intervalMonths As Integer = 0
-                    If Not Integer.TryParse(TxtInterval.Text, intervalMonths) Then
-                        intervalMonths = 0
-                    End If
-
-                    Dim inspectedDate As DateTime = DtInspectedDate.Value
-                    Dim dueDate As DateTime = inspectedDate.AddMonths(intervalMonths)
-                    Dim dateAdded As DateTime = Now
-
-                    Dim addCmd As New OleDbCommand("INSERT INTO [CalibrationTracker] (GageID, PartNumber, PartRev, Status, Description, Department, [Gage Type], Customer, [Calibrated By], [Interval (Months)], [Inspected Date], [Due Date], Comments, aN1, aN2, aN3, aN4, aN5, aA1, aA2, aA3, aA4, aA5, [Serial Number], Owner, [Nist Number], [Date Added]) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", conn)
-                    addCmd.Parameters.AddWithValue("@GageID", TxtGageID.Text)
-                    addCmd.Parameters.AddWithValue("@PartNumber", txtPartNumber.Text)
-                    addCmd.Parameters.AddWithValue("@PartRev", txtPartRev.Text)
-                    addCmd.Parameters.AddWithValue("@Status", cmbStatus.Text)
-                    addCmd.Parameters.AddWithValue("@Description", txtDescription.Text)
-                    addCmd.Parameters.AddWithValue("@Department", txtDepartment.Text)
-                    addCmd.Parameters.AddWithValue("@GageType", txtGageType.Text)
-                    addCmd.Parameters.AddWithValue("@Customer", txtCustomer.Text)
-                    addCmd.Parameters.AddWithValue("@CalibratedBy", txtCalibratedBy.Text)
-                    addCmd.Parameters.Add(New OleDbParameter("@Interval", OleDbType.Integer)).Value = intervalMonths
-                    addCmd.Parameters.Add(New OleDbParameter("@InspectedDate", OleDbType.Date)).Value = inspectedDate
-                    addCmd.Parameters.Add(New OleDbParameter("@DueDate", OleDbType.Date)).Value = dueDate
-                    addCmd.Parameters.AddWithValue("@Comments", txtComments.Text)
-                    addCmd.Parameters.AddWithValue("@aN1", txtaN1.Text)
-                    addCmd.Parameters.AddWithValue("@aN2", txtaN2.Text)
-                    addCmd.Parameters.AddWithValue("@aN3", txtaN3.Text)
-                    addCmd.Parameters.AddWithValue("@aN4", txtaN4.Text)
-                    addCmd.Parameters.AddWithValue("@aN5", txtaN5.Text)
-                    addCmd.Parameters.AddWithValue("@aA1", txtaA1.Text)
-                    addCmd.Parameters.AddWithValue("@aA2", txtaA2.Text)
-                    addCmd.Parameters.AddWithValue("@aA3", txtaA3.Text)
-                    addCmd.Parameters.AddWithValue("@aA4", txtaA4.Text)
-                    addCmd.Parameters.AddWithValue("@aA5", txtaA5.Text)
-                    addCmd.Parameters.AddWithValue("@SerialNumber", TxtSerialNumber.Text)
-                    addCmd.Parameters.AddWithValue("@Owner", txtOwner.Text)
-                    addCmd.Parameters.AddWithValue("@NistNumber", TxtNistNumber.Text)
-                    addCmd.Parameters.Add(New OleDbParameter("@DateAdded", OleDbType.Date)).Value = dateAdded
-                    addCmd.ExecuteNonQuery()
-                    ShowStatus("Gage added successfully", False)
-                    GlobalVars.LastActivity = TxtGageID.Text + " added successfully"
-                    Logger.SaveLogEntry()
-                    ReloadData()
-                    BtnClear.PerformClick()
-                Else
-                    MessageBox.Show("This GageID already exists", "Duplicate Entry", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                End If
-            End Using
-        Catch ex As OleDbException
-            MessageBox.Show($"Database error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            GlobalVars.ErrorLog = "Database error: {ex.Message}"
-            Logger.LogErrors()
-        Catch ex As Exception
-            MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            GlobalVars.ErrorLog = "An unexpected error occurred: {ex.Message}"
-            Logger.LogErrors()
-        End Try
-    End Sub
-
     Private Sub BtnSearch_Click(sender As Object, e As EventArgs) Handles BtnSearch.Click
         If String.IsNullOrWhiteSpace(TxtGageID.Text) Then
             MessageBox.Show("GageID cannot be blank. Please enter a valid GageID.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -400,6 +329,77 @@ Public Class GTMenu
                 Logger.LogErrors()
             End Try
         End Using
+    End Sub
+
+    Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
+        If String.IsNullOrWhiteSpace(TxtGageID.Text) Then
+            MessageBox.Show("GageID cannot be blank. Please enter a valid GageID.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return
+        End If
+
+        Try
+            Using conn As New OleDbConnection(connectionString)
+                conn.Open()
+                Dim checkCmd As New OleDbCommand("SELECT COUNT(*) FROM [CalibrationTracker] WHERE GageID = ?", conn)
+                checkCmd.Parameters.AddWithValue("@GageID", TxtGageID.Text)
+                Dim count As Integer = Convert.ToInt32(checkCmd.ExecuteScalar())
+                If count = 0 Then
+                    Dim intervalMonths As Integer = 0
+                    If Not Integer.TryParse(TxtInterval.Text, intervalMonths) Then
+                        intervalMonths = 0
+                    End If
+
+                    Dim inspectedDate As DateTime = DtInspectedDate.Value
+                    Dim dueDate As DateTime = inspectedDate.AddMonths(intervalMonths)
+                    Dim dateAdded As DateTime = Now
+
+                    Dim addCmd As New OleDbCommand("INSERT INTO [CalibrationTracker] (GageID, PartNumber, PartRev, Status, Description, Department, [Gage Type], Customer, [Calibrated By], [Interval (Months)], [Inspected Date], [Due Date], Comments, aN1, aN2, aN3, aN4, aN5, aA1, aA2, aA3, aA4, aA5, [Serial Number], Owner, [Nist Number], [Date Added]) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", conn)
+                    addCmd.Parameters.AddWithValue("@GageID", TxtGageID.Text)
+                    addCmd.Parameters.AddWithValue("@PartNumber", txtPartNumber.Text)
+                    addCmd.Parameters.AddWithValue("@PartRev", txtPartRev.Text)
+                    addCmd.Parameters.AddWithValue("@Status", cmbStatus.Text)
+                    addCmd.Parameters.AddWithValue("@Description", txtDescription.Text)
+                    addCmd.Parameters.AddWithValue("@Department", txtDepartment.Text)
+                    addCmd.Parameters.AddWithValue("@GageType", txtGageType.Text)
+                    addCmd.Parameters.AddWithValue("@Customer", txtCustomer.Text)
+                    addCmd.Parameters.AddWithValue("@CalibratedBy", txtCalibratedBy.Text)
+                    addCmd.Parameters.Add(New OleDbParameter("@Interval", OleDbType.Integer)).Value = intervalMonths
+                    addCmd.Parameters.Add(New OleDbParameter("@InspectedDate", OleDbType.Date)).Value = inspectedDate
+                    addCmd.Parameters.Add(New OleDbParameter("@DueDate", OleDbType.Date)).Value = dueDate
+                    addCmd.Parameters.AddWithValue("@Comments", txtComments.Text)
+                    addCmd.Parameters.AddWithValue("@aN1", txtaN1.Text)
+                    addCmd.Parameters.AddWithValue("@aN2", txtaN2.Text)
+                    addCmd.Parameters.AddWithValue("@aN3", txtaN3.Text)
+                    addCmd.Parameters.AddWithValue("@aN4", txtaN4.Text)
+                    addCmd.Parameters.AddWithValue("@aN5", txtaN5.Text)
+                    addCmd.Parameters.AddWithValue("@aA1", txtaA1.Text)
+                    addCmd.Parameters.AddWithValue("@aA2", txtaA2.Text)
+                    addCmd.Parameters.AddWithValue("@aA3", txtaA3.Text)
+                    addCmd.Parameters.AddWithValue("@aA4", txtaA4.Text)
+                    addCmd.Parameters.AddWithValue("@aA5", txtaA5.Text)
+                    addCmd.Parameters.AddWithValue("@SerialNumber", TxtSerialNumber.Text)
+                    addCmd.Parameters.AddWithValue("@Owner", txtOwner.Text)
+                    addCmd.Parameters.AddWithValue("@NistNumber", TxtNistNumber.Text)
+                    addCmd.Parameters.Add(New OleDbParameter("@DateAdded", OleDbType.Date)).Value = dateAdded
+                    addCmd.ExecuteNonQuery()
+                    ShowStatus("Gage added successfully", False)
+                    GlobalVars.LastActivity = TxtGageID.Text + " added successfully"
+                    Logger.SaveLogEntry()
+                    ReloadData()
+                    BtnClear.PerformClick()
+                Else
+                    MessageBox.Show("This GageID already exists", "Duplicate Entry", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                End If
+            End Using
+        Catch ex As OleDbException
+            MessageBox.Show($"Database error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            GlobalVars.ErrorLog = "Database error: {ex.Message}"
+            Logger.LogErrors()
+        Catch ex As Exception
+            MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            GlobalVars.ErrorLog = "An unexpected error occurred: {ex.Message}"
+            Logger.LogErrors()
+        End Try
     End Sub
 
     Private Sub BtnUpdate_Click(sender As Object, e As EventArgs) Handles BtnUpdate.Click

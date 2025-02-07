@@ -195,19 +195,19 @@ Partial Class GageList
         'DashboardToolStripMenuItem
         '
         Me.DashboardToolStripMenuItem.Name = "DashboardToolStripMenuItem"
-        Me.DashboardToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.DashboardToolStripMenuItem.Size = New System.Drawing.Size(131, 22)
         Me.DashboardToolStripMenuItem.Text = "Dashboard"
         '
         'MenuToolStripMenuItem
         '
         Me.MenuToolStripMenuItem.Name = "MenuToolStripMenuItem"
-        Me.MenuToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.MenuToolStripMenuItem.Size = New System.Drawing.Size(131, 22)
         Me.MenuToolStripMenuItem.Text = "Menu"
         '
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(131, 22)
         Me.ExitToolStripMenuItem.Text = "Exit"
         '
         'ViewToolStripMenuItem
@@ -322,7 +322,6 @@ Partial Class GageList
         '
         'GageList
         '
-        Me.AcceptButton = Me.BtnMenu
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1390, 752)

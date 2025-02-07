@@ -1,3 +1,7 @@
+v5.17.1.70
+Updated GTMenu
+Updated GageList, Removed Enter key.
+
 v5.17.0.69
 Fixed ReportIssue. Any previous version will no longer work due to a database error that broke the previous method.
 Updated SecureHandler to retrieve updated hash to prevent the issue in the future.

@@ -107,6 +107,9 @@ Partial Class GTMenu
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GageListToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OverdueToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DueWithin30DaysToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DueWithin60DaysToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GageManagementToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AddGageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UpdateGageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -118,9 +121,6 @@ Partial Class GTMenu
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip = New System.Windows.Forms.StatusStrip()
         Me.StatusLabel = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.OverdueToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.DueWithin30DaysToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.DueWithin60DaysToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GroupBox1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -945,8 +945,26 @@ Partial Class GTMenu
         'GageListToolStripMenuItem1
         '
         Me.GageListToolStripMenuItem1.Name = "GageListToolStripMenuItem1"
-        Me.GageListToolStripMenuItem1.Size = New System.Drawing.Size(180, 22)
+        Me.GageListToolStripMenuItem1.Size = New System.Drawing.Size(176, 22)
         Me.GageListToolStripMenuItem1.Text = "GageList"
+        '
+        'OverdueToolStripMenuItem
+        '
+        Me.OverdueToolStripMenuItem.Name = "OverdueToolStripMenuItem"
+        Me.OverdueToolStripMenuItem.Size = New System.Drawing.Size(176, 22)
+        Me.OverdueToolStripMenuItem.Text = "Overdue"
+        '
+        'DueWithin30DaysToolStripMenuItem
+        '
+        Me.DueWithin30DaysToolStripMenuItem.Name = "DueWithin30DaysToolStripMenuItem"
+        Me.DueWithin30DaysToolStripMenuItem.Size = New System.Drawing.Size(176, 22)
+        Me.DueWithin30DaysToolStripMenuItem.Text = "Due within 30 days"
+        '
+        'DueWithin60DaysToolStripMenuItem
+        '
+        Me.DueWithin60DaysToolStripMenuItem.Name = "DueWithin60DaysToolStripMenuItem"
+        Me.DueWithin60DaysToolStripMenuItem.Size = New System.Drawing.Size(176, 22)
+        Me.DueWithin60DaysToolStripMenuItem.Text = "Due within 60 days"
         '
         'GageManagementToolStripMenuItem
         '
@@ -1023,24 +1041,6 @@ Partial Class GTMenu
         Me.StatusLabel.Size = New System.Drawing.Size(36, 17)
         Me.StatusLabel.Text = "NULL"
         '
-        'OverdueToolStripMenuItem
-        '
-        Me.OverdueToolStripMenuItem.Name = "OverdueToolStripMenuItem"
-        Me.OverdueToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.OverdueToolStripMenuItem.Text = "Overdue"
-        '
-        'DueWithin30DaysToolStripMenuItem
-        '
-        Me.DueWithin30DaysToolStripMenuItem.Name = "DueWithin30DaysToolStripMenuItem"
-        Me.DueWithin30DaysToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.DueWithin30DaysToolStripMenuItem.Text = "Due within 30 days"
-        '
-        'DueWithin60DaysToolStripMenuItem
-        '
-        Me.DueWithin60DaysToolStripMenuItem.Name = "DueWithin60DaysToolStripMenuItem"
-        Me.DueWithin60DaysToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.DueWithin60DaysToolStripMenuItem.Text = "Due within 60 days"
-        '
         'GTMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1057,6 +1057,7 @@ Partial Class GTMenu
         Me.MainMenuStrip = Me.MenuStrip1
         Me.MaximizeBox = False
         Me.Name = "GTMenu"
+        Me.Opacity = 0.99R
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "GageTracker - Menu"
         Me.GroupBox1.ResumeLayout(False)

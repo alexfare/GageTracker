@@ -76,6 +76,7 @@ Partial Class Dashboard
         Me.TxtOverdue.Size = New System.Drawing.Size(100, 19)
         Me.TxtOverdue.TabIndex = 7
         Me.TxtOverdue.TabStop = False
+        Me.TxtOverdue.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Txt30
         '
@@ -88,6 +89,7 @@ Partial Class Dashboard
         Me.Txt30.Size = New System.Drawing.Size(100, 19)
         Me.Txt30.TabIndex = 9
         Me.Txt30.TabStop = False
+        Me.Txt30.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Txt60
         '
@@ -100,6 +102,7 @@ Partial Class Dashboard
         Me.Txt60.Size = New System.Drawing.Size(100, 19)
         Me.Txt60.TabIndex = 11
         Me.Txt60.TabStop = False
+        Me.Txt60.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'TxtLost
         '
@@ -112,6 +115,7 @@ Partial Class Dashboard
         Me.TxtLost.Size = New System.Drawing.Size(100, 19)
         Me.TxtLost.TabIndex = 5
         Me.TxtLost.TabStop = False
+        Me.TxtLost.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'TxtInactive
         '
@@ -124,6 +128,7 @@ Partial Class Dashboard
         Me.TxtInactive.Size = New System.Drawing.Size(100, 19)
         Me.TxtInactive.TabIndex = 3
         Me.TxtInactive.TabStop = False
+        Me.TxtInactive.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'BtnOverdue
         '
@@ -298,6 +303,7 @@ Partial Class Dashboard
         Me.TxtActive.Size = New System.Drawing.Size(100, 19)
         Me.TxtActive.TabIndex = 1
         Me.TxtActive.TabStop = False
+        Me.TxtActive.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'BtnClose
         '
@@ -315,10 +321,11 @@ Partial Class Dashboard
         Me.ClientSize = New System.Drawing.Size(456, 323)
         Me.Controls.Add(Me.BtnClose)
         Me.Controls.Add(Me.Panel1)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.Name = "Dashboard"
+        Me.Opacity = 0.99R
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Dashboard - GageTracker"
         Me.TopMost = True

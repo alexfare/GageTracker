@@ -1,3 +1,8 @@
+v5.17.2.71
+Updated Dashboard.
+Updated Dashboard, AdminMenu, GTMenu's Opacity.
+Updated ApplicationEvents Load Order & Application Handling.
+
 v5.17.1.70
 Updated GTMenu
 Updated GageList, Removed Enter key.

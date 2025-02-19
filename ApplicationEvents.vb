@@ -5,11 +5,11 @@ Imports System.Net
 Namespace My
     Partial Friend Class MyApplication
         Private Sub MyApplication_Startup(sender As Object, e As EventArgs) Handles Me.Startup
-            DatabaseCheck()
             SystemLog()
+            DatabaseCheck()
+            BackupDatabase()
             UpdateOpenCount()
             UpdateMySettings()
-            BackupDatabase()
             getAuth()
         End Sub
 
@@ -150,9 +150,7 @@ Namespace My
         End Sub
 
         Private Sub MyApplication_StartupNextInstance(sender As Object, e As Microsoft.VisualBasic.ApplicationServices.StartupNextInstanceEventArgs) Handles Me.StartupNextInstance
-            If Me.MainForm IsNot Nothing Then
-                Me.MainForm.Activate()
-            End If
+            Me.MainForm?.Activate()
         End Sub
     End Class
 End Namespace

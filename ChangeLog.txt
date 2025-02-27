@@ -1,3 +1,7 @@
+v5.17.3.72
+Updated GageList, Selecting anywhere in the line will now select entire line.
+Updated DueDateCategorizer, Selecting anywhere in the line will now select entire line.
+
 v5.17.2.71
 Updated Dashboard.
 Updated Dashboard, AdminMenu, GTMenu's Opacity.

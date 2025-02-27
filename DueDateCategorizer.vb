@@ -16,6 +16,14 @@ Public Class DueDateCategorizer
         AddHandler DataGridViewWithin30Days.SelectionChanged, AddressOf DataGridViewWithin30Days_SelectionChanged
         AddHandler DataGridViewWithin60Days.SelectionChanged, AddressOf DataGridViewWithin60Days_SelectionChanged
 
+        'Select Line
+        DataGridViewPastDue.SelectionMode = DataGridViewSelectionMode.FullRowSelect
+        DataGridViewPastDue.MultiSelect = False
+        DataGridViewWithin30Days.SelectionMode = DataGridViewSelectionMode.FullRowSelect
+        DataGridViewWithin30Days.MultiSelect = False
+        DataGridViewWithin60Days.SelectionMode = DataGridViewSelectionMode.FullRowSelect
+        DataGridViewWithin60Days.MultiSelect = False
+
         Try
             LoadData()
         Catch ex As OleDbException

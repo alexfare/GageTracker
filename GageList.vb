@@ -12,6 +12,9 @@ Public Class GageList
         Dim getVersion As String = My.Settings.VersionString
         Me.Text = "GageTracker - GageList - " + getVersion
 
+        DataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect
+        DataGridView1.MultiSelect = False
+
         TextContains.Text = ""
 
         Try

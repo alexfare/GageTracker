@@ -322,6 +322,7 @@ Partial Class GTMenu
         '
         'BtnClear
         '
+        Me.BtnClear.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.BtnClear.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnClear.Location = New System.Drawing.Point(411, 10)
         Me.BtnClear.Name = "BtnClear"
@@ -1045,7 +1046,7 @@ Partial Class GTMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.CancelButton = Me.BtnGageList
+        Me.CancelButton = Me.BtnClear
         Me.ClientSize = New System.Drawing.Size(514, 499)
         Me.Controls.Add(Me.StatusStrip)
         Me.Controls.Add(Me.Panel1)

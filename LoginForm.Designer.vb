@@ -30,6 +30,7 @@ Partial Class LoginForm1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(LoginForm1))
         Me.LogoPictureBox = New System.Windows.Forms.PictureBox()
         Me.UsernameLabel = New System.Windows.Forms.Label()
@@ -40,6 +41,7 @@ Partial Class LoginForm1
         Me.Cancel = New System.Windows.Forms.Button()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.StatusLabel = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         CType(Me.LogoPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -123,6 +125,10 @@ Partial Class LoginForm1
         Me.StatusLabel.Size = New System.Drawing.Size(36, 17)
         Me.StatusLabel.Text = "NULL"
         '
+        'Timer1
+        '
+        Me.Timer1.Interval = 3000
+        '
         'LoginForm1
         '
         Me.AcceptButton = Me.btnLogin
@@ -157,4 +163,5 @@ Partial Class LoginForm1
 
     Friend WithEvents StatusStrip1 As StatusStrip
     Friend WithEvents StatusLabel As ToolStripStatusLabel
+    Friend WithEvents Timer1 As Timer
 End Class

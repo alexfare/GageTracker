@@ -1,3 +1,10 @@
+v5.17.4.73
+Updated LoginForm, Added Timer to clear error message.
+Updated GTMenu & AdminMenu
+	ESC now clears form instead of closing it.
+Updated signing key.
+Release is now a single exe.
+
 v5.17.3.72
 Updated GageList, Selecting anywhere in the line will now select entire line.
 Updated DueDateCategorizer, Selecting anywhere in the line will now select entire line.

@@ -16,12 +16,14 @@ Public Class LoginForm1
         If String.IsNullOrWhiteSpace(txtUsername.Text) Then
             StatusLabel.Text = "Username cannot be blank."
             txtUsername.Focus()
+            Timer1.Enabled = True
             Return
         End If
 
         If String.IsNullOrWhiteSpace(txtPassword.Text) Then
             StatusLabel.Text = "Password cannot be blank."
             txtPassword.Focus()
+            Timer1.Enabled = True
             Return
         End If
 
@@ -68,6 +70,7 @@ Public Class LoginForm1
         txtPassword.Text = ""
         txtPassword.Focus()
         StatusLabel.Text = "Invalid username or password."
+        Timer1.Enabled = True
         GlobalVars.SystemLog = "Invalid login attempt on user: " + txtUsername.Text
         Logger.LogSystem()
     End Sub
@@ -93,4 +96,9 @@ Public Class LoginForm1
             Return builder.ToString()
         End Using
     End Function
+
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        StatusLabel.Text = ""
+        Timer1.Enabled = False
+    End Sub
 End Class

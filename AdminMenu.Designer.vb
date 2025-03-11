@@ -287,6 +287,7 @@ Partial Class AdminMenu
         '
         'BtnClear
         '
+        Me.BtnClear.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.BtnClear.Location = New System.Drawing.Point(452, 14)
         Me.BtnClear.Name = "BtnClear"
         Me.BtnClear.Size = New System.Drawing.Size(127, 23)
@@ -1164,7 +1165,7 @@ Partial Class AdminMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.CancelButton = Me.BtnBack
+        Me.CancelButton = Me.BtnClear
         Me.ClientSize = New System.Drawing.Size(614, 549)
         Me.Controls.Add(Me.LblUser)
         Me.Controls.Add(Me.Panel5)

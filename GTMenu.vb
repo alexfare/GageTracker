@@ -5,9 +5,10 @@ Public Class GTMenu
     Private SearchCheck As Boolean
     Private activeUser As String
     Private ChangeDetected As Boolean
+    Private CanUpdate As Boolean
     Private GageSearch As String
     Private isClosing As Boolean = False
-    Private saveString As String
+    Private saveString As String = ""
     Dim originalTitle As String = "GageTracker - Menu"
     Public WithEvents Timer1 As New Timer With {.Interval = 3000, .Enabled = False}
 
@@ -36,6 +37,7 @@ Public Class GTMenu
         Me.Text = originalTitle
         MenuStrip1.BackColor = SystemColors.AppWorkspace
         SearchCheck = False
+        CanUpdate = False
         StatusLabel.Text = ""
     End Sub
 
@@ -256,6 +258,8 @@ Public Class GTMenu
             End If
         Else
             SearchHandler()
+            saveString = TxtGageID.Text
+            CanUpdate = True
         End If
     End Sub
 
@@ -405,9 +409,14 @@ Public Class GTMenu
     Private Sub BtnUpdate_Click(sender As Object, e As EventArgs) Handles BtnUpdate.Click
         If SearchCheck = True Then
             If ChangeDetected = True Then
-                BtnUpdateConfirmed()
+                If CanUpdate = True Then
+                    BtnUpdateConfirmed()
+                Else
+                    ShowStatus("Warning GageID has been modified.", True)
+                    FixGageID()
+                End If
             Else
-                ShowStatus("No updates detected.", True)
+                    ShowStatus("No updates detected.", True)
             End If
         Else
             ShowStatus("Please search for Gage record.", True)
@@ -693,6 +702,7 @@ Public Class GTMenu
         LblEditBy.Clear()
 
         SearchCheck = False
+        CanUpdate = False
         UpdateChangeStatus()
     End Sub
 #End Region
@@ -816,6 +826,11 @@ Public Class GTMenu
         StatusLabel.Text = message
         Timer1.Enabled = True
     End Sub
+
+    Private Sub FixGageID()
+        TxtGageID.Text = saveString
+        CanUpdate = True
+    End Sub
 #End Region
 
 #Region "TextChanged"
@@ -831,7 +846,9 @@ Public Class GTMenu
             UpdateChangeStatus()
         End If
     End Sub
-
+    Private Sub SearchChange_TextChanged(sender As Object, e As EventArgs) Handles TxtGageID.TextChanged
+        CanUpdate = False
+    End Sub
 #End Region
 
 #Region "Closing Form"

@@ -1,3 +1,12 @@
+v5.18.0.74
+Updated DueDateCategorizer name title.
+Updated GTMenu, prevent GageID from being overwrote, It now checks for change.
+Updated ReportIssue.
+Updated Logger, Removed user error messages. This is mostly for testing.
+Updated minimum required version to v5.17.0.69. This update fixed a program breaking bug and updated how it's handled in the future.
+Updated AdminMenu.
+Added DepartmentManager.
+
 v5.17.4.73
 Updated LoginForm, Added Timer to clear error message.
 Updated GTMenu & AdminMenu

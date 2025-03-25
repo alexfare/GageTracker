@@ -134,6 +134,7 @@ Partial Class AdminMenu
         Me.TabControl2 = New System.Windows.Forms.TabControl()
         Me.Panel5 = New System.Windows.Forms.Panel()
         Me.LblUser = New System.Windows.Forms.Label()
+        Me.BtnDepartment = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -166,7 +167,7 @@ Partial Class AdminMenu
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.ViewToolStripMenuItem, Me.SettingsToolStripMenuItem, Me.LogoutToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(614, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(615, 24)
         Me.MenuStrip1.TabIndex = 6
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -316,27 +317,27 @@ Partial Class AdminMenu
         '
         'BtnGageType
         '
-        Me.BtnGageType.Location = New System.Drawing.Point(3, 203)
+        Me.BtnGageType.Location = New System.Drawing.Point(4, 249)
         Me.BtnGageType.Name = "BtnGageType"
-        Me.BtnGageType.Size = New System.Drawing.Size(82, 94)
+        Me.BtnGageType.Size = New System.Drawing.Size(82, 76)
         Me.BtnGageType.TabIndex = 6
         Me.BtnGageType.Text = "Gage Type Menu"
         Me.BtnGageType.UseVisualStyleBackColor = True
         '
         'btnStatus
         '
-        Me.btnStatus.Location = New System.Drawing.Point(3, 103)
+        Me.btnStatus.Location = New System.Drawing.Point(4, 85)
         Me.btnStatus.Name = "btnStatus"
-        Me.btnStatus.Size = New System.Drawing.Size(82, 94)
+        Me.btnStatus.Size = New System.Drawing.Size(82, 76)
         Me.btnStatus.TabIndex = 2
         Me.btnStatus.Text = "Status Menu"
         Me.btnStatus.UseVisualStyleBackColor = True
         '
         'btnAccount
         '
-        Me.btnAccount.Location = New System.Drawing.Point(3, 303)
+        Me.btnAccount.Location = New System.Drawing.Point(4, 331)
         Me.btnAccount.Name = "btnAccount"
-        Me.btnAccount.Size = New System.Drawing.Size(82, 94)
+        Me.btnAccount.Size = New System.Drawing.Size(82, 76)
         Me.btnAccount.TabIndex = 3
         Me.btnAccount.Text = "Account Management"
         Me.btnAccount.UseVisualStyleBackColor = True
@@ -345,7 +346,7 @@ Partial Class AdminMenu
         '
         Me.btnCustomer.Location = New System.Drawing.Point(3, 3)
         Me.btnCustomer.Name = "btnCustomer"
-        Me.btnCustomer.Size = New System.Drawing.Size(82, 94)
+        Me.btnCustomer.Size = New System.Drawing.Size(82, 76)
         Me.btnCustomer.TabIndex = 0
         Me.btnCustomer.Text = "Customer Menu"
         Me.btnCustomer.UseVisualStyleBackColor = True
@@ -391,9 +392,9 @@ Partial Class AdminMenu
         'StatusStrip
         '
         Me.StatusStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.StatusLabel})
-        Me.StatusStrip.Location = New System.Drawing.Point(0, 527)
+        Me.StatusStrip.Location = New System.Drawing.Point(0, 540)
         Me.StatusStrip.Name = "StatusStrip"
-        Me.StatusStrip.Size = New System.Drawing.Size(614, 22)
+        Me.StatusStrip.Size = New System.Drawing.Size(615, 22)
         Me.StatusStrip.TabIndex = 35
         Me.StatusStrip.Text = "StatusStrip1"
         '
@@ -407,11 +408,12 @@ Partial Class AdminMenu
         '
         Me.Panel2.Controls.Add(Me.btnAccount)
         Me.Panel2.Controls.Add(Me.btnCustomer)
+        Me.Panel2.Controls.Add(Me.BtnDepartment)
         Me.Panel2.Controls.Add(Me.btnStatus)
         Me.Panel2.Controls.Add(Me.BtnGageType)
         Me.Panel2.Location = New System.Drawing.Point(497, 74)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(91, 402)
+        Me.Panel2.Size = New System.Drawing.Size(91, 412)
         Me.Panel2.TabIndex = 36
         '
         'TabPage7
@@ -1149,7 +1151,7 @@ Partial Class AdminMenu
         Me.Panel5.Controls.Add(Me.Panel1)
         Me.Panel5.Location = New System.Drawing.Point(12, 40)
         Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(593, 482)
+        Me.Panel5.Size = New System.Drawing.Size(593, 495)
         Me.Panel5.TabIndex = 37
         '
         'LblUser
@@ -1161,12 +1163,21 @@ Partial Class AdminMenu
         Me.LblUser.TabIndex = 38
         Me.LblUser.Text = "Welcome, User"
         '
+        'BtnDepartment
+        '
+        Me.BtnDepartment.Location = New System.Drawing.Point(3, 167)
+        Me.BtnDepartment.Name = "BtnDepartment"
+        Me.BtnDepartment.Size = New System.Drawing.Size(82, 76)
+        Me.BtnDepartment.TabIndex = 39
+        Me.BtnDepartment.Text = "Department Manager"
+        Me.BtnDepartment.UseVisualStyleBackColor = True
+        '
         'AdminMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.BtnClear
-        Me.ClientSize = New System.Drawing.Size(614, 549)
+        Me.ClientSize = New System.Drawing.Size(615, 562)
         Me.Controls.Add(Me.LblUser)
         Me.Controls.Add(Me.Panel5)
         Me.Controls.Add(Me.StatusStrip)
@@ -1317,4 +1328,5 @@ Partial Class AdminMenu
     Friend WithEvents DueWithin60DaysToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents Panel5 As Panel
     Friend WithEvents LblUser As Label
+    Friend WithEvents BtnDepartment As Button
 End Class

@@ -3,7 +3,17 @@ Imports System.Net.Mail
 
 Public Class ReportIssue
 
-    Private Sub ManualReportHandler()
+    Private Sub btnSend_Click(sender As Object, e As EventArgs) Handles btnSend.Click
+        If String.IsNullOrWhiteSpace(txtComment.Text) Then
+            MessageBox.Show("Comment is required.", "Required Information Missing", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            txtComment.Focus()
+            Return
+        End If
+
+        ReportHandler()
+    End Sub
+
+    Private Sub ReportHandler()
         Dim mail As New MailMessage()
         mail.From = New MailAddress(My.Settings.ReportSendFrom)
         mail.To.Add(My.Settings.ReportSendTo)
@@ -23,7 +33,7 @@ Public Class ReportIssue
         Try
             smtp.Send(mail)
             MessageBox.Show("Report sent successfully.")
-            GlobalVars.SystemLog = "Issue report has been sent."
+            GlobalVars.SystemLog = "Report has been sent."
             Logger.LogSystem()
             Me.Close()
         Catch ex As Exception
@@ -31,20 +41,6 @@ Public Class ReportIssue
             GlobalVars.ErrorLog = "Failed to send report. Error: " + ex.Message
             Logger.LogErrors()
         End Try
-    End Sub
-
-    Private Sub btnSend_Click(sender As Object, e As EventArgs) Handles btnSend.Click
-        If String.IsNullOrWhiteSpace(txtComment.Text) Then
-            MessageBox.Show("Comment is required.", "Required Information Missing", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            txtComment.Focus()
-            Return
-        End If
-
-        ManualReportHandler()
-    End Sub
-
-    Public Sub AutoReportHandler()
-        'WIP - Removed until testing is ready.
     End Sub
 
     Private Sub btnBack_Click(sender As Object, e As EventArgs) Handles btnBack.Click

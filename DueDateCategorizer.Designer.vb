@@ -171,7 +171,7 @@ Partial Class DueDateCategorizer
         Me.MaximizeBox = False
         Me.Name = "DueDateCategorizer"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "GageTracker - DueDateCategorizer"
+        Me.Text = "GageTracker - Due Date Categorizer"
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         CType(Me.DataGridViewPastDue, System.ComponentModel.ISupportInitialize).EndInit()

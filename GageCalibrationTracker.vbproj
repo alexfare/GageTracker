@@ -24,7 +24,7 @@
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
-    <UpdateRequired>false</UpdateRequired>
+    <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>https://alexfare.com/programs/gagetracker/latest/</InstallUrl>
     <UpdateUrl>https://alexfare.com/programs/gagetracker/latest/</UpdateUrl>
@@ -32,9 +32,9 @@
     <ErrorReportUrl>https://github.com/alexfare/GageTracker</ErrorReportUrl>
     <ProductName>GageTracker</ProductName>
     <PublisherName>Alex Fare</PublisherName>
-    <MinimumRequiredVersion>5.5.1.29</MinimumRequiredVersion>
-    <ApplicationRevision>74</ApplicationRevision>
-    <ApplicationVersion>5.17.4.%2a</ApplicationVersion>
+    <MinimumRequiredVersion>5.17.0.69</MinimumRequiredVersion>
+    <ApplicationRevision>75</ApplicationRevision>
+    <ApplicationVersion>5.18.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -177,6 +177,12 @@
     <Compile Include="Dashboard.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="DepartmentManager.Designer.vb">
+      <DependentUpon>DepartmentManager.vb</DependentUpon>
+    </Compile>
+    <Compile Include="DepartmentManager.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="DueDateCategorizer.Designer.vb">
       <DependentUpon>DueDateCategorizer.vb</DependentUpon>
     </Compile>
@@ -275,6 +281,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dashboard.resx">
       <DependentUpon>Dashboard.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DepartmentManager.resx">
+      <DependentUpon>DepartmentManager.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DueDateCategorizer.resx">
       <DependentUpon>DueDateCategorizer.vb</DependentUpon>

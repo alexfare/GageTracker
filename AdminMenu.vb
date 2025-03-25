@@ -328,6 +328,10 @@ Public Class AdminMenu
     Private Sub BtnGageType_Click(sender As Object, e As EventArgs) Handles BtnGageType.Click
         GageType.Show()
     End Sub
+
+    Private Sub BtnDepartment_Click(sender As Object, e As EventArgs) Handles BtnDepartment.Click
+        DepartmentManager.Show()
+    End Sub
 #End Region
 
 #Region "Controls"
@@ -889,8 +893,6 @@ Public Class AdminMenu
             End If
         End If
     End Sub
-
-
 #End Region
 
 End Class

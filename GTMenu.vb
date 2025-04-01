@@ -11,6 +11,8 @@ Public Class GTMenu
     Private saveString As String = ""
     Dim originalTitle As String = "GageTracker - Menu"
     Public WithEvents Timer1 As New Timer With {.Interval = 3000, .Enabled = False}
+    Public WithEvents UpdateTimer As New Timer With {.Interval = 3100, .Enabled = False}
+    Public WithEvents ReloadTimer As New Timer With {.Interval = 3100, .Enabled = False}
 
 #Region "GTMenu Load"
     Private Async Sub Menu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -389,8 +391,7 @@ Public Class GTMenu
                     ShowStatus("Gage added successfully", False)
                     GlobalVars.LastActivity = TxtGageID.Text + " added successfully"
                     Logger.SaveLogEntry()
-                    ReloadData()
-                    BtnClear.PerformClick()
+                    ReloadTimer.Enabled = True
                 Else
                     MessageBox.Show("This GageID already exists", "Duplicate Entry", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 End If
@@ -477,10 +478,9 @@ Public Class GTMenu
                 Logger.SaveLogEntry()
 
                 'Subs
-                ShowStatus("Gage updated successfully", False)
                 UpdateChangeStatus()
-                ReloadData()
-                ClearReset()
+                ShowStatus("Gage updated successfully", False)
+                UpdateTimer.Enabled = True
 
                 'Display until restart
                 LblLastEdited.Text = lastEdited
@@ -729,7 +729,7 @@ Public Class GTMenu
 
     Private Sub DeleteConfirmed()
         If My.Settings.isAdmin = False Then
-            MessageBox.Show("Must be logged in to delete gage.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Must be logged in to delete gage.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return
         End If
 
@@ -814,6 +814,16 @@ Public Class GTMenu
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         StatusLabel.Text = ""
         Timer1.Enabled = False
+    End Sub
+
+    Private Sub UpdateTimer_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        UpdateTimer.Enabled = False
+        ClearReset()
+    End Sub
+
+    Private Sub ReloadTimer_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        ReloadTimer.Enabled = False
+        ReloadData()
     End Sub
 
     Private Sub UpdateChangeStatus()

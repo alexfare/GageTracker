@@ -94,7 +94,7 @@ Public Class GageList
                             "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly)
                 GlobalVars.ErrorLog = "No valid database selected."
                 Logger.LogErrors()
-                Application.Exit()
+                Environment.Exit(0)
             End If
         End If
 
@@ -116,8 +116,7 @@ Public Class GageList
 
                 DataGridView1.DataSource = table
             Catch ex As OleDbException
-                MessageBox.Show("OleDb error: " & ex.Message,
-                            "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly)
+                'MessageBox.Show("OleDb error: " & ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly)
                 GlobalVars.ErrorLog = "OleDb error: " & ex.Message
                 Logger.LogErrors()
             Catch ex As Exception
@@ -162,6 +161,8 @@ Public Class GageList
                     DownloadDatabase(saveDialog.FileName)
                     Return True
                 End If
+            Else
+                Environment.Exit(0)
             End If
         End If
         Return False

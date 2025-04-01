@@ -36,7 +36,7 @@ Namespace My
                         End If
 
                     Catch ex As Exception
-                        MessageBox.Show("An error occurred while checking the database version: " & ex.Message)
+                        'MessageBox.Show("An error occurred while checking the database version: " & ex.Message)
                         GlobalVars.ErrorLog = "An error occurred while checking the database version: " & ex.Message
                         Logger.LogErrors()
                     Finally
@@ -104,7 +104,7 @@ Namespace My
                     My.Settings.Save()
 
                 Catch ex As Exception
-                    MessageBox.Show("An error occurred while updating OpenCount: " & ex.Message)
+                    'MessageBox.Show("An error occurred while updating OpenCount: " & ex.Message)
                     GlobalVars.ErrorLog = "An error occurred while updating OpenCount: " & ex.Message
                     Logger.LogErrors()
                 Finally

@@ -10,6 +10,8 @@ Public Class AdminMenu
     Private saveString As String
     Dim originalTitle As String = "GageTracker - Admin Menu"
     Public WithEvents Timer1 As New Timer With {.Interval = 3000, .Enabled = False}
+    Public WithEvents UpdateTimer As New Timer With {.Interval = 3100, .Enabled = False}
+    Public WithEvents ReloadTimer As New Timer With {.Interval = 3100, .Enabled = False}
 
 #Region "Admin Load"
     Private Async Sub AdminMenu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -203,8 +205,7 @@ Public Class AdminMenu
                     ShowStatus("Gage added successfully", False)
                     GlobalVars.LastActivity = My.Settings.LoggedUser + " added gage: " + TxtGageID.Text
                     Logger.SaveLogEntry()
-                    ReloadData()
-                    BtnClear.PerformClick()
+                    ReloadTimer.Enabled = True
                 Else
                     MessageBox.Show("This GageID already exists", "Duplicate Entry", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 End If
@@ -281,10 +282,9 @@ Public Class AdminMenu
                 GageSearch = TxtGageID.Text
 
                 'Subs
-                ShowStatus("Gage updated successfully", False)
                 UpdateChangeStatus()
-                ReloadData()
-                ClearReset()
+                ShowStatus("Gage updated successfully", False)
+                UpdateTimer.Enabled = True
 
                 'Display until restart
                 LblLastEdited.Text = lastEdited
@@ -382,6 +382,16 @@ Public Class AdminMenu
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         StatusLabel.Text = ""  'Clear the text
         Timer1.Enabled = False  'Stop the timer
+    End Sub
+
+    Private Sub UpdateTimer_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        UpdateTimer.Enabled = False
+        ClearReset()
+    End Sub
+
+    Private Sub ReloadTimer_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        ReloadTimer.Enabled = False
+        ReloadData()
     End Sub
 
     Private Sub TextContains_TextChanged(sender As Object, e As EventArgs) Handles txtPartNumber.TextChanged, txtDescription.TextChanged, TxtInterval.TextChanged, txtComments.TextChanged, cmbStatus.SelectedIndexChanged, txtDepartment.SelectedIndexChanged, txtGageType.SelectedIndexChanged, txtCustomer.SelectedIndexChanged, txtCalibratedBy.SelectedIndexChanged, DtInspectedDate.ValueChanged, dtDueDate.ValueChanged, TxtSerialNumber.TextChanged, TxtNistNumber.TextChanged, txtOwner.TextChanged, txtaN1.TextChanged, txtaN2.TextChanged, txtaN3.TextChanged, txtaN4.TextChanged, txtaN5.TextChanged, txtaA1.TextChanged, txtaA2.TextChanged, txtaA3.TextChanged, txtaA4.TextChanged, txtaA5.TextChanged, txtPartRev.TextChanged

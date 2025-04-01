@@ -1,3 +1,13 @@
+v5.18.1.75
+Updates to GTMenu & AdminMenu
+-Fixed update not displaying.
+-Fixed GTMenu Add issues.
+Fixed loop when database is not found on start up.
+Fixed application not closing when database is not found or lost connection.
+Updated error messages when database cannot be found.
+Updated DueDateCategorizer code.
+Small UI changes to Dashboard.
+
 v5.18.0.74
 Updated DueDateCategorizer name title.
 Updated GTMenu, prevent GageID from being overwrote, It now checks for change.

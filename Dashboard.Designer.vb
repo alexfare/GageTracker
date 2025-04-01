@@ -133,9 +133,9 @@ Partial Class Dashboard
         'BtnOverdue
         '
         Me.BtnOverdue.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnOverdue.Location = New System.Drawing.Point(11, 236)
+        Me.BtnOverdue.Location = New System.Drawing.Point(3, 236)
         Me.BtnOverdue.Name = "BtnOverdue"
-        Me.BtnOverdue.Size = New System.Drawing.Size(107, 39)
+        Me.BtnOverdue.Size = New System.Drawing.Size(135, 39)
         Me.BtnOverdue.TabIndex = 0
         Me.BtnOverdue.Text = "Overdue"
         Me.BtnOverdue.UseVisualStyleBackColor = True
@@ -143,9 +143,9 @@ Partial Class Dashboard
         'Btn30
         '
         Me.Btn30.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Btn30.Location = New System.Drawing.Point(152, 236)
+        Me.Btn30.Location = New System.Drawing.Point(144, 236)
         Me.Btn30.Name = "Btn30"
-        Me.Btn30.Size = New System.Drawing.Size(106, 39)
+        Me.Btn30.Size = New System.Drawing.Size(135, 39)
         Me.Btn30.TabIndex = 1
         Me.Btn30.Text = "Due in 30"
         Me.Btn30.UseVisualStyleBackColor = True
@@ -153,9 +153,9 @@ Partial Class Dashboard
         'Btn60
         '
         Me.Btn60.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Btn60.Location = New System.Drawing.Point(295, 236)
+        Me.Btn60.Location = New System.Drawing.Point(285, 236)
         Me.Btn60.Name = "Btn60"
-        Me.Btn60.Size = New System.Drawing.Size(106, 39)
+        Me.Btn60.Size = New System.Drawing.Size(135, 39)
         Me.Btn60.TabIndex = 2
         Me.Btn60.Text = "Due in 60"
         Me.Btn60.UseVisualStyleBackColor = True

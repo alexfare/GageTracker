@@ -6,6 +6,28 @@ Public Class DueDateCategorizer
 #Region "Loading"
     Private selectedGage As String
     Private Sub DueDateCategorizer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        FormSetup()
+
+        Try
+            LoadData()
+        Catch ex As OleDbException
+            MessageBox.Show("Database error: " & ex.Message)
+            GlobalVars.ErrorLog = "Database error: " & ex.Message
+            Logger.LogErrors()
+        Catch ex As Exception
+            MessageBox.Show("General error: " & ex.Message)
+            GlobalVars.ErrorLog = "General error: " & ex.Message
+            Logger.LogErrors()
+        End Try
+    End Sub
+
+    Private Sub FormSetup()
+        DatagridHandler()
+        TabSelect()
+        MenuColor()
+    End Sub
+
+    Private Sub DatagridHandler()
         'Double Click
         AddHandler DataGridViewPastDue.CellDoubleClick, AddressOf DataGridViewPastDue_CellDoubleClick
         AddHandler DataGridViewWithin30Days.CellDoubleClick, AddressOf DataGridViewWithin30Days_CellDoubleClick
@@ -23,26 +45,10 @@ Public Class DueDateCategorizer
         DataGridViewWithin30Days.MultiSelect = False
         DataGridViewWithin60Days.SelectionMode = DataGridViewSelectionMode.FullRowSelect
         DataGridViewWithin60Days.MultiSelect = False
-
-        Try
-            LoadData()
-        Catch ex As OleDbException
-            MessageBox.Show("Database error: " & ex.Message)
-            GlobalVars.ErrorLog = "Database error: " & ex.Message
-            Logger.LogErrors()
-        Catch ex As Exception
-            MessageBox.Show("General error: " & ex.Message)
-            GlobalVars.ErrorLog = "General error: " & ex.Message
-            Logger.LogErrors()
-        End Try
-
-        TabSelect()
-        MenuColor()
     End Sub
 #End Region
 
 #Region "Settings"
-
     Public Sub LoadData()
         Dim query As String = "SELECT GageID, [Status], [PartNumber], [Description], Department, [Gage Type], [Customer], [Inspected Date], [Due Date] FROM CalibrationTracker"
 

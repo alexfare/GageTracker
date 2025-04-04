@@ -1,3 +1,7 @@
+v5.18.2.76
+Added application will exit message when database cannot be found.
+Updated ApplicationEvents, Removed more redundant database not found warnings.
+
 v5.18.1.75
 Updates to GTMenu & AdminMenu
 -Fixed update not displaying.

@@ -162,6 +162,8 @@ Public Class GageList
                     Return True
                 End If
             Else
+                LoadingScreen.Close()
+                MessageBox.Show("No valid database selected. The application will exit.", "Database Not Found", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Environment.Exit(0)
             End If
         End If

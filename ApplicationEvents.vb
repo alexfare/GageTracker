@@ -53,7 +53,7 @@ Namespace My
                 Dim originalFilePath As String = My.Settings.DatabaseLocation
 
                 If Not File.Exists(originalFilePath) Then
-                    MessageBox.Show("The specified database file does not exist.", "File Not Found", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    'MessageBox.Show("The specified database file does not exist.", "File Not Found", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Return
                 End If
 
@@ -67,7 +67,7 @@ Namespace My
             Catch ex As Exception
                 GlobalVars.ErrorLog = "An error occurred while creating the backup: " & ex.Message
                 Logger.LogErrors()
-                MessageBox.Show($"An error occurred while creating the backup: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                'MessageBox.Show($"An error occurred while creating the backup: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
         End Sub
 

@@ -34,7 +34,7 @@
     <PublisherName>Alex Fare</PublisherName>
     <MinimumRequiredVersion>5.17.0.69</MinimumRequiredVersion>
     <ApplicationRevision>76</ApplicationRevision>
-    <ApplicationVersion>5.18.1.%2a</ApplicationVersion>
+    <ApplicationVersion>5.18.2.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>

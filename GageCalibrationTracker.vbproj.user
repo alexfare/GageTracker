@@ -1,7 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <PublishUrlHistory>C:\Users\alex.fare\OneDrive\!Projects\Publish\GageTracker\|publish\</PublishUrlHistory>
+    <PublishUrlHistory>publish\|C:\Users\alex.fare.CORP0\OneDrive\!Projects\Publish\GageTracker\|C:\Users\alex.fare\OneDrive\!Projects\Publish\GageTracker\</PublishUrlHistory>
     <InstallUrlHistory>https://alexfare.com/programs/gagetracker/latest/|https://faregaming.com/GageTracker/latest/|https://github.com/alexfare/GageTracker/releases/latest/</InstallUrlHistory>
     <SupportUrlHistory>https://github.com/alexfare/GageTracker</SupportUrlHistory>
     <UpdateUrlHistory>https://alexfare.com/programs/gagetracker/latest/|https://faregaming.com/GageTracker/latest/|https://github.com/alexfare/GageTracker/releases/latest/</UpdateUrlHistory>

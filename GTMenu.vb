@@ -15,22 +15,12 @@ Public Class GTMenu
     Public WithEvents ReloadTimer As New Timer With {.Interval = 3100, .Enabled = False}
 
 #Region "GTMenu Load"
-    Private Async Sub Menu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub Menu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         SetupUI()
-
-        DisableSearchControls() 'Disable search controls
-        Await Task.WhenAll(Task.Run(Sub() LoadGageID()),
-                           Task.Run(Sub() LoadStatus()),
-                           Task.Run(Sub() LoadDepartment()),
-                           Task.Run(Sub() LoadGageType()),
-                           Task.Run(Sub() LoadUser()),
-                           Task.Run(Sub() LoadCustomers()))
-        EnableSearchControls() 'Enable search controls
-
-        TxtGageID.Focus()
+        LoadData()
 
         If Not String.IsNullOrEmpty(My.Settings.SelectedGage) Then
-            TxtGageID.SelectedItem = My.Settings.SelectedGage
+            TxtGageID.Text = My.Settings.SelectedGage
             BtnSearch_Click(Me, EventArgs.Empty)
         End If
     End Sub
@@ -41,6 +31,18 @@ Public Class GTMenu
         SearchCheck = False
         CanUpdate = False
         StatusLabel.Text = ""
+        TxtGageID.Focus()
+    End Sub
+
+    Private Async Sub LoadData()
+        DisableSearchControls() 'Disable search controls
+        Await Task.WhenAll(Task.Run(Sub() LoadGageID()),
+                           Task.Run(Sub() LoadStatus()),
+                           Task.Run(Sub() LoadDepartment()),
+                           Task.Run(Sub() LoadGageType()),
+                           Task.Run(Sub() LoadUser()),
+                           Task.Run(Sub() LoadCustomers()))
+        EnableSearchControls() 'Enable search controls
     End Sub
 
     Private Sub ReloadData()
@@ -248,7 +250,7 @@ Public Class GTMenu
 #Region "GTMenu Buttons"
     Private Sub BtnSearch_Click(sender As Object, e As EventArgs) Handles BtnSearch.Click
         If String.IsNullOrWhiteSpace(TxtGageID.Text) Then
-            MessageBox.Show("GageID cannot be blank. Please enter a valid GageID.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            'MessageBox.Show("GageID cannot be blank. Please enter a valid GageID.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return
         End If
 

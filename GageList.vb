@@ -3,7 +3,7 @@ Imports System.Net
 
 Public Class GageList
     Private isClosing As Boolean = False
-    Private selectedGage As String
+    Private selectedGage As String = ""
 
 #Region "GageList Load"
     Private Sub GageList_Load(sender As Object, e As EventArgs) Handles MyBase.Load

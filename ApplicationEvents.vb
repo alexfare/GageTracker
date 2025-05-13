@@ -36,7 +36,6 @@ Namespace My
                         End If
 
                     Catch ex As Exception
-                        'MessageBox.Show("An error occurred while checking the database version: " & ex.Message)
                         GlobalVars.ErrorLog = "An error occurred while checking the database version: " & ex.Message
                         Logger.LogErrors()
                     Finally
@@ -53,7 +52,8 @@ Namespace My
                 Dim originalFilePath As String = My.Settings.DatabaseLocation
 
                 If Not File.Exists(originalFilePath) Then
-                    'MessageBox.Show("The specified database file does not exist.", "File Not Found", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    GlobalVars.ErrorLog = "Cannot create backup, Database not found."
+                    Logger.LogErrors()
                     Return
                 End If
 
@@ -67,7 +67,6 @@ Namespace My
             Catch ex As Exception
                 GlobalVars.ErrorLog = "An error occurred while creating the backup: " & ex.Message
                 Logger.LogErrors()
-                'MessageBox.Show($"An error occurred while creating the backup: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
         End Sub
 
@@ -104,7 +103,6 @@ Namespace My
                     My.Settings.Save()
 
                 Catch ex As Exception
-                    'MessageBox.Show("An error occurred while updating OpenCount: " & ex.Message)
                     GlobalVars.ErrorLog = "An error occurred while updating OpenCount: " & ex.Message
                     Logger.LogErrors()
                 Finally

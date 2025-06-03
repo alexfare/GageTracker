@@ -271,19 +271,14 @@ Public Class GTMenu
         Using conn As New OleDbConnection(connectionString)
             Try
                 conn.Open()
-                Dim cmd As New OleDbCommand("SELECT PartNumber, PartRev, Status, Description, Department, [Gage Type], Customer, [Calibrated By], [Interval (Months)], [Inspected Date], [Due Date], Comments, aN1, aN2, aN3, aN4, aN5, aA1, aA2, aA3, aA4, aA5, [Serial Number], Owner, [Nist Number] FROM [CalibrationTracker] WHERE GageID = ?", conn)
+                Dim cmd As New OleDbCommand("SELECT PartNumber, PartRev, [Status], Description, Department, [Gage Type], Customer, [Calibrated By], [Interval (Months)], [Inspected Date], [Due Date], Comments, aN1, aN2, aN3, aN4, aN5, aA1, aA2, aA3, aA4, aA5, [Serial Number], Owner, [Nist Number] FROM [CalibrationTracker] WHERE GageID = ?", conn)
                 cmd.Parameters.AddWithValue("@GageID", TxtGageID.Text)
 
                 Using reader As OleDbDataReader = cmd.ExecuteReader()
                     If reader.Read() Then
                         txtPartNumber.Text = reader.Item("PartNumber").ToString()
                         txtPartRev.Text = reader.Item("PartRev").ToString()
-                        Dim statusIndex As Integer = cmbStatus.FindStringExact(reader.Item("Status").ToString())
-                        If statusIndex >= 0 Then
-                            cmbStatus.SelectedIndex = statusIndex
-                        Else
-                            cmbStatus.SelectedIndex = -1
-                        End If
+                        cmbStatus.Text = reader.Item("Status").ToString()
                         txtDescription.Text = reader.Item("Description").ToString()
                         txtDepartment.Text = reader.Item("Department").ToString()
                         txtGageType.Text = reader.Item("Gage Type").ToString()

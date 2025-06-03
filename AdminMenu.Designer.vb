@@ -56,6 +56,7 @@ Partial Class AdminMenu
         Me.StatusStrip = New System.Windows.Forms.StatusStrip()
         Me.StatusLabel = New System.Windows.Forms.ToolStripStatusLabel()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.BtnDepartment = New System.Windows.Forms.Button()
         Me.TabPage7 = New System.Windows.Forms.TabPage()
         Me.TxtCurrentUser = New System.Windows.Forms.TextBox()
         Me.TxtOpenCount = New System.Windows.Forms.TextBox()
@@ -134,7 +135,7 @@ Partial Class AdminMenu
         Me.TabControl2 = New System.Windows.Forms.TabControl()
         Me.Panel5 = New System.Windows.Forms.Panel()
         Me.LblUser = New System.Windows.Forms.Label()
-        Me.BtnDepartment = New System.Windows.Forms.Button()
+        Me.PrintLabelToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -173,7 +174,7 @@ Partial Class AdminMenu
         '
         'FileToolStripMenuItem
         '
-        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DashboardToolStripMenuItem, Me.CloseToolStripMenuItem})
+        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DashboardToolStripMenuItem, Me.PrintLabelToolStripMenuItem, Me.CloseToolStripMenuItem})
         Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
         Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
         Me.FileToolStripMenuItem.Text = "File"
@@ -181,13 +182,13 @@ Partial Class AdminMenu
         'DashboardToolStripMenuItem
         '
         Me.DashboardToolStripMenuItem.Name = "DashboardToolStripMenuItem"
-        Me.DashboardToolStripMenuItem.Size = New System.Drawing.Size(131, 22)
+        Me.DashboardToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.DashboardToolStripMenuItem.Text = "Dashboard"
         '
         'CloseToolStripMenuItem
         '
         Me.CloseToolStripMenuItem.Name = "CloseToolStripMenuItem"
-        Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(131, 22)
+        Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.CloseToolStripMenuItem.Text = "Close"
         '
         'ViewToolStripMenuItem
@@ -415,6 +416,15 @@ Partial Class AdminMenu
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(91, 412)
         Me.Panel2.TabIndex = 36
+        '
+        'BtnDepartment
+        '
+        Me.BtnDepartment.Location = New System.Drawing.Point(3, 167)
+        Me.BtnDepartment.Name = "BtnDepartment"
+        Me.BtnDepartment.Size = New System.Drawing.Size(82, 76)
+        Me.BtnDepartment.TabIndex = 39
+        Me.BtnDepartment.Text = "Department Manager"
+        Me.BtnDepartment.UseVisualStyleBackColor = True
         '
         'TabPage7
         '
@@ -1163,14 +1173,11 @@ Partial Class AdminMenu
         Me.LblUser.TabIndex = 38
         Me.LblUser.Text = "Welcome, User"
         '
-        'BtnDepartment
+        'PrintLabelToolStripMenuItem
         '
-        Me.BtnDepartment.Location = New System.Drawing.Point(3, 167)
-        Me.BtnDepartment.Name = "BtnDepartment"
-        Me.BtnDepartment.Size = New System.Drawing.Size(82, 76)
-        Me.BtnDepartment.TabIndex = 39
-        Me.BtnDepartment.Text = "Department Manager"
-        Me.BtnDepartment.UseVisualStyleBackColor = True
+        Me.PrintLabelToolStripMenuItem.Name = "PrintLabelToolStripMenuItem"
+        Me.PrintLabelToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.PrintLabelToolStripMenuItem.Text = "Print Label"
         '
         'AdminMenu
         '
@@ -1329,4 +1336,5 @@ Partial Class AdminMenu
     Friend WithEvents Panel5 As Panel
     Friend WithEvents LblUser As Label
     Friend WithEvents BtnDepartment As Button
+    Friend WithEvents PrintLabelToolStripMenuItem As ToolStripMenuItem
 End Class

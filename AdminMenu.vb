@@ -589,6 +589,13 @@ Public Class AdminMenu
     Private Sub DashboardToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DashboardToolStripMenuItem.Click
         Dashboard.Show()
     End Sub
+
+    Private Sub PrintLabelToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PrintLabelToolStripMenuItem.Click
+        'setupPrinter()
+        'Me.Hide()
+        'PrintHandler.Show()
+        MessageBox.Show("This feature is not yet implemented.")
+    End Sub
 #End Region
 
 #Region "Load"
@@ -888,6 +895,16 @@ Public Class AdminMenu
     End Sub
 #End Region
 
+#Region "PrinterSettings"
+    Private Sub setupPrinter()
+        GlobalVars.GageID = TxtGageID.Text
+        GlobalVars.CalDate = DtInspectedDate.Value
+        GlobalVars.DueDate = dtDueDate.Value
+        GlobalVars.PartNumber = txtPartNumber.Text
+        GlobalVars.CalBy = txtCalibratedBy.Text
+    End Sub
+#End Region
+
 #Region "Closing Form"
     Private Sub GTMenu_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         If ChangeDetected = True Then
@@ -903,6 +920,7 @@ Public Class AdminMenu
             End If
         End If
     End Sub
+
 #End Region
 
 End Class

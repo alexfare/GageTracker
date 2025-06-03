@@ -7,6 +7,13 @@
     Public Username As String
     Public AuthHash As String
 
+    'Printer values
+    Public GageID As String
+    Public CalDate As Date
+    Public DueDate As Date
+    Public PartNumber As String
+    Public CalBy As String
+
     Public Sub LoadDatabaseLocation()
         DatabaseLocation = My.Settings.DatabaseLocation
     End Sub

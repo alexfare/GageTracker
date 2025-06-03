@@ -127,7 +127,7 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("v5.18.3.78")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("v5.18.4.79")>  _
         Public ReadOnly Property VersionString() As String
             Get
                 Return CType(Me("VersionString"),String)
@@ -252,6 +252,30 @@ Namespace My
             End Get
             Set
                 Me("ReportLog") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property Printer() As String
+            Get
+                Return CType(Me("Printer"),String)
+            End Get
+            Set
+                Me("Printer") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property PrintSize() As String
+            Get
+                Return CType(Me("PrintSize"),String)
+            End Get
+            Set
+                Me("PrintSize") = value
             End Set
         End Property
     End Class

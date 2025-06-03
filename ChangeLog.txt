@@ -1,3 +1,7 @@
+v5.18.4.79
+Added PrintHandler for Printing Labels within the app. (WIP)
+Fixed GTMenu removing Status.
+
 v5.18.3.78
 Cleaned up ApplicationEvents.
 Updated GTMenu.

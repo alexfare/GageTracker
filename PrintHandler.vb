@@ -119,9 +119,6 @@ Public Class PrintHandler
         g.DrawString(CalBy, valueFont, Brushes.Black, x, y)
     End Sub
 
-
-
-
     Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
         Me.Close()
     End Sub

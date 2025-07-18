@@ -73,6 +73,7 @@ Public Class AdminMenu
         If ChangeDetected = True Then
             If MessageBox.Show("Changes detected! Any unsaved changes will be lost. Do you want to perform a new search?", "Exit", MessageBoxButtons.YesNo) = DialogResult.Yes Then
                 SearchHandler()
+                PauseUserInput(2)
             Else
                 TxtGageID.Text = saveString
             End If
@@ -157,6 +158,8 @@ Public Class AdminMenu
             Return
         End If
 
+        PauseUserInput(5)
+
         Try
             Using conn As New OleDbConnection(connectionString)
                 conn.Open()
@@ -225,6 +228,7 @@ Public Class AdminMenu
         If SearchCheck = True Then
             If ChangeDetected = True Then
                 BtnUpdateConfirmed()
+                PauseUserInput(5)
             Else
                 ShowStatus("No updates detected.", False)
             End If
@@ -384,12 +388,12 @@ Public Class AdminMenu
         Timer1.Enabled = False  'Stop the timer
     End Sub
 
-    Private Sub UpdateTimer_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+    Private Sub UpdateTimer_Tick(sender As Object, e As EventArgs) Handles UpdateTimer.Tick
         UpdateTimer.Enabled = False
         ClearReset()
     End Sub
 
-    Private Sub ReloadTimer_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+    Private Sub ReloadTimer_Tick(sender As Object, e As EventArgs) Handles ReloadTimer.Tick
         ReloadTimer.Enabled = False
         ReloadData()
     End Sub
@@ -448,6 +452,12 @@ Public Class AdminMenu
             GlobalVars.ErrorLog = "An error occurred: " & ex.Message
             Logger.LogErrors()
         End Try
+    End Sub
+
+    Private Async Sub PauseUserInput(ByVal durationInSeconds As Integer)
+        Me.Enabled = False
+        Await Task.Delay(durationInSeconds * 1000)
+        Me.Enabled = True
     End Sub
 #End Region
 

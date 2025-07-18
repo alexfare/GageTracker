@@ -262,6 +262,7 @@ Public Class GTMenu
             End If
         Else
             SearchHandler()
+            PauseUserInput(2)
             saveString = TxtGageID.Text
             CanUpdate = True
         End If
@@ -340,6 +341,8 @@ Public Class GTMenu
             Return
         End If
 
+        PauseUserInput(5)
+
         Try
             Using conn As New OleDbConnection(connectionString)
                 conn.Open()
@@ -409,6 +412,7 @@ Public Class GTMenu
             If ChangeDetected = True Then
                 If CanUpdate = True Then
                     BtnUpdateConfirmed()
+                    PauseUserInput(5)
                 Else
                     ShowStatus("Warning GageID has been modified.", True)
                     FixGageID()
@@ -813,12 +817,12 @@ Public Class GTMenu
         Timer1.Enabled = False
     End Sub
 
-    Private Sub UpdateTimer_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+    Private Sub UpdateTimer_Tick(sender As Object, e As EventArgs) Handles UpdateTimer.Tick
         UpdateTimer.Enabled = False
         ClearReset()
     End Sub
 
-    Private Sub ReloadTimer_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+    Private Sub ReloadTimer_Tick(sender As Object, e As EventArgs) Handles ReloadTimer.Tick
         ReloadTimer.Enabled = False
         ReloadData()
     End Sub
@@ -837,6 +841,12 @@ Public Class GTMenu
     Private Sub FixGageID()
         TxtGageID.Text = saveString
         CanUpdate = True
+    End Sub
+
+    Private Async Sub PauseUserInput(ByVal durationInSeconds As Integer)
+        Me.Enabled = False
+        Await Task.Delay(durationInSeconds * 1000)
+        Me.Enabled = True
     End Sub
 #End Region
 

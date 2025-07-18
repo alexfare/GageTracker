@@ -60,8 +60,6 @@ Public Class GageList
 
         If String.IsNullOrWhiteSpace(TextContains.Text) Then
             ApplyStatusFilter()
-        Else
-
         End If
     End Sub
 
@@ -85,6 +83,10 @@ Public Class GageList
 
 #Region "Database"
     Public Sub LoadData(Optional filterQuery As String = "")
+        Cursor.Current = Cursors.WaitCursor
+        DataGridView1.DataSource = Nothing
+        Application.DoEvents()
+
         If Not System.IO.File.Exists(GlobalVars.DatabaseLocation) Then
             If PromptForDatabaseLocation() Then
                 LoadData()
@@ -115,8 +117,9 @@ Public Class GageList
                 adapter.Fill(table)
 
                 DataGridView1.DataSource = table
+                Cursor.Current = Cursors.Default
+
             Catch ex As OleDbException
-                'MessageBox.Show("OleDb error: " & ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly)
                 GlobalVars.ErrorLog = "OleDb error: " & ex.Message
                 Logger.LogErrors()
             Catch ex As Exception
@@ -124,10 +127,6 @@ Public Class GageList
                             "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly)
                 GlobalVars.ErrorLog = "An error occurred: " & ex.Message
                 Logger.LogErrors()
-            Finally
-                If connection.State = ConnectionState.Open Then
-                    connection.Close()
-                End If
             End Try
         End Using
     End Sub

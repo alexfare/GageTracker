@@ -1,3 +1,13 @@
+v5.18.5.80
+Fixed Timer event hookups on GTMenu & AdminMenu.
+Updated ApplicationEvents, Removed ReadLine causing hangups.
+Updated GageList:
+	Removed empty else statement.
+	Removed redundant code.
+	Added loading feedback.
+Fixed error when inputting too many characters in interval.
+Added UI freeze to stop users from closing GTMenu too fast. (Will implement proper fix in GageTracker6.)
+
 v5.18.4.79
 Added PrintHandler for Printing Labels within the app. (WIP)
 Fixed GTMenu removing Status.

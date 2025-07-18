@@ -125,11 +125,8 @@ Namespace My
                 Catch ex As Exception
                     GlobalVars.ErrorLog = "Error: " & ex.Message
                     Logger.LogErrors()
-                    Console.WriteLine("Error: " & ex.Message)
                 End Try
             End Using
-
-            Console.ReadLine()
         End Sub
 
         Sub UpdateMySettings()

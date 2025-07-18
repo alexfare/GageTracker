@@ -282,6 +282,7 @@ Partial Class GTMenu
         'TxtInterval
         '
         Me.TxtInterval.Location = New System.Drawing.Point(259, 136)
+        Me.TxtInterval.MaxLength = 4
         Me.TxtInterval.Name = "TxtInterval"
         Me.TxtInterval.Size = New System.Drawing.Size(226, 20)
         Me.TxtInterval.TabIndex = 13

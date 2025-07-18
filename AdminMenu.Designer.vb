@@ -27,6 +27,7 @@ Partial Class AdminMenu
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DashboardToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PrintLabelToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CloseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -135,7 +136,6 @@ Partial Class AdminMenu
         Me.TabControl2 = New System.Windows.Forms.TabControl()
         Me.Panel5 = New System.Windows.Forms.Panel()
         Me.LblUser = New System.Windows.Forms.Label()
-        Me.PrintLabelToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -182,13 +182,19 @@ Partial Class AdminMenu
         'DashboardToolStripMenuItem
         '
         Me.DashboardToolStripMenuItem.Name = "DashboardToolStripMenuItem"
-        Me.DashboardToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.DashboardToolStripMenuItem.Size = New System.Drawing.Size(131, 22)
         Me.DashboardToolStripMenuItem.Text = "Dashboard"
+        '
+        'PrintLabelToolStripMenuItem
+        '
+        Me.PrintLabelToolStripMenuItem.Name = "PrintLabelToolStripMenuItem"
+        Me.PrintLabelToolStripMenuItem.Size = New System.Drawing.Size(131, 22)
+        Me.PrintLabelToolStripMenuItem.Text = "Print Label"
         '
         'CloseToolStripMenuItem
         '
         Me.CloseToolStripMenuItem.Name = "CloseToolStripMenuItem"
-        Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(131, 22)
         Me.CloseToolStripMenuItem.Text = "Close"
         '
         'ViewToolStripMenuItem
@@ -998,6 +1004,7 @@ Partial Class AdminMenu
         'TxtInterval
         '
         Me.TxtInterval.Location = New System.Drawing.Point(258, 137)
+        Me.TxtInterval.MaxLength = 4
         Me.TxtInterval.Name = "TxtInterval"
         Me.TxtInterval.Size = New System.Drawing.Size(214, 20)
         Me.TxtInterval.TabIndex = 13
@@ -1172,12 +1179,6 @@ Partial Class AdminMenu
         Me.LblUser.Size = New System.Drawing.Size(80, 13)
         Me.LblUser.TabIndex = 38
         Me.LblUser.Text = "Welcome, User"
-        '
-        'PrintLabelToolStripMenuItem
-        '
-        Me.PrintLabelToolStripMenuItem.Name = "PrintLabelToolStripMenuItem"
-        Me.PrintLabelToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.PrintLabelToolStripMenuItem.Text = "Print Label"
         '
         'AdminMenu
         '

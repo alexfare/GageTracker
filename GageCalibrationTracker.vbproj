@@ -35,7 +35,7 @@
     <MinimumRequiredVersion>5.17.0.69</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>80</ApplicationRevision>
+    <ApplicationRevision>82</ApplicationRevision>
     <ApplicationVersion>5.18.5.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -87,13 +87,13 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>5D3EF3DEF7AFC50501E5AF9AFD4A09B2EEB4895E</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>8E1B94B63ED4D59A9E9A198E9913676C74B5D804</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>GageTrackSign2024.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>GageCalibrationTracker_TemporaryKey.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -120,7 +120,7 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>GageTrackSign2024.pfx</ManifestKeyFile>
+    <ManifestKeyFile>GageCalibrationTracker_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -331,6 +331,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="GageCalibrationTracker_TemporaryKey.pfx" />
     <None Include="GageTrackSign2024.pfx" />
     <None Include="GTDatabaseDataSet.xsc">
       <DependentUpon>GTDatabaseDataSet.xsd</DependentUpon>

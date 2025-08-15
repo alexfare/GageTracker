@@ -4,6 +4,8 @@ Imports System.Net
 Public Class GageList
     Private isClosing As Boolean = False
     Private selectedGage As String = ""
+    Private WithEvents filterTimer As New Timer With {.Interval = 300}
+
 
 #Region "GageList Load"
     Private Sub GageList_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -38,7 +40,21 @@ Public Class GageList
 #End Region
 
 #Region "Misc"
-    Private Sub TextContains_TextChanged(sender As Object, e As EventArgs) Handles TextContains.TextChanged, CmbContains.SelectedValueChanged, CmbFilterType.SelectedValueChanged
+    Private Sub CmbContains_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CmbContains.SelectedIndexChanged, CmbFilterType.SelectedIndexChanged
+        ApplyFilter()
+    End Sub
+
+    Private Sub TextContains_TextChanged(sender As Object, e As EventArgs) Handles TextContains.TextChanged
+        filterTimer.Stop()
+        filterTimer.Start()
+    End Sub
+
+    Private Sub filterTimer_Tick(sender As Object, e As EventArgs) Handles filterTimer.Tick
+        filterTimer.Stop()
+        ApplyFilter()
+    End Sub
+
+    Private Sub ApplyFilter()
         If CmbContains.SelectedItem Is Nothing OrElse CmbFilterType.SelectedItem Is Nothing Then
             Exit Sub
         End If
@@ -50,15 +66,15 @@ Public Class GageList
 
         If Not String.IsNullOrEmpty(filterText) Then
             If filterType = "Contains" Then
-                filterQuery = "[" & selectedColumn & "] LIKE '%" & filterText & "%'"
+                filterQuery = $"[{selectedColumn}] LIKE '%{filterText}%'"
             ElseIf filterType = "Exact" Then
-                filterQuery = "[" & selectedColumn & "] = '" & filterText & "'"
+                filterQuery = $"[{selectedColumn}] = '{filterText}'"
             End If
         End If
 
         LoadData(filterQuery)
 
-        If String.IsNullOrWhiteSpace(TextContains.Text) Then
+        If String.IsNullOrWhiteSpace(filterText) Then
             ApplyStatusFilter()
         End If
     End Sub

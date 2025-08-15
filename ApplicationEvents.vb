@@ -4,14 +4,18 @@ Imports System.Net
 
 Namespace My
     Partial Friend Class MyApplication
-        Private Sub MyApplication_Startup(sender As Object, e As EventArgs) Handles Me.Startup
-            SystemLog()
-            DatabaseCheck()
-            BackupDatabase()
-            UpdateOpenCount()
-            UpdateMySettings()
-            getAuth()
+        Private Async Sub MyApplication_Startup(sender As Object, e As EventArgs) Handles Me.Startup
+            Await InitializeAppAsync()
         End Sub
+
+        Private Async Function InitializeAppAsync() As Task
+            Await Task.Run(Sub() SystemLog())
+            Await Task.Run(Sub() DatabaseCheck())
+            Await Task.Run(Sub() BackupDatabase())
+            Await Task.Run(Sub() UpdateOpenCount())
+            Await Task.Run(Sub() UpdateMySettings())
+            Await Task.Run(Sub() getAuth())
+        End Function
 
         Sub DatabaseCheck()
             Dim connectionString As String = $"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={My.Settings.DatabaseLocation};Persist Security Info=False;"

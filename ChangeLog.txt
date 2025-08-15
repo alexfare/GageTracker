@@ -1,3 +1,9 @@
+v5.18.5.82
+Fixed CustomerEntry not clearing customer ID after add or updating.
+Working on loading issues (Not responding, long loading times, etc.)
+Fixed Search issue on GageList.
+Fixed potential ApplicationEvents loading issue.
+
 v5.18.5.81
 Fixed expired cert with a temp.
 

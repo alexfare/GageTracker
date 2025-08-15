@@ -48,6 +48,7 @@ Public Class CustomerEntry
                     ShowStatus("Customer added successfully.", False)
                     GlobalVars.SystemLog = txtCustomerName.Text + " added successfully to customer entry."
                     Logger.LogSystem()
+                    ClearText()
                     LoadCustomers()
                 Catch ex As Exception
                     MessageBox.Show("An error occurred while adding new customer: " & ex.Message)
@@ -57,7 +58,6 @@ Public Class CustomerEntry
             End Using
         End Using
     End Sub
-
 
     Private Sub btnBack_Click(sender As Object, e As EventArgs) Handles btnBack.Click
         Me.Close()
@@ -141,6 +141,7 @@ Public Class CustomerEntry
                         ShowStatus("Customer details updated successfully.", False)
                         GlobalVars.SystemLog = txtCustomerName.Text + " Customer details updated successfully."
                         Logger.LogSystem()
+                        ClearText()
                     Else
                         ShowStatus("No records were updated.", True)
                     End If
@@ -159,7 +160,7 @@ Public Class CustomerEntry
     End Sub
 
     Private Sub ClearText()
-        txtCustomerName.SelectedIndex = -1
+        txtCustomerName.SelectedItem = Nothing
         txtCustomerAddress.Clear()
         txtCustomerPhone.Clear()
         txtCustomerWebsite.Clear()

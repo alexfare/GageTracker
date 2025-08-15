@@ -35,7 +35,7 @@
     <MinimumRequiredVersion>5.17.0.69</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>82</ApplicationRevision>
+    <ApplicationRevision>83</ApplicationRevision>
     <ApplicationVersion>5.18.5.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -332,7 +332,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="GageCalibrationTracker_TemporaryKey.pfx" />
-    <None Include="GageTrackSign2024.pfx" />
     <None Include="GTDatabaseDataSet.xsc">
       <DependentUpon>GTDatabaseDataSet.xsd</DependentUpon>
     </None>

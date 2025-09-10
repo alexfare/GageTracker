@@ -35,8 +35,8 @@
     <MinimumRequiredVersion>5.17.0.69</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>83</ApplicationRevision>
-    <ApplicationVersion>5.18.5.%2a</ApplicationVersion>
+    <ApplicationRevision>85</ApplicationRevision>
+    <ApplicationVersion>5.18.7.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -277,9 +277,11 @@
   <ItemGroup>
     <EmbeddedResource Include="About.resx">
       <DependentUpon>About.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="AccountManagement.resx">
       <DependentUpon>AccountManagement.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="AdminMenu.resx">
       <DependentUpon>AdminMenu.vb</DependentUpon>

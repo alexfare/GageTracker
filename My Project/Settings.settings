@@ -22,11 +22,8 @@
     <Setting Name="FromList" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="SelectedGage" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
     <Setting Name="VersionString" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">v5.18.5.82</Value>
+      <Value Profile="(Default)">v5.18.7.84</Value>
     </Setting>
     <Setting Name="LastOpened" Type="System.DateTime" Scope="User">
       <Value Profile="(Default)" />

@@ -33,8 +33,8 @@ Public Class AdminMenu
 
         TxtGageID.Focus()
 
-        If Not String.IsNullOrEmpty(My.Settings.SelectedGage) Then
-            TxtGageID.SelectedItem = My.Settings.SelectedGage
+        If Not String.IsNullOrEmpty(GlobalVars.selectedGage) Then
+            TxtGageID.SelectedItem = GlobalVars.selectedGage
             BtnAdminSearch_Click(Me, EventArgs.Empty)
         End If
 

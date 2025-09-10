@@ -3,54 +3,31 @@
 Module Logger
     Dim logFolderPath As String = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "GageTracker", "Logs")
 
-    Public Sub SaveLogEntry()
+    Private Sub WriteLog(fileName As String, message As String)
         Try
-            Dim logFilePath As String = Path.Combine(logFolderPath, "AuditLog.txt")
-
             If Not Directory.Exists(logFolderPath) Then
                 Directory.CreateDirectory(logFolderPath)
             End If
 
-            Dim logEntry As String = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") & " - " & GlobalVars.LastActivity
+            Dim logFilePath As String = Path.Combine(logFolderPath, fileName)
+            Dim logEntry As String = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") & " - " & message
 
             File.AppendAllText(logFilePath, logEntry & Environment.NewLine)
 
         Catch ex As Exception
-            'MessageBox.Show("Error writing to the log file: " & ex.Message)
+            Debug.WriteLine("Error writing to the log file: " & ex.Message)
         End Try
+    End Sub
+
+    Public Sub SaveLogEntry()
+        WriteLog("AuditLog.txt", GlobalVars.LastActivity)
     End Sub
 
     Public Sub LogSystem()
-        Try
-            Dim logFilePath As String = Path.Combine(logFolderPath, "System.txt")
-
-            If Not Directory.Exists(logFolderPath) Then
-                Directory.CreateDirectory(logFolderPath)
-            End If
-
-            Dim logEntry As String = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") & " - " & GlobalVars.SystemLog
-
-            File.AppendAllText(logFilePath, logEntry & Environment.NewLine)
-
-        Catch ex As Exception
-            'MessageBox.Show("Error writing to the log file: " & ex.Message)
-        End Try
+        WriteLog("System.txt", GlobalVars.SystemLog)
     End Sub
 
     Public Sub LogErrors()
-        Try
-            Dim logFilePath As String = Path.Combine(logFolderPath, "Errors.txt")
-
-            If Not Directory.Exists(logFolderPath) Then
-                Directory.CreateDirectory(logFolderPath)
-            End If
-
-            Dim logEntry As String = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") & " - " & GlobalVars.ErrorLog
-
-            File.AppendAllText(logFilePath, logEntry & Environment.NewLine)
-
-        Catch ex As Exception
-            'MessageBox.Show("Error writing to the log file: " & ex.Message)
-        End Try
+        WriteLog("Errors.txt", GlobalVars.ErrorLog)
     End Sub
 End Module

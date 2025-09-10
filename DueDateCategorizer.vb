@@ -171,7 +171,7 @@ Public Class DueDateCategorizer
 
             If Not selectedRow.IsNewRow AndAlso selectedRow.Cells.Count > 0 AndAlso selectedRow.Cells(0) IsNot Nothing AndAlso Not IsDBNull(selectedRow.Cells(0).Value) Then
                 selectedGage = selectedRow.Cells(0).Value.ToString()
-                My.Settings.SelectedGage = selectedGage
+                GlobalVars.selectedGage = selectedGage
             End If
 
             GTMenu.Show()
@@ -186,7 +186,7 @@ Public Class DueDateCategorizer
 
             If Not selectedRow.IsNewRow AndAlso selectedRow.Cells.Count > 0 AndAlso selectedRow.Cells(0) IsNot Nothing AndAlso Not IsDBNull(selectedRow.Cells(0).Value) Then
                 selectedGage = selectedRow.Cells(0).Value.ToString()
-                My.Settings.SelectedGage = selectedGage
+                GlobalVars.selectedGage = selectedGage
             End If
 
             GTMenu.Show()
@@ -201,7 +201,7 @@ Public Class DueDateCategorizer
 
             If Not selectedRow.IsNewRow AndAlso selectedRow.Cells.Count > 0 AndAlso selectedRow.Cells(0) IsNot Nothing AndAlso Not IsDBNull(selectedRow.Cells(0).Value) Then
                 selectedGage = selectedRow.Cells(0).Value.ToString()
-                My.Settings.SelectedGage = selectedGage
+                GlobalVars.selectedGage = selectedGage
             End If
 
             GTMenu.Show()
@@ -216,7 +216,7 @@ Public Class DueDateCategorizer
 
             If Not selectedRow.IsNewRow AndAlso selectedRow.Cells.Count > 0 AndAlso selectedRow.Cells(0) IsNot Nothing AndAlso Not IsDBNull(selectedRow.Cells(0).Value) Then
                 selectedGage = selectedRow.Cells(0).Value.ToString()
-                My.Settings.SelectedGage = selectedGage
+                GlobalVars.selectedGage = selectedGage
             End If
         End If
     End Sub
@@ -227,7 +227,7 @@ Public Class DueDateCategorizer
 
             If Not selectedRow.IsNewRow AndAlso selectedRow.Cells.Count > 0 AndAlso selectedRow.Cells(0) IsNot Nothing AndAlso Not IsDBNull(selectedRow.Cells(0).Value) Then
                 selectedGage = selectedRow.Cells(0).Value.ToString()
-                My.Settings.SelectedGage = selectedGage
+                GlobalVars.selectedGage = selectedGage
             End If
         End If
     End Sub
@@ -238,7 +238,7 @@ Public Class DueDateCategorizer
 
             If Not selectedRow.IsNewRow AndAlso selectedRow.Cells.Count > 0 AndAlso selectedRow.Cells(0) IsNot Nothing AndAlso Not IsDBNull(selectedRow.Cells(0).Value) Then
                 selectedGage = selectedRow.Cells(0).Value.ToString()
-                My.Settings.SelectedGage = selectedGage
+                GlobalVars.selectedGage = selectedGage
             End If
         End If
     End Sub

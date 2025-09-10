@@ -6,7 +6,6 @@ Public Class GageList
     Private selectedGage As String = ""
     Private WithEvents filterTimer As New Timer With {.Interval = 300}
 
-
 #Region "GageList Load"
     Private Sub GageList_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         AddHandler DataGridView1.SelectionChanged, AddressOf DataGridView1_SelectionChanged
@@ -39,7 +38,13 @@ Public Class GageList
     End Sub
 #End Region
 
-#Region "Misc"
+#Region "Buttons"
+    Private Sub BtnMenu_Click(sender As Object, e As EventArgs) Handles BtnMenu.Click
+        GTMenu.Show()
+    End Sub
+#End Region
+
+#Region "Filter"
     Private Sub CmbContains_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CmbContains.SelectedIndexChanged, CmbFilterType.SelectedIndexChanged
         ApplyFilter()
     End Sub
@@ -62,25 +67,31 @@ Public Class GageList
         Dim selectedColumn As String = CmbContains.SelectedItem.ToString()
         Dim filterText As String = TextContains.Text.Trim()
         Dim filterType As String = CmbFilterType.SelectedItem.ToString()
-        Dim filterQuery As String = ""
 
+        Dim baseFilter As String = ""
+        If Not My.Settings.ShowAll Then
+            baseFilter = "[Status] = 'Active'"
+        End If
+
+        Dim textFilter As String = ""
         If Not String.IsNullOrEmpty(filterText) Then
             If filterType = "Contains" Then
-                filterQuery = $"[{selectedColumn}] LIKE '%{filterText}%'"
+                textFilter = $"[{selectedColumn}] LIKE '%{filterText}%'"
             ElseIf filterType = "Exact" Then
-                filterQuery = $"[{selectedColumn}] = '{filterText}'"
+                textFilter = $"[{selectedColumn}] = '{filterText}'"
             End If
         End If
 
-        LoadData(filterQuery)
-
-        If String.IsNullOrWhiteSpace(filterText) Then
-            ApplyStatusFilter()
+        Dim combinedFilter As String = ""
+        If Not String.IsNullOrEmpty(baseFilter) AndAlso Not String.IsNullOrEmpty(textFilter) Then
+            combinedFilter = baseFilter & " AND " & textFilter
+        ElseIf Not String.IsNullOrEmpty(baseFilter) Then
+            combinedFilter = baseFilter
+        ElseIf Not String.IsNullOrEmpty(textFilter) Then
+            combinedFilter = textFilter
         End If
-    End Sub
 
-    Private Sub BtnMenu_Click(sender As Object, e As EventArgs) Handles BtnMenu.Click
-        GTMenu.Show()
+        LoadData(combinedFilter)
     End Sub
 
     Private Sub FilterSetup()
@@ -92,8 +103,24 @@ Public Class GageList
         CheckBoxShowAll.Checked = My.Settings.ShowAll
     End Sub
 
-    Private Sub StartDashboard()
-        Dashboard.Show()
+    Private Sub CheckBoxShowAll_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxShowAll.CheckedChanged
+        My.Settings.ShowAll = CheckBoxShowAll.Checked
+        My.Settings.Save()
+        If TextContains.Text <> "" Then
+            Dim previousText As String = TextContains.Text
+            ApplyFilter()
+            TextContains.Text = previousText
+        Else
+            ApplyFilter()
+        End If
+    End Sub
+
+    Public Sub ApplyStatusFilter()
+        Dim filterQuery As String = ""
+        If Not My.Settings.ShowAll Then
+            filterQuery = "[Status] = 'Active'"
+        End If
+        LoadData(filterQuery)
     End Sub
 #End Region
 
@@ -223,7 +250,7 @@ Public Class GageList
 
             If Not selectedRow.IsNewRow AndAlso selectedRow.Cells.Count > 0 AndAlso selectedRow.Cells(0) IsNot Nothing AndAlso Not IsDBNull(selectedRow.Cells(0).Value) Then
                 selectedGage = selectedRow.Cells(0).Value.ToString()
-                My.Settings.SelectedGage = selectedGage
+                GlobalVars.selectedGage = selectedGage
             End If
         End If
     End Sub
@@ -234,7 +261,7 @@ Public Class GageList
 
             If Not selectedRow.IsNewRow AndAlso selectedRow.Cells.Count > 0 AndAlso selectedRow.Cells(0) IsNot Nothing AndAlso Not IsDBNull(selectedRow.Cells(0).Value) Then
                 selectedGage = selectedRow.Cells(0).Value.ToString()
-                My.Settings.SelectedGage = selectedGage
+                GlobalVars.selectedGage = selectedGage
             End If
             GTMenu.Show()
             GTMenu.LoadGageID()
@@ -243,20 +270,6 @@ Public Class GageList
 #End Region
 
 #Region "Settings & Misc"
-    Private Sub CheckBoxShowAll_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxShowAll.CheckedChanged
-        My.Settings.ShowAll = CheckBoxShowAll.Checked
-        My.Settings.Save()
-        ApplyStatusFilter()
-    End Sub
-
-    Public Sub ApplyStatusFilter()
-        Dim filterQuery As String = ""
-        If Not My.Settings.ShowAll Then
-            filterQuery = "[Status] = 'Active'"
-        End If
-        LoadData(filterQuery)
-    End Sub
-
     Private Sub StartLogin()
         LoginForm1.Show()
         My.Settings.FromList = True
@@ -273,6 +286,10 @@ Public Class GageList
         Else
             MenuStrip1.BackColor = SystemColors.AppWorkspace
         End If
+    End Sub
+
+    Private Sub StartDashboard()
+        Dashboard.Show()
     End Sub
 #End Region
 
@@ -323,7 +340,7 @@ Public Class GageList
     End Sub
 
     Private Sub MenuToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MenuToolStripMenuItem.Click
-        My.Settings.SelectedGage = ""
+        GlobalVars.selectedGage = ""
         GTMenu.Show()
     End Sub
 

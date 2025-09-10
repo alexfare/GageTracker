@@ -14,6 +14,9 @@
     Public PartNumber As String
     Public CalBy As String
 
+    'Program Variables
+    Public selectedGage As String
+
     Public Sub LoadDatabaseLocation()
         DatabaseLocation = My.Settings.DatabaseLocation
     End Sub

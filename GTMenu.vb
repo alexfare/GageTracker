@@ -19,8 +19,8 @@ Public Class GTMenu
         SetupUI()
         LoadData()
 
-        If Not String.IsNullOrEmpty(My.Settings.SelectedGage) Then
-            TxtGageID.Text = My.Settings.SelectedGage
+        If Not String.IsNullOrEmpty(GlobalVars.selectedGage) Then
+            TxtGageID.Text = GlobalVars.selectedGage
             BtnSearch_Click(Me, EventArgs.Empty)
         End If
     End Sub

@@ -23,7 +23,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="VersionString" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">v5.18.7.84</Value>
+      <Value Profile="(Default)">v5.19.2.87</Value>
     </Setting>
     <Setting Name="LastOpened" Type="System.DateTime" Scope="User">
       <Value Profile="(Default)" />

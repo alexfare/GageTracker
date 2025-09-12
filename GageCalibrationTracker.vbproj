@@ -35,8 +35,8 @@
     <MinimumRequiredVersion>5.17.0.69</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>85</ApplicationRevision>
-    <ApplicationVersion>5.18.7.%2a</ApplicationVersion>
+    <ApplicationRevision>88</ApplicationRevision>
+    <ApplicationVersion>5.19.2.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -78,7 +78,7 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>quality_management_software_icon.ico</ApplicationIcon>
+    <ApplicationIcon>GTLogo.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
@@ -179,6 +179,7 @@
     <Compile Include="Dashboard.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="DatabaseHelper.vb" />
     <Compile Include="DepartmentManager.Designer.vb">
       <DependentUpon>DepartmentManager.vb</DependentUpon>
     </Compile>
@@ -210,14 +211,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GlobalVars.vb" />
-    <Compile Include="GTDatabaseDataSet.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GTDatabaseDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="GTDatabaseDataSet.vb">
-      <DependentUpon>GTDatabaseDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="LoadingScreen.Designer.vb">
       <DependentUpon>LoadingScreen.vb</DependentUpon>
     </Compile>
@@ -334,17 +327,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="GageCalibrationTracker_TemporaryKey.pfx" />
-    <None Include="GTDatabaseDataSet.xsc">
-      <DependentUpon>GTDatabaseDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="GTDatabaseDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>GTDatabaseDataSet.Designer.vb</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="GTDatabaseDataSet.xss">
-      <DependentUpon>GTDatabaseDataSet.xsd</DependentUpon>
-    </None>
     <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
@@ -373,6 +355,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="GTLogo.ico" />
     <Content Include="quality_management_software_icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

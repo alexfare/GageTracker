@@ -5,23 +5,86 @@ Imports System.Net
 Namespace My
     Partial Friend Class MyApplication
         Private Async Sub MyApplication_Startup(sender As Object, e As EventArgs) Handles Me.Startup
+            GlobalVars.DatabaseLocation = My.Settings.DatabaseLocation
             Await InitializeAppAsync()
         End Sub
 
         Private Async Function InitializeAppAsync() As Task
-            Await Task.Run(Sub() SystemLog())
-            Await Task.Run(Sub() DatabaseCheck())
-            Await Task.Run(Sub() BackupDatabase())
-            Await Task.Run(Sub() UpdateOpenCount())
-            Await Task.Run(Sub() UpdateMySettings())
-            Await Task.Run(Sub() getAuth())
+            If Not System.IO.File.Exists(GlobalVars.DatabaseLocation) Then
+                If DatabaseCheck() Then
+                    DatabaseVersionCheck()
+                    BackupDatabase()
+                    UpdateOpenCount()
+
+                    Await Task.Run(Sub() SystemLog())
+                    Await Task.Run(Sub() UpdateMySettings())
+                    Await Task.Run(Sub() getAuth())
+                Else
+                    MessageBox.Show("No valid database selected. The application will exit.",
+                            "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly)
+                    Logger.LogErrors("No valid database selected.")
+                    Environment.Exit(0)
+                End If
+            End If
         End Function
 
-        Sub DatabaseCheck()
-            Dim connectionString As String = $"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={My.Settings.DatabaseLocation};Persist Security Info=False;"
+        Private Function DatabaseCheck() As Boolean
+            Dim result As DialogResult = MessageBox.Show("No database found. Would you like to select a new database location?",
+                                                 "Database Not Found", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly)
+            If result = DialogResult.Yes Then
+                Using openFileDialog As New OpenFileDialog()
+                    openFileDialog.InitialDirectory = "C:\"
+                    openFileDialog.Filter = "Access Database Files (*.accdb)|*.accdb"
+                    openFileDialog.FilterIndex = 1
+                    openFileDialog.RestoreDirectory = True
+
+                    If openFileDialog.ShowDialog() = DialogResult.OK Then
+                        GlobalVars.DatabaseLocation = openFileDialog.FileName
+                        GlobalVars.SaveDatabaseLocation(GlobalVars.DatabaseLocation)
+                        Return True
+                    End If
+                End Using
+            Else
+                Dim downloadResult As DialogResult = MessageBox.Show("Would you like to download the database instead?",
+                                                             "Download Option", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly)
+                If downloadResult = DialogResult.Yes Then
+                    Dim saveDialog As New SaveFileDialog()
+                    saveDialog.Filter = "Access Database Files (*.accdb)|*.accdb"
+                    saveDialog.Title = "Save Database File"
+                    saveDialog.FileName = "GTDatabase.accdb"
+
+                    If saveDialog.ShowDialog() = DialogResult.OK Then
+                        DownloadDatabase(saveDialog.FileName)
+                        Return True
+                    End If
+                Else
+                    Environment.Exit(0)
+                End If
+            End If
+            Return False
+        End Function
+
+        Private Sub DownloadDatabase(savePath As String)
+            Dim webClient As New WebClient()
+
+            Try
+                Dim downloadUrl As String = "https://alexfare.com/programs/gtdatabase/latest/GTDatabase.accdb"
+                webClient.DownloadFile(downloadUrl, savePath)
+
+                GlobalVars.DatabaseLocation = savePath
+                GlobalVars.SaveDatabaseLocation(savePath)
+            Catch ex As Exception
+                MessageBox.Show("An error occurred while downloading the database: " & ex.Message, "Download Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Logger.LogErrors("An error occurred while downloading the database: " & ex.Message)
+            Finally
+                webClient.Dispose()
+            End Try
+        End Sub
+
+        Sub DatabaseVersionCheck()
             Dim query As String = "SELECT [Number] FROM Settings WHERE SettingName = 'MinVersion'"
 
-            Using connection As New OleDbConnection(connectionString)
+            Using connection As OleDbConnection = DatabaseHelper.GetConnection()
                 Using command As New OleDbCommand(query, connection)
                     Try
                         connection.Open()
@@ -33,15 +96,13 @@ Namespace My
                             Dim RequestedVersion = My.Settings.DatabaseVersion
 
                             If RequestedVersion < minVersion Then
-                                GlobalVars.ErrorLog = "Database out of date. Minimum Version"
-                                Logger.LogErrors()
+                                Logger.LogErrors("Database out of date. Minimum Version")
                                 MessageBox.Show("Database out of date. Minimum Version: " & minVersion.ToString())
                             End If
                         End If
 
                     Catch ex As Exception
-                        GlobalVars.ErrorLog = "An error occurred while checking the database version: " & ex.Message
-                        Logger.LogErrors()
+                        Logger.LogErrors("An error occurred while checking the database version: " & ex.Message)
                     Finally
                         If connection.State = ConnectionState.Open Then
                             connection.Close()
@@ -56,8 +117,7 @@ Namespace My
                 Dim originalFilePath As String = My.Settings.DatabaseLocation
 
                 If Not File.Exists(originalFilePath) Then
-                    GlobalVars.ErrorLog = "Cannot create backup, Database not found."
-                    Logger.LogErrors()
+                    Logger.LogErrors("Cannot create backup, Database not found.")
                     Return
                 End If
 
@@ -69,22 +129,19 @@ Namespace My
                 File.Copy(originalFilePath, backupFilePath, True)
 
             Catch ex As Exception
-                GlobalVars.ErrorLog = "An error occurred while creating the backup: " & ex.Message
-                Logger.LogErrors()
+                Logger.LogErrors("An error occurred while creating the backup: " & ex.Message)
             End Try
         End Sub
 
         Sub SystemLog()
-            GlobalVars.SystemLog = "GageTracker started."
-            Logger.LogSystem()
+            Logger.LogSystem("GageTracker started.")
         End Sub
 
         Sub UpdateOpenCount()
-            Dim connectionString As String = $"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={My.Settings.DatabaseLocation};Persist Security Info=False;"
             Dim getQuery As String = "SELECT [Number] FROM Settings WHERE SettingName = 'OpenCount'"
             Dim updateQuery As String = "UPDATE Settings SET [Number] = @NewCount WHERE SettingName = 'OpenCount'"
 
-            Using connection As New OleDbConnection(connectionString)
+            Using connection As OleDbConnection = DatabaseHelper.GetConnection()
                 Try
                     connection.Open()
 
@@ -107,8 +164,7 @@ Namespace My
                     My.Settings.Save()
 
                 Catch ex As Exception
-                    GlobalVars.ErrorLog = "An error occurred while updating OpenCount: " & ex.Message
-                    Logger.LogErrors()
+                    Logger.LogErrors("An error occurred while updating OpenCount: " & ex.Message)
                 Finally
                     If connection.State = ConnectionState.Open Then
                         connection.Close()
@@ -127,8 +183,7 @@ Namespace My
 
                     GlobalVars.AuthHash = fileContent
                 Catch ex As Exception
-                    GlobalVars.ErrorLog = "Error: " & ex.Message
-                    Logger.LogErrors()
+                    Logger.LogErrors("Error: " & ex.Message)
                 End Try
             End Using
         End Sub
@@ -142,8 +197,7 @@ Namespace My
 
         Private Sub MyApplication_UnhandledException(sender As Object, e As Microsoft.VisualBasic.ApplicationServices.UnhandledExceptionEventArgs) Handles Me.UnhandledException
             MessageBox.Show("An unhandled exception occurred: " & e.Exception.Message)
-            GlobalVars.ErrorLog = "An unhandled exception occurred: " & e.Exception.Message
-            Logger.LogErrors()
+            Logger.LogErrors("An unhandled exception occurred: " & e.Exception.Message)
             e.ExitApplication = False
         End Sub
 

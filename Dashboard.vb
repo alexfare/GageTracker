@@ -2,7 +2,6 @@
 Imports System.Drawing.Drawing2D
 
 Public Class Dashboard
-    Private connectionString As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
 
     Private Sub Dashboard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         UI_Setup()
@@ -21,7 +20,7 @@ Public Class Dashboard
         Dim totalCount As Integer = 0
         Dim query As String = "SELECT COUNT(*) FROM CalibrationTracker WHERE Status = 'Active'"
 
-        Using connection As New OleDbConnection(connectionString)
+        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
             Try
                 connection.Open()
                 Using command As New OleDbCommand(query, connection)
@@ -29,8 +28,7 @@ Public Class Dashboard
                     TxtActive.Text = totalCount
                 End Using
             Catch ex As Exception
-                GlobalVars.ErrorLog = "Error: " & ex.Message
-                Logger.LogErrors()
+                Logger.LogErrors("Error: " & ex.Message)
                 MessageBox.Show("Error: " & ex.Message)
             End Try
         End Using
@@ -41,7 +39,7 @@ Public Class Dashboard
         Dim totalCount As Integer = 0
         Dim query As String = "SELECT COUNT(*) FROM CalibrationTracker WHERE Status = 'Inactive'"
 
-        Using connection As New OleDbConnection(connectionString)
+        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
             Try
                 connection.Open()
                 Using command As New OleDbCommand(query, connection)
@@ -49,8 +47,7 @@ Public Class Dashboard
                     TxtInactive.Text = totalCount
                 End Using
             Catch ex As Exception
-                GlobalVars.ErrorLog = "Error: " & ex.Message
-                Logger.LogErrors()
+                Logger.LogErrors("Error: " & ex.Message)
                 MessageBox.Show("Error: " & ex.Message)
             End Try
         End Using
@@ -61,7 +58,7 @@ Public Class Dashboard
         Dim totalCount As Integer = 0
         Dim query As String = "SELECT COUNT(*) FROM CalibrationTracker WHERE Status = 'Lost'"
 
-        Using connection As New OleDbConnection(connectionString)
+        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
             Try
                 connection.Open()
                 Using command As New OleDbCommand(query, connection)
@@ -69,8 +66,7 @@ Public Class Dashboard
                     TxtLost.Text = totalCount
                 End Using
             Catch ex As Exception
-                GlobalVars.ErrorLog = "Error: " & ex.Message
-                Logger.LogErrors()
+                Logger.LogErrors("Error: " & ex.Message)
                 MessageBox.Show("Error: " & ex.Message)
             End Try
         End Using
@@ -81,7 +77,7 @@ Public Class Dashboard
         Dim totalCount As Integer = 0
         Dim query As String = "SELECT COUNT(*) FROM CalibrationTracker WHERE [Due Date] < ?"
 
-        Using connection As New OleDbConnection(connectionString)
+        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
             Try
                 connection.Open()
                 Using command As New OleDbCommand(query, connection)
@@ -92,8 +88,7 @@ Public Class Dashboard
                     TxtOverdue.BackColor = If(totalCount = 0, SystemColors.Control, Color.Red)
                 End Using
             Catch ex As Exception
-                GlobalVars.ErrorLog = "Error: " & ex.Message
-                Logger.LogErrors()
+                Logger.LogErrors("Error: " & ex.Message)
                 MessageBox.Show("Error: " & ex.Message)
             End Try
         End Using
@@ -104,7 +99,7 @@ Public Class Dashboard
         Dim totalCount As Integer = 0
         Dim query As String = "SELECT COUNT(*) FROM CalibrationTracker WHERE [Due Date] >= ? AND [Due Date] <= ?"
 
-        Using connection As New OleDbConnection(connectionString)
+        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
             Try
                 connection.Open()
                 Using command As New OleDbCommand(query, connection)
@@ -116,8 +111,7 @@ Public Class Dashboard
                     Txt30.BackColor = If(totalCount = 0, SystemColors.Control, Color.Yellow)
                 End Using
             Catch ex As Exception
-                GlobalVars.ErrorLog = "Error: " & ex.Message
-                Logger.LogErrors()
+                Logger.LogErrors("Error: " & ex.Message)
                 MessageBox.Show("Error: " & ex.Message)
             End Try
         End Using
@@ -128,7 +122,7 @@ Public Class Dashboard
         Dim totalCount As Integer = 0
         Dim query As String = "SELECT COUNT(*) FROM CalibrationTracker WHERE [Due Date] >= ? AND [Due Date] <= ?"
 
-        Using connection As New OleDbConnection(connectionString)
+        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
             Try
                 connection.Open()
                 Using command As New OleDbCommand(query, connection)
@@ -140,8 +134,7 @@ Public Class Dashboard
                     Txt60.BackColor = If(totalCount = 0, SystemColors.Control, Color.LightBlue)
                 End Using
             Catch ex As Exception
-                GlobalVars.ErrorLog = "Error: " & ex.Message
-                Logger.LogErrors()
+                Logger.LogErrors("Error: " & ex.Message)
                 MessageBox.Show("Error: " & ex.Message)
             End Try
         End Using

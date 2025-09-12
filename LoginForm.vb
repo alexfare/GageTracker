@@ -2,7 +2,6 @@ Imports System.Data.OleDb
 Imports System.Security.Cryptography
 Imports System.Text
 Public Class LoginForm1
-    Dim ConnectionString As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
 
     Private Sub LoginForm1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         StatusLabel.Text = ""
@@ -27,10 +26,10 @@ Public Class LoginForm1
             Return
         End If
 
-        Using conn As New OleDbConnection(ConnectionString)
+        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
             Try
-                conn.Open()
-                Dim cmd As New OleDbCommand("SELECT Password FROM [Credentials] WHERE Username = ?", conn)
+                connection.Open()
+                Dim cmd As New OleDbCommand("SELECT Password FROM [Credentials] WHERE Username = ?", connection)
                 cmd.Parameters.AddWithValue("@Username", username)
 
                 Dim storedPasswordHash As Object = cmd.ExecuteScalar()
@@ -46,8 +45,7 @@ Public Class LoginForm1
                         AdminMenu.Show()
                         Me.Close()
 
-                        GlobalVars.SystemLog = username + " has successfully logged in."
-                        Logger.LogSystem()
+                        Logger.LogSystem(username + " has successfully logged in.")
                     Else
                         InvalidLogin()
                     End If
@@ -56,12 +54,10 @@ Public Class LoginForm1
                 End If
             Catch ex As OleDbException
                 MessageBox.Show("Database error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                GlobalVars.ErrorLog = "Database error: " & ex.Message
-                Logger.LogErrors()
+                Logger.LogErrors("Database error: " & ex.Message)
             Catch ex As Exception
                 MessageBox.Show("An unexpected error occurred: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                GlobalVars.ErrorLog = "An unexpected error occurred: " & ex.Message
-                Logger.LogErrors()
+                Logger.LogErrors("An unexpected error occurred: " & ex.Message)
             End Try
         End Using
     End Sub
@@ -71,8 +67,7 @@ Public Class LoginForm1
         txtPassword.Focus()
         StatusLabel.Text = "Invalid username or password."
         Timer1.Enabled = True
-        GlobalVars.SystemLog = "Invalid login attempt on user: " + txtUsername.Text
-        Logger.LogSystem()
+        Logger.LogSystem("Invalid login attempt on user: " + txtUsername.Text)
     End Sub
 
     Private Sub Cancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Cancel.Click

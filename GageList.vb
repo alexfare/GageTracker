@@ -23,12 +23,10 @@ Public Class GageList
             LoadData()
         Catch ex As OleDbException
             MessageBox.Show("Database error: " & ex.Message)
-            GlobalVars.ErrorLog = "Database error: " & ex.Message
-            Logger.LogErrors()
+            Logger.LogErrors("Database error: " & ex.Message)
         Catch ex As Exception
             MessageBox.Show("General error: " & ex.Message)
-            GlobalVars.ErrorLog = "General error: " & ex.Message
-            Logger.LogErrors()
+            Logger.LogErrors("General error: " & ex.Message)
         End Try
 
         FilterSetup()
@@ -130,27 +128,14 @@ Public Class GageList
         DataGridView1.DataSource = Nothing
         Application.DoEvents()
 
-        If Not System.IO.File.Exists(GlobalVars.DatabaseLocation) Then
-            If PromptForDatabaseLocation() Then
-                LoadData()
-                Return
-            Else
-                MessageBox.Show("No valid database selected. The application will exit.",
-                            "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly)
-                GlobalVars.ErrorLog = "No valid database selected."
-                Logger.LogErrors()
-                Environment.Exit(0)
-            End If
-        End If
 
-        Dim connectionString As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
         Dim query As String = "SELECT GageID, [Status], [PartNumber], [Description], Department, [Gage Type], [Customer], [Inspected Date], [Due Date] FROM CalibrationTracker"
 
         If Not String.IsNullOrEmpty(filterQuery) Then
             query &= " WHERE " & filterQuery
         End If
 
-        Using connection As New OleDbConnection(connectionString)
+        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
             Try
                 connection.Open()
 
@@ -163,72 +148,13 @@ Public Class GageList
                 Cursor.Current = Cursors.Default
 
             Catch ex As OleDbException
-                GlobalVars.ErrorLog = "OleDb error: " & ex.Message
-                Logger.LogErrors()
+                Logger.LogErrors("OleDb error: " & ex.Message)
             Catch ex As Exception
                 MessageBox.Show("An error occurred: " & ex.Message,
                             "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly)
-                GlobalVars.ErrorLog = "An error occurred: " & ex.Message
-                Logger.LogErrors()
+                Logger.LogErrors("An error occurred: " & ex.Message)
             End Try
         End Using
-    End Sub
-
-    Private Function PromptForDatabaseLocation() As Boolean
-        Dim result As DialogResult = MessageBox.Show("No database found. Would you like to select a new database location?",
-                                                 "Database Not Found", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly)
-        If result = DialogResult.Yes Then
-            Using openFileDialog As New OpenFileDialog()
-                openFileDialog.InitialDirectory = "C:\"
-                openFileDialog.Filter = "Access Database Files (*.accdb)|*.accdb"
-                openFileDialog.FilterIndex = 1
-                openFileDialog.RestoreDirectory = True
-
-                If openFileDialog.ShowDialog() = DialogResult.OK Then
-                    GlobalVars.DatabaseLocation = openFileDialog.FileName
-                    GlobalVars.SaveDatabaseLocation(GlobalVars.DatabaseLocation)
-                    Return True
-                End If
-            End Using
-        Else
-            Dim downloadResult As DialogResult = MessageBox.Show("Would you like to download the database instead?",
-                                                             "Download Option", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly)
-            If downloadResult = DialogResult.Yes Then
-                Dim saveDialog As New SaveFileDialog()
-                saveDialog.Filter = "Access Database Files (*.accdb)|*.accdb"
-                saveDialog.Title = "Save Database File"
-                saveDialog.FileName = "GTDatabase.accdb"
-
-                If saveDialog.ShowDialog() = DialogResult.OK Then
-                    DownloadDatabase(saveDialog.FileName)
-                    Return True
-                End If
-            Else
-                LoadingScreen.Close()
-                MessageBox.Show("No valid database selected. The application will exit.", "Database Not Found", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                Environment.Exit(0)
-            End If
-        End If
-        Return False
-    End Function
-
-    Private Sub DownloadDatabase(savePath As String)
-        Dim webClient As New WebClient()
-
-        Try
-            Dim downloadUrl As String = "https://alexfare.com/programs/gtdatabase/latest/GTDatabase.accdb"
-            webClient.DownloadFile(downloadUrl, savePath)
-            MessageBox.Show("Database downloaded complete.", "Download Complete", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
-            GlobalVars.DatabaseLocation = savePath
-            GlobalVars.SaveDatabaseLocation(savePath)
-        Catch ex As Exception
-            MessageBox.Show("An error occurred while downloading the database: " & ex.Message, "Download Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            GlobalVars.ErrorLog = "An error occurred while downloading the database: " & ex.Message
-            Logger.LogErrors()
-        Finally
-            webClient.Dispose()
-        End Try
     End Sub
 #End Region
 
@@ -323,8 +249,7 @@ Public Class GageList
             Process.Start(url)
         Catch ex As Exception
             MessageBox.Show("An error occurred while trying to open the URL: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            GlobalVars.ErrorLog = "An error occurred while trying to open the URL: " & ex.Message
-            Logger.LogErrors()
+            Logger.LogErrors("An error occurred while trying to open the URL: " & ex.Message)
         End Try
     End Sub
 
@@ -334,8 +259,7 @@ Public Class GageList
             Process.Start(url)
         Catch ex As Exception
             MessageBox.Show("An error occurred while trying to open the URL: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            GlobalVars.ErrorLog = "An error occurred while trying to open the URL: " & ex.Message
-            Logger.LogErrors()
+            Logger.LogErrors("An error occurred while trying to open the URL: " & ex.Message)
         End Try
     End Sub
 

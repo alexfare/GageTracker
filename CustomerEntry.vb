@@ -2,7 +2,6 @@
 Imports System.Data.OleDb
 
 Public Class CustomerEntry
-    Dim connectionString As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
     Dim insertQuery As String = "INSERT INTO Customers (CustomerName, CustomerAddress, CustomerPhone, CustomerWebsite) VALUES (@Name, @Address, @Phone, @Website)"
 
     Private Sub Menu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -16,12 +15,12 @@ Public Class CustomerEntry
             Return
         End If
 
-        Using checkConn As New OleDbConnection(connectionString)
-            Dim checkCmd As New OleDbCommand("SELECT COUNT(*) FROM Customers WHERE CustomerName = @Name", checkConn)
+        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
+            Dim checkCmd As New OleDbCommand("SELECT COUNT(*) FROM Customers WHERE CustomerName = @Name", connection)
             checkCmd.Parameters.AddWithValue("@Name", txtCustomerName.Text)
 
             Try
-                checkConn.Open()
+                connection.Open()
                 Dim count As Integer = Convert.ToInt32(checkCmd.ExecuteScalar())
                 If count > 0 Then
                     ShowStatus("This Customer Name already exists. Please enter a unique name.", False)
@@ -29,13 +28,12 @@ Public Class CustomerEntry
                 End If
             Catch ex As Exception
                 MessageBox.Show("An error occurred while checking for duplicate names: " & ex.Message)
-                GlobalVars.ErrorLog = "An error occurred while checking for duplicate names: " & ex.Message
-                Logger.LogErrors()
+                Logger.LogErrors("An error occurred while checking for duplicate names: " & ex.Message)
                 Return
             End Try
         End Using
 
-        Using connection As New OleDbConnection(connectionString)
+        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
             Using command As New OleDbCommand(insertQuery, connection)
                 command.Parameters.AddWithValue("@Name", txtCustomerName.Text)
                 command.Parameters.AddWithValue("@Address", txtCustomerAddress.Text)
@@ -46,14 +44,12 @@ Public Class CustomerEntry
                     connection.Open()
                     command.ExecuteNonQuery()
                     ShowStatus("Customer added successfully.", False)
-                    GlobalVars.SystemLog = txtCustomerName.Text + " added successfully to customer entry."
-                    Logger.LogSystem()
+                    Logger.LogSystem(txtCustomerName.Text + " added successfully to customer entry.")
                     ClearText()
                     LoadCustomers()
                 Catch ex As Exception
                     MessageBox.Show("An error occurred while adding new customer: " & ex.Message)
-                    GlobalVars.ErrorLog = "An error occurred while adding new customer: " & ex.Message
-                    Logger.LogErrors()
+                    Logger.LogErrors("An error occurred while adding new customer: " & ex.Message)
                 End Try
             End Using
         End Using
@@ -64,10 +60,10 @@ Public Class CustomerEntry
     End Sub
 
     Private Sub LoadCustomers()
-        Using conn As New OleDbConnection(connectionString)
+        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
             Try
-                conn.Open()
-                Dim cmd As New OleDbCommand("SELECT CustomerName FROM Customers", conn)
+                connection.Open()
+                Dim cmd As New OleDbCommand("SELECT CustomerName FROM Customers", connection)
                 Dim reader As OleDbDataReader = cmd.ExecuteReader()
                 txtCustomerName.Items.Clear()
                 While reader.Read()
@@ -75,8 +71,7 @@ Public Class CustomerEntry
                 End While
             Catch ex As Exception
                 MessageBox.Show("An error occurred while loading Customers: " & ex.Message)
-                GlobalVars.ErrorLog = "An error occurred while loading Customers: " & ex.Message
-                Logger.LogErrors()
+                Logger.LogErrors("An error occurred while loading Customers: " & ex.Message)
             End Try
         End Using
     End Sub
@@ -90,9 +85,9 @@ Public Class CustomerEntry
         End If
 
         Dim selectedCustomer As String = txtCustomerName.SelectedItem.ToString()
-
         Dim query As String = "SELECT CustomerAddress, CustomerPhone, CustomerWebsite FROM Customers WHERE CustomerName = @Name"
-        Using connection As New OleDbConnection(connectionString)
+
+        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
             Using command As New OleDbCommand(query, connection)
                 command.Parameters.AddWithValue("@Name", selectedCustomer)
 
@@ -110,8 +105,7 @@ Public Class CustomerEntry
                     End If
                 Catch ex As Exception
                     MessageBox.Show("An error occurred while fetching customer details: " & ex.Message)
-                    GlobalVars.ErrorLog = "An error occurred while fetching customer details: " & ex.Message
-                    Logger.LogErrors()
+                    Logger.LogErrors("An error occurred while fetching customer details: " & ex.Message)
                 End Try
             End Using
         End Using
@@ -124,9 +118,9 @@ Public Class CustomerEntry
         End If
 
         Dim selectedCustomer As String = txtCustomerName.SelectedItem.ToString()
-
         Dim query As String = "UPDATE Customers SET CustomerAddress = @Address, CustomerPhone = @Phone, CustomerWebsite = @Website WHERE CustomerName = @Name"
-        Using connection As New OleDbConnection(connectionString)
+
+        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
             Using command As New OleDbCommand(query, connection)
                 command.Parameters.AddWithValue("@Address", txtCustomerAddress.Text)
                 command.Parameters.AddWithValue("@Phone", txtCustomerPhone.Text)
@@ -139,16 +133,14 @@ Public Class CustomerEntry
 
                     If rowsAffected > 0 Then
                         ShowStatus("Customer details updated successfully.", False)
-                        GlobalVars.SystemLog = txtCustomerName.Text + " Customer details updated successfully."
-                        Logger.LogSystem()
+                        Logger.LogSystem(txtCustomerName.Text + " Customer details updated successfully.")
                         ClearText()
                     Else
                         ShowStatus("No records were updated.", True)
                     End If
                 Catch ex As Exception
                     MessageBox.Show("An error occurred while updating customer details: " & ex.Message)
-                    GlobalVars.ErrorLog = "An error occurred while updating customer details: " & ex.Message
-                    Logger.LogErrors()
+                    Logger.LogErrors("An error occurred while updating customer details: " & ex.Message)
                 End Try
             End Using
         End Using
@@ -181,9 +173,9 @@ Public Class CustomerEntry
         End If
 
         Dim selectedCustomer As String = txtCustomerName.SelectedItem.ToString()
-
         Dim query As String = "DELETE FROM Customers WHERE CustomerName = @Name"
-        Using connection As New OleDbConnection(connectionString)
+
+        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
             Using command As New OleDbCommand(query, connection)
                 command.Parameters.AddWithValue("@Name", selectedCustomer)
 
@@ -192,8 +184,7 @@ Public Class CustomerEntry
                     Dim result As Integer = command.ExecuteNonQuery()
                     If result > 0 Then
                         ShowStatus("Customer deleted successfully.", False)
-                        GlobalVars.SystemLog = txtCustomerName.Text + " customer details deleted successfully."
-                        Logger.LogSystem()
+                        Logger.LogSystem(txtCustomerName.Text + " customer details deleted successfully.")
                         ClearText()
                         LoadCustomers()
                         txtCustomerName.SelectedIndex = -1
@@ -203,8 +194,7 @@ Public Class CustomerEntry
                     End If
                 Catch ex As Exception
                     MessageBox.Show("An error occurred while deleting the customer: " & ex.Message)
-                    GlobalVars.ErrorLog = "An error occurred while deleting the customer: " & ex.Message
-                    Logger.LogErrors()
+                    Logger.LogErrors("An error occurred while deleting the customer: " & ex.Message)
                 End Try
             End Using
         End Using

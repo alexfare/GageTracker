@@ -1,7 +1,6 @@
 ﻿Imports System.Data.OleDb
 
 Public Class StatusMenu
-    Dim connectionString As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
     Dim insertQuery As String = "INSERT INTO Status (Status) VALUES (@Status)"
 
     Private Sub Menu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -10,10 +9,10 @@ Public Class StatusMenu
     End Sub
 
     Private Sub LoadStatus()
-        Using conn As New OleDbConnection(connectionString)
+        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
             Try
-                conn.Open()
-                Dim cmd As New OleDbCommand("SELECT Status FROM Status", conn)
+                connection.Open()
+                Dim cmd As New OleDbCommand("SELECT Status FROM Status", connection)
                 Dim reader As OleDbDataReader = cmd.ExecuteReader()
                 txtStatus.Items.Clear()
                 While reader.Read()
@@ -21,8 +20,7 @@ Public Class StatusMenu
                 End While
             Catch ex As Exception
                 MessageBox.Show("An error occurred while loading Status: " & ex.Message)
-                GlobalVars.ErrorLog = "An error occurred while loading Status: " & ex.Message
-                Logger.LogErrors()
+                Logger.LogErrors("An error occurred while loading Status: " & ex.Message)
             End Try
         End Using
     End Sub
@@ -34,12 +32,12 @@ Public Class StatusMenu
             Return
         End If
 
-        Using checkConn As New OleDbConnection(connectionString)
-            Dim checkCmd As New OleDbCommand("SELECT COUNT(*) FROM Status WHERE Status = @Name", checkConn)
+        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
+            Dim checkCmd As New OleDbCommand("SELECT COUNT(*) FROM Status WHERE Status = @Name", connection)
             checkCmd.Parameters.AddWithValue("@Name", txtStatus.Text)
 
             Try
-                checkConn.Open()
+                connection.Open()
                 Dim count As Integer = Convert.ToInt32(checkCmd.ExecuteScalar())
                 If count > 0 Then
                     ShowStatus("This Status already exists. Please enter a unique Status.", True)
@@ -47,13 +45,12 @@ Public Class StatusMenu
                 End If
             Catch ex As Exception
                 MessageBox.Show("An error occurred while checking for duplicate names: " & ex.Message)
-                GlobalVars.ErrorLog = "An error occurred while checking for duplicate names: " & ex.Message
-                Logger.LogErrors()
+                Logger.LogErrors("An error occurred while checking for duplicate names: " & ex.Message)
                 Return
             End Try
         End Using
 
-        Using connection As New OleDbConnection(connectionString)
+        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
             Using command As New OleDbCommand(insertQuery, connection)
                 command.Parameters.AddWithValue("@Name", txtStatus.Text)
 
@@ -61,13 +58,11 @@ Public Class StatusMenu
                     connection.Open()
                     command.ExecuteNonQuery()
                     ShowStatus("Status added successfully.", False)
-                    GlobalVars.SystemLog = txtStatus.Text + " status added successfully."
-                    Logger.LogSystem()
+                    Logger.LogSystem(txtStatus.Text + " status added successfully.")
                     LoadStatus()
                 Catch ex As Exception
                     MessageBox.Show("An error occurred while adding new status: " & ex.Message)
-                    GlobalVars.ErrorLog = "An error occurred while adding new status: " & ex.Message
-                    Logger.LogErrors()
+                    Logger.LogErrors("An error occurred while adding new status: " & ex.Message)
                 End Try
             End Using
         End Using
@@ -88,9 +83,9 @@ Public Class StatusMenu
         End If
 
         Dim selectedStatus As String = txtStatus.SelectedItem.ToString()
-
         Dim query As String = "DELETE FROM Status WHERE Status = @Name"
-        Using connection As New OleDbConnection(connectionString)
+
+        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
             Using command As New OleDbCommand(query, connection)
                 command.Parameters.AddWithValue("@Name", selectedStatus)
 
@@ -99,8 +94,7 @@ Public Class StatusMenu
                     Dim result As Integer = command.ExecuteNonQuery()
                     If result > 0 Then
                         ShowStatus("Status deleted successfully.", False)
-                        GlobalVars.SystemLog = txtStatus.Text + " status deleted successfully."
-                        Logger.LogSystem()
+                        Logger.LogSystem(txtStatus.Text + " status deleted successfully.")
                         txtStatus.SelectedIndex = -1
                         txtStatus.Text = ""
                         LoadStatus()
@@ -109,8 +103,7 @@ Public Class StatusMenu
                     End If
                 Catch ex As Exception
                     MessageBox.Show("An error occurred while deleting the Status: " & ex.Message)
-                    GlobalVars.ErrorLog = "An error occurred while deleting the Status: " & ex.Message
-                    Logger.LogErrors()
+                    Logger.LogErrors("An error occurred while deleting the Status: " & ex.Message)
                 End Try
             End Using
         End Using

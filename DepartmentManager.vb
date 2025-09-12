@@ -1,7 +1,6 @@
 ﻿Imports System.Data.OleDb
 
 Public Class DepartmentManager
-    Dim connectionString As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
     Dim insertQuery As String = "INSERT INTO Departments (Departments) VALUES (@Departments)"
 
     Private Sub Departments_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -10,10 +9,10 @@ Public Class DepartmentManager
     End Sub
 
     Private Sub LoadDepartments()
-        Using conn As New OleDbConnection(connectionString)
+        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
             Try
-                conn.Open()
-                Dim cmd As New OleDbCommand("SELECT Departments FROM Departments", conn)
+                connection.Open()
+                Dim cmd As New OleDbCommand("SELECT Departments FROM Departments", connection)
                 Dim reader As OleDbDataReader = cmd.ExecuteReader()
                 txtDepartments.Items.Clear()
                 While reader.Read()
@@ -21,8 +20,7 @@ Public Class DepartmentManager
                 End While
             Catch ex As Exception
                 MessageBox.Show("An error occurred while loading Departments: " & ex.Message)
-                GlobalVars.ErrorLog = "An error occurred while loading Departments: " & ex.Message
-                Logger.LogErrors()
+                Logger.LogErrors("An error occurred while loading Departments: " & ex.Message)
             End Try
         End Using
     End Sub
@@ -33,12 +31,12 @@ Public Class DepartmentManager
             Return
         End If
 
-        Using checkConn As New OleDbConnection(connectionString)
-            Dim checkCmd As New OleDbCommand("SELECT COUNT(*) FROM Departments WHERE Departments = @Name", checkConn)
+        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
+            Dim checkCmd As New OleDbCommand("SELECT COUNT(*) FROM Departments WHERE Departments = @Name", connection)
             checkCmd.Parameters.AddWithValue("@Name", txtDepartments.Text)
 
             Try
-                checkConn.Open()
+                connection.Open()
                 Dim count As Integer = Convert.ToInt32(checkCmd.ExecuteScalar())
                 If count > 0 Then
                     ShowStatus("This Department already exists. Please enter a unique Department name.", False)
@@ -46,13 +44,12 @@ Public Class DepartmentManager
                 End If
             Catch ex As Exception
                 MessageBox.Show("An error occurred while checking for duplicate names: " & ex.Message)
-                GlobalVars.ErrorLog = "An error occurred while checking for duplicate names: " & ex.Message
-                Logger.LogErrors()
+                Logger.LogErrors("An error occurred while checking for duplicate names: " & ex.Message)
                 Return
             End Try
         End Using
 
-        Using connection As New OleDbConnection(connectionString)
+        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
             Using command As New OleDbCommand(insertQuery, connection)
                 command.Parameters.AddWithValue("@Departments", txtDepartments.Text)
 
@@ -60,14 +57,12 @@ Public Class DepartmentManager
                     connection.Open()
                     command.ExecuteNonQuery()
                     ShowStatus("Department added successfully.", False)
-                    GlobalVars.SystemLog = txtDepartments.Text + " Department added successfully."
-                    Logger.LogSystem()
+                    Logger.LogSystem(txtDepartments.Text + " Department added successfully.")
                     txtDepartments.Items.Add(txtDepartments.Text)
                     txtDepartments.Text = String.Empty
                 Catch ex As Exception
                     MessageBox.Show("An error occurred while adding new Department: " & ex.Message)
-                    GlobalVars.ErrorLog = "An error occurred while adding new Department: " & ex.Message
-                    Logger.LogErrors()
+                    Logger.LogErrors("An error occurred while adding new Department: " & ex.Message)
                 End Try
             End Using
         End Using
@@ -89,7 +84,7 @@ Public Class DepartmentManager
         Dim selectedDepartment As String = txtDepartments.SelectedItem.ToString()
         Dim query As String = "DELETE FROM Departments WHERE Departments = @Name"
 
-        Using connection As New OleDbConnection(connectionString)
+        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
             Using command As New OleDbCommand(query, connection)
                 command.Parameters.AddWithValue("@Name", selectedDepartment)
 
@@ -98,8 +93,7 @@ Public Class DepartmentManager
                     Dim result As Integer = command.ExecuteNonQuery()
                     If result > 0 Then
                         ShowStatus("Department deleted successfully.", False)
-                        GlobalVars.SystemLog = selectedDepartment + "Department deleted successfully."
-                        Logger.LogSystem()
+                        Logger.LogSystem(selectedDepartment + "Department deleted successfully.")
                         txtDepartments.Items.Remove(selectedDepartment)
                         txtDepartments.Text = String.Empty
                         txtDepartments.SelectedIndex = -1
@@ -108,8 +102,7 @@ Public Class DepartmentManager
                     End If
                 Catch ex As Exception
                     MessageBox.Show("An error occurred while deleting the Department: " & ex.Message)
-                    GlobalVars.ErrorLog = "An error occurred while deleting the Department: " & ex.Message
-                    Logger.LogErrors()
+                    Logger.LogErrors("An error occurred while deleting the Department: " & ex.Message)
                 End Try
             End Using
         End Using

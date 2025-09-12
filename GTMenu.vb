@@ -1,7 +1,6 @@
 ﻿Imports System.Data.OleDb
 
 Public Class GTMenu
-    Private connectionString As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
     Private SearchCheck As Boolean
     Private activeUser As String
     Private ChangeDetected As Boolean
@@ -55,7 +54,7 @@ Public Class GTMenu
 
 #Region "Load"
     Public Sub LoadGageID()
-        Using conn As New OleDbConnection(connectionString)
+        Using conn As OleDbConnection = DatabaseHelper.GetConnection()
             Try
                 conn.Open()
                 Dim cmd As New OleDbCommand("SELECT GageID FROM [CalibrationTracker]", conn)
@@ -81,8 +80,7 @@ Public Class GTMenu
 
             Catch ex As Exception
                 MessageBox.Show("An error occurred while loading GageID options: " & ex.Message)
-                GlobalVars.ErrorLog = ("An error occurred while loading GageID options: " & ex.Message)
-                Logger.LogErrors()
+                Logger.LogErrors("An error occurred while loading GageID options: " & ex.Message)
             Finally
                 If conn.State = ConnectionState.Open Then
                     conn.Close()
@@ -92,7 +90,7 @@ Public Class GTMenu
     End Sub
 
     Public Sub LoadStatus()
-        Using conn As New OleDbConnection(connectionString)
+        Using conn As OleDbConnection = DatabaseHelper.GetConnection()
             Try
                 conn.Open()
                 Dim cmd As New OleDbCommand("SELECT Status FROM [Status]", conn)
@@ -112,8 +110,7 @@ Public Class GTMenu
 
             Catch ex As Exception
                 MessageBox.Show("An error occurred while loading status options: " & ex.Message)
-                GlobalVars.ErrorLog = ("An error occurred while loading status options: " & ex.Message)
-                Logger.LogErrors()
+                Logger.LogErrors("An error occurred while loading status options: " & ex.Message)
             Finally
                 If conn.State = ConnectionState.Open Then
                     conn.Close()
@@ -123,7 +120,7 @@ Public Class GTMenu
     End Sub
 
     Public Sub LoadDepartment()
-        Using conn As New OleDbConnection(connectionString)
+        Using conn As OleDbConnection = DatabaseHelper.GetConnection()
             Try
                 conn.Open()
                 Dim cmd As New OleDbCommand("SELECT Departments FROM [Departments]", conn)
@@ -143,8 +140,7 @@ Public Class GTMenu
 
             Catch ex As Exception
                 MessageBox.Show("An error occurred while loading Departments options: " & ex.Message)
-                GlobalVars.ErrorLog = ("An error occurred while loading Departments options: " & ex.Message)
-                Logger.LogErrors()
+                Logger.LogErrors("An error occurred while loading Departments options: " & ex.Message)
             Finally
                 If conn.State = ConnectionState.Open Then
                     conn.Close()
@@ -154,7 +150,7 @@ Public Class GTMenu
     End Sub
 
     Public Sub LoadGageType()
-        Using conn As New OleDbConnection(connectionString)
+        Using conn As OleDbConnection = DatabaseHelper.GetConnection()
             Try
                 conn.Open()
                 Dim cmd As New OleDbCommand("SELECT GageType FROM [GageType]", conn)
@@ -174,8 +170,7 @@ Public Class GTMenu
 
             Catch ex As Exception
                 MessageBox.Show("An error occurred while loading Gage Type options: " & ex.Message)
-                GlobalVars.ErrorLog = ("An error occurred while loading Gage Type options: " & ex.Message)
-                Logger.LogErrors()
+                Logger.LogErrors("An error occurred while loading Gage Type options: " & ex.Message)
             Finally
                 If conn.State = ConnectionState.Open Then
                     conn.Close()
@@ -185,7 +180,7 @@ Public Class GTMenu
     End Sub
 
     Public Sub LoadCustomers()
-        Using conn As New OleDbConnection(connectionString)
+        Using conn As OleDbConnection = DatabaseHelper.GetConnection()
             Try
                 conn.Open()
                 Dim cmd As New OleDbCommand("SELECT CustomerName FROM Customers", conn)
@@ -205,8 +200,7 @@ Public Class GTMenu
 
             Catch ex As Exception
                 MessageBox.Show("An error occurred while loading Customer options: " & ex.Message)
-                GlobalVars.ErrorLog = ("An error occurred while loading Customer options: " & ex.Message)
-                Logger.LogErrors()
+                Logger.LogErrors("An error occurred while loading Customer options: " & ex.Message)
             Finally
                 If conn.State = ConnectionState.Open Then
                     conn.Close()
@@ -216,7 +210,7 @@ Public Class GTMenu
     End Sub
 
     Public Sub LoadUser()
-        Using conn As New OleDbConnection(connectionString)
+        Using conn As OleDbConnection = DatabaseHelper.GetConnection()
             Try
                 conn.Open()
                 Dim cmd As New OleDbCommand("SELECT Username FROM [Credentials]", conn)
@@ -236,8 +230,7 @@ Public Class GTMenu
 
             Catch ex As Exception
                 MessageBox.Show("An error occurred while loading Gage Type options: " & ex.Message)
-                GlobalVars.ErrorLog = ("An error occurred while loading Gage Type options: " & ex.Message)
-                Logger.LogErrors()
+                Logger.LogErrors("An error occurred while loading Gage Type options: " & ex.Message)
             Finally
                 If conn.State = ConnectionState.Open Then
                     conn.Close()
@@ -269,7 +262,7 @@ Public Class GTMenu
     End Sub
 
     Private Sub SearchHandler()
-        Using conn As New OleDbConnection(connectionString)
+        Using conn As OleDbConnection = DatabaseHelper.GetConnection()
             Try
                 conn.Open()
                 Dim cmd As New OleDbCommand("SELECT PartNumber, PartRev, [Status], Description, Department, [Gage Type], Customer, [Calibrated By], [Interval (Months)], [Inspected Date], [Due Date], Comments, aN1, aN2, aN3, aN4, aN5, aA1, aA2, aA3, aA4, aA5, [Serial Number], Owner, [Nist Number] FROM [CalibrationTracker] WHERE GageID = ?", conn)
@@ -325,12 +318,10 @@ Public Class GTMenu
                 End Using
             Catch ex As OleDbException
                 MessageBox.Show("Database error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                GlobalVars.ErrorLog = "Database error: " & ex.Message
-                Logger.LogErrors()
+                Logger.LogErrors("Database error: " & ex.Message)
             Catch ex As Exception
                 MessageBox.Show("An unexpected error occurred: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                GlobalVars.ErrorLog = "An unexpected error occurred: " & ex.Message
-                Logger.LogErrors()
+                Logger.LogErrors("An unexpected error occurred: " & ex.Message)
             End Try
         End Using
     End Sub
@@ -344,7 +335,7 @@ Public Class GTMenu
         PauseUserInput(5)
 
         Try
-            Using conn As New OleDbConnection(connectionString)
+            Using conn As OleDbConnection = DatabaseHelper.GetConnection()
                 conn.Open()
                 Dim checkCmd As New OleDbCommand("SELECT COUNT(*) FROM [CalibrationTracker] WHERE GageID = ?", conn)
                 checkCmd.Parameters.AddWithValue("@GageID", TxtGageID.Text)
@@ -398,12 +389,10 @@ Public Class GTMenu
             End Using
         Catch ex As OleDbException
             MessageBox.Show($"Database error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            GlobalVars.ErrorLog = "Database error: {ex.Message}"
-            Logger.LogErrors()
+            Logger.LogErrors($"Database error: {ex.Message}")
         Catch ex As Exception
             MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            GlobalVars.ErrorLog = "An unexpected error occurred: {ex.Message}"
-            Logger.LogErrors()
+            Logger.LogErrors($"An unexpected error occurred: {ex.Message}")
         End Try
     End Sub
 
@@ -418,7 +407,7 @@ Public Class GTMenu
                     FixGageID()
                 End If
             Else
-                    ShowStatus("No updates detected.", True)
+                ShowStatus("No updates detected.", True)
             End If
         Else
             ShowStatus("Please search for Gage record.", True)
@@ -426,7 +415,7 @@ Public Class GTMenu
     End Sub
 
     Private Sub BtnUpdateConfirmed()
-        Using conn As New OleDbConnection(connectionString)
+        Using conn As OleDbConnection = DatabaseHelper.GetConnection()
             conn.Open()
 
             Dim lastUser As String
@@ -642,8 +631,7 @@ Public Class GTMenu
             Process.Start(url)
         Catch ex As Exception
             MessageBox.Show("An error occurred while trying to open the URL: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            GlobalVars.ErrorLog = "An error occurred while trying to open the URL: " & ex.Message
-            Logger.LogErrors()
+            Logger.LogErrors("An error occurred while trying to open the URL: " & ex.Message)
         End Try
     End Sub
 
@@ -737,7 +725,7 @@ Public Class GTMenu
         Dim result As DialogResult = MessageBox.Show("Are you sure you want to delete this gage?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If result = DialogResult.Yes Then
             Try
-                Using conn As New OleDbConnection(connectionString)
+                Using conn As OleDbConnection = DatabaseHelper.GetConnection()
                     conn.Open()
                     Dim deleteCmd As New OleDbCommand("DELETE FROM [CalibrationTracker] WHERE GageID = ?", conn)
                     deleteCmd.Parameters.AddWithValue("@GageID", TxtGageID.Text)
@@ -755,12 +743,10 @@ Public Class GTMenu
                 End Using
             Catch ex As OleDbException
                 MessageBox.Show($"Database error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                GlobalVars.ErrorLog = "Database error: {ex.Message}"
-                Logger.LogErrors()
+                Logger.LogErrors($"Database error: {ex.Message}")
             Catch ex As Exception
                 MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                GlobalVars.ErrorLog = "An unexpected error occurred: {ex.Message}"
-                Logger.LogErrors()
+                Logger.LogErrors($"An unexpected error occurred: {ex.Message}")
             End Try
         End If
     End Sub
@@ -777,7 +763,7 @@ Public Class GTMenu
 
     Private Sub SearchAuditLog()
         Try
-            Using conn As New OleDbConnection(connectionString)
+            Using conn As OleDbConnection = DatabaseHelper.GetConnection()
                 conn.Open()
                 Dim searchCmd As New OleDbCommand("SELECT [Date Added], [Last Edited], [Last User] FROM [CalibrationTracker] WHERE GageID = ?", conn)
                 searchCmd.Parameters.AddWithValue("@GageID", TxtGageID.Text)
@@ -793,8 +779,7 @@ Public Class GTMenu
             End Using
         Catch ex As Exception
             MessageBox.Show("An error occurred: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            GlobalVars.ErrorLog = "An error occurred: " & ex.Message
-            Logger.LogErrors()
+            Logger.LogErrors("An error occurred: " & ex.Message)
         End Try
     End Sub
 

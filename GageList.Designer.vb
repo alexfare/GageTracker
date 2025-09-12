@@ -35,7 +35,6 @@ Partial Class GageList
         Me.InspectedDateDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DueDateDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CalibrationTrackerBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.GTDatabaseDataSet = New GageCalibrationTracker.GTDatabaseDataSet()
         Me.BtnMenu = New System.Windows.Forms.Button()
         Me.ColorDialog1 = New System.Windows.Forms.ColorDialog()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -59,10 +58,8 @@ Partial Class GageList
         Me.CmbFilterType = New System.Windows.Forms.ComboBox()
         Me.CmbContains = New System.Windows.Forms.ComboBox()
         Me.CheckBoxShowAll = New System.Windows.Forms.CheckBox()
-        Me.CalibrationTrackerTableAdapter = New GageCalibrationTracker.GTDatabaseDataSetTableAdapters.CalibrationTrackerTableAdapter()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CalibrationTrackerBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GTDatabaseDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -148,12 +145,6 @@ Partial Class GageList
         'CalibrationTrackerBindingSource
         '
         Me.CalibrationTrackerBindingSource.DataMember = "CalibrationTracker"
-        Me.CalibrationTrackerBindingSource.DataSource = Me.GTDatabaseDataSet
-        '
-        'GTDatabaseDataSet
-        '
-        Me.GTDatabaseDataSet.DataSetName = "GTDatabaseDataSet"
-        Me.GTDatabaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'BtnMenu
         '
@@ -316,10 +307,6 @@ Partial Class GageList
         Me.CheckBoxShowAll.Text = "Show All Statuses"
         Me.CheckBoxShowAll.UseVisualStyleBackColor = True
         '
-        'CalibrationTrackerTableAdapter
-        '
-        Me.CalibrationTrackerTableAdapter.ClearBeforeFill = True
-        '
         'GageList
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -341,7 +328,6 @@ Partial Class GageList
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CalibrationTrackerBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GTDatabaseDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
         Me.ResumeLayout(False)
@@ -350,9 +336,7 @@ Partial Class GageList
     End Sub
 
     Friend WithEvents DataGridView1 As DataGridView
-    Friend WithEvents GTDatabaseDataSet As GTDatabaseDataSet
     Friend WithEvents CalibrationTrackerBindingSource As BindingSource
-    Friend WithEvents CalibrationTrackerTableAdapter As GTDatabaseDataSetTableAdapters.CalibrationTrackerTableAdapter
     Friend WithEvents BtnMenu As Button
     Friend WithEvents ColorDialog1 As ColorDialog
     Friend WithEvents GageIDDataGridViewTextBoxColumn As DataGridViewTextBoxColumn

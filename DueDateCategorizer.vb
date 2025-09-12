@@ -1,7 +1,6 @@
 ﻿Imports System.Data.OleDb
 
 Public Class DueDateCategorizer
-    Dim connectionString As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
 
 #Region "Loading"
     Private selectedGage As String
@@ -12,12 +11,10 @@ Public Class DueDateCategorizer
             LoadData()
         Catch ex As OleDbException
             MessageBox.Show("Database error: " & ex.Message)
-            GlobalVars.ErrorLog = "Database error: " & ex.Message
-            Logger.LogErrors()
+            Logger.LogErrors("Database error: " & ex.Message)
         Catch ex As Exception
             MessageBox.Show("General error: " & ex.Message)
-            GlobalVars.ErrorLog = "General error: " & ex.Message
-            Logger.LogErrors()
+            Logger.LogErrors("General error: " & ex.Message)
         End Try
     End Sub
 
@@ -52,7 +49,7 @@ Public Class DueDateCategorizer
     Public Sub LoadData()
         Dim query As String = "SELECT GageID, [Status], [PartNumber], [Description], Department, [Gage Type], [Customer], [Inspected Date], [Due Date] FROM CalibrationTracker"
 
-        Using connection As New OleDbConnection(connectionString)
+        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
             Try
                 connection.Open()
                 Dim command As New OleDbCommand(query, connection)
@@ -88,8 +85,7 @@ Public Class DueDateCategorizer
 
             Catch ex As OleDbException
                 MessageBox.Show("OleDb error: " & ex.Message)
-                GlobalVars.ErrorLog = "OleDb error: " & ex.Message
-                Logger.LogErrors()
+                Logger.LogErrors("OleDb error: " & ex.Message)
             Finally
                 If connection.State = ConnectionState.Open Then
                     connection.Close()

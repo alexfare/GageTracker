@@ -1,7 +1,6 @@
 ﻿Imports System.Data.OleDb
 
 Public Class GageType
-    Dim connectionString As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & GlobalVars.DatabaseLocation & ";"
     Dim insertQuery As String = "INSERT INTO GageType (GageType) VALUES (@GageType)"
 
     Private Sub GageType_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -10,10 +9,10 @@ Public Class GageType
     End Sub
 
     Private Sub LoadGageType()
-        Using conn As New OleDbConnection(connectionString)
+        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
             Try
-                conn.Open()
-                Dim cmd As New OleDbCommand("SELECT GageType FROM GageType", conn)
+                connection.Open()
+                Dim cmd As New OleDbCommand("SELECT GageType FROM GageType", connection)
                 Dim reader As OleDbDataReader = cmd.ExecuteReader()
                 txtGageType.Items.Clear()
                 While reader.Read()
@@ -21,8 +20,7 @@ Public Class GageType
                 End While
             Catch ex As Exception
                 MessageBox.Show("An error occurred while loading Gage type: " & ex.Message)
-                GlobalVars.ErrorLog = "An error occurred while loading Gage type: " & ex.Message
-                Logger.LogErrors()
+                Logger.LogErrors("An error occurred while loading Gage type: " & ex.Message)
             End Try
         End Using
     End Sub
@@ -33,12 +31,12 @@ Public Class GageType
             Return
         End If
 
-        Using checkConn As New OleDbConnection(connectionString)
-            Dim checkCmd As New OleDbCommand("SELECT COUNT(*) FROM GageType WHERE GageType = @Name", checkConn)
+        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
+            Dim checkCmd As New OleDbCommand("SELECT COUNT(*) FROM GageType WHERE GageType = @Name", connection)
             checkCmd.Parameters.AddWithValue("@Name", txtGageType.Text)
 
             Try
-                checkConn.Open()
+                connection.Open()
                 Dim count As Integer = Convert.ToInt32(checkCmd.ExecuteScalar())
                 If count > 0 Then
                     ShowStatus("This Gage type already exists. Please enter a unique Gage type.", False)
@@ -46,13 +44,12 @@ Public Class GageType
                 End If
             Catch ex As Exception
                 MessageBox.Show("An error occurred while checking for duplicate names: " & ex.Message)
-                GlobalVars.ErrorLog = "An error occurred while checking for duplicate names: " & ex.Message
-                Logger.LogErrors()
+                Logger.LogErrors("An error occurred while checking for duplicate names: " & ex.Message)
                 Return
             End Try
         End Using
 
-        Using connection As New OleDbConnection(connectionString)
+        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
             Using command As New OleDbCommand(insertQuery, connection)
                 command.Parameters.AddWithValue("@GageType", txtGageType.Text)
 
@@ -60,14 +57,12 @@ Public Class GageType
                     connection.Open()
                     command.ExecuteNonQuery()
                     ShowStatus("Gage type added successfully.", False)
-                    GlobalVars.SystemLog = txtGageType.Text + " Gage type added successfully."
-                    Logger.LogSystem()
+                    Logger.LogSystem(txtGageType.Text + " Gage type added successfully.")
                     txtGageType.Items.Add(txtGageType.Text)
                     txtGageType.Text = String.Empty
                 Catch ex As Exception
                     MessageBox.Show("An error occurred while adding new Gage type: " & ex.Message)
-                    GlobalVars.ErrorLog = "An error occurred while adding new Gage type: " & ex.Message
-                    Logger.LogErrors()
+                    Logger.LogErrors("An error occurred while adding new Gage type: " & ex.Message)
                 End Try
             End Using
         End Using
@@ -89,7 +84,7 @@ Public Class GageType
         Dim selectedGageType As String = txtGageType.SelectedItem.ToString()
         Dim query As String = "DELETE FROM GageType WHERE GageType = @Name"
 
-        Using connection As New OleDbConnection(connectionString)
+        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
             Using command As New OleDbCommand(query, connection)
                 command.Parameters.AddWithValue("@Name", selectedGageType)
 
@@ -98,8 +93,7 @@ Public Class GageType
                     Dim result As Integer = command.ExecuteNonQuery()
                     If result > 0 Then
                         ShowStatus("Gage type deleted successfully.", False)
-                        GlobalVars.SystemLog = selectedGageType + " Gage type deleted successfully."
-                        Logger.LogSystem()
+                        Logger.LogSystem(selectedGageType + " Gage type deleted successfully.")
                         txtGageType.Items.Remove(selectedGageType)
                         txtGageType.Text = String.Empty
                         txtGageType.SelectedIndex = -1
@@ -108,8 +102,7 @@ Public Class GageType
                     End If
                 Catch ex As Exception
                     MessageBox.Show("An error occurred while deleting the Gage type: " & ex.Message)
-                    GlobalVars.ErrorLog = "An error occurred while deleting the Gage type: " & ex.Message
-                    Logger.LogErrors()
+                    Logger.LogErrors("An error occurred while deleting the Gage type: " & ex.Message)
                 End Try
             End Using
         End Using

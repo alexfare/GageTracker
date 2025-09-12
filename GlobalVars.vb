@@ -2,8 +2,6 @@
     Public DatabaseLocation As String
     Public LastActivity As String
     Public DueDateMenuSelect As String
-    Public SystemLog As String
-    Public ErrorLog As String
     Public Username As String
     Public AuthHash As String
 

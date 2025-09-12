@@ -1,3 +1,17 @@
+v5.19.2.87
+Fixed database not saving.
+
+v5.19.1.86
+Added the updated Logo. (Icon only currently).
+
+v5.19.0.85
+Updated ApplicationEvents, Fixed start up issue caused by multi-threading.
+Updated Forms to remove redundant connectionStrings.
+Updated Logger Code, Completed rewrite, streamlining log writing in a single call.
+Updated Connection Handling.
+Removed Dataset, This was redundant and hardcoded anyway.
+Updated how the program checks for the database, Now checks before launching program.
+
 v5.18.7.84
 Updated GageList, Organization.
 Updated how the program handles the selected gage.

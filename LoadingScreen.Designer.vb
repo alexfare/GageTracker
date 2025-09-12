@@ -25,8 +25,8 @@ Partial Class LoadingScreen
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(LoadingScreen))
         Me.ApplicationTitle = New System.Windows.Forms.Label()
         Me.DetailsLayoutPanel = New System.Windows.Forms.TableLayoutPanel()
-        Me.Copyright = New System.Windows.Forms.Label()
         Me.Version = New System.Windows.Forms.Label()
+        Me.Copyright = New System.Windows.Forms.Label()
         Me.MainLayoutPanel = New System.Windows.Forms.TableLayoutPanel()
         Me.DetailsLayoutPanel.SuspendLayout()
         Me.MainLayoutPanel.SuspendLayout()
@@ -60,17 +60,6 @@ Partial Class LoadingScreen
         Me.DetailsLayoutPanel.Size = New System.Drawing.Size(247, 79)
         Me.DetailsLayoutPanel.TabIndex = 1
         '
-        'Copyright
-        '
-        Me.Copyright.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.Copyright.BackColor = System.Drawing.Color.Transparent
-        Me.Copyright.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Copyright.Location = New System.Drawing.Point(3, 39)
-        Me.Copyright.Name = "Copyright"
-        Me.Copyright.Size = New System.Drawing.Size(241, 40)
-        Me.Copyright.TabIndex = 2
-        Me.Copyright.Text = "Copyright"
-        '
         'Version
         '
         Me.Version.Anchor = System.Windows.Forms.AnchorStyles.None
@@ -81,6 +70,17 @@ Partial Class LoadingScreen
         Me.Version.Size = New System.Drawing.Size(241, 20)
         Me.Version.TabIndex = 1
         Me.Version.Text = "Version {0}.{1:00}"
+        '
+        'Copyright
+        '
+        Me.Copyright.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Copyright.BackColor = System.Drawing.Color.Transparent
+        Me.Copyright.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Copyright.Location = New System.Drawing.Point(3, 39)
+        Me.Copyright.Name = "Copyright"
+        Me.Copyright.Size = New System.Drawing.Size(241, 40)
+        Me.Copyright.TabIndex = 2
+        Me.Copyright.Text = "Copyright"
         '
         'MainLayoutPanel
         '

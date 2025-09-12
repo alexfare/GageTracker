@@ -23,12 +23,10 @@ Public Class GageList
             LoadData()
         Catch ex As OleDbException
             MessageBox.Show("Database error: " & ex.Message)
-            GlobalVars.ErrorLog = "Database error: " & ex.Message
-            Logger.LogErrors()
+            Logger.LogErrors("Database error: " & ex.Message)
         Catch ex As Exception
             MessageBox.Show("General error: " & ex.Message)
-            GlobalVars.ErrorLog = "General error: " & ex.Message
-            Logger.LogErrors()
+            Logger.LogErrors("General error: " & ex.Message)
         End Try
 
         FilterSetup()
@@ -137,8 +135,7 @@ Public Class GageList
             Else
                 MessageBox.Show("No valid database selected. The application will exit.",
                             "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly)
-                GlobalVars.ErrorLog = "No valid database selected."
-                Logger.LogErrors()
+                Logger.LogErrors("No valid database selected.")
                 Environment.Exit(0)
             End If
         End If
@@ -163,13 +160,11 @@ Public Class GageList
                 Cursor.Current = Cursors.Default
 
             Catch ex As OleDbException
-                GlobalVars.ErrorLog = "OleDb error: " & ex.Message
-                Logger.LogErrors()
+                Logger.LogErrors("OleDb error: " & ex.Message)
             Catch ex As Exception
                 MessageBox.Show("An error occurred: " & ex.Message,
                             "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly)
-                GlobalVars.ErrorLog = "An error occurred: " & ex.Message
-                Logger.LogErrors()
+                Logger.LogErrors("An error occurred: " & ex.Message)
             End Try
         End Using
     End Sub
@@ -224,8 +219,7 @@ Public Class GageList
             GlobalVars.SaveDatabaseLocation(savePath)
         Catch ex As Exception
             MessageBox.Show("An error occurred while downloading the database: " & ex.Message, "Download Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            GlobalVars.ErrorLog = "An error occurred while downloading the database: " & ex.Message
-            Logger.LogErrors()
+            Logger.LogErrors("An error occurred while downloading the database: " & ex.Message)
         Finally
             webClient.Dispose()
         End Try
@@ -323,8 +317,7 @@ Public Class GageList
             Process.Start(url)
         Catch ex As Exception
             MessageBox.Show("An error occurred while trying to open the URL: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            GlobalVars.ErrorLog = "An error occurred while trying to open the URL: " & ex.Message
-            Logger.LogErrors()
+            Logger.LogErrors("An error occurred while trying to open the URL: " & ex.Message)
         End Try
     End Sub
 
@@ -334,8 +327,7 @@ Public Class GageList
             Process.Start(url)
         Catch ex As Exception
             MessageBox.Show("An error occurred while trying to open the URL: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            GlobalVars.ErrorLog = "An error occurred while trying to open the URL: " & ex.Message
-            Logger.LogErrors()
+            Logger.LogErrors("An error occurred while trying to open the URL: " & ex.Message)
         End Try
     End Sub
 

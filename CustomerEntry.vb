@@ -29,8 +29,7 @@ Public Class CustomerEntry
                 End If
             Catch ex As Exception
                 MessageBox.Show("An error occurred while checking for duplicate names: " & ex.Message)
-                GlobalVars.ErrorLog = "An error occurred while checking for duplicate names: " & ex.Message
-                Logger.LogErrors()
+                Logger.LogErrors("An error occurred while checking for duplicate names: " & ex.Message)
                 Return
             End Try
         End Using
@@ -46,14 +45,12 @@ Public Class CustomerEntry
                     connection.Open()
                     command.ExecuteNonQuery()
                     ShowStatus("Customer added successfully.", False)
-                    GlobalVars.SystemLog = txtCustomerName.Text + " added successfully to customer entry."
-                    Logger.LogSystem()
+                    Logger.LogSystem(txtCustomerName.Text + " added successfully to customer entry.")
                     ClearText()
                     LoadCustomers()
                 Catch ex As Exception
                     MessageBox.Show("An error occurred while adding new customer: " & ex.Message)
-                    GlobalVars.ErrorLog = "An error occurred while adding new customer: " & ex.Message
-                    Logger.LogErrors()
+                    Logger.LogErrors("An error occurred while adding new customer: " & ex.Message)
                 End Try
             End Using
         End Using
@@ -75,8 +72,7 @@ Public Class CustomerEntry
                 End While
             Catch ex As Exception
                 MessageBox.Show("An error occurred while loading Customers: " & ex.Message)
-                GlobalVars.ErrorLog = "An error occurred while loading Customers: " & ex.Message
-                Logger.LogErrors()
+                Logger.LogErrors("An error occurred while loading Customers: " & ex.Message)
             End Try
         End Using
     End Sub
@@ -110,8 +106,7 @@ Public Class CustomerEntry
                     End If
                 Catch ex As Exception
                     MessageBox.Show("An error occurred while fetching customer details: " & ex.Message)
-                    GlobalVars.ErrorLog = "An error occurred while fetching customer details: " & ex.Message
-                    Logger.LogErrors()
+                    Logger.LogErrors("An error occurred while fetching customer details: " & ex.Message)
                 End Try
             End Using
         End Using
@@ -139,16 +134,14 @@ Public Class CustomerEntry
 
                     If rowsAffected > 0 Then
                         ShowStatus("Customer details updated successfully.", False)
-                        GlobalVars.SystemLog = txtCustomerName.Text + " Customer details updated successfully."
-                        Logger.LogSystem()
+                        Logger.LogSystem(txtCustomerName.Text + " Customer details updated successfully.")
                         ClearText()
                     Else
                         ShowStatus("No records were updated.", True)
                     End If
                 Catch ex As Exception
                     MessageBox.Show("An error occurred while updating customer details: " & ex.Message)
-                    GlobalVars.ErrorLog = "An error occurred while updating customer details: " & ex.Message
-                    Logger.LogErrors()
+                    Logger.LogErrors("An error occurred while updating customer details: " & ex.Message)
                 End Try
             End Using
         End Using
@@ -192,8 +185,7 @@ Public Class CustomerEntry
                     Dim result As Integer = command.ExecuteNonQuery()
                     If result > 0 Then
                         ShowStatus("Customer deleted successfully.", False)
-                        GlobalVars.SystemLog = txtCustomerName.Text + " customer details deleted successfully."
-                        Logger.LogSystem()
+                        Logger.LogSystem(txtCustomerName.Text + " customer details deleted successfully.")
                         ClearText()
                         LoadCustomers()
                         txtCustomerName.SelectedIndex = -1
@@ -203,8 +195,7 @@ Public Class CustomerEntry
                     End If
                 Catch ex As Exception
                     MessageBox.Show("An error occurred while deleting the customer: " & ex.Message)
-                    GlobalVars.ErrorLog = "An error occurred while deleting the customer: " & ex.Message
-                    Logger.LogErrors()
+                    Logger.LogErrors("An error occurred while deleting the customer: " & ex.Message)
                 End Try
             End Using
         End Using

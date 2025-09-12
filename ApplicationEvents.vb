@@ -33,15 +33,13 @@ Namespace My
                             Dim RequestedVersion = My.Settings.DatabaseVersion
 
                             If RequestedVersion < minVersion Then
-                                GlobalVars.ErrorLog = "Database out of date. Minimum Version"
-                                Logger.LogErrors()
+                                Logger.LogErrors("Database out of date. Minimum Version")
                                 MessageBox.Show("Database out of date. Minimum Version: " & minVersion.ToString())
                             End If
                         End If
 
                     Catch ex As Exception
-                        GlobalVars.ErrorLog = "An error occurred while checking the database version: " & ex.Message
-                        Logger.LogErrors()
+                        Logger.LogErrors("An error occurred while checking the database version: " & ex.Message)
                     Finally
                         If connection.State = ConnectionState.Open Then
                             connection.Close()
@@ -56,8 +54,7 @@ Namespace My
                 Dim originalFilePath As String = My.Settings.DatabaseLocation
 
                 If Not File.Exists(originalFilePath) Then
-                    GlobalVars.ErrorLog = "Cannot create backup, Database not found."
-                    Logger.LogErrors()
+                    Logger.LogErrors("Cannot create backup, Database not found.")
                     Return
                 End If
 
@@ -69,14 +66,12 @@ Namespace My
                 File.Copy(originalFilePath, backupFilePath, True)
 
             Catch ex As Exception
-                GlobalVars.ErrorLog = "An error occurred while creating the backup: " & ex.Message
-                Logger.LogErrors()
+                Logger.LogErrors("An error occurred while creating the backup: " & ex.Message)
             End Try
         End Sub
 
         Sub SystemLog()
-            GlobalVars.SystemLog = "GageTracker started."
-            Logger.LogSystem()
+            Logger.LogSystem("GageTracker started.")
         End Sub
 
         Sub UpdateOpenCount()
@@ -107,8 +102,7 @@ Namespace My
                     My.Settings.Save()
 
                 Catch ex As Exception
-                    GlobalVars.ErrorLog = "An error occurred while updating OpenCount: " & ex.Message
-                    Logger.LogErrors()
+                    Logger.LogErrors("An error occurred while updating OpenCount: " & ex.Message)
                 Finally
                     If connection.State = ConnectionState.Open Then
                         connection.Close()
@@ -127,8 +121,7 @@ Namespace My
 
                     GlobalVars.AuthHash = fileContent
                 Catch ex As Exception
-                    GlobalVars.ErrorLog = "Error: " & ex.Message
-                    Logger.LogErrors()
+                    Logger.LogErrors("Error: " & ex.Message)
                 End Try
             End Using
         End Sub
@@ -142,8 +135,7 @@ Namespace My
 
         Private Sub MyApplication_UnhandledException(sender As Object, e As Microsoft.VisualBasic.ApplicationServices.UnhandledExceptionEventArgs) Handles Me.UnhandledException
             MessageBox.Show("An unhandled exception occurred: " & e.Exception.Message)
-            GlobalVars.ErrorLog = "An unhandled exception occurred: " & e.Exception.Message
-            Logger.LogErrors()
+            Logger.LogErrors("An unhandled exception occurred: " & e.Exception.Message)
             e.ExitApplication = False
         End Sub
 

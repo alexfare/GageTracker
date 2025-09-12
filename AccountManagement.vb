@@ -54,8 +54,7 @@ Public Class AccountManagement
                     updateCmd.Parameters.Add(New OleDbParameter("@Username", username))
                     updateCmd.ExecuteNonQuery()
                     ShowStatus("Password updated successfully.", False)
-                    GlobalVars.SystemLog = username + " password updated."
-                    Logger.LogSystem()
+                    Logger.LogSystem(username + " password updated.")
                     ClearInputs()
                 End If
                 Return
@@ -66,8 +65,7 @@ Public Class AccountManagement
             cmd.Parameters.Add(New OleDbParameter("@Password", hashedPassword))
             cmd.ExecuteNonQuery()
             ShowStatus("User created successfully.", False)
-            GlobalVars.SystemLog = "User " + username + " created."
-            Logger.LogSystem()
+            Logger.LogSystem("User " + username + " created.")
             txtUsername.SelectedIndex = -1
             LoadUsers()
             ClearInputs()
@@ -86,8 +84,7 @@ Public Class AccountManagement
                 End While
             Catch ex As Exception
                 MessageBox.Show("An error occurred while loading Usernames: " & ex.Message)
-                GlobalVars.ErrorLog = "An error occurred while loading Usernames: " & ex.Message
-                Logger.LogErrors()
+                Logger.LogErrors("An error occurred while loading Usernames: " & ex.Message)
             End Try
         End Using
     End Sub
@@ -121,8 +118,7 @@ Public Class AccountManagement
                 deleteCmd.Parameters.Add(New OleDbParameter("@Username", username))
                 deleteCmd.ExecuteNonQuery()
                 ShowStatus("User deleted successfully.", False)
-                GlobalVars.SystemLog = "User " + username + " deleted."
-                Logger.LogSystem()
+                Logger.LogSystem("User " + username + " deleted.")
                 ClearInputs()
                 LoadUsers()
             End If

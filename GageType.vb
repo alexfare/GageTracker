@@ -21,8 +21,7 @@ Public Class GageType
                 End While
             Catch ex As Exception
                 MessageBox.Show("An error occurred while loading Gage type: " & ex.Message)
-                GlobalVars.ErrorLog = "An error occurred while loading Gage type: " & ex.Message
-                Logger.LogErrors()
+                Logger.LogErrors("An error occurred while loading Gage type: " & ex.Message)
             End Try
         End Using
     End Sub
@@ -46,8 +45,7 @@ Public Class GageType
                 End If
             Catch ex As Exception
                 MessageBox.Show("An error occurred while checking for duplicate names: " & ex.Message)
-                GlobalVars.ErrorLog = "An error occurred while checking for duplicate names: " & ex.Message
-                Logger.LogErrors()
+                Logger.LogErrors("An error occurred while checking for duplicate names: " & ex.Message)
                 Return
             End Try
         End Using
@@ -60,14 +58,12 @@ Public Class GageType
                     connection.Open()
                     command.ExecuteNonQuery()
                     ShowStatus("Gage type added successfully.", False)
-                    GlobalVars.SystemLog = txtGageType.Text + " Gage type added successfully."
-                    Logger.LogSystem()
+                    Logger.LogSystem(txtGageType.Text + " Gage type added successfully.")
                     txtGageType.Items.Add(txtGageType.Text)
                     txtGageType.Text = String.Empty
                 Catch ex As Exception
                     MessageBox.Show("An error occurred while adding new Gage type: " & ex.Message)
-                    GlobalVars.ErrorLog = "An error occurred while adding new Gage type: " & ex.Message
-                    Logger.LogErrors()
+                    Logger.LogErrors("An error occurred while adding new Gage type: " & ex.Message)
                 End Try
             End Using
         End Using
@@ -98,8 +94,7 @@ Public Class GageType
                     Dim result As Integer = command.ExecuteNonQuery()
                     If result > 0 Then
                         ShowStatus("Gage type deleted successfully.", False)
-                        GlobalVars.SystemLog = selectedGageType + " Gage type deleted successfully."
-                        Logger.LogSystem()
+                        Logger.LogSystem(selectedGageType + " Gage type deleted successfully.")
                         txtGageType.Items.Remove(selectedGageType)
                         txtGageType.Text = String.Empty
                         txtGageType.SelectedIndex = -1
@@ -108,8 +103,7 @@ Public Class GageType
                     End If
                 Catch ex As Exception
                     MessageBox.Show("An error occurred while deleting the Gage type: " & ex.Message)
-                    GlobalVars.ErrorLog = "An error occurred while deleting the Gage type: " & ex.Message
-                    Logger.LogErrors()
+                    Logger.LogErrors("An error occurred while deleting the Gage type: " & ex.Message)
                 End Try
             End Using
         End Using

@@ -29,8 +29,7 @@ Public Class Dashboard
                     TxtActive.Text = totalCount
                 End Using
             Catch ex As Exception
-                GlobalVars.ErrorLog = "Error: " & ex.Message
-                Logger.LogErrors()
+                Logger.LogErrors("Error: " & ex.Message)
                 MessageBox.Show("Error: " & ex.Message)
             End Try
         End Using
@@ -49,8 +48,7 @@ Public Class Dashboard
                     TxtInactive.Text = totalCount
                 End Using
             Catch ex As Exception
-                GlobalVars.ErrorLog = "Error: " & ex.Message
-                Logger.LogErrors()
+                Logger.LogErrors("Error: " & ex.Message)
                 MessageBox.Show("Error: " & ex.Message)
             End Try
         End Using
@@ -69,8 +67,7 @@ Public Class Dashboard
                     TxtLost.Text = totalCount
                 End Using
             Catch ex As Exception
-                GlobalVars.ErrorLog = "Error: " & ex.Message
-                Logger.LogErrors()
+                Logger.LogErrors("Error: " & ex.Message)
                 MessageBox.Show("Error: " & ex.Message)
             End Try
         End Using
@@ -92,8 +89,7 @@ Public Class Dashboard
                     TxtOverdue.BackColor = If(totalCount = 0, SystemColors.Control, Color.Red)
                 End Using
             Catch ex As Exception
-                GlobalVars.ErrorLog = "Error: " & ex.Message
-                Logger.LogErrors()
+                Logger.LogErrors("Error: " & ex.Message)
                 MessageBox.Show("Error: " & ex.Message)
             End Try
         End Using
@@ -116,8 +112,7 @@ Public Class Dashboard
                     Txt30.BackColor = If(totalCount = 0, SystemColors.Control, Color.Yellow)
                 End Using
             Catch ex As Exception
-                GlobalVars.ErrorLog = "Error: " & ex.Message
-                Logger.LogErrors()
+                Logger.LogErrors("Error: " & ex.Message)
                 MessageBox.Show("Error: " & ex.Message)
             End Try
         End Using
@@ -140,8 +135,7 @@ Public Class Dashboard
                     Txt60.BackColor = If(totalCount = 0, SystemColors.Control, Color.LightBlue)
                 End Using
             Catch ex As Exception
-                GlobalVars.ErrorLog = "Error: " & ex.Message
-                Logger.LogErrors()
+                Logger.LogErrors("Error: " & ex.Message)
                 MessageBox.Show("Error: " & ex.Message)
             End Try
         End Using

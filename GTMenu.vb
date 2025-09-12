@@ -81,8 +81,7 @@ Public Class GTMenu
 
             Catch ex As Exception
                 MessageBox.Show("An error occurred while loading GageID options: " & ex.Message)
-                GlobalVars.ErrorLog = ("An error occurred while loading GageID options: " & ex.Message)
-                Logger.LogErrors()
+                Logger.LogErrors("An error occurred while loading GageID options: " & ex.Message)
             Finally
                 If conn.State = ConnectionState.Open Then
                     conn.Close()
@@ -112,8 +111,7 @@ Public Class GTMenu
 
             Catch ex As Exception
                 MessageBox.Show("An error occurred while loading status options: " & ex.Message)
-                GlobalVars.ErrorLog = ("An error occurred while loading status options: " & ex.Message)
-                Logger.LogErrors()
+                Logger.LogErrors("An error occurred while loading status options: " & ex.Message)
             Finally
                 If conn.State = ConnectionState.Open Then
                     conn.Close()
@@ -143,8 +141,7 @@ Public Class GTMenu
 
             Catch ex As Exception
                 MessageBox.Show("An error occurred while loading Departments options: " & ex.Message)
-                GlobalVars.ErrorLog = ("An error occurred while loading Departments options: " & ex.Message)
-                Logger.LogErrors()
+                Logger.LogErrors("An error occurred while loading Departments options: " & ex.Message)
             Finally
                 If conn.State = ConnectionState.Open Then
                     conn.Close()
@@ -174,8 +171,7 @@ Public Class GTMenu
 
             Catch ex As Exception
                 MessageBox.Show("An error occurred while loading Gage Type options: " & ex.Message)
-                GlobalVars.ErrorLog = ("An error occurred while loading Gage Type options: " & ex.Message)
-                Logger.LogErrors()
+                Logger.LogErrors("An error occurred while loading Gage Type options: " & ex.Message)
             Finally
                 If conn.State = ConnectionState.Open Then
                     conn.Close()
@@ -205,8 +201,7 @@ Public Class GTMenu
 
             Catch ex As Exception
                 MessageBox.Show("An error occurred while loading Customer options: " & ex.Message)
-                GlobalVars.ErrorLog = ("An error occurred while loading Customer options: " & ex.Message)
-                Logger.LogErrors()
+                Logger.LogErrors("An error occurred while loading Customer options: " & ex.Message)
             Finally
                 If conn.State = ConnectionState.Open Then
                     conn.Close()
@@ -236,8 +231,7 @@ Public Class GTMenu
 
             Catch ex As Exception
                 MessageBox.Show("An error occurred while loading Gage Type options: " & ex.Message)
-                GlobalVars.ErrorLog = ("An error occurred while loading Gage Type options: " & ex.Message)
-                Logger.LogErrors()
+                Logger.LogErrors("An error occurred while loading Gage Type options: " & ex.Message)
             Finally
                 If conn.State = ConnectionState.Open Then
                     conn.Close()
@@ -325,12 +319,10 @@ Public Class GTMenu
                 End Using
             Catch ex As OleDbException
                 MessageBox.Show("Database error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                GlobalVars.ErrorLog = "Database error: " & ex.Message
-                Logger.LogErrors()
+                Logger.LogErrors("Database error: " & ex.Message)
             Catch ex As Exception
                 MessageBox.Show("An unexpected error occurred: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                GlobalVars.ErrorLog = "An unexpected error occurred: " & ex.Message
-                Logger.LogErrors()
+                Logger.LogErrors("An unexpected error occurred: " & ex.Message)
             End Try
         End Using
     End Sub
@@ -398,12 +390,10 @@ Public Class GTMenu
             End Using
         Catch ex As OleDbException
             MessageBox.Show($"Database error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            GlobalVars.ErrorLog = "Database error: {ex.Message}"
-            Logger.LogErrors()
+            Logger.LogErrors($"Database error: {ex.Message}")
         Catch ex As Exception
             MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            GlobalVars.ErrorLog = "An unexpected error occurred: {ex.Message}"
-            Logger.LogErrors()
+            Logger.LogErrors($"An unexpected error occurred: {ex.Message}")
         End Try
     End Sub
 
@@ -642,8 +632,7 @@ Public Class GTMenu
             Process.Start(url)
         Catch ex As Exception
             MessageBox.Show("An error occurred while trying to open the URL: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            GlobalVars.ErrorLog = "An error occurred while trying to open the URL: " & ex.Message
-            Logger.LogErrors()
+            Logger.LogErrors("An error occurred while trying to open the URL: " & ex.Message)
         End Try
     End Sub
 
@@ -755,12 +744,10 @@ Public Class GTMenu
                 End Using
             Catch ex As OleDbException
                 MessageBox.Show($"Database error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                GlobalVars.ErrorLog = "Database error: {ex.Message}"
-                Logger.LogErrors()
+                Logger.LogErrors($"Database error: {ex.Message}")
             Catch ex As Exception
                 MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                GlobalVars.ErrorLog = "An unexpected error occurred: {ex.Message}"
-                Logger.LogErrors()
+                Logger.LogErrors($"An unexpected error occurred: {ex.Message}")
             End Try
         End If
     End Sub
@@ -793,8 +780,7 @@ Public Class GTMenu
             End Using
         Catch ex As Exception
             MessageBox.Show("An error occurred: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            GlobalVars.ErrorLog = "An error occurred: " & ex.Message
-            Logger.LogErrors()
+            Logger.LogErrors("An error occurred: " & ex.Message)
         End Try
     End Sub
 

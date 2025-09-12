@@ -23,11 +23,11 @@ Module Logger
         WriteLog("AuditLog.txt", GlobalVars.LastActivity)
     End Sub
 
-    Public Sub LogSystem()
-        WriteLog("System.txt", GlobalVars.SystemLog)
+    Public Sub LogSystem(message As String)
+        WriteLog("System.txt", message)
     End Sub
 
-    Public Sub LogErrors()
-        WriteLog("Errors.txt", GlobalVars.ErrorLog)
+    Public Sub LogErrors(message As String)
+        WriteLog("Errors.txt", message)
     End Sub
 End Module

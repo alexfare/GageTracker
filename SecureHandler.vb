@@ -66,8 +66,7 @@ Public Class SecureHandler
             Dim fullIV As String = ivPart1 & ivPart2
             Return SecureHandler.DecryptString(encryptedPassword, Encoding.UTF8.GetBytes(fullKey), Encoding.UTF8.GetBytes(fullIV))
         Catch ex As Exception
-            GlobalVars.ErrorLog = "An error occurred while decrypting the password."
-            Logger.LogErrors()
+            Logger.LogErrors("An error occurred while decrypting the password.")
             Throw New ApplicationException("An error occurred while decrypting the password.", ex)
         End Try
     End Function

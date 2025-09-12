@@ -21,8 +21,7 @@ Public Class StatusMenu
                 End While
             Catch ex As Exception
                 MessageBox.Show("An error occurred while loading Status: " & ex.Message)
-                GlobalVars.ErrorLog = "An error occurred while loading Status: " & ex.Message
-                Logger.LogErrors()
+                Logger.LogErrors("An error occurred while loading Status: " & ex.Message)
             End Try
         End Using
     End Sub
@@ -47,8 +46,7 @@ Public Class StatusMenu
                 End If
             Catch ex As Exception
                 MessageBox.Show("An error occurred while checking for duplicate names: " & ex.Message)
-                GlobalVars.ErrorLog = "An error occurred while checking for duplicate names: " & ex.Message
-                Logger.LogErrors()
+                Logger.LogErrors("An error occurred while checking for duplicate names: " & ex.Message)
                 Return
             End Try
         End Using
@@ -61,13 +59,11 @@ Public Class StatusMenu
                     connection.Open()
                     command.ExecuteNonQuery()
                     ShowStatus("Status added successfully.", False)
-                    GlobalVars.SystemLog = txtStatus.Text + " status added successfully."
-                    Logger.LogSystem()
+                    Logger.LogSystem(txtStatus.Text + " status added successfully.")
                     LoadStatus()
                 Catch ex As Exception
                     MessageBox.Show("An error occurred while adding new status: " & ex.Message)
-                    GlobalVars.ErrorLog = "An error occurred while adding new status: " & ex.Message
-                    Logger.LogErrors()
+                    Logger.LogErrors("An error occurred while adding new status: " & ex.Message)
                 End Try
             End Using
         End Using
@@ -99,8 +95,7 @@ Public Class StatusMenu
                     Dim result As Integer = command.ExecuteNonQuery()
                     If result > 0 Then
                         ShowStatus("Status deleted successfully.", False)
-                        GlobalVars.SystemLog = txtStatus.Text + " status deleted successfully."
-                        Logger.LogSystem()
+                        Logger.LogSystem(txtStatus.Text + " status deleted successfully.")
                         txtStatus.SelectedIndex = -1
                         txtStatus.Text = ""
                         LoadStatus()
@@ -109,8 +104,7 @@ Public Class StatusMenu
                     End If
                 Catch ex As Exception
                     MessageBox.Show("An error occurred while deleting the Status: " & ex.Message)
-                    GlobalVars.ErrorLog = "An error occurred while deleting the Status: " & ex.Message
-                    Logger.LogErrors()
+                    Logger.LogErrors("An error occurred while deleting the Status: " & ex.Message)
                 End Try
             End Using
         End Using

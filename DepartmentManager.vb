@@ -21,8 +21,7 @@ Public Class DepartmentManager
                 End While
             Catch ex As Exception
                 MessageBox.Show("An error occurred while loading Departments: " & ex.Message)
-                GlobalVars.ErrorLog = "An error occurred while loading Departments: " & ex.Message
-                Logger.LogErrors()
+                Logger.LogErrors("An error occurred while loading Departments: " & ex.Message)
             End Try
         End Using
     End Sub
@@ -46,8 +45,7 @@ Public Class DepartmentManager
                 End If
             Catch ex As Exception
                 MessageBox.Show("An error occurred while checking for duplicate names: " & ex.Message)
-                GlobalVars.ErrorLog = "An error occurred while checking for duplicate names: " & ex.Message
-                Logger.LogErrors()
+                Logger.LogErrors("An error occurred while checking for duplicate names: " & ex.Message)
                 Return
             End Try
         End Using
@@ -60,14 +58,12 @@ Public Class DepartmentManager
                     connection.Open()
                     command.ExecuteNonQuery()
                     ShowStatus("Department added successfully.", False)
-                    GlobalVars.SystemLog = txtDepartments.Text + " Department added successfully."
-                    Logger.LogSystem()
+                    Logger.LogSystem(txtDepartments.Text + " Department added successfully.")
                     txtDepartments.Items.Add(txtDepartments.Text)
                     txtDepartments.Text = String.Empty
                 Catch ex As Exception
                     MessageBox.Show("An error occurred while adding new Department: " & ex.Message)
-                    GlobalVars.ErrorLog = "An error occurred while adding new Department: " & ex.Message
-                    Logger.LogErrors()
+                    Logger.LogErrors("An error occurred while adding new Department: " & ex.Message)
                 End Try
             End Using
         End Using
@@ -98,8 +94,7 @@ Public Class DepartmentManager
                     Dim result As Integer = command.ExecuteNonQuery()
                     If result > 0 Then
                         ShowStatus("Department deleted successfully.", False)
-                        GlobalVars.SystemLog = selectedDepartment + "Department deleted successfully."
-                        Logger.LogSystem()
+                        Logger.LogSystem(selectedDepartment + "Department deleted successfully.")
                         txtDepartments.Items.Remove(selectedDepartment)
                         txtDepartments.Text = String.Empty
                         txtDepartments.SelectedIndex = -1
@@ -108,8 +103,7 @@ Public Class DepartmentManager
                     End If
                 Catch ex As Exception
                     MessageBox.Show("An error occurred while deleting the Department: " & ex.Message)
-                    GlobalVars.ErrorLog = "An error occurred while deleting the Department: " & ex.Message
-                    Logger.LogErrors()
+                    Logger.LogErrors("An error occurred while deleting the Department: " & ex.Message)
                 End Try
             End Using
         End Using

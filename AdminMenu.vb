@@ -142,12 +142,10 @@ Public Class AdminMenu
                 End Using
             Catch ex As OleDbException
                 MessageBox.Show("Database error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                GlobalVars.ErrorLog = "Database error: " & ex.Message
-                Logger.LogErrors()
+                Logger.LogErrors("Database error: " & ex.Message)
             Catch ex As Exception
                 MessageBox.Show("An unexpected error occurred: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                GlobalVars.ErrorLog = "An unexpected error occurred: " & ex.Message
-                Logger.LogErrors()
+                Logger.LogErrors("An unexpected error occurred: " & ex.Message)
             End Try
         End Using
     End Sub
@@ -215,12 +213,10 @@ Public Class AdminMenu
             End Using
         Catch ex As OleDbException
             MessageBox.Show($"Database error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            GlobalVars.ErrorLog = "Database error: " & ex.Message
-            Logger.LogErrors()
+            Logger.LogErrors("Database error: " & ex.Message)
         Catch ex As Exception
             MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            GlobalVars.ErrorLog = "An unexpected error occurred: {ex.Message}"
-            Logger.LogErrors()
+            Logger.LogErrors($"An unexpected error occurred: {ex.Message}")
         End Try
     End Sub
 
@@ -373,12 +369,10 @@ Public Class AdminMenu
                 End Using
             Catch ex As OleDbException
                 MessageBox.Show($"Database error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                GlobalVars.ErrorLog = "Database error: " & ex.Message
-                Logger.LogErrors()
+                Logger.LogErrors("Database error: " & ex.Message)
             Catch ex As Exception
                 MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                GlobalVars.ErrorLog = "An unexpected error occurred: {ex.Message}"
-                Logger.LogErrors()
+                Logger.LogErrors($"An unexpected error occurred: {ex.Message}")
             End Try
         End If
     End Sub
@@ -449,8 +443,7 @@ Public Class AdminMenu
             End Using
         Catch ex As Exception
             MessageBox.Show("An error occurred: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            GlobalVars.ErrorLog = "An error occurred: " & ex.Message
-            Logger.LogErrors()
+            Logger.LogErrors("An error occurred: " & ex.Message)
         End Try
     End Sub
 
@@ -669,8 +662,7 @@ Public Class AdminMenu
 
             Catch ex As Exception
                 MessageBox.Show("An error occurred while loading status options: " & ex.Message)
-                GlobalVars.ErrorLog = "An error occurred while loading status options: " & ex.Message
-                Logger.LogErrors()
+                Logger.LogErrors("An error occurred while loading status options: " & ex.Message)
             Finally
                 'Ensure connection is closed if exception occurs
                 If conn.State = ConnectionState.Open Then
@@ -702,8 +694,7 @@ Public Class AdminMenu
 
             Catch ex As Exception
                 MessageBox.Show("An error occurred while loading Departments options: " & ex.Message)
-                GlobalVars.ErrorLog = "An error occurred while loading Departments options: " & ex.Message
-                Logger.LogErrors()
+                Logger.LogErrors("An error occurred while loading Departments options: " & ex.Message)
             Finally
                 'Ensure connection is closed if exception occurs
                 If conn.State = ConnectionState.Open Then
@@ -735,8 +726,7 @@ Public Class AdminMenu
 
             Catch ex As Exception
                 MessageBox.Show("An error occurred while loading Gage Type options: " & ex.Message)
-                GlobalVars.ErrorLog = "An error occurred while loading Gage Type options: " & ex.Message
-                Logger.LogErrors()
+                Logger.LogErrors("An error occurred while loading Gage Type options: " & ex.Message)
             Finally
                 'Ensure connection is closed if exception occurs
                 If conn.State = ConnectionState.Open Then
@@ -768,8 +758,7 @@ Public Class AdminMenu
 
             Catch ex As Exception
                 MessageBox.Show("An error occurred while loading Customer options: " & ex.Message)
-                GlobalVars.ErrorLog = "An error occurred while loading Customer options: " & ex.Message
-                Logger.LogErrors()
+                Logger.LogErrors("An error occurred while loading Customer options: " & ex.Message)
             Finally
                 'Ensure connection is closed if exception occurs
                 If conn.State = ConnectionState.Open Then
@@ -801,8 +790,7 @@ Public Class AdminMenu
 
             Catch ex As Exception
                 MessageBox.Show("An error occurred while loading Gage Type options: " & ex.Message)
-                GlobalVars.ErrorLog = "An error occurred while loading Gage Type options: " & ex.Message
-                Logger.LogErrors()
+                Logger.LogErrors("An error occurred while loading Gage Type options: " & ex.Message)
             Finally
                 'Ensure connection is closed if exception occurs
                 If conn.State = ConnectionState.Open Then
@@ -823,18 +811,15 @@ Public Class AdminMenu
                     Process.Start("msaccess.exe", """" & fullPath & """")
                 Catch ex As Exception
                     MessageBox.Show("Failed to open the database in Access: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    GlobalVars.ErrorLog = "Failed to open the database in Access: " & ex.Message
-                    Logger.LogErrors()
+                    Logger.LogErrors("Failed to open the database in Access: " & ex.Message)
                 End Try
             Else
                 MessageBox.Show("Database file does not exist: " & fullPath, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                GlobalVars.ErrorLog = "Database file does not exist: " & fullPath
-                Logger.LogErrors()
+                Logger.LogErrors("Database file does not exist: " & fullPath)
             End If
         Else
             MessageBox.Show("Database location is not set.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            GlobalVars.ErrorLog = "Database location is not set."
-            Logger.LogErrors()
+            Logger.LogErrors("Database location is not set.")
         End If
     End Sub
 
@@ -848,13 +833,11 @@ Public Class AdminMenu
                 Process.Start("explorer.exe", directoryPath)
             Else
                 MessageBox.Show("Directory does not exist: " & directoryPath, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                GlobalVars.ErrorLog = "Directory does not exist: " & directoryPath
-                Logger.LogErrors()
+                Logger.LogErrors("Directory does not exist: " & directoryPath)
             End If
         Else
             MessageBox.Show("Database location is not set.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            GlobalVars.ErrorLog = "Database location is not set."
-            Logger.LogErrors()
+            Logger.LogErrors("Database location is not set.")
         End If
     End Sub
 
@@ -876,15 +859,13 @@ Public Class AdminMenu
             Dim downloadUrl As String = "https://alexfare.com/programs/gtdatabase/latest/GTDatabase.accdb"
             webClient.DownloadFile(downloadUrl, savePath)
             MessageBox.Show("Database downloaded complete.", "Download Complete", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            GlobalVars.SystemLog = "New database downloaded."
-            Logger.LogSystem()
+            Logger.LogSystem("New database downloaded.")
 
             GlobalVars.DatabaseLocation = savePath
             GlobalVars.SaveDatabaseLocation(savePath)
         Catch ex As Exception
             MessageBox.Show("An error occurred while downloading the database: " & ex.Message, "Download Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            GlobalVars.ErrorLog = "An error occurred while downloading the database: " & ex.Message
-            Logger.LogErrors()
+            Logger.LogErrors("An error occurred while downloading the database: " & ex.Message)
         Finally
             webClient.Dispose()
         End Try

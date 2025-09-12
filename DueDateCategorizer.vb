@@ -12,12 +12,10 @@ Public Class DueDateCategorizer
             LoadData()
         Catch ex As OleDbException
             MessageBox.Show("Database error: " & ex.Message)
-            GlobalVars.ErrorLog = "Database error: " & ex.Message
-            Logger.LogErrors()
+            Logger.LogErrors("Database error: " & ex.Message)
         Catch ex As Exception
             MessageBox.Show("General error: " & ex.Message)
-            GlobalVars.ErrorLog = "General error: " & ex.Message
-            Logger.LogErrors()
+            Logger.LogErrors("General error: " & ex.Message)
         End Try
     End Sub
 
@@ -88,8 +86,7 @@ Public Class DueDateCategorizer
 
             Catch ex As OleDbException
                 MessageBox.Show("OleDb error: " & ex.Message)
-                GlobalVars.ErrorLog = "OleDb error: " & ex.Message
-                Logger.LogErrors()
+                Logger.LogErrors("OleDb error: " & ex.Message)
             Finally
                 If connection.State = ConnectionState.Open Then
                     connection.Close()

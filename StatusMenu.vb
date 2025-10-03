@@ -4,6 +4,8 @@ Public Class StatusMenu
     Dim insertQuery As String = "INSERT INTO Status (Status) VALUES (@Status)"
 
     Private Sub Menu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ModernTheme.Apply(Me)
+        ApplyModernLayout()
         StatusLabel.Text = ""
         LoadStatus()
     End Sub
@@ -123,5 +125,13 @@ Public Class StatusMenu
         StatusLabel.ForeColor = If(isError, Color.Red, Color.Green)
         StatusLabel.Text = message
         Timer1.Enabled = True
+    End Sub
+    Private Sub ApplyModernLayout()
+        Me.Text = "GageTracker - Status Manager"
+        txtStatus.BackColor = ModernTheme.SurfaceColor
+        txtStatus.ForeColor = Color.WhiteSmoke
+        BtnAdd.FlatAppearance.MouseOverBackColor = ModernTheme.AdjustColor(BtnAdd.BackColor, 0.2)
+        btnRemove.FlatAppearance.MouseOverBackColor = ModernTheme.AdjustColor(btnRemove.BackColor, 0.2)
+        btnBack.FlatAppearance.MouseOverBackColor = ModernTheme.AdjustColor(btnBack.BackColor, 0.2)
     End Sub
 End Class

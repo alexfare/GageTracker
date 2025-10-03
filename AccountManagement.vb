@@ -5,6 +5,8 @@ Imports System.Text
 Public Class AccountManagement
 
     Private Sub CreateAccount_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ModernTheme.Apply(Me)
+        ApplyModernLayout()
         StatusLabel.Text = ""
         LoadUsers()
     End Sub
@@ -140,5 +142,19 @@ Public Class AccountManagement
         StatusLabel.Text = ""
         Timer1.Enabled = False
         LoadUsers()
+    End Sub
+
+    Private Sub ApplyModernLayout()
+        Me.Text = "GageTracker - Account Management"
+        txtUsername.BackColor = ModernTheme.SurfaceColor
+        txtUsername.ForeColor = Color.WhiteSmoke
+        txtPassword.BackColor = ModernTheme.SurfaceColor
+        txtPassword.ForeColor = Color.WhiteSmoke
+        txtConfirmPassword.BackColor = ModernTheme.SurfaceColor
+        txtConfirmPassword.ForeColor = Color.WhiteSmoke
+
+        btnSubmit.FlatAppearance.MouseOverBackColor = ModernTheme.AdjustColor(btnSubmit.BackColor, 0.2)
+        btnDelete.FlatAppearance.MouseOverBackColor = ModernTheme.AdjustColor(btnDelete.BackColor, 0.2)
+        BtnBack.FlatAppearance.MouseOverBackColor = ModernTheme.AdjustColor(BtnBack.BackColor, 0.2)
     End Sub
 End Class

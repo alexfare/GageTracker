@@ -25,12 +25,33 @@ Public Class GTMenu
     End Sub
 
     Private Sub SetupUI()
+        ModernTheme.Apply(Me)
+        ApplyModernLayout()
         Me.Text = originalTitle
-        MenuStrip1.BackColor = SystemColors.AppWorkspace
         SearchCheck = False
         CanUpdate = False
         StatusLabel.Text = ""
         TxtGageID.Focus()
+    End Sub
+
+    Private Sub ApplyModernLayout()
+        Dim primaryPanels = New Panel() {Panel1, Panel3, Panel4}
+        For Each pnl In primaryPanels
+            pnl.BackColor = ModernTheme.SurfaceColor
+        Next
+
+        Dim infoGroups = New GroupBox() {GroupBox1, GroupBox2}
+        For Each grp In infoGroups
+            grp.BackColor = ModernTheme.SurfaceColor
+            grp.ForeColor = Color.WhiteSmoke
+        Next
+
+        TabControl1.BackColor = ModernTheme.SecondaryColor
+        TabControl1.ForeColor = Color.WhiteSmoke
+        StatusStrip.BackColor = Color.FromArgb(220, ModernTheme.SecondaryColor)
+        StatusStrip.ForeColor = Color.WhiteSmoke
+        MenuStrip1.BackColor = Color.FromArgb(220, ModernTheme.SecondaryColor)
+        MenuStrip1.ForeColor = Color.WhiteSmoke
     End Sub
 
     Private Async Sub LoadData()

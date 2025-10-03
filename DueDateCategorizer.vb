@@ -19,6 +19,8 @@ Public Class DueDateCategorizer
     End Sub
 
     Private Sub FormSetup()
+        ModernTheme.Apply(Me)
+        ApplyModernLayout()
         DatagridHandler()
         TabSelect()
         MenuColor()
@@ -95,11 +97,14 @@ Public Class DueDateCategorizer
     End Sub
 
     Public Sub MenuColor()
-        If My.Settings.isAdmin = True Then
-            MenuStrip1.BackColor = Color.IndianRed
-        Else
-            MenuStrip1.BackColor = SystemColors.AppWorkspace
+        If MenuStrip1 Is Nothing Then
+            Return
         End If
+
+        Dim baseColor = If(My.Settings.isAdmin, ModernTheme.DangerColor, ModernTheme.SecondaryColor)
+        MenuStrip1.BackColor = Color.FromArgb(220, baseColor)
+        MenuStrip1.ForeColor = Color.WhiteSmoke
+        MenuStrip1.Renderer = New ModernMenuRenderer()
     End Sub
 #End Region
 
@@ -108,44 +113,47 @@ Public Class DueDateCategorizer
         Dim grid As DataGridView = CType(sender, DataGridView)
         If e.RowIndex >= 0 Then
             If e.RowIndex Mod 2 = 0 Then
-                grid.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.LightGray
+                grid.Rows(e.RowIndex).DefaultCellStyle.BackColor = ModernTheme.SurfaceColor
             Else
-                grid.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.White
+                grid.Rows(e.RowIndex).DefaultCellStyle.BackColor = ModernTheme.AdjustColor(ModernTheme.SurfaceColor, -0.08)
             End If
         End If
     End Sub
 
     Private Sub DataGridViewPastDue_RowPostPaint(sender As Object, e As DataGridViewRowPostPaintEventArgs) Handles DataGridViewPastDue.RowPostPaint
-        Dim grid As DataGridView = CType(sender, DataGridView)
-        If e.RowIndex >= 0 Then
-            If e.RowIndex Mod 2 = 0 Then
-                grid.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.IndianRed
-            Else
-                grid.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.White
-            End If
-        End If
+        DataGridView_RowPostPaint(sender, e)
     End Sub
 
     Private Sub DataGridViewWithin30Days_RowPostPaint(sender As Object, e As DataGridViewRowPostPaintEventArgs) Handles DataGridViewWithin30Days.RowPostPaint
-        Dim grid As DataGridView = CType(sender, DataGridView)
-        If e.RowIndex >= 0 Then
-            If e.RowIndex Mod 2 = 0 Then
-                grid.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.Yellow
-            Else
-                grid.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.White
-            End If
-        End If
+        DataGridView_RowPostPaint(sender, e)
     End Sub
 
     Private Sub DataGridViewWithin60Days_RowPostPaint(sender As Object, e As DataGridViewRowPostPaintEventArgs) Handles DataGridViewWithin60Days.RowPostPaint
-        Dim grid As DataGridView = CType(sender, DataGridView)
-        If e.RowIndex >= 0 Then
-            If e.RowIndex Mod 2 = 0 Then
-                grid.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.LightBlue
-            Else
-                grid.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.White
-            End If
-        End If
+        DataGridView_RowPostPaint(sender, e)
+    End Sub
+#End Region
+
+#Region "Modern UI"
+    Private Sub ApplyModernLayout()
+        Dim grids = New DataGridView() {DataGridViewPastDue, DataGridViewWithin30Days, DataGridViewWithin60Days}
+        For Each grid In grids
+            grid.BorderStyle = BorderStyle.None
+            grid.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal
+            grid.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None
+            grid.RowHeadersVisible = False
+        Next
+
+        For Each tab As TabPage In TabControl1.TabPages
+            tab.BackColor = ModernTheme.SecondaryColor
+            tab.ForeColor = Color.WhiteSmoke
+        Next
+
+        BtnGageList.FlatStyle = FlatStyle.Flat
+        BtnGageList.FlatAppearance.BorderSize = 0
+        BtnGageList.BackColor = ModernTheme.AccentColor
+        BtnGageList.ForeColor = Color.White
+        BtnGageList.FlatAppearance.MouseOverBackColor = ModernTheme.AdjustColor(BtnGageList.BackColor, 0.2)
+        BtnGageList.FlatAppearance.MouseDownBackColor = ModernTheme.AdjustColor(BtnGageList.BackColor, -0.15)
     End Sub
 #End Region
 

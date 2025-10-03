@@ -168,51 +168,43 @@ Public Class Dashboard
 
 #Region "UI Enhancements"
     Private Sub UI_Setup()
-        Me.BackColor = Color.FromArgb(245, 245, 250)
-        Me.Font = New Font("Segoe UI", 10)
+        ModernTheme.Apply(Me)
         Me.FormBorderStyle = FormBorderStyle.None
 
-        For Each pnl As Panel In Panel1.Controls.OfType(Of Panel)()
+        Panel1.BackColor = Color.Transparent
+
+        Dim metricPanels = New Panel() {Panel2, Panel3, Panel4, Panel5, Panel6, Panel7}
+        For Each pnl In metricPanels
             RoundControl(pnl, 15)
-            pnl.BackColor = Color.White
+            pnl.BackColor = ModernTheme.SurfaceColor
             pnl.BorderStyle = BorderStyle.None
+            pnl.ForeColor = Color.WhiteSmoke
         Next
 
-        Dim buttons = {BtnOverdue, Btn30, Btn60, BtnClose}
+        Dim metricText = New TextBox() {TxtActive, TxtInactive, TxtLost, TxtOverdue, Txt30, Txt60}
+        For Each txt In metricText
+            txt.BackColor = ModernTheme.SurfaceColor
+            txt.ForeColor = ModernTheme.AccentColor
+        Next
+
+        Dim buttons = {BtnOverdue, Btn30, Btn60}
         For Each btn In buttons
             RoundControl(btn, 10)
             btn.FlatStyle = FlatStyle.Flat
             btn.FlatAppearance.BorderSize = 0
-            btn.Font = New Font("Segoe UI", 10, FontStyle.Bold)
+            btn.BackColor = ModernTheme.AccentColor
             btn.ForeColor = Color.White
-
-            If btn Is BtnClose Then
-                btn.BackColor = Color.FromArgb(244, 67, 54)
-            Else
-                btn.BackColor = Color.FromArgb(76, 175, 80)
-            End If
-
-            AddHandler btn.MouseEnter, AddressOf Button_HoverEnter
-            AddHandler btn.MouseLeave, AddressOf Button_HoverLeave
+            btn.FlatAppearance.MouseOverBackColor = ModernTheme.AdjustColor(btn.BackColor, 0.2)
+            btn.FlatAppearance.MouseDownBackColor = ModernTheme.AdjustColor(btn.BackColor, -0.15)
         Next
-    End Sub
 
-    Private Sub Button_HoverEnter(sender As Object, e As EventArgs)
-        Dim btn = DirectCast(sender, Button)
-        If btn Is BtnClose Then
-            btn.BackColor = Color.FromArgb(211, 47, 47)
-        Else
-            btn.BackColor = Color.FromArgb(56, 142, 60)
-        End If
-    End Sub
-
-    Private Sub Button_HoverLeave(sender As Object, e As EventArgs)
-        Dim btn = DirectCast(sender, Button)
-        If btn Is BtnClose Then
-            btn.BackColor = Color.FromArgb(244, 67, 54)
-        Else
-            btn.BackColor = Color.FromArgb(76, 175, 80)
-        End If
+        RoundControl(BtnClose, 10)
+        BtnClose.FlatStyle = FlatStyle.Flat
+        BtnClose.FlatAppearance.BorderSize = 0
+        BtnClose.BackColor = ModernTheme.DangerColor
+        BtnClose.ForeColor = Color.White
+        BtnClose.FlatAppearance.MouseOverBackColor = ModernTheme.AdjustColor(BtnClose.BackColor, 0.2)
+        BtnClose.FlatAppearance.MouseDownBackColor = ModernTheme.AdjustColor(BtnClose.BackColor, -0.15)
     End Sub
 
     Private Sub RoundControl(ctrl As Control, radius As Integer)

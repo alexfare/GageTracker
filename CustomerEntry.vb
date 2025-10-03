@@ -5,6 +5,8 @@ Public Class CustomerEntry
     Dim insertQuery As String = "INSERT INTO Customers (CustomerName, CustomerAddress, CustomerPhone, CustomerWebsite) VALUES (@Name, @Address, @Phone, @Website)"
 
     Private Sub Menu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ModernTheme.Apply(Me)
+        ApplyModernLayout()
         StatusLbl.Text = ""
         LoadCustomers()
     End Sub
@@ -210,5 +212,19 @@ Public Class CustomerEntry
         StatusLbl.ForeColor = If(isError, Color.Red, Color.Green)
         StatusLbl.Text = message
         Timer1.Enabled = True
+    End Sub
+    Private Sub ApplyModernLayout()
+        Me.Text = "GageTracker - Customer Manager"
+        Dim inputs = New Control() {txtCustomerName, txtCustomerAddress, txtCustomerPhone, txtCustomerWebsite}
+        For Each ctrl As Control In inputs
+            ctrl.BackColor = ModernTheme.SurfaceColor
+            ctrl.ForeColor = Color.WhiteSmoke
+        Next
+
+        BtnAdd.FlatAppearance.MouseOverBackColor = ModernTheme.AdjustColor(BtnAdd.BackColor, 0.2)
+        btnUpdate.FlatAppearance.MouseOverBackColor = ModernTheme.AdjustColor(btnUpdate.BackColor, 0.2)
+        btnRemove.FlatAppearance.MouseOverBackColor = ModernTheme.AdjustColor(btnRemove.BackColor, 0.2)
+        btnClear.FlatAppearance.MouseOverBackColor = ModernTheme.AdjustColor(btnClear.BackColor, 0.2)
+        btnBack.FlatAppearance.MouseOverBackColor = ModernTheme.AdjustColor(btnBack.BackColor, 0.2)
     End Sub
 End Class

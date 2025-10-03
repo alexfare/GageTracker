@@ -4,6 +4,14 @@ Imports System.Text
 Public Class LoginForm1
 
     Private Sub LoginForm1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ModernTheme.Apply(Me)
+        LogoPictureBox.BackColor = Color.Transparent
+        txtUsername.BackColor = ModernTheme.SurfaceColor
+        txtPassword.BackColor = ModernTheme.SurfaceColor
+        txtUsername.ForeColor = Color.WhiteSmoke
+        txtPassword.ForeColor = Color.WhiteSmoke
+        btnLogin.FlatAppearance.MouseOverBackColor = ModernTheme.AdjustColor(btnLogin.BackColor, 0.2)
+        Cancel.FlatAppearance.MouseOverBackColor = ModernTheme.AdjustColor(Cancel.BackColor, 0.2)
         StatusLabel.Text = ""
     End Sub
 

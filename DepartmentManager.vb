@@ -4,6 +4,8 @@ Public Class DepartmentManager
     Dim insertQuery As String = "INSERT INTO Departments (Departments) VALUES (@Departments)"
 
     Private Sub Departments_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ModernTheme.Apply(Me)
+        ApplyModernLayout()
         StatusLabel.Text = ""
         LoadDepartments()
     End Sub
@@ -121,5 +123,13 @@ Public Class DepartmentManager
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         StatusLabel.Text = ""
         Timer1.Enabled = False
+    End Sub
+    Private Sub ApplyModernLayout()
+        Me.Text = "GageTracker - Department Manager"
+        txtDepartments.BackColor = ModernTheme.SurfaceColor
+        txtDepartments.ForeColor = Color.WhiteSmoke
+        BtnAdd.FlatAppearance.MouseOverBackColor = ModernTheme.AdjustColor(BtnAdd.BackColor, 0.2)
+        btnRemove.FlatAppearance.MouseOverBackColor = ModernTheme.AdjustColor(btnRemove.BackColor, 0.2)
+        btnBack.FlatAppearance.MouseOverBackColor = ModernTheme.AdjustColor(btnBack.BackColor, 0.2)
     End Sub
 End Class

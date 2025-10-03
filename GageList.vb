@@ -8,6 +8,8 @@ Public Class GageList
 
 #Region "GageList Load"
     Private Sub GageList_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ModernTheme.Apply(Me)
+        ApplyModernLayout()
         AddHandler DataGridView1.SelectionChanged, AddressOf DataGridView1_SelectionChanged
         AddHandler DataGridView1.CellDoubleClick, AddressOf DataGridView1_CellDoubleClick
         Dim getVersion As String = My.Settings.VersionString
@@ -207,15 +209,36 @@ Public Class GageList
     End Sub
 
     Public Sub MenuColor()
-        If My.Settings.isAdmin = True Then
-            MenuStrip1.BackColor = Color.IndianRed
-        Else
-            MenuStrip1.BackColor = SystemColors.AppWorkspace
+        If MenuStrip1 Is Nothing Then
+            Return
         End If
+
+        Dim baseColor = If(My.Settings.isAdmin, ModernTheme.DangerColor, ModernTheme.SecondaryColor)
+        MenuStrip1.BackColor = Color.FromArgb(220, baseColor)
+        MenuStrip1.ForeColor = Color.WhiteSmoke
+        MenuStrip1.Renderer = New ModernMenuRenderer()
     End Sub
 
     Private Sub StartDashboard()
         Dashboard.Show()
+    End Sub
+#End Region
+
+#Region "Modern UI"
+    Private Sub ApplyModernLayout()
+        Me.Text = "GageTracker - Gage List"
+        Label1.ForeColor = Color.WhiteSmoke
+        TextContains.BackColor = ModernTheme.SurfaceColor
+        TextContains.ForeColor = Color.WhiteSmoke
+        CmbFilterType.BackColor = ModernTheme.SurfaceColor
+        CmbFilterType.ForeColor = Color.WhiteSmoke
+        CmbContains.BackColor = ModernTheme.SurfaceColor
+        CmbContains.ForeColor = Color.WhiteSmoke
+        CheckBoxShowAll.ForeColor = Color.WhiteSmoke
+
+        DataGridView1.BorderStyle = BorderStyle.None
+        DataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal
+        DataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None
     End Sub
 #End Region
 

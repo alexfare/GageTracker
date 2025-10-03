@@ -14,10 +14,11 @@ Public Class AdminMenu
 
 #Region "Admin Load"
     Private Async Sub AdminMenu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ModernTheme.Apply(Me)
+        ApplyModernLayout()
         StatusLabel.Text = ""
         LblUser.Text = "Welcome, " + My.Settings.LoggedUser
         Me.Text = originalTitle
-        MenuStrip1.BackColor = Color.IndianRed
 
         SearchCheck = False
 
@@ -42,6 +43,33 @@ Public Class AdminMenu
         TxtLastActivity.Text = GlobalVars.LastActivity
         TxtLastOpened.Text = My.Settings.LastOpened
         TxtOpenCount.Text = My.Settings.ProgramOpenCount
+    End Sub
+
+    Private Sub ApplyModernLayout()
+        Dim surfacePanels = New Panel() {Panel1, Panel2, Panel3, Panel4, Panel5}
+        For Each pnl In surfacePanels
+            pnl.BackColor = ModernTheme.SurfaceColor
+        Next
+
+        Dim surfaceGroups = New GroupBox() {GroupBox1, GroupBox2}
+        For Each grp In surfaceGroups
+            grp.BackColor = ModernTheme.SurfaceColor
+            grp.ForeColor = Color.WhiteSmoke
+        Next
+
+        TabControl2.BackColor = ModernTheme.SecondaryColor
+        TabControl2.ForeColor = Color.WhiteSmoke
+
+        Dim readOnlyBoxes = New TextBox() {TxtCurrentUser, TxtOpenCount, TxtLastActivity, TxtLastOpened}
+        For Each box In readOnlyBoxes
+            box.BackColor = ModernTheme.SurfaceColor
+            box.ForeColor = Color.WhiteSmoke
+        Next
+
+        StatusStrip.BackColor = Color.FromArgb(220, ModernTheme.SecondaryColor)
+        StatusStrip.ForeColor = Color.WhiteSmoke
+        MenuStrip1.BackColor = Color.FromArgb(220, ModernTheme.DangerColor)
+        MenuStrip1.ForeColor = Color.WhiteSmoke
     End Sub
 
     Private Sub ReloadData()

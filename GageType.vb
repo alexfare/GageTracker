@@ -4,6 +4,8 @@ Public Class GageType
     Dim insertQuery As String = "INSERT INTO GageType (GageType) VALUES (@GageType)"
 
     Private Sub GageType_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ModernTheme.Apply(Me)
+        ApplyModernLayout()
         StatusLabel.Text = ""
         LoadGageType()
     End Sub
@@ -121,5 +123,13 @@ Public Class GageType
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         StatusLabel.Text = ""
         Timer1.Enabled = False
+    End Sub
+    Private Sub ApplyModernLayout()
+        Me.Text = "GageTracker - Gage Types"
+        txtGageType.BackColor = ModernTheme.SurfaceColor
+        txtGageType.ForeColor = Color.WhiteSmoke
+        BtnAdd.FlatAppearance.MouseOverBackColor = ModernTheme.AdjustColor(BtnAdd.BackColor, 0.2)
+        btnRemove.FlatAppearance.MouseOverBackColor = ModernTheme.AdjustColor(btnRemove.BackColor, 0.2)
+        btnBack.FlatAppearance.MouseOverBackColor = ModernTheme.AdjustColor(btnBack.BackColor, 0.2)
     End Sub
 End Class

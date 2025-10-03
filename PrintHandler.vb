@@ -12,6 +12,8 @@ Public Class PrintHandler
     Public CalBy As String = GlobalVars.CalBy
 
     Private Sub PrintHandler_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ModernTheme.Apply(Me)
+        ApplyModernLayout()
         ShowPrinters()
         LabelSize()
     End Sub
@@ -121,5 +123,14 @@ Public Class PrintHandler
 
     Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
         Me.Close()
+    End Sub
+    Private Sub ApplyModernLayout()
+        Me.Text = "GageTracker - Print Label"
+        cmbPrinters.BackColor = ModernTheme.SurfaceColor
+        cmbPrinters.ForeColor = Color.WhiteSmoke
+        cmbPrintSize.BackColor = ModernTheme.SurfaceColor
+        cmbPrintSize.ForeColor = Color.WhiteSmoke
+        btnPrint.FlatAppearance.MouseOverBackColor = ModernTheme.AdjustColor(btnPrint.BackColor, 0.2)
+        BtnCancel.FlatAppearance.MouseOverBackColor = ModernTheme.AdjustColor(BtnCancel.BackColor, 0.2)
     End Sub
 End Class

@@ -1,3 +1,7 @@
+v5.20.0.88
+Updated ApplicationEvents - Optimizing start up speeds.
+Updated Dashboard, Inactive counts all but Active or Lost.
+
 v5.19.2.87
 Fixed database not saving.
 

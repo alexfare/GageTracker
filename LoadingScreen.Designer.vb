@@ -44,9 +44,9 @@ Partial Class LoadingScreen
         Me.Version.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.Version.BackColor = System.Drawing.Color.Transparent
         Me.Version.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Version.Location = New System.Drawing.Point(310, 274)
+        Me.Version.Location = New System.Drawing.Point(367, 274)
         Me.Version.Name = "Version"
-        Me.Version.Size = New System.Drawing.Size(174, 20)
+        Me.Version.Size = New System.Drawing.Size(117, 20)
         Me.Version.TabIndex = 3
         Me.Version.Text = "Version {0}.{1:00}"
         '

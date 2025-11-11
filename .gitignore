@@ -61,3 +61,4 @@ obj/x64/Release/GageCalibrationTracker.vbproj.AssemblyReference.cache
 .vs/GageCalibrationTracker/v18/DocumentLayout.backup.json
 /.vs
 /obj
+/bin

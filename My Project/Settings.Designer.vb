@@ -67,7 +67,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("R:\Quality\GageCalibration\GTDatabase.accdb")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Q:\01_Core QMS\Calibration\GTDatabase.accdb")>  _
         Public Property DatabaseLocation() As String
             Get
                 Return CType(Me("DatabaseLocation"),String)
@@ -265,6 +265,17 @@ Namespace My
             Set
                 Me("PrintSize") = value
             End Set
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=""Q:\01_Core QMS\Calibration\GTDatab"& _ 
+            "ase.accdb""")>  _
+        Public ReadOnly Property GTDBConnectionString() As String
+            Get
+                Return CType(Me("GTDBConnectionString"),String)
+            End Get
         End Property
     End Class
 End Namespace

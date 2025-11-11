@@ -1,3 +1,9 @@
+v5.20.0.88
+Updated ApplicationEvents - Optimizing start up speeds.
+Updated Dashboard, Inactive counts all but Active or Lost.
+Updated Program Icon.
+Fixed Login SQL issue.
+
 v5.19.2.87
 Fixed database not saving.
 

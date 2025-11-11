@@ -30,6 +30,7 @@ Partial Class Dashboard
         Me.Btn30 = New System.Windows.Forms.Button()
         Me.Btn60 = New System.Windows.Forms.Button()
         Me.BtnClose = New System.Windows.Forms.Button()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.Panel5.SuspendLayout()
@@ -51,7 +52,7 @@ Partial Class Dashboard
         Me.Panel1.Controls.Add(Me.BtnOverdue)
         Me.Panel1.Controls.Add(Me.Btn30)
         Me.Panel1.Controls.Add(Me.Btn60)
-        Me.Panel1.Location = New System.Drawing.Point(12, 12)
+        Me.Panel1.Location = New System.Drawing.Point(12, 52)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(460, 300)
         Me.Panel1.TabIndex = 0
@@ -297,18 +298,29 @@ Partial Class Dashboard
         Me.BtnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnClose.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.BtnClose.ForeColor = System.Drawing.Color.White
-        Me.BtnClose.Location = New System.Drawing.Point(370, 318)
+        Me.BtnClose.Location = New System.Drawing.Point(370, 358)
         Me.BtnClose.Name = "BtnClose"
         Me.BtnClose.Size = New System.Drawing.Size(100, 30)
         Me.BtnClose.TabIndex = 10
         Me.BtnClose.Text = "Close"
         Me.BtnClose.UseVisualStyleBackColor = False
         '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Segoe UI", 21.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(12, 9)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(366, 40)
+        Me.Label4.TabIndex = 11
+        Me.Label4.Text = "GageTracker - Dashboard"
+        '
         'Dashboard
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 17.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(484, 361)
+        Me.ClientSize = New System.Drawing.Size(485, 398)
+        Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.BtnClose)
         Me.Controls.Add(Me.Panel1)
         Me.Font = New System.Drawing.Font("Segoe UI", 10.0!)
@@ -332,6 +344,7 @@ Partial Class Dashboard
         Me.Panel7.ResumeLayout(False)
         Me.Panel7.PerformLayout()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -358,4 +371,5 @@ Partial Class Dashboard
     Friend WithEvents Btn30 As Button
     Friend WithEvents Btn60 As Button
     Friend WithEvents BtnClose As Button
+    Friend WithEvents Label4 As Label
 End Class

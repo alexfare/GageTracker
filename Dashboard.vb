@@ -37,7 +37,12 @@ Public Class Dashboard
 
     Public Function GetInactiveEntriesCount() As Integer
         Dim totalCount As Integer = 0
-        Dim query As String = "SELECT COUNT(*) FROM CalibrationTracker WHERE Status = 'Inactive'"
+        Dim query As String = "
+                                SELECT COUNT(*)
+                                FROM CalibrationTracker
+                                WHERE Status NOT IN ('Active', 'Lost')
+                             "
+
 
         Using connection As OleDbConnection = DatabaseHelper.GetConnection()
             Try

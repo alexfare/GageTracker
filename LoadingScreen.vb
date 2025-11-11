@@ -7,7 +7,6 @@
             ApplicationTitle.Text = System.IO.Path.GetFileNameWithoutExtension(My.Application.Info.AssemblyName)
         End If
         Version.Text = String.Format("Version {0}", My.Application.Info.Version.ToString)
-        Copyright.Text = My.Application.Info.Copyright
         GlobalVars.LastActivity = My.Settings.LastActivity
     End Sub
 End Class

@@ -1,6 +1,7 @@
 ﻿Imports System.Data.OleDb
 Imports System.IO
 Imports System.Net
+Imports System.Net.Http
 
 Namespace My
     Partial Friend Class MyApplication
@@ -11,14 +12,15 @@ Namespace My
 
         Private Async Function InitializeAppAsync() As Task
             If Not System.IO.File.Exists(GlobalVars.DatabaseLocation) Then
-                If DatabaseCheck() Then
+                If Await DatabaseCheckAsync() Then
                     DatabaseVersionCheck()
                     BackupDatabase()
-                    UpdateOpenCount()
+                    ' Update open count off the UI thread since OleDb does not provide async APIs
+                    Await Task.Run(Sub() UpdateOpenCount())
 
-                    Await Task.Run(Sub() SystemLog())
-                    Await Task.Run(Sub() UpdateMySettings())
-                    Await Task.Run(Sub() getAuth())
+                    SystemLog()
+                    UpdateMySettings()
+                    Await GetAuthAsync()
                 Else
                     MessageBox.Show("No valid database selected. The application will exit.",
                             "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly)
@@ -28,7 +30,7 @@ Namespace My
             End If
         End Function
 
-        Private Function DatabaseCheck() As Boolean
+        Private Async Function DatabaseCheckAsync() As Task(Of Boolean)
             Dim result As DialogResult = MessageBox.Show("No database found. Would you like to select a new database location?",
                                                  "Database Not Found", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly)
             If result = DialogResult.Yes Then
@@ -48,15 +50,16 @@ Namespace My
                 Dim downloadResult As DialogResult = MessageBox.Show("Would you like to download the database instead?",
                                                              "Download Option", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly)
                 If downloadResult = DialogResult.Yes Then
-                    Dim saveDialog As New SaveFileDialog()
-                    saveDialog.Filter = "Access Database Files (*.accdb)|*.accdb"
-                    saveDialog.Title = "Save Database File"
-                    saveDialog.FileName = "GTDatabase.accdb"
+                    Using saveDialog As New SaveFileDialog()
+                        saveDialog.Filter = "Access Database Files (*.accdb)|*.accdb"
+                        saveDialog.Title = "Save Database File"
+                        saveDialog.FileName = "GTDatabase.accdb"
 
-                    If saveDialog.ShowDialog() = DialogResult.OK Then
-                        DownloadDatabase(saveDialog.FileName)
-                        Return True
-                    End If
+                        If saveDialog.ShowDialog() = DialogResult.OK Then
+                            Dim success As Boolean = Await DownloadDatabaseAsync(saveDialog.FileName)
+                            Return success
+                        End If
+                    End Using
                 Else
                     Environment.Exit(0)
                 End If
@@ -64,22 +67,23 @@ Namespace My
             Return False
         End Function
 
-        Private Sub DownloadDatabase(savePath As String)
-            Dim webClient As New WebClient()
-
+        Private Async Function DownloadDatabaseAsync(savePath As String) As Task(Of Boolean)
             Try
                 Dim downloadUrl As String = "https://alexfare.com/programs/gtdatabase/latest/GTDatabase.accdb"
-                webClient.DownloadFile(downloadUrl, savePath)
+                Using http As New HttpClient()
+                    Dim data As Byte() = Await http.GetByteArrayAsync(downloadUrl)
+                    File.WriteAllBytes(savePath, data)
+                End Using
 
                 GlobalVars.DatabaseLocation = savePath
                 GlobalVars.SaveDatabaseLocation(savePath)
+                Return True
             Catch ex As Exception
                 MessageBox.Show("An error occurred while downloading the database: " & ex.Message, "Download Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                Logger.LogErrors("An error occurred while downloading the database: " & ex.Message)
-            Finally
-                webClient.Dispose()
+                Logger.LogErrors("An error occurred while downloading the database: " & ex.ToString())
+                Return False
             End Try
-        End Sub
+        End Function
 
         Sub DatabaseVersionCheck()
             Dim query As String = "SELECT [Number] FROM Settings WHERE SettingName = 'MinVersion'"
@@ -102,11 +106,7 @@ Namespace My
                         End If
 
                     Catch ex As Exception
-                        Logger.LogErrors("An error occurred while checking the database version: " & ex.Message)
-                    Finally
-                        If connection.State = ConnectionState.Open Then
-                            connection.Close()
-                        End If
+                        Logger.LogErrors("An error occurred while checking the database version: " & ex.ToString())
                     End Try
                 End Using
             End Using
@@ -129,7 +129,7 @@ Namespace My
                 File.Copy(originalFilePath, backupFilePath, True)
 
             Catch ex As Exception
-                Logger.LogErrors("An error occurred while creating the backup: " & ex.Message)
+                Logger.LogErrors("An error occurred while creating the backup: " & ex.ToString())
             End Try
         End Sub
 
@@ -139,7 +139,7 @@ Namespace My
 
         Sub UpdateOpenCount()
             Dim getQuery As String = "SELECT [Number] FROM Settings WHERE SettingName = 'OpenCount'"
-            Dim updateQuery As String = "UPDATE Settings SET [Number] = @NewCount WHERE SettingName = 'OpenCount'"
+            Dim updateQuery As String = "UPDATE Settings SET [Number] = ? WHERE SettingName = 'OpenCount'"
 
             Using connection As OleDbConnection = DatabaseHelper.GetConnection()
                 Try
@@ -156,7 +156,7 @@ Namespace My
                     Dim newCount As Integer = currentCount + 1
 
                     Using updateCommand As New OleDbCommand(updateQuery, connection)
-                        updateCommand.Parameters.AddWithValue("@NewCount", newCount)
+                        updateCommand.Parameters.AddWithValue("@p1", newCount)
                         updateCommand.ExecuteNonQuery()
                     End Using
 
@@ -164,29 +164,24 @@ Namespace My
                     My.Settings.Save()
 
                 Catch ex As Exception
-                    Logger.LogErrors("An error occurred while updating OpenCount: " & ex.Message)
-                Finally
-                    If connection.State = ConnectionState.Open Then
-                        connection.Close()
-                    End If
+                    Logger.LogErrors("An error occurred while updating OpenCount: " & ex.ToString())
                 End Try
             End Using
         End Sub
 
-        Sub getAuth()
-            Dim fileContent As String
+        Private Async Function GetAuthAsync() As Task
+            Dim fileContent As String = String.Empty
             Dim url As String = "https://alexfare.com/programs/gagetracker/files/Report.txt"
 
-            Using client As New WebClient()
+            Using client As New HttpClient()
                 Try
-                    fileContent = client.DownloadString(url)
-
+                    fileContent = Await client.GetStringAsync(url)
                     GlobalVars.AuthHash = fileContent
                 Catch ex As Exception
-                    Logger.LogErrors("Error: " & ex.Message)
+                    Logger.LogErrors("Error: " & ex.ToString())
                 End Try
             End Using
-        End Sub
+        End Function
 
         Sub UpdateMySettings()
             My.Settings.isAdmin = False
@@ -197,7 +192,7 @@ Namespace My
 
         Private Sub MyApplication_UnhandledException(sender As Object, e As Microsoft.VisualBasic.ApplicationServices.UnhandledExceptionEventArgs) Handles Me.UnhandledException
             MessageBox.Show("An unhandled exception occurred: " & e.Exception.Message)
-            Logger.LogErrors("An unhandled exception occurred: " & e.Exception.Message)
+            Logger.LogErrors("An unhandled exception occurred: " & e.Exception.ToString())
             e.ExitApplication = False
         End Sub
 

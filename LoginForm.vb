@@ -30,7 +30,10 @@ Public Class LoginForm1
             Try
                 connection.Open()
                 Dim cmd As New OleDbCommand("SELECT Password FROM [Credentials] WHERE Username = ?", connection)
-                cmd.Parameters.AddWithValue("@Username", username)
+                cmd.Parameters.Add(New OleDbParameter With {
+                    .OleDbType = OleDbType.VarChar,
+                    .Value = username
+                })
 
                 Dim storedPasswordHash As Object = cmd.ExecuteScalar()
 

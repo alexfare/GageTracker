@@ -1,5 +1,7 @@
 v5.20.1.89
 Updated GTMenu, Closing when opening dashboard.
+Updated AdminMenu, Closing when opening dashboard.
+Organization, Moving Handlers and Modules into folders.
 
 v5.20.0.88
 Updated ApplicationEvents - Optimizing start up speeds.

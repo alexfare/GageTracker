@@ -82,7 +82,7 @@ Public Class AdminMenu
     End Sub
 
     Private Sub SearchHandler()
-        Using conn As OleDbConnection = DatabaseHelper.GetConnection()
+        Using conn As OleDbConnection = DatabaseHandler.GetConnection()
             Try
                 conn.Open()
                 Dim cmd As New OleDbCommand("SELECT PartNumber, PartRev, Status, Description, Department, [Gage Type], Customer, [Calibrated By], [Interval (Months)], [Inspected Date], [Due Date], Comments, aN1, aN2, aN3, aN4, aN5, aA1, aA2, aA3, aA4, aA5, [Serial Number], Owner, [Nist Number] FROM [CalibrationTracker] WHERE GageID = ?", conn)
@@ -158,7 +158,7 @@ Public Class AdminMenu
         PauseUserInput(5)
 
         Try
-            Using conn As OleDbConnection = DatabaseHelper.GetConnection()
+            Using conn As OleDbConnection = DatabaseHandler.GetConnection()
                 conn.Open()
                 Dim checkCmd As New OleDbCommand("SELECT COUNT(*) FROM [CalibrationTracker] WHERE GageID = ?", conn)
                 checkCmd.Parameters.AddWithValue("@GageID", TxtGageID.Text)
@@ -233,7 +233,7 @@ Public Class AdminMenu
     End Sub
 
     Private Sub BtnUpdateConfirmed() 'Handles BtnUpdate.Click
-        Using conn As OleDbConnection = DatabaseHelper.GetConnection()
+        Using conn As OleDbConnection = DatabaseHandler.GetConnection()
             conn.Open()
 
             Dim lastUser As String
@@ -348,7 +348,7 @@ Public Class AdminMenu
         Dim result As DialogResult = MessageBox.Show("Are you sure you want to delete this gage?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If result = DialogResult.Yes Then
             Try
-                Using conn As OleDbConnection = DatabaseHelper.GetConnection()
+                Using conn As OleDbConnection = DatabaseHandler.GetConnection()
                     conn.Open()
 
                     'Execute the DELETE query
@@ -426,7 +426,7 @@ Public Class AdminMenu
 
     Private Sub SearchAuditLog()
         Try
-            Using conn As OleDbConnection = DatabaseHelper.GetConnection()
+            Using conn As OleDbConnection = DatabaseHandler.GetConnection()
                 conn.Open()
                 Dim searchCmd As New OleDbCommand("SELECT [Date Added], [Last Edited], [Last User] FROM [CalibrationTracker] WHERE GageID = ?", conn)
                 searchCmd.Parameters.AddWithValue("@GageID", TxtGageID.Text)
@@ -589,6 +589,7 @@ Public Class AdminMenu
     End Sub
 
     Private Sub DashboardToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DashboardToolStripMenuItem.Click
+        Me.Close()
         Dashboard.Show()
     End Sub
 
@@ -602,7 +603,7 @@ Public Class AdminMenu
 
 #Region "Load"
     Public Sub LoadGageID()
-        Using conn As OleDbConnection = DatabaseHelper.GetConnection()
+        Using conn As OleDbConnection = DatabaseHandler.GetConnection()
             Try
                 conn.Open()
                 Dim cmd As New OleDbCommand("SELECT GageID FROM [CalibrationTracker]", conn)
@@ -640,7 +641,7 @@ Public Class AdminMenu
     End Sub
 
     Public Sub LoadStatus()
-        Using conn As OleDbConnection = DatabaseHelper.GetConnection()
+        Using conn As OleDbConnection = DatabaseHandler.GetConnection()
             Try
                 conn.Open()
                 Dim cmd As New OleDbCommand("SELECT Status FROM [Status]", conn)
@@ -672,7 +673,7 @@ Public Class AdminMenu
     End Sub
 
     Public Sub LoadDepartment()
-        Using conn As OleDbConnection = DatabaseHelper.GetConnection()
+        Using conn As OleDbConnection = DatabaseHandler.GetConnection()
             Try
                 conn.Open()
                 Dim cmd As New OleDbCommand("SELECT Departments FROM [Departments]", conn) ' Adjust table and column names as necessary
@@ -704,7 +705,7 @@ Public Class AdminMenu
     End Sub
 
     Public Sub LoadGageType()
-        Using conn As OleDbConnection = DatabaseHelper.GetConnection()
+        Using conn As OleDbConnection = DatabaseHandler.GetConnection()
             Try
                 conn.Open()
                 Dim cmd As New OleDbCommand("SELECT GageType FROM [GageType]", conn) ' Adjust table and column names as necessary
@@ -736,7 +737,7 @@ Public Class AdminMenu
     End Sub
 
     Public Sub LoadCustomers()
-        Using conn As OleDbConnection = DatabaseHelper.GetConnection()
+        Using conn As OleDbConnection = DatabaseHandler.GetConnection()
             Try
                 conn.Open()
                 Dim cmd As New OleDbCommand("SELECT CustomerName FROM Customers", conn) ' Make sure the table name is correct
@@ -768,7 +769,7 @@ Public Class AdminMenu
     End Sub
 
     Public Sub LoadUser()
-        Using conn As OleDbConnection = DatabaseHelper.GetConnection()
+        Using conn As OleDbConnection = DatabaseHandler.GetConnection()
             Try
                 conn.Open()
                 Dim cmd As New OleDbCommand("SELECT Username FROM [Credentials]", conn) ' Adjust table and column names as necessary

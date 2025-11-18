@@ -26,7 +26,7 @@ Public Class LoginForm1
             Return
         End If
 
-        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
+        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
             Try
                 connection.Open()
                 Dim cmd As New OleDbCommand("SELECT Password FROM [Credentials] WHERE Username = ?", connection)

@@ -179,7 +179,7 @@
     <Compile Include="Dashboard.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DatabaseHelper.vb" />
+    <Compile Include="Handlers\DatabaseHandler.vb" />
     <Compile Include="DepartmentManager.Designer.vb">
       <DependentUpon>DepartmentManager.vb</DependentUpon>
     </Compile>
@@ -210,8 +210,8 @@
     <Compile Include="GageType.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GlobalVars.vb" />
-    <Compile Include="GTDatabaseDataSet.Designer.vb">
+    <Compile Include="Modules\GlobalVars.vb" />
+    <Compile Include="Datasets\GTDatabaseDataSet.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>GTDatabaseDataSet.xsd</DependentUpon>
@@ -222,7 +222,7 @@
     <Compile Include="LoadingScreen.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Logger.vb" />
+    <Compile Include="Modules\Logger.vb" />
     <Compile Include="LoginForm.Designer.vb">
       <DependentUpon>LoginForm.vb</DependentUpon>
     </Compile>
@@ -252,10 +252,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="PrintHandler.Designer.vb">
+    <Compile Include="Handlers\PrintHandler.Designer.vb">
       <DependentUpon>PrintHandler.vb</DependentUpon>
     </Compile>
-    <Compile Include="PrintHandler.vb">
+    <Compile Include="Handlers\PrintHandler.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ReportIssue.Designer.vb">
@@ -264,7 +264,7 @@
     <Compile Include="ReportIssue.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SecureHandler.vb" />
+    <Compile Include="Handlers\SecureHandler.vb" />
     <Compile Include="StatusMenu.Designer.vb">
       <DependentUpon>StatusMenu.vb</DependentUpon>
     </Compile>
@@ -320,7 +320,7 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="PrintHandler.resx">
+    <EmbeddedResource Include="Handlers\PrintHandler.resx">
       <DependentUpon>PrintHandler.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportIssue.resx">
@@ -332,15 +332,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="GageCalibrationTracker_TemporaryKey.pfx" />
-    <None Include="GTDatabaseDataSet.xsc">
+    <None Include="Datasets\GTDatabaseDataSet.xsc">
       <DependentUpon>GTDatabaseDataSet.xsd</DependentUpon>
     </None>
-    <None Include="GTDatabaseDataSet.xsd">
+    <None Include="Datasets\GTDatabaseDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>GTDatabaseDataSet.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="GTDatabaseDataSet.xss">
+    <None Include="Datasets\GTDatabaseDataSet.xss">
       <DependentUpon>GTDatabaseDataSet.xsd</DependentUpon>
     </None>
     <None Include="My Project\app.manifest" />

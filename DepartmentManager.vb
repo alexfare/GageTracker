@@ -9,7 +9,7 @@ Public Class DepartmentManager
     End Sub
 
     Private Sub LoadDepartments()
-        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
+        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
             Try
                 connection.Open()
                 Dim cmd As New OleDbCommand("SELECT Departments FROM Departments", connection)
@@ -31,7 +31,7 @@ Public Class DepartmentManager
             Return
         End If
 
-        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
+        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
             Dim checkCmd As New OleDbCommand("SELECT COUNT(*) FROM Departments WHERE Departments = @Name", connection)
             checkCmd.Parameters.AddWithValue("@Name", txtDepartments.Text)
 
@@ -49,7 +49,7 @@ Public Class DepartmentManager
             End Try
         End Using
 
-        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
+        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
             Using command As New OleDbCommand(insertQuery, connection)
                 command.Parameters.AddWithValue("@Departments", txtDepartments.Text)
 
@@ -84,7 +84,7 @@ Public Class DepartmentManager
         Dim selectedDepartment As String = txtDepartments.SelectedItem.ToString()
         Dim query As String = "DELETE FROM Departments WHERE Departments = @Name"
 
-        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
+        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
             Using command As New OleDbCommand(query, connection)
                 command.Parameters.AddWithValue("@Name", selectedDepartment)
 

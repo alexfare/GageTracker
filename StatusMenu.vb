@@ -9,7 +9,7 @@ Public Class StatusMenu
     End Sub
 
     Private Sub LoadStatus()
-        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
+        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
             Try
                 connection.Open()
                 Dim cmd As New OleDbCommand("SELECT Status FROM Status", connection)
@@ -32,7 +32,7 @@ Public Class StatusMenu
             Return
         End If
 
-        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
+        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
             Dim checkCmd As New OleDbCommand("SELECT COUNT(*) FROM Status WHERE Status = @Name", connection)
             checkCmd.Parameters.AddWithValue("@Name", txtStatus.Text)
 
@@ -50,7 +50,7 @@ Public Class StatusMenu
             End Try
         End Using
 
-        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
+        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
             Using command As New OleDbCommand(insertQuery, connection)
                 command.Parameters.AddWithValue("@Name", txtStatus.Text)
 
@@ -85,7 +85,7 @@ Public Class StatusMenu
         Dim selectedStatus As String = txtStatus.SelectedItem.ToString()
         Dim query As String = "DELETE FROM Status WHERE Status = @Name"
 
-        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
+        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
             Using command As New OleDbCommand(query, connection)
                 command.Parameters.AddWithValue("@Name", selectedStatus)
 

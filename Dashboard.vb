@@ -20,7 +20,7 @@ Public Class Dashboard
         Dim totalCount As Integer = 0
         Dim query As String = "SELECT COUNT(*) FROM CalibrationTracker WHERE Status = 'Active'"
 
-        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
+        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
             Try
                 connection.Open()
                 Using command As New OleDbCommand(query, connection)
@@ -44,7 +44,7 @@ Public Class Dashboard
                              "
 
 
-        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
+        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
             Try
                 connection.Open()
                 Using command As New OleDbCommand(query, connection)
@@ -63,7 +63,7 @@ Public Class Dashboard
         Dim totalCount As Integer = 0
         Dim query As String = "SELECT COUNT(*) FROM CalibrationTracker WHERE Status = 'Lost'"
 
-        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
+        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
             Try
                 connection.Open()
                 Using command As New OleDbCommand(query, connection)
@@ -82,7 +82,7 @@ Public Class Dashboard
         Dim totalCount As Integer = 0
         Dim query As String = "SELECT COUNT(*) FROM CalibrationTracker WHERE [Due Date] < ?"
 
-        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
+        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
             Try
                 connection.Open()
                 Using command As New OleDbCommand(query, connection)
@@ -104,7 +104,7 @@ Public Class Dashboard
         Dim totalCount As Integer = 0
         Dim query As String = "SELECT COUNT(*) FROM CalibrationTracker WHERE [Due Date] >= ? AND [Due Date] <= ?"
 
-        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
+        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
             Try
                 connection.Open()
                 Using command As New OleDbCommand(query, connection)
@@ -127,7 +127,7 @@ Public Class Dashboard
         Dim totalCount As Integer = 0
         Dim query As String = "SELECT COUNT(*) FROM CalibrationTracker WHERE [Due Date] >= ? AND [Due Date] <= ?"
 
-        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
+        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
             Try
                 connection.Open()
                 Using command As New OleDbCommand(query, connection)

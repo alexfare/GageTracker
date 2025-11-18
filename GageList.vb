@@ -137,7 +137,7 @@ Public Class GageList
             query &= " WHERE " & filterQuery
         End If
 
-        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
+        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
             Try
                 connection.Open()
 

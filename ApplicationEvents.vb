@@ -88,7 +88,7 @@ Namespace My
         Sub DatabaseVersionCheck()
             Dim query As String = "SELECT [Number] FROM Settings WHERE SettingName = 'MinVersion'"
 
-            Using connection As OleDbConnection = DatabaseHelper.GetConnection()
+            Using connection As OleDbConnection = DatabaseHandler.GetConnection()
                 Using command As New OleDbCommand(query, connection)
                     Try
                         connection.Open()
@@ -141,7 +141,7 @@ Namespace My
             Dim getQuery As String = "SELECT [Number] FROM Settings WHERE SettingName = 'OpenCount'"
             Dim updateQuery As String = "UPDATE Settings SET [Number] = ? WHERE SettingName = 'OpenCount'"
 
-            Using connection As OleDbConnection = DatabaseHelper.GetConnection()
+            Using connection As OleDbConnection = DatabaseHandler.GetConnection()
                 Try
                     connection.Open()
 

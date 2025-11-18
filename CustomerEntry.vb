@@ -15,7 +15,7 @@ Public Class CustomerEntry
             Return
         End If
 
-        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
+        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
             Dim checkCmd As New OleDbCommand("SELECT COUNT(*) FROM Customers WHERE CustomerName = @Name", connection)
             checkCmd.Parameters.AddWithValue("@Name", txtCustomerName.Text)
 
@@ -33,7 +33,7 @@ Public Class CustomerEntry
             End Try
         End Using
 
-        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
+        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
             Using command As New OleDbCommand(insertQuery, connection)
                 command.Parameters.AddWithValue("@Name", txtCustomerName.Text)
                 command.Parameters.AddWithValue("@Address", txtCustomerAddress.Text)
@@ -60,7 +60,7 @@ Public Class CustomerEntry
     End Sub
 
     Private Sub LoadCustomers()
-        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
+        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
             Try
                 connection.Open()
                 Dim cmd As New OleDbCommand("SELECT CustomerName FROM Customers", connection)
@@ -87,7 +87,7 @@ Public Class CustomerEntry
         Dim selectedCustomer As String = txtCustomerName.SelectedItem.ToString()
         Dim query As String = "SELECT CustomerAddress, CustomerPhone, CustomerWebsite FROM Customers WHERE CustomerName = @Name"
 
-        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
+        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
             Using command As New OleDbCommand(query, connection)
                 command.Parameters.AddWithValue("@Name", selectedCustomer)
 
@@ -120,7 +120,7 @@ Public Class CustomerEntry
         Dim selectedCustomer As String = txtCustomerName.SelectedItem.ToString()
         Dim query As String = "UPDATE Customers SET CustomerAddress = @Address, CustomerPhone = @Phone, CustomerWebsite = @Website WHERE CustomerName = @Name"
 
-        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
+        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
             Using command As New OleDbCommand(query, connection)
                 command.Parameters.AddWithValue("@Address", txtCustomerAddress.Text)
                 command.Parameters.AddWithValue("@Phone", txtCustomerPhone.Text)
@@ -175,7 +175,7 @@ Public Class CustomerEntry
         Dim selectedCustomer As String = txtCustomerName.SelectedItem.ToString()
         Dim query As String = "DELETE FROM Customers WHERE CustomerName = @Name"
 
-        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
+        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
             Using command As New OleDbCommand(query, connection)
                 command.Parameters.AddWithValue("@Name", selectedCustomer)
 

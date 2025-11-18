@@ -199,7 +199,7 @@ Public Class GageList
 
 #Region "Settings & Misc"
     Private Sub StartLogin()
-        LoginForm1.Show()
+        LoginForm.Show()
         My.Settings.FromList = True
     End Sub
 

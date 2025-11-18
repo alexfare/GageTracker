@@ -786,7 +786,7 @@ Public Class GTMenu
 
     Private Sub StartLogin()
         UpdateChangeStatus()
-        LoginForm1.Show()
+        LoginForm.Show()
         Me.Close()
         My.Settings.FromList = False
     End Sub

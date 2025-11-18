@@ -636,6 +636,7 @@ Public Class GTMenu
     End Sub
 
     Private Sub DashboardToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DashboardToolStripMenuItem.Click
+        Me.Close()
         Dashboard.Show()
     End Sub
 #End Region

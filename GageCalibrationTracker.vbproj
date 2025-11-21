@@ -78,7 +78,7 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>GTLogo.ico</ApplicationIcon>
+    <ApplicationIcon>src\App\Resources\GTLogo.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
@@ -93,7 +93,7 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>GageCalibrationTracker_TemporaryKey.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>src\App\Resources\GageCalibrationTracker_TemporaryKey.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -148,91 +148,91 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="About.Designer.vb">
+    <Compile Include="src\App\UI\About.Designer.vb">
       <DependentUpon>About.vb</DependentUpon>
     </Compile>
-    <Compile Include="About.vb">
+    <Compile Include="src\App\UI\About.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AccountManagement.Designer.vb">
+    <Compile Include="src\App\Admin\AccountManagement.Designer.vb">
       <DependentUpon>AccountManagement.vb</DependentUpon>
     </Compile>
-    <Compile Include="AccountManagement.vb">
+    <Compile Include="src\App\Admin\AccountManagement.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AdminMenu.Designer.vb">
+    <Compile Include="src\App\Admin\AdminMenu.Designer.vb">
       <DependentUpon>AdminMenu.vb</DependentUpon>
     </Compile>
-    <Compile Include="AdminMenu.vb">
+    <Compile Include="src\App\Admin\AdminMenu.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ApplicationEvents.vb" />
-    <Compile Include="CustomerEntry.Designer.vb">
+    <Compile Include="src\App\Startup\ApplicationEvents.vb" />
+    <Compile Include="src\App\Admin\CustomerEntry.Designer.vb">
       <DependentUpon>CustomerEntry.vb</DependentUpon>
     </Compile>
-    <Compile Include="CustomerEntry.vb">
+    <Compile Include="src\App\Admin\CustomerEntry.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dashboard.Designer.vb">
+    <Compile Include="src\App\Core\Dashboard.Designer.vb">
       <DependentUpon>Dashboard.vb</DependentUpon>
     </Compile>
-    <Compile Include="Dashboard.vb">
+    <Compile Include="src\App\Core\Dashboard.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Handlers\DatabaseHandler.vb" />
-    <Compile Include="DepartmentManager.Designer.vb">
+    <Compile Include="src\App\Admin\DepartmentManager.Designer.vb">
       <DependentUpon>DepartmentManager.vb</DependentUpon>
     </Compile>
-    <Compile Include="DepartmentManager.vb">
+    <Compile Include="src\App\Admin\DepartmentManager.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DueDateCategorizer.Designer.vb">
+    <Compile Include="src\App\Core\DueDateCategorizer.Designer.vb">
       <DependentUpon>DueDateCategorizer.vb</DependentUpon>
     </Compile>
-    <Compile Include="DueDateCategorizer.vb">
+    <Compile Include="src\App\Core\DueDateCategorizer.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ExitConfirmationForm.Designer.vb">
+    <Compile Include="src\App\UI\ExitConfirmationForm.Designer.vb">
       <DependentUpon>ExitConfirmationForm.vb</DependentUpon>
     </Compile>
-    <Compile Include="ExitConfirmationForm.vb">
+    <Compile Include="src\App\UI\ExitConfirmationForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GageList.Designer.vb">
+    <Compile Include="src\App\Core\GageList.Designer.vb">
       <DependentUpon>GageList.vb</DependentUpon>
     </Compile>
-    <Compile Include="GageList.vb">
+    <Compile Include="src\App\Core\GageList.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GageType.Designer.vb">
+    <Compile Include="src\App\Admin\GageType.Designer.vb">
       <DependentUpon>GageType.vb</DependentUpon>
     </Compile>
-    <Compile Include="GageType.vb">
+    <Compile Include="src\App\Admin\GageType.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Modules\GlobalVars.vb" />
-    <Compile Include="Datasets\GTDatabaseDataSet.Designer.vb">
+    <Compile Include="src\App\Core\Modules\GlobalVars.vb" />
+    <Compile Include="src\App\Data\Datasets\GTDatabaseDataSet.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>GTDatabaseDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="LoadingScreen.Designer.vb">
+    <Compile Include="src\App\Startup\LoadingScreen.Designer.vb">
       <DependentUpon>LoadingScreen.vb</DependentUpon>
     </Compile>
-    <Compile Include="LoadingScreen.vb">
+    <Compile Include="src\App\Startup\LoadingScreen.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Modules\Logger.vb" />
-    <Compile Include="LoginForm.Designer.vb">
+    <Compile Include="src\App\Core\Modules\Logger.vb" />
+    <Compile Include="src\App\UI\LoginForm.Designer.vb">
       <DependentUpon>LoginForm.vb</DependentUpon>
     </Compile>
-    <Compile Include="LoginForm.vb">
+    <Compile Include="src\App\UI\LoginForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GTMenu.vb">
+    <Compile Include="src\App\Core\GTMenu.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GTMenu.Designer.vb">
+    <Compile Include="src\App\Core\GTMenu.Designer.vb">
       <DependentUpon>GTMenu.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
@@ -258,60 +258,60 @@
     <Compile Include="Handlers\PrintHandler.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ReportIssue.Designer.vb">
+    <Compile Include="src\App\UI\ReportIssue.Designer.vb">
       <DependentUpon>ReportIssue.vb</DependentUpon>
     </Compile>
-    <Compile Include="ReportIssue.vb">
+    <Compile Include="src\App\UI\ReportIssue.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Handlers\SecureHandler.vb" />
-    <Compile Include="StatusMenu.Designer.vb">
+    <Compile Include="src\App\Admin\StatusMenu.Designer.vb">
       <DependentUpon>StatusMenu.vb</DependentUpon>
     </Compile>
-    <Compile Include="StatusMenu.vb">
+    <Compile Include="src\App\Admin\StatusMenu.vb">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="About.resx">
+    <EmbeddedResource Include="src\App\UI\About.resx">
       <DependentUpon>About.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="AccountManagement.resx">
+    <EmbeddedResource Include="src\App\Admin\AccountManagement.resx">
       <DependentUpon>AccountManagement.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="AdminMenu.resx">
+    <EmbeddedResource Include="src\App\Admin\AdminMenu.resx">
       <DependentUpon>AdminMenu.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomerEntry.resx">
+    <EmbeddedResource Include="src\App\Admin\CustomerEntry.resx">
       <DependentUpon>CustomerEntry.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dashboard.resx">
+    <EmbeddedResource Include="src\App\Core\Dashboard.resx">
       <DependentUpon>Dashboard.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DepartmentManager.resx">
+    <EmbeddedResource Include="src\App\Admin\DepartmentManager.resx">
       <DependentUpon>DepartmentManager.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DueDateCategorizer.resx">
+    <EmbeddedResource Include="src\App\Core\DueDateCategorizer.resx">
       <DependentUpon>DueDateCategorizer.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ExitConfirmationForm.resx">
+    <EmbeddedResource Include="src\App\UI\ExitConfirmationForm.resx">
       <DependentUpon>ExitConfirmationForm.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GageList.resx">
+    <EmbeddedResource Include="src\App\Core\GageList.resx">
       <DependentUpon>GageList.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GageType.resx">
+    <EmbeddedResource Include="src\App\Admin\GageType.resx">
       <DependentUpon>GageType.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LoadingScreen.resx">
+    <EmbeddedResource Include="src\App\Startup\LoadingScreen.resx">
       <DependentUpon>LoadingScreen.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LoginForm.resx">
+    <EmbeddedResource Include="src\App\UI\LoginForm.resx">
       <DependentUpon>LoginForm.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GTMenu.resx">
+    <EmbeddedResource Include="src\App\Core\GTMenu.resx">
       <DependentUpon>GTMenu.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -323,24 +323,24 @@
     <EmbeddedResource Include="Handlers\PrintHandler.resx">
       <DependentUpon>PrintHandler.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportIssue.resx">
+    <EmbeddedResource Include="src\App\UI\ReportIssue.resx">
       <DependentUpon>ReportIssue.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="StatusMenu.resx">
+    <EmbeddedResource Include="src\App\Admin\StatusMenu.resx">
       <DependentUpon>StatusMenu.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="GageCalibrationTracker_TemporaryKey.pfx" />
-    <None Include="Datasets\GTDatabaseDataSet.xsc">
+    <None Include="src\App\Resources\GageCalibrationTracker_TemporaryKey.pfx" />
+    <None Include="src\App\Data\Datasets\GTDatabaseDataSet.xsc">
       <DependentUpon>GTDatabaseDataSet.xsd</DependentUpon>
     </None>
-    <None Include="Datasets\GTDatabaseDataSet.xsd">
+    <None Include="src\App\Data\Datasets\GTDatabaseDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>GTDatabaseDataSet.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="Datasets\GTDatabaseDataSet.xss">
+    <None Include="src\App\Data\Datasets\GTDatabaseDataSet.xss">
       <DependentUpon>GTDatabaseDataSet.xsd</DependentUpon>
     </None>
     <None Include="My Project\app.manifest" />
@@ -353,10 +353,11 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
-    <None Include="App.config" />
+    <None Include="src\App\Startup\App.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
+    <Folder Include="src\App\Data\handlers\" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8.1">
@@ -371,8 +372,8 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="GTLogo.ico" />
-    <Content Include="quality_management_software_icon.ico" />
+    <Content Include="src\App\Resources\GTLogo.ico" />
+    <Content Include="src\App\Resources\quality_management_software_icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

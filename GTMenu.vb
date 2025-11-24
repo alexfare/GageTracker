@@ -841,7 +841,7 @@ Public Class GTMenu
         UpdateDueDate()
     End Sub
 
-    Private Sub TextContains_TextChanged(sender As Object, e As EventArgs) Handles txtPartNumber.TextChanged, txtDescription.TextChanged, TxtInterval.TextChanged, txtComments.TextChanged, cmbStatus.SelectedIndexChanged, txtDepartment.SelectedIndexChanged, txtGageType.SelectedIndexChanged, txtCustomer.SelectedIndexChanged, txtCalibratedBy.SelectedIndexChanged, DtInspectedDate.ValueChanged, dtDueDate.ValueChanged, TxtSerialNumber.TextChanged, TxtNistNumber.TextChanged, txtOwner.TextChanged, txtaN1.TextChanged, txtaN2.TextChanged, txtaN3.TextChanged, txtaN4.TextChanged, txtaN5.TextChanged, txtaA1.TextChanged, txtaA2.TextChanged, txtaA3.TextChanged, txtaA4.TextChanged, txtaA5.TextChanged, txtPartRev.TextChanged
+    Private Sub TextContains_TextChanged(sender As Object, e As EventArgs) Handles txtPartNumber.TextChanged, txtDescription.TextChanged, TxtInterval.TextChanged, txtComments.TextChanged, cmbStatus.SelectedIndexChanged, cmbStatus.TextChanged, txtDepartment.SelectedIndexChanged, txtDepartment.TextChanged, txtGageType.SelectedIndexChanged, txtGageType.TextChanged, txtCustomer.SelectedIndexChanged, txtCustomer.TextChanged, txtCalibratedBy.SelectedIndexChanged, txtCalibratedBy.TextChanged, DtInspectedDate.ValueChanged, dtDueDate.ValueChanged, TxtSerialNumber.TextChanged, TxtNistNumber.TextChanged, txtOwner.TextChanged, txtaN1.TextChanged, txtaN2.TextChanged, txtaN3.TextChanged, txtaN4.TextChanged, txtaN5.TextChanged, txtaA1.TextChanged, txtaA2.TextChanged, txtaA3.TextChanged, txtaA4.TextChanged, txtaA5.TextChanged, txtPartRev.TextChanged
         If SearchCheck = True Then
             ChangeDetected = True
             Me.Text = "*" & originalTitle

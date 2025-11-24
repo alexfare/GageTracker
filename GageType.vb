@@ -9,7 +9,7 @@ Public Class GageType
     End Sub
 
     Private Sub LoadGageType()
-        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
+        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
             Try
                 connection.Open()
                 Dim cmd As New OleDbCommand("SELECT GageType FROM GageType", connection)
@@ -31,7 +31,7 @@ Public Class GageType
             Return
         End If
 
-        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
+        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
             Dim checkCmd As New OleDbCommand("SELECT COUNT(*) FROM GageType WHERE GageType = @Name", connection)
             checkCmd.Parameters.AddWithValue("@Name", txtGageType.Text)
 
@@ -49,7 +49,7 @@ Public Class GageType
             End Try
         End Using
 
-        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
+        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
             Using command As New OleDbCommand(insertQuery, connection)
                 command.Parameters.AddWithValue("@GageType", txtGageType.Text)
 
@@ -84,7 +84,7 @@ Public Class GageType
         Dim selectedGageType As String = txtGageType.SelectedItem.ToString()
         Dim query As String = "DELETE FROM GageType WHERE GageType = @Name"
 
-        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
+        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
             Using command As New OleDbCommand(query, connection)
                 command.Parameters.AddWithValue("@Name", selectedGageType)
 

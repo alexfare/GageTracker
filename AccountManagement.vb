@@ -38,7 +38,7 @@ Public Class AccountManagement
     End Function
 
     Private Sub SaveCredentials(username As String, hashedPassword As String)
-        Using conn As OleDbConnection = DatabaseHelper.GetConnection()
+        Using conn As OleDbConnection = DatabaseHandler.GetConnection()
             conn.Open()
 
             Dim checkCmd As New OleDbCommand("SELECT COUNT(*) FROM Credentials WHERE [Username] = ?", conn)
@@ -72,7 +72,7 @@ Public Class AccountManagement
     End Sub
 
     Private Sub LoadUsers()
-        Using conn As OleDbConnection = DatabaseHelper.GetConnection()
+        Using conn As OleDbConnection = DatabaseHandler.GetConnection()
             Try
                 conn.Open()
                 Dim cmd As New OleDbCommand("SELECT [Username] FROM [Credentials]", conn)
@@ -99,7 +99,7 @@ Public Class AccountManagement
             Return
         End If
 
-        Using conn As OleDbConnection = DatabaseHelper.GetConnection()
+        Using conn As OleDbConnection = DatabaseHandler.GetConnection()
             conn.Open()
 
             Dim checkCmd As New OleDbCommand("SELECT COUNT(*) FROM Credentials WHERE [Username] = ?", conn)

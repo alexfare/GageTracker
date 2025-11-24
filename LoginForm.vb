@@ -1,9 +1,9 @@
 Imports System.Data.OleDb
 Imports System.Security.Cryptography
 Imports System.Text
-Public Class LoginForm1
+Public Class LoginForm
 
-    Private Sub LoginForm1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub LoginForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         StatusLabel.Text = ""
     End Sub
 
@@ -26,7 +26,7 @@ Public Class LoginForm1
             Return
         End If
 
-        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
+        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
             Try
                 connection.Open()
                 Dim cmd As New OleDbCommand("SELECT Password FROM [Credentials] WHERE Username = ?", connection)

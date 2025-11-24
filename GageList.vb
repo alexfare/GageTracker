@@ -137,7 +137,7 @@ Public Class GageList
             query &= " WHERE " & filterQuery
         End If
 
-        Using connection As OleDbConnection = DatabaseHelper.GetConnection()
+        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
             Try
                 connection.Open()
 
@@ -199,7 +199,7 @@ Public Class GageList
 
 #Region "Settings & Misc"
     Private Sub StartLogin()
-        LoginForm1.Show()
+        LoginForm.Show()
         My.Settings.FromList = True
     End Sub
 

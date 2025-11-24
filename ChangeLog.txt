@@ -1,6 +1,6 @@
 v5.20.1.89
-Updated GTMenu, Closing when opening dashboard.
-Updated AdminMenu, Closing when opening dashboard.
+Updated GTMenu & AdminMenu, Closing when opening dashboard.
+Updated GTMenu & AdminMenu, Fixed Dropdown not detecting custom change.
 Organization, Moving Handlers and Modules into folders.
 Corrected LoginForm name.
 

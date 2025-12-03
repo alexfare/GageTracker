@@ -25,7 +25,17 @@ Partial Class GageList
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(GageList))
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CustomerDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CalibrationTrackerBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.GTDatabaseDataSet = New GageCalibrationTracker.GTDatabaseDataSet()
         Me.BtnMenu = New System.Windows.Forms.Button()
         Me.ColorDialog1 = New System.Windows.Forms.ColorDialog()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -49,21 +59,17 @@ Partial Class GageList
         Me.CmbFilterType = New System.Windows.Forms.ComboBox()
         Me.CmbContains = New System.Windows.Forms.ComboBox()
         Me.CheckBoxShowAll = New System.Windows.Forms.CheckBox()
-        Me.GTDatabaseDataSet = New GageCalibrationTracker.GTDatabaseDataSet()
-        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CustomerDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CalibrationTrackerTableAdapter = New GageCalibrationTracker.GTDatabaseDataSetTableAdapters.CalibrationTrackerTableAdapter()
+        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
+        Me.Panel1 = New System.Windows.Forms.Panel()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CalibrationTrackerBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.MenuStrip1.SuspendLayout()
         CType(Me.GTDatabaseDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.MenuStrip1.SuspendLayout()
+        Me.TableLayoutPanel1.SuspendLayout()
+        Me.TableLayoutPanel2.SuspendLayout()
+        Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'DataGridView1
@@ -76,24 +82,92 @@ Partial Class GageList
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4, Me.DataGridViewTextBoxColumn5, Me.DataGridViewTextBoxColumn6, Me.CustomerDataGridViewTextBoxColumn, Me.DataGridViewTextBoxColumn7, Me.DataGridViewTextBoxColumn8})
         Me.DataGridView1.DataSource = Me.CalibrationTrackerBindingSource
-        Me.DataGridView1.Location = New System.Drawing.Point(12, 72)
+        Me.DataGridView1.Location = New System.Drawing.Point(3, 53)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
-        Me.DataGridView1.Size = New System.Drawing.Size(1366, 639)
+        Me.DataGridView1.Size = New System.Drawing.Size(1117, 466)
         Me.DataGridView1.TabIndex = 5
+        '
+        'DataGridViewTextBoxColumn1
+        '
+        Me.DataGridViewTextBoxColumn1.DataPropertyName = "GageID"
+        Me.DataGridViewTextBoxColumn1.HeaderText = "GageID"
+        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
+        Me.DataGridViewTextBoxColumn1.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn2
+        '
+        Me.DataGridViewTextBoxColumn2.DataPropertyName = "Status"
+        Me.DataGridViewTextBoxColumn2.HeaderText = "Status"
+        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
+        Me.DataGridViewTextBoxColumn2.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn3
+        '
+        Me.DataGridViewTextBoxColumn3.DataPropertyName = "PartNumber"
+        Me.DataGridViewTextBoxColumn3.HeaderText = "PartNumber"
+        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
+        Me.DataGridViewTextBoxColumn3.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn4
+        '
+        Me.DataGridViewTextBoxColumn4.DataPropertyName = "Description"
+        Me.DataGridViewTextBoxColumn4.HeaderText = "Description"
+        Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
+        Me.DataGridViewTextBoxColumn4.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn5
+        '
+        Me.DataGridViewTextBoxColumn5.DataPropertyName = "Department"
+        Me.DataGridViewTextBoxColumn5.HeaderText = "Department"
+        Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
+        Me.DataGridViewTextBoxColumn5.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn6
+        '
+        Me.DataGridViewTextBoxColumn6.DataPropertyName = "Gage Type"
+        Me.DataGridViewTextBoxColumn6.HeaderText = "Gage Type"
+        Me.DataGridViewTextBoxColumn6.Name = "DataGridViewTextBoxColumn6"
+        Me.DataGridViewTextBoxColumn6.ReadOnly = True
+        '
+        'CustomerDataGridViewTextBoxColumn
+        '
+        Me.CustomerDataGridViewTextBoxColumn.DataPropertyName = "Customer"
+        Me.CustomerDataGridViewTextBoxColumn.HeaderText = "Customer"
+        Me.CustomerDataGridViewTextBoxColumn.Name = "CustomerDataGridViewTextBoxColumn"
+        Me.CustomerDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn7
+        '
+        Me.DataGridViewTextBoxColumn7.DataPropertyName = "Inspected Date"
+        Me.DataGridViewTextBoxColumn7.HeaderText = "Inspected Date"
+        Me.DataGridViewTextBoxColumn7.Name = "DataGridViewTextBoxColumn7"
+        Me.DataGridViewTextBoxColumn7.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn8
+        '
+        Me.DataGridViewTextBoxColumn8.DataPropertyName = "Due Date"
+        Me.DataGridViewTextBoxColumn8.HeaderText = "Due Date"
+        Me.DataGridViewTextBoxColumn8.Name = "DataGridViewTextBoxColumn8"
+        Me.DataGridViewTextBoxColumn8.ReadOnly = True
         '
         'CalibrationTrackerBindingSource
         '
         Me.CalibrationTrackerBindingSource.DataMember = "CalibrationTracker"
         Me.CalibrationTrackerBindingSource.DataSource = Me.GTDatabaseDataSet
         '
+        'GTDatabaseDataSet
+        '
+        Me.GTDatabaseDataSet.DataSetName = "GTDatabaseDataSet"
+        Me.GTDatabaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
         'BtnMenu
         '
-        Me.BtnMenu.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.BtnMenu.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.BtnMenu.Location = New System.Drawing.Point(12, 717)
+        Me.BtnMenu.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.BtnMenu.Location = New System.Drawing.Point(3, 3)
         Me.BtnMenu.Name = "BtnMenu"
-        Me.BtnMenu.Size = New System.Drawing.Size(293, 23)
+        Me.BtnMenu.Size = New System.Drawing.Size(244, 28)
         Me.BtnMenu.TabIndex = 4
         Me.BtnMenu.Text = "Menu"
         Me.BtnMenu.UseVisualStyleBackColor = True
@@ -101,10 +175,10 @@ Partial Class GageList
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 27.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(5, 27)
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(9, 4)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(248, 42)
+        Me.Label1.Size = New System.Drawing.Size(215, 37)
         Me.Label1.TabIndex = 5
         Me.Label1.Text = "GageTracker"
         '
@@ -113,7 +187,7 @@ Partial Class GageList
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.ViewToolStripMenuItem, Me.AdminToolStripMenuItem, Me.SettingsToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(1390, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(1123, 24)
         Me.MenuStrip1.TabIndex = 7
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -215,15 +289,15 @@ Partial Class GageList
         Me.TextContains.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextContains.Location = New System.Drawing.Point(508, 45)
+        Me.TextContains.Location = New System.Drawing.Point(460, 21)
         Me.TextContains.Name = "TextContains"
-        Me.TextContains.Size = New System.Drawing.Size(753, 20)
+        Me.TextContains.Size = New System.Drawing.Size(510, 20)
         Me.TextContains.TabIndex = 0
         '
         'CmbFilterType
         '
         Me.CmbFilterType.FormattingEnabled = True
-        Me.CmbFilterType.Location = New System.Drawing.Point(393, 43)
+        Me.CmbFilterType.Location = New System.Drawing.Point(345, 20)
         Me.CmbFilterType.Name = "CmbFilterType"
         Me.CmbFilterType.Size = New System.Drawing.Size(109, 21)
         Me.CmbFilterType.TabIndex = 2
@@ -231,7 +305,7 @@ Partial Class GageList
         'CmbContains
         '
         Me.CmbContains.FormattingEnabled = True
-        Me.CmbContains.Location = New System.Drawing.Point(278, 43)
+        Me.CmbContains.Location = New System.Drawing.Point(230, 20)
         Me.CmbContains.Name = "CmbContains"
         Me.CmbContains.Size = New System.Drawing.Size(109, 21)
         Me.CmbContains.TabIndex = 1
@@ -241,97 +315,67 @@ Partial Class GageList
         Me.CheckBoxShowAll.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.CheckBoxShowAll.AutoSize = True
-        Me.CheckBoxShowAll.Location = New System.Drawing.Point(1267, 47)
+        Me.CheckBoxShowAll.Location = New System.Drawing.Point(976, 23)
         Me.CheckBoxShowAll.Name = "CheckBoxShowAll"
         Me.CheckBoxShowAll.Size = New System.Drawing.Size(111, 17)
         Me.CheckBoxShowAll.TabIndex = 3
         Me.CheckBoxShowAll.Text = "Show All Statuses"
         Me.CheckBoxShowAll.UseVisualStyleBackColor = True
         '
-        'GTDatabaseDataSet
-        '
-        Me.GTDatabaseDataSet.DataSetName = "GTDatabaseDataSet"
-        Me.GTDatabaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'DataGridViewTextBoxColumn1
-        '
-        Me.DataGridViewTextBoxColumn1.DataPropertyName = "GageID"
-        Me.DataGridViewTextBoxColumn1.HeaderText = "GageID"
-        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
-        Me.DataGridViewTextBoxColumn1.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn2
-        '
-        Me.DataGridViewTextBoxColumn2.DataPropertyName = "Status"
-        Me.DataGridViewTextBoxColumn2.HeaderText = "Status"
-        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
-        Me.DataGridViewTextBoxColumn2.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn3
-        '
-        Me.DataGridViewTextBoxColumn3.DataPropertyName = "PartNumber"
-        Me.DataGridViewTextBoxColumn3.HeaderText = "PartNumber"
-        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
-        Me.DataGridViewTextBoxColumn3.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn4
-        '
-        Me.DataGridViewTextBoxColumn4.DataPropertyName = "Description"
-        Me.DataGridViewTextBoxColumn4.HeaderText = "Description"
-        Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
-        Me.DataGridViewTextBoxColumn4.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn5
-        '
-        Me.DataGridViewTextBoxColumn5.DataPropertyName = "Department"
-        Me.DataGridViewTextBoxColumn5.HeaderText = "Department"
-        Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
-        Me.DataGridViewTextBoxColumn5.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn6
-        '
-        Me.DataGridViewTextBoxColumn6.DataPropertyName = "Gage Type"
-        Me.DataGridViewTextBoxColumn6.HeaderText = "Gage Type"
-        Me.DataGridViewTextBoxColumn6.Name = "DataGridViewTextBoxColumn6"
-        Me.DataGridViewTextBoxColumn6.ReadOnly = True
-        '
-        'CustomerDataGridViewTextBoxColumn
-        '
-        Me.CustomerDataGridViewTextBoxColumn.DataPropertyName = "Customer"
-        Me.CustomerDataGridViewTextBoxColumn.HeaderText = "Customer"
-        Me.CustomerDataGridViewTextBoxColumn.Name = "CustomerDataGridViewTextBoxColumn"
-        Me.CustomerDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn7
-        '
-        Me.DataGridViewTextBoxColumn7.DataPropertyName = "Inspected Date"
-        Me.DataGridViewTextBoxColumn7.HeaderText = "Inspected Date"
-        Me.DataGridViewTextBoxColumn7.Name = "DataGridViewTextBoxColumn7"
-        Me.DataGridViewTextBoxColumn7.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn8
-        '
-        Me.DataGridViewTextBoxColumn8.DataPropertyName = "Due Date"
-        Me.DataGridViewTextBoxColumn8.HeaderText = "Due Date"
-        Me.DataGridViewTextBoxColumn8.Name = "DataGridViewTextBoxColumn8"
-        Me.DataGridViewTextBoxColumn8.ReadOnly = True
-        '
         'CalibrationTrackerTableAdapter
         '
         Me.CalibrationTrackerTableAdapter.ClearBeforeFill = True
+        '
+        'TableLayoutPanel1
+        '
+        Me.TableLayoutPanel1.ColumnCount = 1
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel1.Controls.Add(Me.DataGridView1, 0, 1)
+        Me.TableLayoutPanel1.Controls.Add(Me.TableLayoutPanel2, 0, 2)
+        Me.TableLayoutPanel1.Controls.Add(Me.Panel1, 0, 0)
+        Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 24)
+        Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
+        Me.TableLayoutPanel1.RowCount = 3
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1123, 562)
+        Me.TableLayoutPanel1.TabIndex = 8
+        '
+        'TableLayoutPanel2
+        '
+        Me.TableLayoutPanel2.ColumnCount = 2
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 250.0!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.TableLayoutPanel2.Controls.Add(Me.BtnMenu, 0, 0)
+        Me.TableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel2.Location = New System.Drawing.Point(3, 525)
+        Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
+        Me.TableLayoutPanel2.RowCount = 1
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(1117, 34)
+        Me.TableLayoutPanel2.TabIndex = 6
+        '
+        'Panel1
+        '
+        Me.Panel1.Controls.Add(Me.Label1)
+        Me.Panel1.Controls.Add(Me.CheckBoxShowAll)
+        Me.Panel1.Controls.Add(Me.CmbContains)
+        Me.Panel1.Controls.Add(Me.TextContains)
+        Me.Panel1.Controls.Add(Me.CmbFilterType)
+        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel1.Location = New System.Drawing.Point(3, 3)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(1117, 44)
+        Me.Panel1.TabIndex = 7
         '
         'GageList
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1390, 752)
-        Me.Controls.Add(Me.CheckBoxShowAll)
-        Me.Controls.Add(Me.CmbContains)
-        Me.Controls.Add(Me.CmbFilterType)
-        Me.Controls.Add(Me.TextContains)
-        Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.BtnMenu)
-        Me.Controls.Add(Me.DataGridView1)
+        Me.ClientSize = New System.Drawing.Size(1123, 586)
+        Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Controls.Add(Me.MenuStrip1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
@@ -341,9 +385,13 @@ Partial Class GageList
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CalibrationTrackerBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GTDatabaseDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
-        CType(Me.GTDatabaseDataSet, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TableLayoutPanel1.ResumeLayout(False)
+        Me.TableLayoutPanel2.ResumeLayout(False)
+        Me.Panel1.ResumeLayout(False)
+        Me.Panel1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -393,4 +441,7 @@ Partial Class GageList
     Friend WithEvents DataGridViewTextBoxColumn8 As DataGridViewTextBoxColumn
     Friend WithEvents GTDatabaseDataSet As GTDatabaseDataSet
     Friend WithEvents CalibrationTrackerTableAdapter As GTDatabaseDataSetTableAdapters.CalibrationTrackerTableAdapter
+    Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
+    Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
+    Friend WithEvents Panel1 As Panel
 End Class

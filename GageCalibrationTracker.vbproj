@@ -148,66 +148,66 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="About.Designer.vb">
+    <Compile Include="Forms\About.Designer.vb">
       <DependentUpon>About.vb</DependentUpon>
     </Compile>
-    <Compile Include="About.vb">
+    <Compile Include="Forms\About.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AccountManagement.Designer.vb">
+    <Compile Include="Admin\AccountManagement.Designer.vb">
       <DependentUpon>AccountManagement.vb</DependentUpon>
     </Compile>
-    <Compile Include="AccountManagement.vb">
+    <Compile Include="Admin\AccountManagement.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AdminMenu.Designer.vb">
+    <Compile Include="Admin\AdminMenu.Designer.vb">
       <DependentUpon>AdminMenu.vb</DependentUpon>
     </Compile>
-    <Compile Include="AdminMenu.vb">
+    <Compile Include="Admin\AdminMenu.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ApplicationEvents.vb" />
-    <Compile Include="CustomerEntry.Designer.vb">
+    <Compile Include="Handlers\ApplicationEvents.vb" />
+    <Compile Include="Admin\CustomerEntry.Designer.vb">
       <DependentUpon>CustomerEntry.vb</DependentUpon>
     </Compile>
-    <Compile Include="CustomerEntry.vb">
+    <Compile Include="Admin\CustomerEntry.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dashboard.Designer.vb">
+    <Compile Include="Forms\Dashboard.Designer.vb">
       <DependentUpon>Dashboard.vb</DependentUpon>
     </Compile>
-    <Compile Include="Dashboard.vb">
+    <Compile Include="Forms\Dashboard.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Handlers\DatabaseHandler.vb" />
-    <Compile Include="DepartmentManager.Designer.vb">
+    <Compile Include="Admin\DepartmentManager.Designer.vb">
       <DependentUpon>DepartmentManager.vb</DependentUpon>
     </Compile>
-    <Compile Include="DepartmentManager.vb">
+    <Compile Include="Admin\DepartmentManager.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DueDateCategorizer.Designer.vb">
+    <Compile Include="Forms\DueDateCategorizer.Designer.vb">
       <DependentUpon>DueDateCategorizer.vb</DependentUpon>
     </Compile>
-    <Compile Include="DueDateCategorizer.vb">
+    <Compile Include="Forms\DueDateCategorizer.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ExitConfirmationForm.Designer.vb">
+    <Compile Include="Forms\ExitConfirmationForm.Designer.vb">
       <DependentUpon>ExitConfirmationForm.vb</DependentUpon>
     </Compile>
-    <Compile Include="ExitConfirmationForm.vb">
+    <Compile Include="Forms\ExitConfirmationForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GageList.Designer.vb">
+    <Compile Include="Forms\GageList.Designer.vb">
       <DependentUpon>GageList.vb</DependentUpon>
     </Compile>
-    <Compile Include="GageList.vb">
+    <Compile Include="Forms\GageList.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GageType.Designer.vb">
+    <Compile Include="Forms\GageType.Designer.vb">
       <DependentUpon>GageType.vb</DependentUpon>
     </Compile>
-    <Compile Include="GageType.vb">
+    <Compile Include="Forms\GageType.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Modules\GlobalVars.vb" />
@@ -216,23 +216,23 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GTDatabaseDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="LoadingScreen.Designer.vb">
+    <Compile Include="Forms\LoadingScreen.Designer.vb">
       <DependentUpon>LoadingScreen.vb</DependentUpon>
     </Compile>
-    <Compile Include="LoadingScreen.vb">
+    <Compile Include="Forms\LoadingScreen.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Modules\Logger.vb" />
-    <Compile Include="LoginForm.Designer.vb">
+    <Compile Include="Admin\LoginForm.Designer.vb">
       <DependentUpon>LoginForm.vb</DependentUpon>
     </Compile>
-    <Compile Include="LoginForm.vb">
+    <Compile Include="Admin\LoginForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GTMenu.vb">
+    <Compile Include="Forms\GTMenu.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GTMenu.Designer.vb">
+    <Compile Include="Forms\GTMenu.Designer.vb">
       <DependentUpon>GTMenu.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
@@ -258,60 +258,60 @@
     <Compile Include="Handlers\PrintHandler.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ReportIssue.Designer.vb">
+    <Compile Include="Forms\ReportIssue.Designer.vb">
       <DependentUpon>ReportIssue.vb</DependentUpon>
     </Compile>
-    <Compile Include="ReportIssue.vb">
+    <Compile Include="Forms\ReportIssue.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Handlers\SecureHandler.vb" />
-    <Compile Include="StatusMenu.Designer.vb">
+    <Compile Include="Admin\StatusMenu.Designer.vb">
       <DependentUpon>StatusMenu.vb</DependentUpon>
     </Compile>
-    <Compile Include="StatusMenu.vb">
+    <Compile Include="Admin\StatusMenu.vb">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="About.resx">
+    <EmbeddedResource Include="Forms\About.resx">
       <DependentUpon>About.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="AccountManagement.resx">
+    <EmbeddedResource Include="Admin\AccountManagement.resx">
       <DependentUpon>AccountManagement.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="AdminMenu.resx">
+    <EmbeddedResource Include="Admin\AdminMenu.resx">
       <DependentUpon>AdminMenu.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomerEntry.resx">
+    <EmbeddedResource Include="Admin\CustomerEntry.resx">
       <DependentUpon>CustomerEntry.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dashboard.resx">
+    <EmbeddedResource Include="Forms\Dashboard.resx">
       <DependentUpon>Dashboard.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DepartmentManager.resx">
+    <EmbeddedResource Include="Admin\DepartmentManager.resx">
       <DependentUpon>DepartmentManager.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DueDateCategorizer.resx">
+    <EmbeddedResource Include="Forms\DueDateCategorizer.resx">
       <DependentUpon>DueDateCategorizer.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ExitConfirmationForm.resx">
+    <EmbeddedResource Include="Forms\ExitConfirmationForm.resx">
       <DependentUpon>ExitConfirmationForm.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GageList.resx">
+    <EmbeddedResource Include="Forms\GageList.resx">
       <DependentUpon>GageList.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GageType.resx">
+    <EmbeddedResource Include="Forms\GageType.resx">
       <DependentUpon>GageType.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LoadingScreen.resx">
+    <EmbeddedResource Include="Forms\LoadingScreen.resx">
       <DependentUpon>LoadingScreen.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LoginForm.resx">
+    <EmbeddedResource Include="Admin\LoginForm.resx">
       <DependentUpon>LoginForm.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GTMenu.resx">
+    <EmbeddedResource Include="Forms\GTMenu.resx">
       <DependentUpon>GTMenu.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -323,10 +323,10 @@
     <EmbeddedResource Include="Handlers\PrintHandler.resx">
       <DependentUpon>PrintHandler.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportIssue.resx">
+    <EmbeddedResource Include="Forms\ReportIssue.resx">
       <DependentUpon>ReportIssue.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="StatusMenu.resx">
+    <EmbeddedResource Include="Admin\StatusMenu.resx">
       <DependentUpon>StatusMenu.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>

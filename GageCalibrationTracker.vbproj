@@ -192,10 +192,10 @@
     <Compile Include="Forms\DueDateCategorizer.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\ExitConfirmationForm.Designer.vb">
+    <Compile Include="Forms\Shared\ExitConfirmationForm.Designer.vb">
       <DependentUpon>ExitConfirmationForm.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ExitConfirmationForm.vb">
+    <Compile Include="Forms\Shared\ExitConfirmationForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\GageList.Designer.vb">
@@ -296,7 +296,7 @@
     <EmbeddedResource Include="Forms\DueDateCategorizer.resx">
       <DependentUpon>DueDateCategorizer.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ExitConfirmationForm.resx">
+    <EmbeddedResource Include="Forms\Shared\ExitConfirmationForm.resx">
       <DependentUpon>ExitConfirmationForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\GageList.resx">

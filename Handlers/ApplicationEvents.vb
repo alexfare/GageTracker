@@ -8,6 +8,7 @@ Namespace My
         Private Async Sub MyApplication_Startup(sender As Object, e As EventArgs) Handles Me.Startup
             GlobalVars.DatabaseLocation = My.Settings.DatabaseLocation
             Await InitializeAppAsync()
+            Await GetAuthAsync()
         End Sub
 
         Private Async Function InitializeAppAsync() As Task
@@ -20,7 +21,6 @@ Namespace My
 
                     SystemLog()
                     UpdateMySettings()
-                    Await GetAuthAsync()
                 Else
                     MessageBox.Show("No valid database selected. The application will exit.",
                             "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly)
@@ -171,7 +171,7 @@ Namespace My
 
         Private Async Function GetAuthAsync() As Task
             Dim fileContent As String = String.Empty
-            Dim url As String = "https://alexfare.com/programs/gagetracker/files/Report.txt"
+            Dim url As String = "https://raw.githubusercontent.com/FareProgramming/Public_Files/main/ReportAuth"
 
             Using client As New HttpClient()
                 Try

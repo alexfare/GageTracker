@@ -1,5 +1,7 @@
-v5.20.2.90
+v5.21.0.90
 Updated GageList UI.
+Fixed ReportIssue error.
+Re did file structure.
 
 v5.20.1.89
 Updated GTMenu & AdminMenu, Closing when opening dashboard.

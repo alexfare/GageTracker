@@ -8,8 +8,6 @@ Public Class GageList
 
 #Region "GageList Load"
     Private Sub GageList_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'TODO: This line of code loads data into the 'GTDatabaseDataSet.CalibrationTracker' table. You can move, or remove it, as needed.
-        Me.CalibrationTrackerTableAdapter.Fill(Me.GTDatabaseDataSet.CalibrationTracker)
         AddHandler DataGridView1.SelectionChanged, AddressOf DataGridView1_SelectionChanged
         AddHandler DataGridView1.CellDoubleClick, AddressOf DataGridView1_CellDoubleClick
         Dim getVersion As String = My.Settings.VersionString
@@ -22,6 +20,10 @@ Public Class GageList
 
         Try
             GlobalVars.LoadDatabaseLocation()
+
+            Me.CalibrationTrackerTableAdapter.Connection = DatabaseHandler.GetConnection()
+            Me.CalibrationTrackerTableAdapter.Fill(Me.GTDatabaseDataSet.CalibrationTracker)
+
             LoadData()
         Catch ex As OleDbException
             MessageBox.Show("Database error: " & ex.Message)

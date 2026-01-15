@@ -12,7 +12,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("Introducing GageTracker, a simple yet sophisticated gage calibration management software solution designed to simplify the task of maintaining tool calibration records. ISO 9001:2015 compliant, this user-friendly software offers advanced features and intuitive functionality to ensure accurate and efficient calibration management.")>
 <Assembly: AssemblyCompany("Alex Fare")>
 <Assembly: AssemblyProduct("GageTracker")>
-<Assembly: AssemblyCopyright("Copyright © 2020 - 2025")>
+<Assembly: AssemblyCopyright("Copyright © 2020 - 2026")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>
@@ -31,6 +31,6 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")>
 
-<Assembly: AssemblyVersion("5.21.0.90")>
-<Assembly: AssemblyFileVersion("5.21.0.90")>
+<Assembly: AssemblyVersion("5.21.1.91")>
+<Assembly: AssemblyFileVersion("5.21.1.91")>
 <Assembly: NeutralResourcesLanguage("en")>

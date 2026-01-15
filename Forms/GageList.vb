@@ -258,7 +258,7 @@ Public Class GageList
     End Sub
 
     Private Sub WebsiteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles WebsiteToolStripMenuItem.Click
-        Dim url As String = "https://alexfare.com/programs/gagetracker/latest/"
+        Dim url As String = "https://alexfare.com/programs/gagetracker/latest/publish.htm"
         Try
             Process.Start(url)
         Catch ex As Exception

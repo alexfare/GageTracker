@@ -1,3 +1,6 @@
+v5.21.1.91
+Fixed issue where program was still trying to load previous database location even after user changed it.
+
 v5.21.0.90
 Updated GageList UI.
 Fixed ReportIssue error.

@@ -25,11 +25,14 @@
         <SignAssembly>false</SignAssembly>
         <AssemblyOriginatorKeyFile>GageCalibrationTracker_TemporaryKey.pfx</AssemblyOriginatorKeyFile>
         <SignManifests>false</SignManifests>
-        <GenerateManifests>true</GenerateManifests>
-        <ManifestCertificateThumbprint>8E1B94B63ED4D59A9E9A198E9913676C74B5D804</ManifestCertificateThumbprint>
-        <!-- Preserve VB "Application Framework" behaviour (My.Application, Startup events, etc.) -->
-        <EnableApplicationFramework>true</EnableApplicationFramework>
-        <MyType>WindowsForms</MyType>
+           <GenerateManifests>true</GenerateManifests>
+           <ManifestCertificateThumbprint>8E1B94B63ED4D59A9E9A198E9913676C74B5D804</ManifestCertificateThumbprint>
+           <!-- Suppress WinForms designer serialization analyzer error for legacy designer fields (WFO1000).
+             Recommended follow-up: open affected forms in Visual Studio and resave to regenerate designer code. -->
+           <NoWarn>$(NoWarn);WFO1000</NoWarn>
+           <!-- Preserve VB "Application Framework" behaviour (My.Application, Startup events, etc.) -->
+           <EnableApplicationFramework>true</EnableApplicationFramework>
+           <MyType>WindowsForms</MyType>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">

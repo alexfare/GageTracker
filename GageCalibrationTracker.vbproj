@@ -1,139 +1,81 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2610B379-F35B-40BB-ABB6-5E496072FE50}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
-    <StartupObject>GageCalibrationTracker.My.MyApplication</StartupObject>
-    <RootNamespace>GageCalibrationTracker</RootNamespace>
+    <!-- Target .NET 10 for Windows with WinForms support -->
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+
+    <!-- Preserve existing assembly and namespace settings -->
     <AssemblyName>GageTracker</AssemblyName>
-    <FileAlignment>512</FileAlignment>
-    <MyType>WindowsForms</MyType>
-    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <RootNamespace>GageCalibrationTracker</RootNamespace>
+    <StartupObject>GageCalibrationTracker.My.MyApplication</StartupObject>
+    <OutputType>WinExe</OutputType>
+
+    <!-- Keep deterministic builds and disable auto assembly info generation (keeps AssemblyInfo.vb) -->
     <Deterministic>true</Deterministic>
-    <IsWebBootstrapper>true</IsWebBootstrapper>
-    <TargetFrameworkProfile />
-    <PublishUrl>publish\</PublishUrl>
-    <Install>true</Install>
-    <InstallFrom>Web</InstallFrom>
-    <UpdateEnabled>true</UpdateEnabled>
-    <UpdateMode>Foreground</UpdateMode>
-    <UpdateInterval>7</UpdateInterval>
-    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
-    <UpdatePeriodically>false</UpdatePeriodically>
-    <UpdateRequired>true</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>https://alexfare.com/programs/gagetracker/latest/</InstallUrl>
-    <UpdateUrl>https://alexfare.com/programs/gagetracker/latest/</UpdateUrl>
-    <SupportUrl>https://github.com/alexfare/GageTracker</SupportUrl>
-    <ErrorReportUrl>https://github.com/alexfare/GageTracker</ErrorReportUrl>
-    <ProductName>GageTracker</ProductName>
-    <PublisherName>Alex Fare</PublisherName>
-    <MinimumRequiredVersion>5.17.0.69</MinimumRequiredVersion>
-    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
-    <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>91</ApplicationRevision>
-    <ApplicationVersion>5.21.1.%2a</ApplicationVersion>
-    <UseApplicationTrust>false</UseApplicationTrust>
-    <CreateDesktopShortcut>true</CreateDesktopShortcut>
-    <PublishWizardCompleted>true</PublishWizardCompleted>
-    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+
+    <!-- Application manifest and icon -->
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+    <ApplicationIcon>GTLogo.ico</ApplicationIcon>
+
+        <!-- Signing / manifest settings preserved (temporary: disable assembly and manifest signing for SDK build)
+          To re-enable strong-name signing for net10 builds, use PublicSign or sign during CI with appropriate tooling. -->
+        <SignAssembly>false</SignAssembly>
+        <AssemblyOriginatorKeyFile>GageCalibrationTracker_TemporaryKey.pfx</AssemblyOriginatorKeyFile>
+        <SignManifests>false</SignManifests>
+        <GenerateManifests>true</GenerateManifests>
+        <ManifestCertificateThumbprint>8E1B94B63ED4D59A9E9A198E9913676C74B5D804</ManifestCertificateThumbprint>
+        <!-- Preserve VB "Application Framework" behaviour (My.Application, Startup events, etc.) -->
+        <EnableApplicationFramework>true</EnableApplicationFramework>
+        <MyType>WindowsForms</MyType>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <DefineDebug>true</DefineDebug>
-    <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
     <DocumentationFile>GageTracker.xml</DocumentationFile>
-    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
     <Prefer32Bit>false</Prefer32Bit>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
     <DebugType>pdbonly</DebugType>
-    <DefineDebug>false</DefineDebug>
-    <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DocumentationFile>GageTracker.xml</DocumentationFile>
-    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
-  <PropertyGroup>
-    <OptionExplicit>On</OptionExplicit>
-  </PropertyGroup>
-  <PropertyGroup>
-    <OptionCompare>Binary</OptionCompare>
-  </PropertyGroup>
-  <PropertyGroup>
-    <OptionStrict>Off</OptionStrict>
-  </PropertyGroup>
-  <PropertyGroup>
-    <OptionInfer>On</OptionInfer>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationIcon>GTLogo.ico</ApplicationIcon>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
-  </PropertyGroup>
-  <PropertyGroup>
-    <SignManifests>true</SignManifests>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ManifestCertificateThumbprint>8E1B94B63ED4D59A9E9A198E9913676C74B5D804</ManifestCertificateThumbprint>
-  </PropertyGroup>
-  <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
-  </PropertyGroup>
-  <PropertyGroup>
-    <AssemblyOriginatorKeyFile>GageCalibrationTracker_TemporaryKey.pfx</AssemblyOriginatorKeyFile>
-  </PropertyGroup>
-  <PropertyGroup>
-    <GenerateManifests>true</GenerateManifests>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-    <DebugSymbols>true</DebugSymbols>
-    <DefineDebug>true</DefineDebug>
-    <DefineTrace>true</DefineTrace>
-    <OutputPath>bin\x64\Debug\</OutputPath>
-    <DocumentationFile>GageTracker.xml</DocumentationFile>
-    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <Prefer32Bit>true</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <DefineTrace>true</DefineTrace>
-    <OutputPath>bin\x64\Release\</OutputPath>
-    <DocumentationFile>GageTracker.xml</DocumentationFile>
-    <Optimize>true</Optimize>
-    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <Prefer32Bit>true</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ManifestKeyFile>GageCalibrationTracker_TemporaryKey.pfx</ManifestKeyFile>
-  </PropertyGroup>
+
+  <!-- Keep designer generators for special files (datasets, application, settings) -->
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Net.Http" />
+    <None Include="Datasets\GTDatabaseDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GTDatabaseDataSet.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Datasets\GTDatabaseDataSet.xsc">
+      <DependentUpon>GTDatabaseDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Datasets\GTDatabaseDataSet.xss">
+      <DependentUpon>GTDatabaseDataSet.xsd</DependentUpon>
+    </None>
+
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\app.manifest" />
+    <None Include="App.config" />
+    <None Include="GageCalibrationTracker_TemporaryKey.pfx" />
   </ItemGroup>
+
+  <!-- Add VB default Imports so designer files resolve WinForms and common types -->
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
     <Import Include="System" />
@@ -147,232 +89,33 @@
     <Import Include="System.Xml.Linq" />
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
+
+  <!-- Bring in compatibility APIs (OLE DB and other Windows-only APIs) -->
   <ItemGroup>
-    <Compile Include="Forms\About.Designer.vb">
-      <DependentUpon>About.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\About.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Admin\AccountManagement.Designer.vb">
-      <DependentUpon>AccountManagement.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\AccountManagement.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Admin\AdminMenu.Designer.vb">
-      <DependentUpon>AdminMenu.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\AdminMenu.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Handlers\ApplicationEvents.vb" />
-    <Compile Include="Admin\CustomerEntry.Designer.vb">
-      <DependentUpon>CustomerEntry.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\CustomerEntry.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Dashboard.Designer.vb">
-      <DependentUpon>Dashboard.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Dashboard.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Handlers\DatabaseHandler.vb" />
-    <Compile Include="Admin\DepartmentManager.Designer.vb">
-      <DependentUpon>DepartmentManager.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\DepartmentManager.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\DueDateCategorizer.Designer.vb">
-      <DependentUpon>DueDateCategorizer.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DueDateCategorizer.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Shared\ExitConfirmationForm.Designer.vb">
-      <DependentUpon>ExitConfirmationForm.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Shared\ExitConfirmationForm.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\GageList.Designer.vb">
-      <DependentUpon>GageList.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\GageList.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\GageType.Designer.vb">
-      <DependentUpon>GageType.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\GageType.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Modules\GlobalVars.vb" />
-    <Compile Include="Datasets\GTDatabaseDataSet.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GTDatabaseDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\LoadingScreen.Designer.vb">
-      <DependentUpon>LoadingScreen.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\LoadingScreen.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Modules\Logger.vb" />
-    <Compile Include="Admin\LoginForm.Designer.vb">
-      <DependentUpon>LoginForm.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\LoginForm.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\GTMenu.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\GTMenu.Designer.vb">
-      <DependentUpon>GTMenu.vb</DependentUpon>
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="My Project\AssemblyInfo.vb" />
-    <Compile Include="My Project\Application.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Application.myapp</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="My Project\Resources.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="My Project\Settings.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-    <Compile Include="Handlers\PrintHandler.Designer.vb">
-      <DependentUpon>PrintHandler.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Handlers\PrintHandler.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\ReportIssue.Designer.vb">
-      <DependentUpon>ReportIssue.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\ReportIssue.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Handlers\SecureHandler.vb" />
-    <Compile Include="Admin\StatusMenu.Designer.vb">
-      <DependentUpon>StatusMenu.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\StatusMenu.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <PackageReference Include="Microsoft.Windows.Compatibility" Version="8.0.0" />
   </ItemGroup>
+
+  <!-- Keep icons/content copied to output -->
   <ItemGroup>
-    <EmbeddedResource Include="Forms\About.resx">
-      <DependentUpon>About.vb</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Admin\AccountManagement.resx">
-      <DependentUpon>AccountManagement.vb</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Admin\AdminMenu.resx">
-      <DependentUpon>AdminMenu.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Admin\CustomerEntry.resx">
-      <DependentUpon>CustomerEntry.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Dashboard.resx">
-      <DependentUpon>Dashboard.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Admin\DepartmentManager.resx">
-      <DependentUpon>DepartmentManager.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DueDateCategorizer.resx">
-      <DependentUpon>DueDateCategorizer.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Shared\ExitConfirmationForm.resx">
-      <DependentUpon>ExitConfirmationForm.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\GageList.resx">
-      <DependentUpon>GageList.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\GageType.resx">
-      <DependentUpon>GageType.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\LoadingScreen.resx">
-      <DependentUpon>LoadingScreen.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Admin\LoginForm.resx">
-      <DependentUpon>LoginForm.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\GTMenu.resx">
-      <DependentUpon>GTMenu.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="My Project\Resources.resx">
-      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
-      <CustomToolNamespace>My.Resources</CustomToolNamespace>
-      <SubType>Designer</SubType>
-      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Handlers\PrintHandler.resx">
-      <DependentUpon>PrintHandler.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ReportIssue.resx">
-      <DependentUpon>ReportIssue.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Admin\StatusMenu.resx">
-      <DependentUpon>StatusMenu.vb</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="GageCalibrationTracker_TemporaryKey.pfx" />
-    <None Include="Datasets\GTDatabaseDataSet.xsc">
-      <DependentUpon>GTDatabaseDataSet.xsd</DependentUpon>
+    <None Include="GTLogo.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Datasets\GTDatabaseDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>GTDatabaseDataSet.Designer.vb</LastGenOutput>
-      <SubType>Designer</SubType>
+    <None Include="quality_management_software_icon.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Datasets\GTDatabaseDataSet.xss">
-      <DependentUpon>GTDatabaseDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="My Project\app.manifest" />
-    <None Include="My Project\Application.myapp">
-      <Generator>MyApplicationCodeGenerator</Generator>
-      <LastGenOutput>Application.Designer.vb</LastGenOutput>
-    </None>
-    <None Include="My Project\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <CustomToolNamespace>My</CustomToolNamespace>
-      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
-    </None>
-    <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
-  </ItemGroup>
-  <ItemGroup>
-    <BootstrapperPackage Include=".NETFramework,Version=v4.8.1">
-      <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.8.1 %28x86 and x64%29</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="GTLogo.ico" />
-    <Content Include="quality_management_software_icon.ico" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+
+
+
+  <!-- Preserve Publish / ClickOnce related metadata (may be unused by SDK but kept for reference) -->
+  <PropertyGroup>
+    <PublishUrl>publish\</PublishUrl>
+    <InstallUrl>https://alexfare.com/programs/gagetracker/latest/</InstallUrl>
+    <UpdateUrl>https://alexfare.com/programs/gagetracker/latest/</UpdateUrl>
+    <SupportUrl>https://github.com/alexfare/GageTracker</SupportUrl>
+    <ErrorReportUrl>https://github.com/alexfare/GageTracker</ErrorReportUrl>
+    <ProductName>GageTracker</ProductName>
+    <PublisherName>Alex Fare</PublisherName>
+  </PropertyGroup>
+
 </Project>

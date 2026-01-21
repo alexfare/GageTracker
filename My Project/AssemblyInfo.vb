@@ -1,6 +1,7 @@
 ﻿Imports System.Reflection
 Imports System.Resources
 Imports System.Runtime.InteropServices
+Imports System.Runtime.Versioning
 
 ' General Information about an assembly is controlled through the following
 ' set of attributes. Change these attribute values to modify the information
@@ -34,3 +35,6 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyVersion("5.21.1.91")>
 <Assembly: AssemblyFileVersion("5.21.1.91")>
 <Assembly: NeutralResourcesLanguage("en")>
+
+' Mark this assembly as Windows-only to satisfy platform compatibility analyzer (CA1416)
+<Assembly: SupportedOSPlatform("windows")>

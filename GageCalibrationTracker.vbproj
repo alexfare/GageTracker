@@ -95,6 +95,7 @@
 
   <!-- Bring in compatibility APIs (OLE DB and other Windows-only APIs) -->
   <ItemGroup>
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="6.1.4" />
     <PackageReference Include="Microsoft.Windows.Compatibility" Version="8.0.0" />
   </ItemGroup>
 

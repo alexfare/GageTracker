@@ -7,8 +7,14 @@ Namespace My
     Partial Friend Class MyApplication
         Private Async Sub MyApplication_Startup(sender As Object, e As EventArgs) Handles Me.Startup
             GlobalVars.DatabaseLocation = My.Settings.DatabaseLocation
-            Await InitializeAppAsync()
-            Await GetAuthAsync()
+            Try
+                Await InitializeAppAsync()
+                Await GetAuthAsync()
+            Catch ex As Exception
+                Logger.LogErrors("Startup initialization failed: " & ex.ToString())
+                MessageBox.Show("A startup error occurred and the application will exit: " & ex.Message, "Startup Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Environment.Exit(1)
+            End Try
         End Sub
 
         Private Async Function InitializeAppAsync() As Task
@@ -191,9 +197,19 @@ Namespace My
         End Sub
 
         Private Sub MyApplication_UnhandledException(sender As Object, e As Microsoft.VisualBasic.ApplicationServices.UnhandledExceptionEventArgs) Handles Me.UnhandledException
-            MessageBox.Show("An unhandled exception occurred: " & e.Exception.Message)
-            Logger.LogErrors("An unhandled exception occurred: " & e.Exception.ToString())
-            e.ExitApplication = False
+            Try
+                Dim ex As Exception = e.Exception
+                Logger.LogErrors("Unhandled exception: " & ex.ToString())
+                If TypeOf ex Is OleDb.OleDbException Then
+                    Dim oleEx = DirectCast(ex, OleDb.OleDbException)
+                    Logger.LogErrors($"OleDb error code: {oleEx.ErrorCode}")
+                End If
+                MessageBox.Show("An unhandled exception occurred: " & ex.Message, "Unhandled Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Catch loggingEx As Exception
+                ' Swallow any logging errors to avoid recursive failure
+            Finally
+                e.ExitApplication = True
+            End Try
         End Sub
 
         Private Sub MyApplication_StartupNextInstance(sender As Object, e As Microsoft.VisualBasic.ApplicationServices.StartupNextInstanceEventArgs) Handles Me.StartupNextInstance

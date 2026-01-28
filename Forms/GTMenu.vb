@@ -15,6 +15,7 @@ Public Class GTMenu
 
 #Region "GTMenu Load"
     Private Sub Menu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Cursor.Current = Cursors.WaitCursor
         SetupUI()
         LoadData()
 

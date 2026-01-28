@@ -7,9 +7,7 @@ Public Class GageList
     Private WithEvents filterTimer As New Timer With {.Interval = 300}
 
 #Region "GageList Load"
-    Private Sub GageList_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'TODO: This line of code loads data into the 'GTDatabaseDataSet.CalibrationTracker' table. You can move, or remove it, as needed.
-        Me.CalibrationTrackerTableAdapter.Fill(Me.GTDatabaseDataSet.CalibrationTracker)
+    Private Async Sub GageList_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         AddHandler DataGridView1.SelectionChanged, AddressOf DataGridView1_SelectionChanged
         AddHandler DataGridView1.CellDoubleClick, AddressOf DataGridView1_CellDoubleClick
         Dim getVersion As String = My.Settings.VersionString
@@ -22,6 +20,11 @@ Public Class GageList
 
         Try
             GlobalVars.LoadDatabaseLocation()
+
+            Me.CalibrationTrackerTableAdapter.Connection = DatabaseHandler.GetConnection()
+
+            Await Task.Run(Sub() Me.CalibrationTrackerTableAdapter.Fill(Me.GTDatabaseDataSet.CalibrationTracker))
+
             LoadData()
         Catch ex As OleDbException
             MessageBox.Show("Database error: " & ex.Message)
@@ -125,11 +128,9 @@ Public Class GageList
 #End Region
 
 #Region "Database"
-    Public Sub LoadData(Optional filterQuery As String = "")
+    Public Async Sub LoadData(Optional filterQuery As String = "")
         Cursor.Current = Cursors.WaitCursor
         DataGridView1.DataSource = Nothing
-        Application.DoEvents()
-
 
         Dim query As String = "SELECT GageID, [Status], [PartNumber], [Description], Department, [Gage Type], [Customer], [Inspected Date], [Due Date] FROM CalibrationTracker"
 
@@ -137,26 +138,32 @@ Public Class GageList
             query &= " WHERE " & filterQuery
         End If
 
-        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
-            Try
-                connection.Open()
+        Try
+            Dim table As DataTable = Await Task.Run(Function()
+                                                        Dim dt As New DataTable()
+                                                        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
+                                                            connection.Open()
+                                                            Dim command As New OleDbCommand(query, connection)
+                                                            Dim adapter As New OleDbDataAdapter(command)
+                                                            adapter.Fill(dt)
+                                                        End Using
+                                                        Return dt
+                                                    End Function)
 
-                Dim command As New OleDbCommand(query, connection)
-                Dim adapter As New OleDbDataAdapter(command)
-                Dim table As New DataTable()
-                adapter.Fill(table)
+            If Me.IsHandleCreated Then
+                Me.Invoke(Sub()
+                              DataGridView1.DataSource = table
+                              Cursor.Current = Cursors.Default
+                          End Sub)
+            End If
 
-                DataGridView1.DataSource = table
-                Cursor.Current = Cursors.Default
-
-            Catch ex As OleDbException
-                Logger.LogErrors("OleDb error: " & ex.Message)
-            Catch ex As Exception
-                MessageBox.Show("An error occurred: " & ex.Message,
-                            "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly)
-                Logger.LogErrors("An error occurred: " & ex.Message)
-            End Try
-        End Using
+        Catch ex As OleDbException
+            Logger.LogErrors("OleDb error: " & ex.Message)
+        Catch ex As Exception
+            MessageBox.Show("An error occurred: " & ex.Message,
+                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly)
+            Logger.LogErrors("An error occurred: " & ex.Message)
+        End Try
     End Sub
 #End Region
 
@@ -256,7 +263,7 @@ Public Class GageList
     End Sub
 
     Private Sub WebsiteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles WebsiteToolStripMenuItem.Click
-        Dim url As String = "https://alexfare.com/programs/gagetracker/latest/"
+        Dim url As String = "https://alexfare.com/programs/gagetracker/latest/publish.htm"
         Try
             Process.Start(url)
         Catch ex As Exception

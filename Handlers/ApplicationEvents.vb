@@ -5,18 +5,22 @@ Imports System.Net.Http
 
 Namespace My
     Partial Friend Class MyApplication
-        Private Async Sub MyApplication_Startup(sender As Object, e As EventArgs) Handles Me.Startup
+        Private Sub MyApplication_Startup(sender As Object, e As EventArgs) Handles Me.Startup
             GlobalVars.DatabaseLocation = My.Settings.DatabaseLocation
-            Await InitializeAppAsync()
-            Await GetAuthAsync()
+
+            'Stop blocking the UI & startup sequence
+            Dim initTask = InitializeAppAsync()
+            initTask.ContinueWith(Sub(t) If t.Exception IsNot Nothing Then Logger.LogErrors(t.Exception.ToString()))
+
+            Dim authTask = GetAuthAsync()
+            authTask.ContinueWith(Sub(t) If t.Exception IsNot Nothing Then Logger.LogErrors(t.Exception.ToString()))
         End Sub
 
         Private Async Function InitializeAppAsync() As Task
             If Not System.IO.File.Exists(GlobalVars.DatabaseLocation) Then
                 If Await DatabaseCheckAsync() Then
-                    DatabaseVersionCheck()
-                    BackupDatabase()
-                    ' Update open count off the UI thread since OleDb does not provide async APIs
+                    Await DatabaseVersionCheckAsync()
+                    Await Task.Run(Sub() BackupDatabase())
                     Await Task.Run(Sub() UpdateOpenCount())
 
                     SystemLog()
@@ -28,6 +32,35 @@ Namespace My
                     Environment.Exit(0)
                 End If
             End If
+        End Function
+
+        Private Async Function DatabaseVersionCheckAsync() As Task
+            Dim query As String = "SELECT [Number] FROM Settings WHERE SettingName = 'MinVersion'"
+            Dim result As Object = Nothing
+
+            Try
+                result = Await Task.Run(Function()
+                                            Using connection As OleDbConnection = DatabaseHandler.GetConnection()
+                                                Using command As New OleDbCommand(query, connection)
+                                                    connection.Open()
+                                                    Return command.ExecuteScalar()
+                                                End Using
+                                            End Using
+                                        End Function)
+
+                If result IsNot Nothing AndAlso IsNumeric(result) Then
+                    Dim minVersion As Integer = CInt(result)
+                    Dim RequestedVersion = My.Settings.DatabaseVersion
+
+                    If RequestedVersion < minVersion Then
+                        Logger.LogErrors("Database out of date. Minimum Version")
+                        MessageBox.Show("Database out of date. Minimum Version: " & minVersion.ToString())
+                    End If
+                End If
+
+            Catch ex As Exception
+                Logger.LogErrors("An error occurred while checking the database version: " & ex.ToString())
+            End Try
         End Function
 
         Private Async Function DatabaseCheckAsync() As Task(Of Boolean)

@@ -3,147 +3,149 @@ Imports System.Drawing.Drawing2D
 
 Public Class Dashboard
 
-    Private Sub Dashboard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Async Sub Dashboard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         UI_Setup()
 
-        ' Load data
-        GetActiveEntriesCount()
-        GetInactiveEntriesCount()
-        GetLostEntriesCount()
-        GetPastDueCount()
-        GetDueWithin30DaysCount()
-        GetDueWithin60DaysCount()
+        Dim activeTask = GetActiveEntriesCountAsync()
+        Dim inactiveTask = GetInactiveEntriesCountAsync()
+        Dim lostTask = GetLostEntriesCountAsync()
+        Dim pastDueTask = GetPastDueCountAsync()
+        Dim due30Task = GetDueWithin30DaysCountAsync()
+        Dim due60Task = GetDueWithin60DaysCountAsync()
+
+        Await Task.WhenAll(activeTask, inactiveTask, lostTask, pastDueTask, due30Task, due60Task)
+
+        Try
+            TxtActive.Text = activeTask.Result.ToString()
+            TxtInactive.Text = inactiveTask.Result.ToString()
+            TxtLost.Text = lostTask.Result.ToString()
+
+            TxtOverdue.Text = pastDueTask.Result.ToString()
+            TxtOverdue.BackColor = If(pastDueTask.Result = 0, SystemColors.Control, Color.Red)
+
+            Txt30.Text = due30Task.Result.ToString()
+            Txt30.BackColor = If(due30Task.Result = 0, SystemColors.Control, Color.Yellow)
+
+            Txt60.Text = due60Task.Result.ToString()
+            Txt60.BackColor = If(due60Task.Result = 0, SystemColors.Control, Color.LightBlue)
+        Catch ex As Exception
+            Logger.LogErrors("Error updating Dashboard UI: " & ex.ToString())
+        End Try
     End Sub
 
 #Region "Database Commands"
-    Public Function GetActiveEntriesCount() As Integer
-        Dim totalCount As Integer = 0
-        Dim query As String = "SELECT COUNT(*) FROM CalibrationTracker WHERE Status = 'Active'"
+    Public Async Function GetActiveEntriesCountAsync() As Task(Of Integer)
+        Return Await Task.Run(Function()
+                                  Dim totalCount As Integer = 0
+                                  Dim query As String = "SELECT COUNT(*) FROM CalibrationTracker WHERE Status = 'Active'"
 
-        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
-            Try
-                connection.Open()
-                Using command As New OleDbCommand(query, connection)
-                    totalCount = Convert.ToInt32(command.ExecuteScalar())
-                    TxtActive.Text = totalCount
-                End Using
-            Catch ex As Exception
-                Logger.LogErrors("Error: " & ex.Message)
-                MessageBox.Show("Error: " & ex.Message)
-            End Try
-        End Using
-        Return totalCount
+                                  Using connection As OleDbConnection = DatabaseHandler.GetConnection()
+                                      Try
+                                          connection.Open()
+                                          Using command As New OleDbCommand(query, connection)
+                                              totalCount = Convert.ToInt32(command.ExecuteScalar())
+                                          End Using
+                                      Catch ex As Exception
+                                          Logger.LogErrors("Error: " & ex.Message)
+                                      End Try
+                                  End Using
+                                  Return totalCount
+                              End Function)
     End Function
 
-    Public Function GetInactiveEntriesCount() As Integer
-        Dim totalCount As Integer = 0
-        Dim query As String = "
-                                SELECT COUNT(*)
-                                FROM CalibrationTracker
-                                WHERE Status NOT IN ('Active', 'Lost')
-                             "
-
-
-        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
-            Try
-                connection.Open()
-                Using command As New OleDbCommand(query, connection)
-                    totalCount = Convert.ToInt32(command.ExecuteScalar())
-                    TxtInactive.Text = totalCount
-                End Using
-            Catch ex As Exception
-                Logger.LogErrors("Error: " & ex.Message)
-                MessageBox.Show("Error: " & ex.Message)
-            End Try
-        End Using
-        Return totalCount
+    Public Async Function GetInactiveEntriesCountAsync() As Task(Of Integer)
+        Return Await Task.Run(Function()
+                                  Dim totalCount As Integer = 0
+                                  Dim query As String = "SELECT COUNT(*) FROM CalibrationTracker WHERE Status NOT IN ('Active', 'Lost')"
+                                  Using connection As OleDbConnection = DatabaseHandler.GetConnection()
+                                      Try
+                                          connection.Open()
+                                          Using command As New OleDbCommand(query, connection)
+                                              totalCount = Convert.ToInt32(command.ExecuteScalar())
+                                          End Using
+                                      Catch ex As Exception
+                                          Logger.LogErrors("Error: " & ex.Message)
+                                      End Try
+                                  End Using
+                                  Return totalCount
+                              End Function)
     End Function
 
-    Public Function GetLostEntriesCount() As Integer
-        Dim totalCount As Integer = 0
-        Dim query As String = "SELECT COUNT(*) FROM CalibrationTracker WHERE Status = 'Lost'"
-
-        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
-            Try
-                connection.Open()
-                Using command As New OleDbCommand(query, connection)
-                    totalCount = Convert.ToInt32(command.ExecuteScalar())
-                    TxtLost.Text = totalCount
-                End Using
-            Catch ex As Exception
-                Logger.LogErrors("Error: " & ex.Message)
-                MessageBox.Show("Error: " & ex.Message)
-            End Try
-        End Using
-        Return totalCount
+    Public Async Function GetLostEntriesCountAsync() As Task(Of Integer)
+        Return Await Task.Run(Function()
+                                  Dim totalCount As Integer = 0
+                                  Dim query As String = "SELECT COUNT(*) FROM CalibrationTracker WHERE Status = 'Lost'"
+                                  Using connection As OleDbConnection = DatabaseHandler.GetConnection()
+                                      Try
+                                          connection.Open()
+                                          Using command As New OleDbCommand(query, connection)
+                                              totalCount = Convert.ToInt32(command.ExecuteScalar())
+                                          End Using
+                                      Catch ex As Exception
+                                          Logger.LogErrors("Error: " & ex.Message)
+                                      End Try
+                                  End Using
+                                  Return totalCount
+                              End Function)
     End Function
 
-    Public Function GetPastDueCount() As Integer
-        Dim totalCount As Integer = 0
-        Dim query As String = "SELECT COUNT(*) FROM CalibrationTracker WHERE [Due Date] < ?"
-
-        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
-            Try
-                connection.Open()
-                Using command As New OleDbCommand(query, connection)
-                    command.Parameters.AddWithValue("@Today", DateTime.Now.Date)
-                    totalCount = Convert.ToInt32(command.ExecuteScalar())
-                    TxtOverdue.Text = totalCount
-
-                    TxtOverdue.BackColor = If(totalCount = 0, SystemColors.Control, Color.Red)
-                End Using
-            Catch ex As Exception
-                Logger.LogErrors("Error: " & ex.Message)
-                MessageBox.Show("Error: " & ex.Message)
-            End Try
-        End Using
-        Return totalCount
+    Public Async Function GetPastDueCountAsync() As Task(Of Integer)
+        Return Await Task.Run(Function()
+                                  Dim totalCount As Integer = 0
+                                  Dim query As String = "SELECT COUNT(*) FROM CalibrationTracker WHERE [Due Date] < ?"
+                                  Using connection As OleDbConnection = DatabaseHandler.GetConnection()
+                                      Try
+                                          connection.Open()
+                                          Using command As New OleDbCommand(query, connection)
+                                              command.Parameters.AddWithValue("@Today", DateTime.Now.Date)
+                                              totalCount = Convert.ToInt32(command.ExecuteScalar())
+                                          End Using
+                                      Catch ex As Exception
+                                          Logger.LogErrors("Error: " & ex.Message)
+                                      End Try
+                                  End Using
+                                  Return totalCount
+                              End Function)
     End Function
 
-    Public Function GetDueWithin30DaysCount() As Integer
-        Dim totalCount As Integer = 0
-        Dim query As String = "SELECT COUNT(*) FROM CalibrationTracker WHERE [Due Date] >= ? AND [Due Date] <= ?"
-
-        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
-            Try
-                connection.Open()
-                Using command As New OleDbCommand(query, connection)
-                    command.Parameters.AddWithValue("@Today", DateTime.Now.Date)
-                    command.Parameters.AddWithValue("@ThirtyDays", DateTime.Now.Date.AddDays(30))
-                    totalCount = Convert.ToInt32(command.ExecuteScalar())
-                    Txt30.Text = totalCount
-
-                    Txt30.BackColor = If(totalCount = 0, SystemColors.Control, Color.Yellow)
-                End Using
-            Catch ex As Exception
-                Logger.LogErrors("Error: " & ex.Message)
-                MessageBox.Show("Error: " & ex.Message)
-            End Try
-        End Using
-        Return totalCount
+    Public Async Function GetDueWithin30DaysCountAsync() As Task(Of Integer)
+        Return Await Task.Run(Function()
+                                  Dim totalCount As Integer = 0
+                                  Dim query As String = "SELECT COUNT(*) FROM CalibrationTracker WHERE [Due Date] >= ? AND [Due Date] <= ?"
+                                  Using connection As OleDbConnection = DatabaseHandler.GetConnection()
+                                      Try
+                                          connection.Open()
+                                          Using command As New OleDbCommand(query, connection)
+                                              command.Parameters.AddWithValue("@Today", DateTime.Now.Date)
+                                              command.Parameters.AddWithValue("@ThirtyDays", DateTime.Now.Date.AddDays(30))
+                                              totalCount = Convert.ToInt32(command.ExecuteScalar())
+                                          End Using
+                                      Catch ex As Exception
+                                          Logger.LogErrors("Error: " & ex.Message)
+                                      End Try
+                                  End Using
+                                  Return totalCount
+                              End Function)
     End Function
 
-    Public Function GetDueWithin60DaysCount() As Integer
-        Dim totalCount As Integer = 0
-        Dim query As String = "SELECT COUNT(*) FROM CalibrationTracker WHERE [Due Date] >= ? AND [Due Date] <= ?"
-
-        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
-            Try
-                connection.Open()
-                Using command As New OleDbCommand(query, connection)
-                    command.Parameters.AddWithValue("@Today", DateTime.Now.Date)
-                    command.Parameters.AddWithValue("@SixtyDays", DateTime.Now.Date.AddDays(60))
-                    totalCount = Convert.ToInt32(command.ExecuteScalar())
-                    Txt60.Text = totalCount
-
-                    Txt60.BackColor = If(totalCount = 0, SystemColors.Control, Color.LightBlue)
-                End Using
-            Catch ex As Exception
-                Logger.LogErrors("Error: " & ex.Message)
-                MessageBox.Show("Error: " & ex.Message)
-            End Try
-        End Using
-        Return totalCount
+    Public Async Function GetDueWithin60DaysCountAsync() As Task(Of Integer)
+        Return Await Task.Run(Function()
+                                  Dim totalCount As Integer = 0
+                                  Dim query As String = "SELECT COUNT(*) FROM CalibrationTracker WHERE [Due Date] >= ? AND [Due Date] <= ?"
+                                  Using connection As OleDbConnection = DatabaseHandler.GetConnection()
+                                      Try
+                                          connection.Open()
+                                          Using command As New OleDbCommand(query, connection)
+                                              command.Parameters.AddWithValue("@Today", DateTime.Now.Date)
+                                              command.Parameters.AddWithValue("@SixtyDays", DateTime.Now.Date.AddDays(60))
+                                              totalCount = Convert.ToInt32(command.ExecuteScalar())
+                                          End Using
+                                      Catch ex As Exception
+                                          Logger.LogErrors("Error: " & ex.Message)
+                                      End Try
+                                  End Using
+                                  Return totalCount
+                              End Function)
     End Function
 #End Region
 

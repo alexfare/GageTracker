@@ -22,10 +22,9 @@ Public Class GageList
             GlobalVars.LoadDatabaseLocation()
 
             Me.CalibrationTrackerTableAdapter.Connection = DatabaseHandler.GetConnection()
-            ' Run the potentially slow Fill on a background thread
+
             Await Task.Run(Sub() Me.CalibrationTrackerTableAdapter.Fill(Me.GTDatabaseDataSet.CalibrationTracker))
 
-            ' Start loading the grid data asynchronously (does DB work on background)
             LoadData()
         Catch ex As OleDbException
             MessageBox.Show("Database error: " & ex.Message)
@@ -141,15 +140,15 @@ Public Class GageList
 
         Try
             Dim table As DataTable = Await Task.Run(Function()
-                                                      Dim dt As New DataTable()
-                                                      Using connection As OleDbConnection = DatabaseHandler.GetConnection()
-                                                          connection.Open()
-                                                          Dim command As New OleDbCommand(query, connection)
-                                                          Dim adapter As New OleDbDataAdapter(command)
-                                                          adapter.Fill(dt)
-                                                      End Using
-                                                      Return dt
-                                                  End Function)
+                                                        Dim dt As New DataTable()
+                                                        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
+                                                            connection.Open()
+                                                            Dim command As New OleDbCommand(query, connection)
+                                                            Dim adapter As New OleDbDataAdapter(command)
+                                                            adapter.Fill(dt)
+                                                        End Using
+                                                        Return dt
+                                                    End Function)
 
             If Me.IsHandleCreated Then
                 Me.Invoke(Sub()

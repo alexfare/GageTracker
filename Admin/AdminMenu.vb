@@ -538,7 +538,7 @@ Public Class AdminMenu
 
 #Region "Menu Strip"
     Private Sub LogoutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LogoutToolStripMenuItem.Click
-        My.Settings.isAdmin = False
+        GlobalVars.isAdmin = False
         GageList.MenuColor()
 
         If My.Settings.FromList = True Then

@@ -15,7 +15,7 @@ Public Class AdminMenu
 #Region "Admin Load"
     Private Async Sub AdminMenu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         StatusLabel.Text = ""
-        LblUser.Text = "Welcome, " + My.Settings.LoggedUser
+        LblUser.Text = "Welcome, " + GlobalVars.CurrentUser + "!"
         Me.Text = originalTitle
         MenuStrip1.BackColor = Color.IndianRed
 
@@ -38,7 +38,7 @@ Public Class AdminMenu
         End If
 
         'Audit Log
-        TxtCurrentUser.Text = My.Settings.LoggedUser
+        TxtCurrentUser.Text = GlobalVars.CurrentUser
         TxtLastActivity.Text = GlobalVars.LastActivity
         TxtLastOpened.Text = My.Settings.LastOpened
         TxtOpenCount.Text = My.Settings.ProgramOpenCount
@@ -203,7 +203,7 @@ Public Class AdminMenu
                     addCmd.Parameters.Add(New OleDbParameter("@DateAdded", OleDbType.Date)).Value = dateAdded
                     addCmd.ExecuteNonQuery()
                     ShowStatus("Gage added successfully", False)
-                    GlobalVars.LastActivity = My.Settings.LoggedUser + " added gage: " + TxtGageID.Text
+                    GlobalVars.LastActivity = GlobalVars.CurrentUser + " added gage: " + TxtGageID.Text
                     Logger.SaveLogEntry()
                     ReloadTimer.Enabled = True
                 Else
@@ -237,10 +237,10 @@ Public Class AdminMenu
             conn.Open()
 
             Dim lastUser As String
-            If String.IsNullOrEmpty(My.Settings.LoggedUser) Then
+            If String.IsNullOrEmpty(GlobalVars.CurrentUser) Then
                 lastUser = Environment.UserName 'Use the current logged-in computer user
             Else
-                lastUser = My.Settings.LoggedUser
+                lastUser = GlobalVars.CurrentUser
             End If
 
             Dim updateCmd As New OleDbCommand("UPDATE [CalibrationTracker] SET PartNumber = ?, PartRev = ?, Status = ?, Description = ?, Department = ?, [Gage Type] = ?, Customer = ?, [Calibrated By] = ?, [Interval (Months)] = ?, [Inspected Date] = ?, [Due Date] = ?, Comments = ?, aN1 = ?, aN2 = ?, aN3 = ?, aN4 = ?, aN5 = ?, aA1 = ?, aA2 = ?, aA3 = ?, aA4 = ?, aA5 = ?, [Serial Number] = ?, Owner = ?, [Nist Number] = ? WHERE GageID = ?", conn)
@@ -357,7 +357,7 @@ Public Class AdminMenu
                     Dim rowsAffected As Integer = deleteCmd.ExecuteNonQuery()
                     If rowsAffected > 0 Then
                         ShowStatus("Gage deleted successfully", False)
-                        GlobalVars.LastActivity = My.Settings.LoggedUser + " deleted gage: " + TxtGageID.Text
+                        GlobalVars.LastActivity = GlobalVars.CurrentUser + " deleted gage: " + TxtGageID.Text
                         Logger.SaveLogEntry()
                         SearchCheck = False
                         ClearForms()

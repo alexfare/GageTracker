@@ -1,3 +1,6 @@
+v5.21.2.92
+Updating Login Settings.
+
 v5.21.1.91
 Fixed issue where program was still trying to load previous database location even after user changed it.
 Updated EventHandler, GageList, Dashboard and GTMenu Load Handling. (Working towards improving load speeds, some areas may see a negative effect currently. Future updates will focus more on load speed, right now we are focused on the overall handling of loading.)

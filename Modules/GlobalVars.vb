@@ -25,8 +25,8 @@
     End Sub
 
     'Session Settings
-    Public isAdmin As Boolean = false
-    Public CurrentUser As String = empty.string
+    Public isAdmin As Boolean = False
+    Public CurrentUser As String = String.Empty
     Public LastOpened As Date = Now
     
 End Module

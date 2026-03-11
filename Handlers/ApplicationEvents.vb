@@ -1,4 +1,4 @@
-﻿Imports System.Data.OleDb
+﻿Imports System.Data.SQLite
 Imports System.IO
 Imports System.Net
 Imports System.Net.Http
@@ -39,8 +39,8 @@ Namespace My
 
             Try
                 result = Await Task.Run(Function()
-                                            Using connection As OleDbConnection = DatabaseHandler.GetConnection()
-                                                Using command As New OleDbCommand(query, connection)
+                                            Using connection As SQLiteConnection = DatabaseHandler.GetConnection()
+                                                Using command As New SQLiteCommand(query, connection)
                                                     connection.Open()
                                                     Return command.ExecuteScalar()
                                                 End Using
@@ -120,8 +120,8 @@ Namespace My
         Sub DatabaseVersionCheck()
             Dim query As String = "SELECT [Number] FROM Settings WHERE SettingName = 'MinVersion'"
 
-            Using connection As OleDbConnection = DatabaseHandler.GetConnection()
-                Using command As New OleDbCommand(query, connection)
+            Using connection As SQLiteConnection = DatabaseHandler.GetConnection()
+                Using command As New SQLiteCommand(query, connection)
                     Try
                         connection.Open()
 
@@ -173,12 +173,12 @@ Namespace My
             Dim getQuery As String = "SELECT [Number] FROM Settings WHERE SettingName = 'OpenCount'"
             Dim updateQuery As String = "UPDATE Settings SET [Number] = ? WHERE SettingName = 'OpenCount'"
 
-            Using connection As OleDbConnection = DatabaseHandler.GetConnection()
+            Using connection As SQLiteConnection = DatabaseHandler.GetConnection()
                 Try
                     connection.Open()
 
                     Dim currentCount As Integer = 0
-                    Using getCommand As New OleDbCommand(getQuery, connection)
+                    Using getCommand As New SQLiteCommand(getQuery, connection)
                         Dim result As Object = getCommand.ExecuteScalar()
                         If result IsNot Nothing AndAlso IsNumeric(result) Then
                             currentCount = CInt(result)
@@ -187,7 +187,7 @@ Namespace My
 
                     Dim newCount As Integer = currentCount + 1
 
-                    Using updateCommand As New OleDbCommand(updateQuery, connection)
+                    Using updateCommand As New SQLiteCommand(updateQuery, connection)
                         updateCommand.Parameters.AddWithValue("@p1", newCount)
                         updateCommand.ExecuteNonQuery()
                     End Using

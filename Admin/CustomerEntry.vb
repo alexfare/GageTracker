@@ -1,5 +1,5 @@
 ﻿
-Imports System.Data.OleDb
+Imports System.Data.SQLite
 
 Public Class CustomerEntry
     Dim insertQuery As String = "INSERT INTO Customers (CustomerName, CustomerAddress, CustomerPhone, CustomerWebsite) VALUES (@Name, @Address, @Phone, @Website)"

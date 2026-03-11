@@ -2,6 +2,7 @@
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
+    <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{2610B379-F35B-40BB-ABB6-5E496072FE50}</ProjectGuid>
@@ -90,10 +91,7 @@
     <ManifestCertificateThumbprint>8E1B94B63ED4D59A9E9A198E9913676C74B5D804</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
-  </PropertyGroup>
-  <PropertyGroup>
-    <AssemblyOriginatorKeyFile>GageCalibrationTracker_TemporaryKey.pfx</AssemblyOriginatorKeyFile>
+    <!-- Signing disabled for .NET Core compatibility -->
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -120,9 +118,13 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>GageCalibrationTracker_TemporaryKey.pfx</ManifestKeyFile>
+    <!-- ManifestKeyFile removed for .NET Core compatibility -->
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="System.Data.SQLite">
+      <Version>2.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="System.Resources.Extensions" Version="7.0.0" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -331,7 +333,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="GageCalibrationTracker_TemporaryKey.pfx" />
+    <!-- Removed PFX keyfile for .NET Core compatibility -->
     <None Include="Datasets\GTDatabaseDataSet.xsc">
       <DependentUpon>GTDatabaseDataSet.xsd</DependentUpon>
     </None>

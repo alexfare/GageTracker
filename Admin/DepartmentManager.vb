@@ -1,4 +1,4 @@
-﻿Imports System.Data.OleDb
+﻿Imports System.Data.SQLite
 
 Public Class DepartmentManager
     Dim insertQuery As String = "INSERT INTO Departments (Departments) VALUES (@Departments)"

@@ -1,4 +1,4 @@
-﻿Imports System.Data.OleDb
+﻿Imports System.Data.SQLite
 Imports System.Net
 
 Public Class AdminMenu
@@ -348,11 +348,11 @@ Public Class AdminMenu
         Dim result As DialogResult = MessageBox.Show("Are you sure you want to delete this gage?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If result = DialogResult.Yes Then
             Try
-                Using conn As OleDbConnection = DatabaseHandler.GetConnection()
+                Using conn As SQLiteConnection = DatabaseHandler.GetConnection()
                     conn.Open()
 
                     'Execute the DELETE query
-                    Dim deleteCmd As New OleDbCommand("DELETE FROM [CalibrationTracker] WHERE GageID = ?", conn)
+                    Dim deleteCmd As New SQLiteCommand("DELETE FROM CalibrationTracker WHERE GageID = @GageID", conn)
                     deleteCmd.Parameters.AddWithValue("@GageID", TxtGageID.Text)
                     Dim rowsAffected As Integer = deleteCmd.ExecuteNonQuery()
                     If rowsAffected > 0 Then
@@ -366,7 +366,7 @@ Public Class AdminMenu
                         ShowStatus("No gage deleted. Please check the GageID.", True)
                     End If
                 End Using
-            Catch ex As OleDbException
+            Catch ex As SQLiteException
                 MessageBox.Show($"Database error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Logger.LogErrors("Database error: " & ex.Message)
             Catch ex As Exception
@@ -426,12 +426,12 @@ Public Class AdminMenu
 
     Private Sub SearchAuditLog()
         Try
-            Using conn As OleDbConnection = DatabaseHandler.GetConnection()
+            Using conn As SQLiteConnection = DatabaseHandler.GetConnection()
                 conn.Open()
-                Dim searchCmd As New OleDbCommand("SELECT [Date Added], [Last Edited], [Last User] FROM [CalibrationTracker] WHERE GageID = ?", conn)
+                Dim searchCmd As New SQLiteCommand("SELECT [Date Added], [Last Edited], [Last User] FROM CalibrationTracker WHERE GageID = @GageID", conn)
                 searchCmd.Parameters.AddWithValue("@GageID", TxtGageID.Text)
 
-                Using reader As OleDbDataReader = searchCmd.ExecuteReader()
+                Using reader As SQLiteDataReader = searchCmd.ExecuteReader()
                     If reader.HasRows Then
                         reader.Read()
                         LblDateAdded.Text = If(IsDBNull(reader("Date Added")), String.Empty, reader("Date Added").ToString())
@@ -603,11 +603,11 @@ Public Class AdminMenu
 
 #Region "Load"
     Public Sub LoadGageID()
-        Using conn As OleDbConnection = DatabaseHandler.GetConnection()
+        Using conn As SQLiteConnection = DatabaseHandler.GetConnection()
             Try
                 conn.Open()
-                Dim cmd As New OleDbCommand("SELECT GageID FROM [CalibrationTracker]", conn)
-                Dim reader As OleDbDataReader = cmd.ExecuteReader()
+                Dim cmd As New SQLiteCommand("SELECT GageID FROM CalibrationTracker", conn)
+                Dim reader As SQLiteDataReader = cmd.ExecuteReader()
                 Dim items As New List(Of String)() ' Temporary list to hold GageID data
 
                 While reader.Read()
@@ -641,11 +641,11 @@ Public Class AdminMenu
     End Sub
 
     Public Sub LoadStatus()
-        Using conn As OleDbConnection = DatabaseHandler.GetConnection()
+        Using conn As SQLiteConnection = DatabaseHandler.GetConnection()
             Try
                 conn.Open()
-                Dim cmd As New OleDbCommand("SELECT Status FROM [Status]", conn)
-                Dim reader As OleDbDataReader = cmd.ExecuteReader()
+                Dim cmd As New SQLiteCommand("SELECT Status FROM Status", conn)
+                Dim reader As SQLiteDataReader = cmd.ExecuteReader()
                 Dim items As New List(Of String)()
 
                 While reader.Read()
@@ -673,11 +673,11 @@ Public Class AdminMenu
     End Sub
 
     Public Sub LoadDepartment()
-        Using conn As OleDbConnection = DatabaseHandler.GetConnection()
+        Using conn As SQLiteConnection = DatabaseHandler.GetConnection()
             Try
                 conn.Open()
-                Dim cmd As New OleDbCommand("SELECT Departments FROM [Departments]", conn) ' Adjust table and column names as necessary
-                Dim reader As OleDbDataReader = cmd.ExecuteReader()
+                Dim cmd As New SQLiteCommand("SELECT Departments FROM Departments", conn) ' Adjust table and column names as necessary
+                Dim reader As SQLiteDataReader = cmd.ExecuteReader()
                 Dim items As New List(Of String)() ' Temporary list to hold Department data
 
                 While reader.Read()
@@ -705,11 +705,11 @@ Public Class AdminMenu
     End Sub
 
     Public Sub LoadGageType()
-        Using conn As OleDbConnection = DatabaseHandler.GetConnection()
+        Using conn As SQLiteConnection = DatabaseHandler.GetConnection()
             Try
                 conn.Open()
-                Dim cmd As New OleDbCommand("SELECT GageType FROM [GageType]", conn) ' Adjust table and column names as necessary
-                Dim reader As OleDbDataReader = cmd.ExecuteReader()
+                Dim cmd As New SQLiteCommand("SELECT GageType FROM GageType", conn) ' Adjust table and column names as necessary
+                Dim reader As SQLiteDataReader = cmd.ExecuteReader()
                 Dim items As New List(Of String)() ' Temporary list to hold Gage Type data
 
                 While reader.Read()
@@ -737,11 +737,11 @@ Public Class AdminMenu
     End Sub
 
     Public Sub LoadCustomers()
-        Using conn As OleDbConnection = DatabaseHandler.GetConnection()
+        Using conn As SQLiteConnection = DatabaseHandler.GetConnection()
             Try
                 conn.Open()
-                Dim cmd As New OleDbCommand("SELECT CustomerName FROM Customers", conn) ' Make sure the table name is correct
-                Dim reader As OleDbDataReader = cmd.ExecuteReader()
+                Dim cmd As New SQLiteCommand("SELECT CustomerName FROM Customers", conn) ' Make sure the table name is correct
+                Dim reader As SQLiteDataReader = cmd.ExecuteReader()
                 Dim items As New List(Of String)() ' Temporary list to hold Customer data
 
                 While reader.Read()
@@ -769,11 +769,11 @@ Public Class AdminMenu
     End Sub
 
     Public Sub LoadUser()
-        Using conn As OleDbConnection = DatabaseHandler.GetConnection()
+        Using conn As SQLiteConnection = DatabaseHandler.GetConnection()
             Try
                 conn.Open()
-                Dim cmd As New OleDbCommand("SELECT Username FROM [Credentials]", conn) ' Adjust table and column names as necessary
-                Dim reader As OleDbDataReader = cmd.ExecuteReader()
+                Dim cmd As New SQLiteCommand("SELECT Username FROM Credentials", conn) ' Adjust table and column names as necessary
+                Dim reader As SQLiteDataReader = cmd.ExecuteReader()
                 Dim items As New List(Of String)() ' Temporary list to hold Gage Type data
 
                 While reader.Read()

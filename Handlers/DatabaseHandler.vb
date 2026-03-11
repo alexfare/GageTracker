@@ -1,10 +1,11 @@
-﻿Imports System.Data.OleDb
+﻿Imports System.Data.SQLite
+Imports System.IO
 
 Public Class DatabaseHandler
-    Public Shared Function GetConnection() As OleDbConnection
+    Public Shared Function GetConnection() As SQLiteConnection
         Try
-            Dim connectionString As String = $"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={GlobalVars.DatabaseLocation};"
-            Return New OleDbConnection(connectionString)
+            SQLiteHandler.EnsureDatabase()
+            Return SQLiteHandler.GetConnection()
         Catch ex As Exception
             Logger.LogSystem("Database connection error: " & ex.Message)
             Throw

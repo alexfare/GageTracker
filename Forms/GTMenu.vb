@@ -1,4 +1,4 @@
-﻿Imports System.Data.OleDb
+﻿Imports System.Data.SQLite
 
 Public Class GTMenu
     Private SearchCheck As Boolean
@@ -57,7 +57,7 @@ Public Class GTMenu
     Public Sub LoadGageID()
         Using conn As OleDbConnection = DatabaseHandler.GetConnection()
             Try
-                conn.Open()
+                    conn.Open()
                 Dim cmd As New OleDbCommand("SELECT GageID FROM [CalibrationTracker]", conn)
                 Dim reader As OleDbDataReader = cmd.ExecuteReader()
                 Dim items As New List(Of String)()
@@ -93,7 +93,7 @@ Public Class GTMenu
     Public Sub LoadStatus()
         Using conn As OleDbConnection = DatabaseHandler.GetConnection()
             Try
-                conn.Open()
+                    conn.Open()
                 Dim cmd As New OleDbCommand("SELECT Status FROM [Status]", conn)
                 Dim reader As OleDbDataReader = cmd.ExecuteReader()
                 Dim items As New List(Of String)()
@@ -123,7 +123,7 @@ Public Class GTMenu
     Public Sub LoadDepartment()
         Using conn As OleDbConnection = DatabaseHandler.GetConnection()
             Try
-                conn.Open()
+                    conn.Open()
                 Dim cmd As New OleDbCommand("SELECT Departments FROM [Departments]", conn)
                 Dim reader As OleDbDataReader = cmd.ExecuteReader()
                 Dim items As New List(Of String)()
@@ -153,7 +153,7 @@ Public Class GTMenu
     Public Sub LoadGageType()
         Using conn As OleDbConnection = DatabaseHandler.GetConnection()
             Try
-                conn.Open()
+                    conn.Open()
                 Dim cmd As New OleDbCommand("SELECT GageType FROM [GageType]", conn)
                 Dim reader As OleDbDataReader = cmd.ExecuteReader()
                 Dim items As New List(Of String)()
@@ -183,7 +183,7 @@ Public Class GTMenu
     Public Sub LoadCustomers()
         Using conn As OleDbConnection = DatabaseHandler.GetConnection()
             Try
-                conn.Open()
+                    conn.Open()
                 Dim cmd As New OleDbCommand("SELECT CustomerName FROM Customers", conn)
                 Dim reader As OleDbDataReader = cmd.ExecuteReader()
                 Dim items As New List(Of String)()
@@ -213,7 +213,7 @@ Public Class GTMenu
     Public Sub LoadUser()
         Using conn As OleDbConnection = DatabaseHandler.GetConnection()
             Try
-                conn.Open()
+                    conn.Open()
                 Dim cmd As New OleDbCommand("SELECT Username FROM [Credentials]", conn)
                 Dim reader As OleDbDataReader = cmd.ExecuteReader()
                 Dim items As New List(Of String)()
@@ -265,7 +265,7 @@ Public Class GTMenu
     Private Sub SearchHandler()
         Using conn As OleDbConnection = DatabaseHandler.GetConnection()
             Try
-                conn.Open()
+                    conn.Open()
                 Dim cmd As New OleDbCommand("SELECT PartNumber, PartRev, [Status], Description, Department, [Gage Type], Customer, [Calibrated By], [Interval (Months)], [Inspected Date], [Due Date], Comments, aN1, aN2, aN3, aN4, aN5, aA1, aA2, aA3, aA4, aA5, [Serial Number], Owner, [Nist Number] FROM [CalibrationTracker] WHERE GageID = ?", conn)
                 cmd.Parameters.AddWithValue("@GageID", TxtGageID.Text)
 

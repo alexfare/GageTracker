@@ -1,4 +1,4 @@
-﻿Imports System.Data.OleDb
+﻿Imports System.Data.SQLite
 
 Public Class StatusMenu
     Dim insertQuery As String = "INSERT INTO Status (Status) VALUES (@Status)"

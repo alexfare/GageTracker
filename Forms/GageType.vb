@@ -1,4 +1,4 @@
-﻿Imports System.Data.OleDb
+﻿Imports System.Data.SQLite
 
 Public Class GageType
     Dim insertQuery As String = "INSERT INTO GageType (GageType) VALUES (@GageType)"

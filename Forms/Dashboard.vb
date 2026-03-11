@@ -1,4 +1,4 @@
-﻿Imports System.Data.OleDb
+﻿Imports System.Data.SQLite
 Imports System.Drawing.Drawing2D
 
 Public Class Dashboard
@@ -39,10 +39,10 @@ Public Class Dashboard
                                   Dim totalCount As Integer = 0
                                   Dim query As String = "SELECT COUNT(*) FROM CalibrationTracker WHERE Status = 'Active'"
 
-                                  Using connection As OleDbConnection = DatabaseHandler.GetConnection()
+                                  Using connection As SQLiteConnection = DatabaseHandler.GetConnection()
                                       Try
                                           connection.Open()
-                                          Using command As New OleDbCommand(query, connection)
+                                          Using command As New SQLiteCommand(query, connection)
                                               totalCount = Convert.ToInt32(command.ExecuteScalar())
                                           End Using
                                       Catch ex As Exception
@@ -57,10 +57,10 @@ Public Class Dashboard
         Return Await Task.Run(Function()
                                   Dim totalCount As Integer = 0
                                   Dim query As String = "SELECT COUNT(*) FROM CalibrationTracker WHERE Status NOT IN ('Active', 'Lost')"
-                                  Using connection As OleDbConnection = DatabaseHandler.GetConnection()
+                                  Using connection As SQLiteConnection = DatabaseHandler.GetConnection()
                                       Try
                                           connection.Open()
-                                          Using command As New OleDbCommand(query, connection)
+                                          Using command As New SQLiteCommand(query, connection)
                                               totalCount = Convert.ToInt32(command.ExecuteScalar())
                                           End Using
                                       Catch ex As Exception
@@ -75,7 +75,7 @@ Public Class Dashboard
         Return Await Task.Run(Function()
                                   Dim totalCount As Integer = 0
                                   Dim query As String = "SELECT COUNT(*) FROM CalibrationTracker WHERE Status = 'Lost'"
-                                  Using connection As OleDbConnection = DatabaseHandler.GetConnection()
+                                  Using connection As SQLiteConnection = DatabaseHandler.GetConnection()
                                       Try
                                           connection.Open()
                                           Using command As New OleDbCommand(query, connection)

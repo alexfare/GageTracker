@@ -1,4 +1,4 @@
-﻿Imports System.Data.OleDb
+﻿Imports System.Data.SQLite
 
 Public Class DueDateCategorizer
 
@@ -9,7 +9,7 @@ Public Class DueDateCategorizer
 
         Try
             LoadData()
-        Catch ex As OleDbException
+        Catch ex As SQLiteException
             MessageBox.Show("Database error: " & ex.Message)
             Logger.LogErrors("Database error: " & ex.Message)
         Catch ex As Exception
@@ -49,11 +49,11 @@ Public Class DueDateCategorizer
     Public Sub LoadData()
         Dim query As String = "SELECT GageID, [Status], [PartNumber], [Description], Department, [Gage Type], [Customer], [Inspected Date], [Due Date] FROM CalibrationTracker"
 
-        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
+        Using connection As SQLiteConnection = DatabaseHandler.GetConnection()
             Try
                 connection.Open()
-                Dim command As New OleDbCommand(query, connection)
-                Dim adapter As New OleDbDataAdapter(command)
+                Dim command As New SQLiteCommand(query, connection)
+                Dim adapter As New SQLiteDataAdapter(command)
                 Dim table As New DataTable()
                 adapter.Fill(table)
 
@@ -83,9 +83,9 @@ Public Class DueDateCategorizer
                 DataGridViewWithin30Days.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
                 DataGridViewWithin60Days.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
 
-            Catch ex As OleDbException
-                MessageBox.Show("OleDb error: " & ex.Message)
-                Logger.LogErrors("OleDb error: " & ex.Message)
+            Catch ex As SQLiteException
+                MessageBox.Show("SQLite error: " & ex.Message)
+                Logger.LogErrors("SQLite error: " & ex.Message)
             Finally
                 If connection.State = ConnectionState.Open Then
                     connection.Close()

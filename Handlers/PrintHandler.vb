@@ -1,5 +1,6 @@
 ﻿Imports System.Drawing.Printing
 Imports System.Security.Cryptography.X509Certificates
+Imports System.Data.SQLite
 
 Public Class PrintHandler
     Private selectedPaperSize As PaperSize

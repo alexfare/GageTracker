@@ -1,5 +1,6 @@
 v5.21.2.92
 Updating Login Settings.
+Update Dashboard, Keep in memory to speed up reopening.
 
 v5.21.1.91
 Fixed issue where program was still trying to load previous database location even after user changed it.

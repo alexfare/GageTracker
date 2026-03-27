@@ -95,7 +95,7 @@ Public Class DueDateCategorizer
     End Sub
 
     Public Sub MenuColor()
-        If My.Settings.isAdmin = True Then
+        If GlobalVars.isAdmin = True Then
             MenuStrip1.BackColor = Color.IndianRed
         Else
             MenuStrip1.BackColor = SystemColors.AppWorkspace

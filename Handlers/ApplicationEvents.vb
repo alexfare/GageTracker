@@ -24,7 +24,6 @@ Namespace My
                     Await Task.Run(Sub() UpdateOpenCount())
 
                     SystemLog()
-                    UpdateMySettings()
                 Else
                     MessageBox.Show("No valid database selected. The application will exit.",
                             "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly)
@@ -215,13 +214,6 @@ Namespace My
                 End Try
             End Using
         End Function
-
-        Sub UpdateMySettings()
-            My.Settings.isAdmin = False
-            My.Settings.LoggedUser = ""
-            My.Settings.LastOpened = Now
-            My.Settings.Save()
-        End Sub
 
         Private Sub MyApplication_UnhandledException(sender As Object, e As Microsoft.VisualBasic.ApplicationServices.UnhandledExceptionEventArgs) Handles Me.UnhandledException
             MessageBox.Show("An unhandled exception occurred: " & e.Exception.Message)

@@ -23,4 +23,10 @@
         My.Settings.DatabaseLocation = location
         My.Settings.Save()
     End Sub
+
+    'Session Settings
+    Public isAdmin As Boolean = False
+    Public CurrentUser As String = String.Empty
+    Public LastOpened As Date = Now
+    
 End Module

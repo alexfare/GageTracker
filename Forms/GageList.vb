@@ -216,7 +216,7 @@ Public Class GageList
     End Sub
 
     Public Sub MenuColor()
-        If My.Settings.isAdmin = True Then
+        If GlobalVars.isAdmin = True Then
             MenuStrip1.BackColor = Color.IndianRed
         Else
             MenuStrip1.BackColor = SystemColors.AppWorkspace
@@ -282,7 +282,7 @@ Public Class GageList
     End Sub
 
     Private Sub AdminToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AdminToolStripMenuItem.Click
-        If My.Settings.isAdmin = True Then
+        If GlobalVars.isAdmin = True Then
             StartAdmin()
         Else
             StartLogin()
@@ -328,8 +328,8 @@ Public Class GageList
         Next
 
         My.Settings.LastActivity = GlobalVars.LastActivity
-        My.Settings.isAdmin = False
-        My.Settings.LoggedUser = ""
+        GlobalVars.isAdmin = False
+        GlobalVars.CurrentUser = ""
         My.Settings.Save()
 
         Application.Exit()

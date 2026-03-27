@@ -1,8 +1,8 @@
 Imports System.Data.OleDb
 Imports System.Security.Cryptography
 Imports System.Text
-Public Class LoginForm
 
+Public Class LoginForm
     Private Sub LoginForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         StatusLabel.Text = ""
     End Sub
@@ -41,9 +41,9 @@ Public Class LoginForm
                     Dim enteredPasswordHash As String = HashPassword(password)
 
                     If enteredPasswordHash.Equals(storedPasswordHash.ToString(), StringComparison.OrdinalIgnoreCase) Then
-                        My.Settings.LoggedUser = username
-                        My.Settings.isAdmin = True
-                        My.Settings.Save()
+                        globalVars.isAdmin = True
+                        globalVars.CurrentUser = username
+                        
                         GageList.MenuColor()
                         AdminMenu.Show()
                         Me.Close()

@@ -495,7 +495,7 @@ Public Class GTMenu
     End Sub
 
     Private Sub BtnAdmin_Click(sender As Object, e As EventArgs) Handles BtnAdmin.Click
-        If My.Settings.isAdmin = True Then
+        If GlobalVars.isAdmin = True Then
             StartAdmin()
         Else
             StartLogin()
@@ -572,7 +572,7 @@ Public Class GTMenu
     End Sub
 
     Private Sub AdminToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AdminToolStripMenuItem.Click
-        If My.Settings.isAdmin = True Then
+        If GlobalVars.isAdmin = True Then
             StartAdmin()
         Else
             StartLogin()
@@ -719,7 +719,7 @@ Public Class GTMenu
     End Sub
 
     Private Sub DeleteConfirmed()
-        If My.Settings.isAdmin = False Then
+        If GlobalVars.isAdmin = False Then
             MessageBox.Show("Must be logged in to delete gage.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return
         End If

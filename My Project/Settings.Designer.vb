@@ -57,8 +57,7 @@ Namespace My
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=R:\Quality\GageCalibration\GTDataba"& _ 
-            "se.accdb")>  _
+            Global.System.Configuration.DefaultSettingValueAttribute("Data Source=|DataDirectory|\\GTDatabase.sqlite;Version=3;")>  _
         Public ReadOnly Property GTDatabaseConnectionString() As String
             Get
                 Return CType(Me("GTDatabaseConnectionString"),String)
@@ -67,7 +66,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Q:\01_Core QMS\Calibration\GTDatabase.accdb")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("GTDatabase.sqlite")>  _
         Public Property DatabaseLocation() As String
             Get
                 Return CType(Me("DatabaseLocation"),String)
@@ -270,8 +269,7 @@ Namespace My
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=""Q:\01_Core QMS\Calibration\GTDatab"& _ 
-            "ase.accdb""")>  _
+            Global.System.Configuration.DefaultSettingValueAttribute("Data Source=|DataDirectory|\\GTDatabase.sqlite;Version=3;")>  _ 
         Public ReadOnly Property GTDBConnectionString() As String
             Get
                 Return CType(Me("GTDBConnectionString"),String)

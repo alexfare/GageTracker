@@ -55,11 +55,11 @@ Public Class GTMenu
 
 #Region "Load"
     Public Sub LoadGageID()
-        Using conn As OleDbConnection = DatabaseHandler.GetConnection()
+        Using conn As SQLiteConnection = DatabaseHandler.GetConnection()
             Try
                     conn.Open()
-                Dim cmd As New OleDbCommand("SELECT GageID FROM [CalibrationTracker]", conn)
-                Dim reader As OleDbDataReader = cmd.ExecuteReader()
+                Dim cmd As New SQLiteCommand("SELECT GageID FROM [CalibrationTracker]", conn)
+                Dim reader As SQLiteDataReader = cmd.ExecuteReader()
                 Dim items As New List(Of String)()
 
                 While reader.Read()
@@ -91,11 +91,11 @@ Public Class GTMenu
     End Sub
 
     Public Sub LoadStatus()
-        Using conn As OleDbConnection = DatabaseHandler.GetConnection()
+        Using conn As SQLiteConnection = DatabaseHandler.GetConnection()
             Try
                     conn.Open()
-                Dim cmd As New OleDbCommand("SELECT Status FROM [Status]", conn)
-                Dim reader As OleDbDataReader = cmd.ExecuteReader()
+                Dim cmd As New SQLiteCommand("SELECT Status FROM [Status]", conn)
+                Dim reader As SQLiteDataReader = cmd.ExecuteReader()
                 Dim items As New List(Of String)()
 
                 While reader.Read()
@@ -121,11 +121,11 @@ Public Class GTMenu
     End Sub
 
     Public Sub LoadDepartment()
-        Using conn As OleDbConnection = DatabaseHandler.GetConnection()
+        Using conn As SQLiteConnection = DatabaseHandler.GetConnection()
             Try
                     conn.Open()
-                Dim cmd As New OleDbCommand("SELECT Departments FROM [Departments]", conn)
-                Dim reader As OleDbDataReader = cmd.ExecuteReader()
+                Dim cmd As New SQLiteCommand("SELECT Departments FROM [Departments]", conn)
+                Dim reader As SQLiteDataReader = cmd.ExecuteReader()
                 Dim items As New List(Of String)()
 
                 While reader.Read()
@@ -151,11 +151,11 @@ Public Class GTMenu
     End Sub
 
     Public Sub LoadGageType()
-        Using conn As OleDbConnection = DatabaseHandler.GetConnection()
+        Using conn As SQLiteConnection = DatabaseHandler.GetConnection()
             Try
                     conn.Open()
-                Dim cmd As New OleDbCommand("SELECT GageType FROM [GageType]", conn)
-                Dim reader As OleDbDataReader = cmd.ExecuteReader()
+                Dim cmd As New SQLiteCommand("SELECT GageType FROM [GageType]", conn)
+                Dim reader As SQLiteDataReader = cmd.ExecuteReader()
                 Dim items As New List(Of String)()
 
                 While reader.Read()
@@ -181,11 +181,11 @@ Public Class GTMenu
     End Sub
 
     Public Sub LoadCustomers()
-        Using conn As OleDbConnection = DatabaseHandler.GetConnection()
+        Using conn As SQLiteConnection = DatabaseHandler.GetConnection()
             Try
                     conn.Open()
-                Dim cmd As New OleDbCommand("SELECT CustomerName FROM Customers", conn)
-                Dim reader As OleDbDataReader = cmd.ExecuteReader()
+                Dim cmd As New SQLiteCommand("SELECT CustomerName FROM Customers", conn)
+                Dim reader As SQLiteDataReader = cmd.ExecuteReader()
                 Dim items As New List(Of String)()
 
                 While reader.Read()
@@ -211,11 +211,11 @@ Public Class GTMenu
     End Sub
 
     Public Sub LoadUser()
-        Using conn As OleDbConnection = DatabaseHandler.GetConnection()
+        Using conn As SQLiteConnection = DatabaseHandler.GetConnection()
             Try
                     conn.Open()
-                Dim cmd As New OleDbCommand("SELECT Username FROM [Credentials]", conn)
-                Dim reader As OleDbDataReader = cmd.ExecuteReader()
+                Dim cmd As New SQLiteCommand("SELECT Username FROM [Credentials]", conn)
+                Dim reader As SQLiteDataReader = cmd.ExecuteReader()
                 Dim items As New List(Of String)()
 
                 While reader.Read()
@@ -263,13 +263,13 @@ Public Class GTMenu
     End Sub
 
     Private Sub SearchHandler()
-        Using conn As OleDbConnection = DatabaseHandler.GetConnection()
+        Using conn As SQLiteConnection = DatabaseHandler.GetConnection()
             Try
                     conn.Open()
-                Dim cmd As New OleDbCommand("SELECT PartNumber, PartRev, [Status], Description, Department, [Gage Type], Customer, [Calibrated By], [Interval (Months)], [Inspected Date], [Due Date], Comments, aN1, aN2, aN3, aN4, aN5, aA1, aA2, aA3, aA4, aA5, [Serial Number], Owner, [Nist Number] FROM [CalibrationTracker] WHERE GageID = ?", conn)
+                Dim cmd As New SQLiteCommand("SELECT PartNumber, PartRev, [Status], Description, Department, [Gage Type], Customer, [Calibrated By], [Interval (Months)], [Inspected Date], [Due Date], Comments, aN1, aN2, aN3, aN4, aN5, aA1, aA2, aA3, aA4, aA5, [Serial Number], Owner, [Nist Number] FROM [CalibrationTracker] WHERE GageID = ?", conn)
                 cmd.Parameters.AddWithValue("@GageID", TxtGageID.Text)
 
-                Using reader As OleDbDataReader = cmd.ExecuteReader()
+                Using reader As SQLiteDataReader = cmd.ExecuteReader()
                     If reader.Read() Then
                         txtPartNumber.Text = reader.Item("PartNumber").ToString()
                         txtPartRev.Text = reader.Item("PartRev").ToString()
@@ -317,7 +317,7 @@ Public Class GTMenu
                         MessageBox.Show("GageID does not exist", "Search Result", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     End If
                 End Using
-            Catch ex As OleDbException
+            Catch ex As SQLiteException
                 MessageBox.Show("Database error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Logger.LogErrors("Database error: " & ex.Message)
             Catch ex As Exception
@@ -336,9 +336,9 @@ Public Class GTMenu
         PauseUserInput(5)
 
         Try
-            Using conn As OleDbConnection = DatabaseHandler.GetConnection()
+            Using conn As SQLiteConnection = DatabaseHandler.GetConnection()
                 conn.Open()
-                Dim checkCmd As New OleDbCommand("SELECT COUNT(*) FROM [CalibrationTracker] WHERE GageID = ?", conn)
+                Dim checkCmd As New SQLiteCommand("SELECT COUNT(*) FROM [CalibrationTracker] WHERE GageID = ?", conn)
                 checkCmd.Parameters.AddWithValue("@GageID", TxtGageID.Text)
                 Dim count As Integer = Convert.ToInt32(checkCmd.ExecuteScalar())
                 If count = 0 Then
@@ -351,7 +351,7 @@ Public Class GTMenu
                     Dim dueDate As DateTime = inspectedDate.AddMonths(intervalMonths)
                     Dim dateAdded As DateTime = Now
 
-                    Dim addCmd As New OleDbCommand("INSERT INTO [CalibrationTracker] (GageID, PartNumber, PartRev, Status, Description, Department, [Gage Type], Customer, [Calibrated By], [Interval (Months)], [Inspected Date], [Due Date], Comments, aN1, aN2, aN3, aN4, aN5, aA1, aA2, aA3, aA4, aA5, [Serial Number], Owner, [Nist Number], [Date Added]) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", conn)
+                    Dim addCmd As New SQLiteCommand("INSERT INTO [CalibrationTracker] (GageID, PartNumber, PartRev, Status, Description, Department, [Gage Type], Customer, [Calibrated By], [Interval (Months)], [Inspected Date], [Due Date], Comments, aN1, aN2, aN3, aN4, aN5, aA1, aA2, aA3, aA4, aA5, [Serial Number], Owner, [Nist Number], [Date Added]) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", conn)
                     addCmd.Parameters.AddWithValue("@GageID", TxtGageID.Text)
                     addCmd.Parameters.AddWithValue("@PartNumber", txtPartNumber.Text)
                     addCmd.Parameters.AddWithValue("@PartRev", txtPartRev.Text)
@@ -361,9 +361,9 @@ Public Class GTMenu
                     addCmd.Parameters.AddWithValue("@GageType", txtGageType.Text)
                     addCmd.Parameters.AddWithValue("@Customer", txtCustomer.Text)
                     addCmd.Parameters.AddWithValue("@CalibratedBy", txtCalibratedBy.Text)
-                    addCmd.Parameters.Add(New OleDbParameter("@Interval", OleDbType.Integer)).Value = intervalMonths
-                    addCmd.Parameters.Add(New OleDbParameter("@InspectedDate", OleDbType.Date)).Value = inspectedDate
-                    addCmd.Parameters.Add(New OleDbParameter("@DueDate", OleDbType.Date)).Value = dueDate
+                    addCmd.Parameters.AddWithValue("@Interval", intervalMonths)
+                    addCmd.Parameters.AddWithValue("@InspectedDate", inspectedDate)
+                    addCmd.Parameters.AddWithValue("@DueDate", dueDate)
                     addCmd.Parameters.AddWithValue("@Comments", txtComments.Text)
                     addCmd.Parameters.AddWithValue("@aN1", txtaN1.Text)
                     addCmd.Parameters.AddWithValue("@aN2", txtaN2.Text)
@@ -378,7 +378,7 @@ Public Class GTMenu
                     addCmd.Parameters.AddWithValue("@SerialNumber", TxtSerialNumber.Text)
                     addCmd.Parameters.AddWithValue("@Owner", txtOwner.Text)
                     addCmd.Parameters.AddWithValue("@NistNumber", TxtNistNumber.Text)
-                    addCmd.Parameters.Add(New OleDbParameter("@DateAdded", OleDbType.Date)).Value = dateAdded
+                    addCmd.Parameters.AddWithValue("@DateAdded", dateAdded)
                     addCmd.ExecuteNonQuery()
                     ShowStatus("Gage added successfully", False)
                     GlobalVars.LastActivity = TxtGageID.Text + " added successfully"
@@ -388,7 +388,7 @@ Public Class GTMenu
                     MessageBox.Show("This GageID already exists", "Duplicate Entry", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 End If
             End Using
-        Catch ex As OleDbException
+        Catch ex As SQLiteException
             MessageBox.Show($"Database error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Logger.LogErrors($"Database error: {ex.Message}")
         Catch ex As Exception
@@ -416,7 +416,7 @@ Public Class GTMenu
     End Sub
 
     Private Sub BtnUpdateConfirmed()
-        Using conn As OleDbConnection = DatabaseHandler.GetConnection()
+        Using conn As SQLiteConnection = DatabaseHandler.GetConnection()
             conn.Open()
 
             Dim lastUser As String
@@ -426,37 +426,37 @@ Public Class GTMenu
                 lastUser = My.Settings.LoggedUser
             End If
 
-            Dim updateCmd As New OleDbCommand("UPDATE [CalibrationTracker] SET PartNumber = ?, PartRev = ?, Status = ?, Description = ?, Department = ?, [Gage Type] = ?, Customer = ?, [Calibrated By] = ?, [Interval (Months)] = ?, [Inspected Date] = ?, [Due Date] = ?, Comments = ?, aN1 = ?, aN2 = ?, aN3 = ?, aN4 = ?, aN5 = ?, aA1 = ?, aA2 = ?, aA3 = ?, aA4 = ?, aA5 = ?, [Serial Number] = ?, Owner = ?, [Nist Number] = ?, [Last User] = ?, [Last Edited] = ? WHERE GageID = ?", conn)
+            Dim updateCmd As New SQLiteCommand("UPDATE [CalibrationTracker] SET PartNumber = ?, PartRev = ?, Status = ?, Description = ?, Department = ?, [Gage Type] = ?, Customer = ?, [Calibrated By] = ?, [Interval (Months)] = ?, [Inspected Date] = ?, [Due Date] = ?, Comments = ?, aN1 = ?, aN2 = ?, aN3 = ?, aN4 = ?, aN5 = ?, aA1 = ?, aA2 = ?, aA3 = ?, aA4 = ?, aA5 = ?, [Serial Number] = ?, Owner = ?, [Nist Number] = ?, [Last User] = ?, [Last Edited] = ? WHERE GageID = ?", conn)
             Dim lastEdited As DateTime = Now
 
-            updateCmd.Parameters.Add(New OleDbParameter("@PartNumber", txtPartNumber.Text))
-            updateCmd.Parameters.Add(New OleDbParameter("@PartRev", txtPartRev.Text))
-            updateCmd.Parameters.Add(New OleDbParameter("@Status", cmbStatus.Text))
-            updateCmd.Parameters.Add(New OleDbParameter("@Description", txtDescription.Text))
-            updateCmd.Parameters.Add(New OleDbParameter("@Department", txtDepartment.Text))
-            updateCmd.Parameters.Add(New OleDbParameter("@GageType", txtGageType.Text))
-            updateCmd.Parameters.Add(New OleDbParameter("@Customer", txtCustomer.Text))
-            updateCmd.Parameters.Add(New OleDbParameter("@CalibratedBy", txtCalibratedBy.Text))
-            updateCmd.Parameters.Add(New OleDbParameter("@Interval", TxtInterval.Text))
-            updateCmd.Parameters.Add(New OleDbParameter("@InspectedDate", DtInspectedDate.Value))
-            updateCmd.Parameters.Add(New OleDbParameter("@DueDate", dtDueDate.Value))
-            updateCmd.Parameters.Add(New OleDbParameter("@Comments", txtComments.Text))
-            updateCmd.Parameters.Add(New OleDbParameter("@aN1", txtaN1.Text))
-            updateCmd.Parameters.Add(New OleDbParameter("@aN2", txtaN2.Text))
-            updateCmd.Parameters.Add(New OleDbParameter("@aN3", txtaN3.Text))
-            updateCmd.Parameters.Add(New OleDbParameter("@aN4", txtaN4.Text))
-            updateCmd.Parameters.Add(New OleDbParameter("@aN5", txtaN5.Text))
-            updateCmd.Parameters.Add(New OleDbParameter("@aA1", txtaA1.Text))
-            updateCmd.Parameters.Add(New OleDbParameter("@aA2", txtaA2.Text))
-            updateCmd.Parameters.Add(New OleDbParameter("@aA3", txtaA3.Text))
-            updateCmd.Parameters.Add(New OleDbParameter("@aA4", txtaA4.Text))
-            updateCmd.Parameters.Add(New OleDbParameter("@aA5", txtaA5.Text))
-            updateCmd.Parameters.Add(New OleDbParameter("@SerialNumber", TxtSerialNumber.Text))
-            updateCmd.Parameters.Add(New OleDbParameter("@Owner", txtOwner.Text))
-            updateCmd.Parameters.Add(New OleDbParameter("@NistNumber", TxtNistNumber.Text))
-            updateCmd.Parameters.Add(New OleDbParameter("@LastUser", lastUser))
-            updateCmd.Parameters.Add(New OleDbParameter("@LastEdited", OleDbType.Date)).Value = lastEdited
-            updateCmd.Parameters.Add(New OleDbParameter("@GageID", TxtGageID.Text))
+            updateCmd.Parameters.AddWithValue("@PartNumber", txtPartNumber.Text)
+            updateCmd.Parameters.AddWithValue("@PartRev", txtPartRev.Text)
+            updateCmd.Parameters.AddWithValue("@Status", cmbStatus.Text)
+            updateCmd.Parameters.AddWithValue("@Description", txtDescription.Text)
+            updateCmd.Parameters.AddWithValue("@Department", txtDepartment.Text)
+            updateCmd.Parameters.AddWithValue("@GageType", txtGageType.Text)
+            updateCmd.Parameters.AddWithValue("@Customer", txtCustomer.Text)
+            updateCmd.Parameters.AddWithValue("@CalibratedBy", txtCalibratedBy.Text)
+            updateCmd.Parameters.AddWithValue("@Interval", TxtInterval.Text)
+            updateCmd.Parameters.AddWithValue("@InspectedDate", DtInspectedDate.Value)
+            updateCmd.Parameters.AddWithValue("@DueDate", dtDueDate.Value)
+            updateCmd.Parameters.AddWithValue("@Comments", txtComments.Text)
+            updateCmd.Parameters.AddWithValue("@aN1", txtaN1.Text)
+            updateCmd.Parameters.AddWithValue("@aN2", txtaN2.Text)
+            updateCmd.Parameters.AddWithValue("@aN3", txtaN3.Text)
+            updateCmd.Parameters.AddWithValue("@aN4", txtaN4.Text)
+            updateCmd.Parameters.AddWithValue("@aN5", txtaN5.Text)
+            updateCmd.Parameters.AddWithValue("@aA1", txtaA1.Text)
+            updateCmd.Parameters.AddWithValue("@aA2", txtaA2.Text)
+            updateCmd.Parameters.AddWithValue("@aA3", txtaA3.Text)
+            updateCmd.Parameters.AddWithValue("@aA4", txtaA4.Text)
+            updateCmd.Parameters.AddWithValue("@aA5", txtaA5.Text)
+            updateCmd.Parameters.AddWithValue("@SerialNumber", TxtSerialNumber.Text)
+            updateCmd.Parameters.AddWithValue("@Owner", txtOwner.Text)
+            updateCmd.Parameters.AddWithValue("@NistNumber", TxtNistNumber.Text)
+            updateCmd.Parameters.AddWithValue("@LastUser", lastUser)
+            updateCmd.Parameters.AddWithValue("@LastEdited", lastEdited)
+            updateCmd.Parameters.AddWithValue("@GageID", TxtGageID.Text)
 
             Dim rowsAffected As Integer = updateCmd.ExecuteNonQuery()
             If rowsAffected > 0 Then
@@ -727,9 +727,9 @@ Public Class GTMenu
         Dim result As DialogResult = MessageBox.Show("Are you sure you want to delete this gage?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If result = DialogResult.Yes Then
             Try
-                Using conn As OleDbConnection = DatabaseHandler.GetConnection()
+                Using conn As SQLiteConnection = DatabaseHandler.GetConnection()
                     conn.Open()
-                    Dim deleteCmd As New OleDbCommand("DELETE FROM [CalibrationTracker] WHERE GageID = ?", conn)
+                    Dim deleteCmd As New SQLiteCommand("DELETE FROM [CalibrationTracker] WHERE GageID = ?", conn)
                     deleteCmd.Parameters.AddWithValue("@GageID", TxtGageID.Text)
                     Dim rowsAffected As Integer = deleteCmd.ExecuteNonQuery()
                     If rowsAffected > 0 Then
@@ -743,7 +743,7 @@ Public Class GTMenu
                         ShowStatus("No gage deleted. Please check the GageID.", True)
                     End If
                 End Using
-            Catch ex As OleDbException
+            Catch ex As SQLiteException
                 MessageBox.Show($"Database error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Logger.LogErrors($"Database error: {ex.Message}")
             Catch ex As Exception
@@ -765,12 +765,12 @@ Public Class GTMenu
 
     Private Sub SearchAuditLog()
         Try
-            Using conn As OleDbConnection = DatabaseHandler.GetConnection()
+            Using conn As SQLiteConnection = DatabaseHandler.GetConnection()
                 conn.Open()
-                Dim searchCmd As New OleDbCommand("SELECT [Date Added], [Last Edited], [Last User] FROM [CalibrationTracker] WHERE GageID = ?", conn)
+                Dim searchCmd As New SQLiteCommand("SELECT [Date Added], [Last Edited], [Last User] FROM [CalibrationTracker] WHERE GageID = ?", conn)
                 searchCmd.Parameters.AddWithValue("@GageID", TxtGageID.Text)
 
-                Using reader As OleDbDataReader = searchCmd.ExecuteReader()
+                Using reader As SQLiteDataReader = searchCmd.ExecuteReader()
                     If reader.HasRows Then
                         reader.Read()
                         LblDateAdded.Text = If(IsDBNull(reader("Date Added")), String.Empty, reader("Date Added").ToString())

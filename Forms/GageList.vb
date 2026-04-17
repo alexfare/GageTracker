@@ -26,7 +26,7 @@ Public Class GageList
             Await Task.Run(Sub() Me.CalibrationTrackerTableAdapter.Fill(Me.GTDatabaseDataSet.CalibrationTracker))
 
             LoadData()
-        Catch ex As OleDbException
+        Catch ex As SQLiteException
             MessageBox.Show("Database error: " & ex.Message)
             Logger.LogErrors("Database error: " & ex.Message)
         Catch ex As Exception
@@ -141,10 +141,10 @@ Public Class GageList
         Try
             Dim table As DataTable = Await Task.Run(Function()
                                                         Dim dt As New DataTable()
-                                                        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
+                                                        Using connection As SQLiteConnection = DatabaseHandler.GetConnection()
                                                             connection.Open()
-                                                            Dim command As New OleDbCommand(query, connection)
-                                                            Dim adapter As New OleDbDataAdapter(command)
+                                                            Dim command As New SQLiteCommand(query, connection)
+                                                            Dim adapter As New SQLiteDataAdapter(command)
                                                             adapter.Fill(dt)
                                                         End Using
                                                         Return dt
@@ -157,8 +157,8 @@ Public Class GageList
                           End Sub)
             End If
 
-        Catch ex As OleDbException
-            Logger.LogErrors("OleDb error: " & ex.Message)
+        Catch ex As SQLiteException
+            Logger.LogErrors("SQLite error: " & ex.Message)
         Catch ex As Exception
             MessageBox.Show("An error occurred: " & ex.Message,
                         "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly)

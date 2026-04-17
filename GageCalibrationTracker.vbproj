@@ -6,7 +6,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{2610B379-F35B-40BB-ABB6-5E496072FE50}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <StartupObject>GageCalibrationTracker.My.MyApplication</StartupObject>
     <RootNamespace>GageCalibrationTracker</RootNamespace>
     <AssemblyName>GageTracker</AssemblyName>
@@ -123,6 +123,22 @@
   <ItemGroup>
     <PackageReference Include="System.Data.SQLite" Version="2.0.3" />
     <PackageReference Include="System.Resources.Extensions" Version="10.0.6" />
+    <Reference Include="System.Resources.Extensions">
+      <HintPath>$(NuGetPackageRoot)system.resources.extensions\10.0.6\lib\net462\System.Resources.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.SQLite">
+      <HintPath>$(NuGetPackageRoot)system.data.sqlite\2.0.3\lib\net471\System.Data.SQLite.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8.1\System.Data.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8.1\System.Data.DataSetExtensions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -167,6 +183,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Handlers\ApplicationEvents.vb" />
+    <Compile Include="Handlers\SQLiteHandler.vb" />
     <Compile Include="Admin\CustomerEntry.Designer.vb">
       <DependentUpon>CustomerEntry.vb</DependentUpon>
     </Compile>

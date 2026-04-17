@@ -9,11 +9,11 @@ Public Class GageType
     End Sub
 
     Private Sub LoadGageType()
-        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
+        Using connection As SQLiteConnection = DatabaseHandler.GetConnection()
             Try
                 connection.Open()
-                Dim cmd As New OleDbCommand("SELECT GageType FROM GageType", connection)
-                Dim reader As OleDbDataReader = cmd.ExecuteReader()
+                Dim cmd As New SQLiteCommand("SELECT GageType FROM GageType", connection)
+                Dim reader As SQLiteDataReader = cmd.ExecuteReader()
                 txtGageType.Items.Clear()
                 While reader.Read()
                     txtGageType.Items.Add(reader("GageType").ToString())
@@ -31,8 +31,8 @@ Public Class GageType
             Return
         End If
 
-        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
-            Dim checkCmd As New OleDbCommand("SELECT COUNT(*) FROM GageType WHERE GageType = @Name", connection)
+        Using connection As SQLiteConnection = DatabaseHandler.GetConnection()
+            Dim checkCmd As New SQLiteCommand("SELECT COUNT(*) FROM GageType WHERE GageType = @Name", connection)
             checkCmd.Parameters.AddWithValue("@Name", txtGageType.Text)
 
             Try
@@ -49,8 +49,8 @@ Public Class GageType
             End Try
         End Using
 
-        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
-            Using command As New OleDbCommand(insertQuery, connection)
+        Using connection As SQLiteConnection = DatabaseHandler.GetConnection()
+            Using command As New SQLiteCommand(insertQuery, connection)
                 command.Parameters.AddWithValue("@GageType", txtGageType.Text)
 
                 Try
@@ -84,8 +84,8 @@ Public Class GageType
         Dim selectedGageType As String = txtGageType.SelectedItem.ToString()
         Dim query As String = "DELETE FROM GageType WHERE GageType = @Name"
 
-        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
-            Using command As New OleDbCommand(query, connection)
+        Using connection As SQLiteConnection = DatabaseHandler.GetConnection()
+            Using command As New SQLiteCommand(query, connection)
                 command.Parameters.AddWithValue("@Name", selectedGageType)
 
                 Try

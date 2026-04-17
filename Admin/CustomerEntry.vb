@@ -15,8 +15,8 @@ Public Class CustomerEntry
             Return
         End If
 
-        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
-            Dim checkCmd As New OleDbCommand("SELECT COUNT(*) FROM Customers WHERE CustomerName = @Name", connection)
+        Using connection As SQLiteConnection = DatabaseHandler.GetConnection()
+            Dim checkCmd As New SQLiteCommand("SELECT COUNT(*) FROM Customers WHERE CustomerName = @Name", connection)
             checkCmd.Parameters.AddWithValue("@Name", txtCustomerName.Text)
 
             Try
@@ -33,8 +33,8 @@ Public Class CustomerEntry
             End Try
         End Using
 
-        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
-            Using command As New OleDbCommand(insertQuery, connection)
+        Using connection As SQLiteConnection = DatabaseHandler.GetConnection()
+            Using command As New SQLiteCommand(insertQuery, connection)
                 command.Parameters.AddWithValue("@Name", txtCustomerName.Text)
                 command.Parameters.AddWithValue("@Address", txtCustomerAddress.Text)
                 command.Parameters.AddWithValue("@Phone", txtCustomerPhone.Text)
@@ -60,11 +60,11 @@ Public Class CustomerEntry
     End Sub
 
     Private Sub LoadCustomers()
-        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
+        Using connection As SQLiteConnection = DatabaseHandler.GetConnection()
             Try
                 connection.Open()
-                Dim cmd As New OleDbCommand("SELECT CustomerName FROM Customers", connection)
-                Dim reader As OleDbDataReader = cmd.ExecuteReader()
+                Dim cmd As New SQLiteCommand("SELECT CustomerName FROM Customers", connection)
+                Dim reader As SQLiteDataReader = cmd.ExecuteReader()
                 txtCustomerName.Items.Clear()
                 While reader.Read()
                     txtCustomerName.Items.Add(reader("CustomerName").ToString())
@@ -87,13 +87,13 @@ Public Class CustomerEntry
         Dim selectedCustomer As String = txtCustomerName.SelectedItem.ToString()
         Dim query As String = "SELECT CustomerAddress, CustomerPhone, CustomerWebsite FROM Customers WHERE CustomerName = @Name"
 
-        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
-            Using command As New OleDbCommand(query, connection)
+        Using connection As SQLiteConnection = DatabaseHandler.GetConnection()
+            Using command As New SQLiteCommand(query, connection)
                 command.Parameters.AddWithValue("@Name", selectedCustomer)
 
                 Try
                     connection.Open()
-                    Dim reader As OleDbDataReader = command.ExecuteReader()
+                    Dim reader As SQLiteDataReader = command.ExecuteReader()
                     If reader.Read() Then
                         txtCustomerAddress.Text = reader("CustomerAddress").ToString()
                         txtCustomerPhone.Text = reader("CustomerPhone").ToString()
@@ -120,8 +120,8 @@ Public Class CustomerEntry
         Dim selectedCustomer As String = txtCustomerName.SelectedItem.ToString()
         Dim query As String = "UPDATE Customers SET CustomerAddress = @Address, CustomerPhone = @Phone, CustomerWebsite = @Website WHERE CustomerName = @Name"
 
-        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
-            Using command As New OleDbCommand(query, connection)
+        Using connection As SQLiteConnection = DatabaseHandler.GetConnection()
+            Using command As New SQLiteCommand(query, connection)
                 command.Parameters.AddWithValue("@Address", txtCustomerAddress.Text)
                 command.Parameters.AddWithValue("@Phone", txtCustomerPhone.Text)
                 command.Parameters.AddWithValue("@Website", txtCustomerWebsite.Text)
@@ -175,8 +175,8 @@ Public Class CustomerEntry
         Dim selectedCustomer As String = txtCustomerName.SelectedItem.ToString()
         Dim query As String = "DELETE FROM Customers WHERE CustomerName = @Name"
 
-        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
-            Using command As New OleDbCommand(query, connection)
+        Using connection As SQLiteConnection = DatabaseHandler.GetConnection()
+            Using command As New SQLiteCommand(query, connection)
                 command.Parameters.AddWithValue("@Name", selectedCustomer)
 
                 Try

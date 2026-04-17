@@ -38,19 +38,19 @@ Public Class AccountManagement
     End Function
 
     Private Sub SaveCredentials(username As String, hashedPassword As String)
-        Using conn As OleDbConnection = DatabaseHandler.GetConnection()
+        Using conn As SQLiteConnection = DatabaseHandler.GetConnection()
             conn.Open()
 
-            Dim checkCmd As New OleDbCommand("SELECT COUNT(*) FROM Credentials WHERE [Username] = ?", conn)
-            checkCmd.Parameters.Add(New OleDbParameter("@Username", username))
+            Dim checkCmd As New SQLiteCommand("SELECT COUNT(*) FROM Credentials WHERE [Username] = ?", conn)
+            checkCmd.Parameters.AddWithValue("@Username", username)
             Dim count As Integer = Convert.ToInt32(checkCmd.ExecuteScalar())
 
             If count > 0 Then
                 Dim result As DialogResult = MessageBox.Show("Username already exists. Do you want to update the password?", "Update Confirmation", MessageBoxButtons.YesNo)
                 If result = DialogResult.Yes Then
-                    Dim updateCmd As New OleDbCommand("UPDATE Credentials SET [Password] = ? WHERE [Username] = ?", conn)
-                    updateCmd.Parameters.Add(New OleDbParameter("@Password", hashedPassword))
-                    updateCmd.Parameters.Add(New OleDbParameter("@Username", username))
+                    Dim updateCmd As New SQLiteCommand("UPDATE Credentials SET [Password] = ? WHERE [Username] = ?", conn)
+                    updateCmd.Parameters.AddWithValue("@Password", hashedPassword)
+                    updateCmd.Parameters.AddWithValue("@Username", username)
                     updateCmd.ExecuteNonQuery()
                     ShowStatus("Password updated successfully.", False)
                     Logger.LogSystem(username + " password updated.")
@@ -59,9 +59,9 @@ Public Class AccountManagement
                 Return
             End If
 
-            Dim cmd As New OleDbCommand("INSERT INTO Credentials ([Username], [Password]) VALUES (?, ?)", conn)
-            cmd.Parameters.Add(New OleDbParameter("@Username", username))
-            cmd.Parameters.Add(New OleDbParameter("@Password", hashedPassword))
+            Dim cmd As New SQLiteCommand("INSERT INTO Credentials ([Username], [Password]) VALUES (?, ?)", conn)
+            cmd.Parameters.AddWithValue("@Username", username)
+            cmd.Parameters.AddWithValue("@Password", hashedPassword)
             cmd.ExecuteNonQuery()
             ShowStatus("User created successfully.", False)
             Logger.LogSystem("User " + username + " created.")
@@ -72,11 +72,11 @@ Public Class AccountManagement
     End Sub
 
     Private Sub LoadUsers()
-        Using conn As OleDbConnection = DatabaseHandler.GetConnection()
+        Using conn As SQLiteConnection = DatabaseHandler.GetConnection()
             Try
                 conn.Open()
-                Dim cmd As New OleDbCommand("SELECT [Username] FROM [Credentials]", conn)
-                Dim reader As OleDbDataReader = cmd.ExecuteReader()
+                Dim cmd As New SQLiteCommand("SELECT [Username] FROM [Credentials]", conn)
+                Dim reader As SQLiteDataReader = cmd.ExecuteReader()
                 txtUsername.Items.Clear()
                 While reader.Read()
                     txtUsername.Items.Add(reader("Username").ToString())
@@ -99,11 +99,11 @@ Public Class AccountManagement
             Return
         End If
 
-        Using conn As OleDbConnection = DatabaseHandler.GetConnection()
+        Using conn As SQLiteConnection = DatabaseHandler.GetConnection()
             conn.Open()
 
-            Dim checkCmd As New OleDbCommand("SELECT COUNT(*) FROM Credentials WHERE [Username] = ?", conn)
-            checkCmd.Parameters.Add(New OleDbParameter("@Username", username))
+            Dim checkCmd As New SQLiteCommand("SELECT COUNT(*) FROM Credentials WHERE [Username] = ?", conn)
+            checkCmd.Parameters.AddWithValue("@Username", username)
             Dim count As Integer = Convert.ToInt32(checkCmd.ExecuteScalar())
 
             If count = 0 Then
@@ -113,8 +113,8 @@ Public Class AccountManagement
 
             Dim result As DialogResult = MessageBox.Show("Are you sure you want to delete this user?", "Delete Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
             If result = DialogResult.Yes Then
-                Dim deleteCmd As New OleDbCommand("DELETE FROM Credentials WHERE [Username] = ?", conn)
-                deleteCmd.Parameters.Add(New OleDbParameter("@Username", username))
+                Dim deleteCmd As New SQLiteCommand("DELETE FROM Credentials WHERE [Username] = ?", conn)
+                deleteCmd.Parameters.AddWithValue("@Username", username)
                 deleteCmd.ExecuteNonQuery()
                 ShowStatus("User deleted successfully.", False)
                 Logger.LogSystem("User " + username + " deleted.")

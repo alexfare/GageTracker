@@ -9,11 +9,11 @@ Public Class StatusMenu
     End Sub
 
     Private Sub LoadStatus()
-        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
+        Using connection As SQLiteConnection = DatabaseHandler.GetConnection()
             Try
                 connection.Open()
-                Dim cmd As New OleDbCommand("SELECT Status FROM Status", connection)
-                Dim reader As OleDbDataReader = cmd.ExecuteReader()
+                Dim cmd As New SQLiteCommand("SELECT Status FROM Status", connection)
+                Dim reader As SQLiteDataReader = cmd.ExecuteReader()
                 txtStatus.Items.Clear()
                 While reader.Read()
                     txtStatus.Items.Add(reader("Status").ToString())
@@ -32,8 +32,8 @@ Public Class StatusMenu
             Return
         End If
 
-        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
-            Dim checkCmd As New OleDbCommand("SELECT COUNT(*) FROM Status WHERE Status = @Name", connection)
+        Using connection As SQLiteConnection = DatabaseHandler.GetConnection()
+            Dim checkCmd As New SQLiteCommand("SELECT COUNT(*) FROM Status WHERE Status = @Name", connection)
             checkCmd.Parameters.AddWithValue("@Name", txtStatus.Text)
 
             Try
@@ -50,8 +50,8 @@ Public Class StatusMenu
             End Try
         End Using
 
-        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
-            Using command As New OleDbCommand(insertQuery, connection)
+        Using connection As SQLiteConnection = DatabaseHandler.GetConnection()
+            Using command As New SQLiteCommand(insertQuery, connection)
                 command.Parameters.AddWithValue("@Name", txtStatus.Text)
 
                 Try
@@ -85,8 +85,8 @@ Public Class StatusMenu
         Dim selectedStatus As String = txtStatus.SelectedItem.ToString()
         Dim query As String = "DELETE FROM Status WHERE Status = @Name"
 
-        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
-            Using command As New OleDbCommand(query, connection)
+        Using connection As SQLiteConnection = DatabaseHandler.GetConnection()
+            Using command As New SQLiteCommand(query, connection)
                 command.Parameters.AddWithValue("@Name", selectedStatus)
 
                 Try

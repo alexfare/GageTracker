@@ -9,11 +9,11 @@ Public Class DepartmentManager
     End Sub
 
     Private Sub LoadDepartments()
-        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
+        Using connection As SQLiteConnection = DatabaseHandler.GetConnection()
             Try
                 connection.Open()
-                Dim cmd As New OleDbCommand("SELECT Departments FROM Departments", connection)
-                Dim reader As OleDbDataReader = cmd.ExecuteReader()
+                Dim cmd As New SQLiteCommand("SELECT Departments FROM Departments", connection)
+                Dim reader As SQLiteDataReader = cmd.ExecuteReader()
                 txtDepartments.Items.Clear()
                 While reader.Read()
                     txtDepartments.Items.Add(reader("Departments").ToString())
@@ -31,8 +31,8 @@ Public Class DepartmentManager
             Return
         End If
 
-        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
-            Dim checkCmd As New OleDbCommand("SELECT COUNT(*) FROM Departments WHERE Departments = @Name", connection)
+        Using connection As SQLiteConnection = DatabaseHandler.GetConnection()
+            Dim checkCmd As New SQLiteCommand("SELECT COUNT(*) FROM Departments WHERE Departments = @Name", connection)
             checkCmd.Parameters.AddWithValue("@Name", txtDepartments.Text)
 
             Try
@@ -49,8 +49,8 @@ Public Class DepartmentManager
             End Try
         End Using
 
-        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
-            Using command As New OleDbCommand(insertQuery, connection)
+        Using connection As SQLiteConnection = DatabaseHandler.GetConnection()
+            Using command As New SQLiteCommand(insertQuery, connection)
                 command.Parameters.AddWithValue("@Departments", txtDepartments.Text)
 
                 Try
@@ -84,8 +84,8 @@ Public Class DepartmentManager
         Dim selectedDepartment As String = txtDepartments.SelectedItem.ToString()
         Dim query As String = "DELETE FROM Departments WHERE Departments = @Name"
 
-        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
-            Using command As New OleDbCommand(query, connection)
+        Using connection As SQLiteConnection = DatabaseHandler.GetConnection()
+            Using command As New SQLiteCommand(query, connection)
                 command.Parameters.AddWithValue("@Name", selectedDepartment)
 
                 Try

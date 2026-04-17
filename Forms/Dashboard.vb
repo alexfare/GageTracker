@@ -78,7 +78,7 @@ Public Class Dashboard
                                   Using connection As SQLiteConnection = DatabaseHandler.GetConnection()
                                       Try
                                           connection.Open()
-                                          Using command As New OleDbCommand(query, connection)
+                                          Using command As New SQLiteCommand(query, connection)
                                               totalCount = Convert.ToInt32(command.ExecuteScalar())
                                           End Using
                                       Catch ex As Exception
@@ -93,10 +93,10 @@ Public Class Dashboard
         Return Await Task.Run(Function()
                                   Dim totalCount As Integer = 0
                                   Dim query As String = "SELECT COUNT(*) FROM CalibrationTracker WHERE [Due Date] < ?"
-                                  Using connection As OleDbConnection = DatabaseHandler.GetConnection()
+                                  Using connection As SQLiteConnection = DatabaseHandler.GetConnection()
                                       Try
                                           connection.Open()
-                                          Using command As New OleDbCommand(query, connection)
+                                          Using command As New SQLiteCommand(query, connection)
                                               command.Parameters.AddWithValue("@Today", DateTime.Now.Date)
                                               totalCount = Convert.ToInt32(command.ExecuteScalar())
                                           End Using
@@ -112,10 +112,10 @@ Public Class Dashboard
         Return Await Task.Run(Function()
                                   Dim totalCount As Integer = 0
                                   Dim query As String = "SELECT COUNT(*) FROM CalibrationTracker WHERE [Due Date] >= ? AND [Due Date] <= ?"
-                                  Using connection As OleDbConnection = DatabaseHandler.GetConnection()
+                                  Using connection As SQLiteConnection = DatabaseHandler.GetConnection()
                                       Try
                                           connection.Open()
-                                          Using command As New OleDbCommand(query, connection)
+                                          Using command As New SQLiteCommand(query, connection)
                                               command.Parameters.AddWithValue("@Today", DateTime.Now.Date)
                                               command.Parameters.AddWithValue("@ThirtyDays", DateTime.Now.Date.AddDays(30))
                                               totalCount = Convert.ToInt32(command.ExecuteScalar())
@@ -132,10 +132,10 @@ Public Class Dashboard
         Return Await Task.Run(Function()
                                   Dim totalCount As Integer = 0
                                   Dim query As String = "SELECT COUNT(*) FROM CalibrationTracker WHERE [Due Date] >= ? AND [Due Date] <= ?"
-                                  Using connection As OleDbConnection = DatabaseHandler.GetConnection()
+                                  Using connection As SQLiteConnection = DatabaseHandler.GetConnection()
                                       Try
                                           connection.Open()
-                                          Using command As New OleDbCommand(query, connection)
+                                          Using command As New SQLiteCommand(query, connection)
                                               command.Parameters.AddWithValue("@Today", DateTime.Now.Date)
                                               command.Parameters.AddWithValue("@SixtyDays", DateTime.Now.Date.AddDays(60))
                                               totalCount = Convert.ToInt32(command.ExecuteScalar())

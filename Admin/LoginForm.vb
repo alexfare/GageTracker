@@ -26,14 +26,11 @@ Public Class LoginForm
             Return
         End If
 
-        Using connection As OleDbConnection = DatabaseHandler.GetConnection()
+        Using connection As SQLiteConnection = DatabaseHandler.GetConnection()
             Try
                 connection.Open()
-                Dim cmd As New OleDbCommand("SELECT Password FROM [Credentials] WHERE Username = ?", connection)
-                cmd.Parameters.Add(New OleDbParameter With {
-                    .OleDbType = OleDbType.VarChar,
-                    .Value = username
-                })
+                Dim cmd As New SQLiteCommand("SELECT Password FROM [Credentials] WHERE Username = ?", connection)
+                cmd.Parameters.AddWithValue("@Username", username)
 
                 Dim storedPasswordHash As Object = cmd.ExecuteScalar()
 
@@ -55,7 +52,7 @@ Public Class LoginForm
                 Else
                     InvalidLogin()
                 End If
-            Catch ex As OleDbException
+            Catch ex As SQLiteException
                 MessageBox.Show("Database error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Logger.LogErrors("Database error: " & ex.Message)
             Catch ex As Exception
